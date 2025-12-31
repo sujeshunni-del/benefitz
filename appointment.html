@@ -12,9 +12,9 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Consultation | Better Call Immigration</title>
-    <meta name="description" content="Schedule your immigration strategy session">
-    <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/sujeshunni-del/bettercall/6673d6ec4830e402627b97c4adf422593b2ec907/Bettercall%20Logo%20SVG%2003.svg">
+    <title>Book Consultation | Benefitz International</title>
+    <meta name="description" content="Schedule your immigration strategy session with Benefitz International">
+    <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg">
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,10 +66,10 @@
                             barcode: ['"Libre Barcode 39 Text"', 'cursive'],
                         },
                         colors: {
-                            'brand-dark': '#1e293b',
-                            'brand-primary': '#6366f1', // Indigo 500 - Modern & Trust
-                            'brand-secondary': '#ec4899', // Pink 500 - Warm & Friendly
-                            'brand-accent': '#f59e0b', // Amber 500 - Joyful
+                            'brand-dark': '#0f172a',
+                            'brand-primary': '#2563eb', // Royal Blue
+                            'brand-secondary': '#e11d48', // Deep Rose
+                            'brand-accent': '#f59e0b', // Amber
                             'brand-gold': '#d97706',
                             glass: { border: 'rgba(255, 255, 255, 0.4)', surface: 'rgba(255, 255, 255, 0.1)' },
                         },
@@ -102,14 +102,14 @@
     </script>
 
     <style>
-        /* BASE & BACKGROUND - Updated for "Feel Good" Theme */
+        /* BASE & BACKGROUND - Updated for "Global" Theme */
         :root { --glass-border: 1px solid rgba(255, 255, 255, 0.35); }
         body {
             background-color: #f8fafc;
-            background: radial-gradient(ellipse at 60% 40%, rgba(224, 231, 255, 0.7) 0%, transparent 60%),
-                        radial-gradient(circle at 0% 0%, rgba(250, 204, 21, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
-                        linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #fdf4ff 100%);
+            background: radial-gradient(ellipse at 60% 40%, rgba(219, 234, 254, 0.7) 0%, transparent 60%),
+                        radial-gradient(circle at 0% 0%, rgba(254, 243, 199, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(224, 242, 254, 0.15) 0%, transparent 50%),
+                        linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #f0f9ff 100%);
             background-attachment: fixed;
             background-size: cover;
             color: #334155;
@@ -130,7 +130,7 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.3));
             backdrop-filter: blur(40px) saturate(140%);
             border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15);
             border-radius: 1.5rem; 
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -159,20 +159,20 @@
 
         .form-input:focus, .geo-input:focus {
             background: rgba(255, 255, 255, 0.95);
-            border-color: #6366f1; /* Indigo focus */
+            border-color: #2563eb; /* Blue focus */
             outline: none;
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
         }
         
-        /* Updated Orbs for Feel Good Theme */
+        /* Updated Orbs for Corporate Theme */
         .orb { position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1; animation: blob 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); mix-blend-mode: multiply; }
-        .orb-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: #c7d2fe; opacity: 0.4; } /* Soft Indigo */
-        .orb-2 { bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: #fbcfe8; animation-delay: -5s; opacity: 0.3; } /* Soft Pink */
-        .orb-3 { top: 30%; right: 20%; width: 40vw; height: 40vw; background: #fde68a; animation-delay: -10s; opacity: 0.3; } /* Soft Amber */
-        .orb-4 { bottom: 10%; left: 10%; width: 50vw; height: 50vw; background: #bae6fd; animation-delay: -8s; opacity: 0.3; } /* Soft Sky */
+        .orb-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: #bfdbfe; opacity: 0.4; } 
+        .orb-2 { bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: #e0f2fe; animation-delay: -5s; opacity: 0.3; }
+        .orb-3 { top: 30%; right: 20%; width: 40vw; height: 40vw; background: #fde68a; animation-delay: -10s; opacity: 0.3; } 
+        .orb-4 { bottom: 10%; left: 10%; width: 50vw; height: 50vw; background: #dbeafe; animation-delay: -8s; opacity: 0.3; } 
 
         .date-input-container { display: flex; align-items: center; overflow: hidden; padding: 0; }
-        .date-icon-box { padding: 0 1rem; color: #6366f1; background: rgba(238, 242, 255, 0.6); height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.8); }
+        .date-icon-box { padding: 0 1rem; color: #2563eb; background: rgba(239, 246, 255, 0.6); height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.8); }
         .date-input-container input { background: transparent; border: none; color: #1e293b; width: 100%; padding: 0 1rem; height: 100%; outline: none; font-weight: 600; font-size: 0.95rem; }
         @media (min-width: 768px) { .date-input-container input { font-size: 1.125rem; } .date-icon-box { padding: 0 1.25rem; } }
 
@@ -182,7 +182,7 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 1.5rem;
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
             font-family: 'Plus Jakarta Sans', sans-serif;
             padding: 1rem;
             overflow: hidden;
@@ -190,14 +190,14 @@
         .flatpickr-calendar::before, .flatpickr-calendar::after { display: none; }
         
         .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange {
-            background: linear-gradient(135deg, #6366f1, #ec4899); /* Indigo to Pink */
+            background: linear-gradient(135deg, #2563eb, #3b82f6); 
             border-color: transparent;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
             color: white;
         }
-        .flatpickr-day.today { border-color: #6366f1; color: #6366f1; font-weight: 800; }
-        .flatpickr-day:hover { background: #eef2ff; border-color: transparent; }
+        .flatpickr-day.today { border-color: #2563eb; color: #2563eb; font-weight: 800; }
+        .flatpickr-day:hover { background: #eff6ff; border-color: transparent; }
         .flatpickr-current-month .flatpickr-monthDropdown-months { font-weight: 800; font-size: 1.1em; }
         
         .flatpickr-current-month { display: flex; align-items: center; justify-content: center; padding: 15px 0; gap: 8px; }
@@ -210,7 +210,7 @@
         .flatpickr-calendar.inline .flatpickr-days { width: 100% !important; border: none !important; }
         .flatpickr-calendar.inline .dayContainer { width: 100% !important; min-width: 100% !important; max-width: 100% !important; justify-content: space-around; }
         .flatpickr-calendar.inline .flatpickr-day { height: 36px; line-height: 36px; margin: 4px 0; border-radius: 10px !important; font-weight: 700; color: #475569; border: 1px solid transparent; }
-        .flatpickr-calendar.inline .flatpickr-day.selected { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); border: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); color: white; }
+        .flatpickr-calendar.inline .flatpickr-day.selected { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); border: none; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); color: white; }
         .flatpickr-calendar.inline .flatpickr-months { background: #f8fafc; border-radius: 12px; padding: 10px; margin-bottom: 10px; border: 1px solid #f1f5f9; }
 
         .uppercase-input { text-transform: uppercase; }
@@ -218,11 +218,11 @@
         .invalid-field { border-color: #f43f5e !important; background-color: rgba(255, 241, 242, 0.8) !important; }
         
         .category-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
-        .category-card:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.9); border-color: #6366f1; }
-        .category-card.active { background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%); border-color: #6366f1; box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.15); position: relative; }
+        .category-card:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.9); border-color: #2563eb; }
+        .category-card.active { background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); border-color: #2563eb; box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.15); position: relative; }
         
-        .btn-gradient { background-size: 200% auto; background-image: linear-gradient(to right, #6366f1 0%, #ec4899 51%, #6366f1 100%); transition: 0.5s; }
-        .btn-gradient:hover { background-position: right center; box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4); }
+        .btn-gradient { background-size: 200% auto; background-image: linear-gradient(to right, #1e40af 0%, #2563eb 51%, #1e40af 100%); transition: 0.5s; }
+        .btn-gradient:hover { background-position: right center; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4); }
 
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
@@ -247,13 +247,13 @@
         }
         .advisor-pro-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
             border-color: #cbd5e1;
         }
         .advisor-pro-card.selected {
-            border-color: #6366f1;
-            background: linear-gradient(to bottom right, #eef2ff, #ffffff);
-            box-shadow: 0 0 0 2px #6366f1, 0 10px 15px -3px rgba(99, 102, 241, 0.1);
+            border-color: #2563eb;
+            background: linear-gradient(to bottom right, #eff6ff, #ffffff);
+            box-shadow: 0 0 0 2px #2563eb, 0 10px 15px -3px rgba(37, 99, 235, 0.1);
         }
         .advisor-img {
             width: 90px; /* Increased Size */
@@ -268,6 +268,10 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin-bottom: 0.5rem;
         }
+        
+        .advisor-img img {
+            border-radius: 50%;
+        }
 
         .method-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -279,9 +283,9 @@
         
         /* Stylish Selected State */
         .method-card.selected {
-            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
             border-color: transparent;
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
             transform: translateY(-2px) scale(1.02);
         }
 
@@ -304,14 +308,14 @@
             cursor: pointer;
         }
         .time-slot:hover:not(.disabled) {
-            background-color: #eef2ff;
-            color: #6366f1;
+            background-color: #eff6ff;
+            color: #2563eb;
         }
         .time-slot.selected {
-            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
             color: white;
             border-color: transparent;
-            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
         }
         .time-slot.disabled {
             opacity: 0.5;
@@ -327,7 +331,7 @@
         }
         .country-pill:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.1);
         }
         .country-pill::after {
             content: '';
@@ -342,7 +346,7 @@
         }
         .country-pill.selected {
             transform: scale(1.05);
-            box-shadow: 0 0 0 3px white, 0 8px 20px -4px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 0 3px white, 0 8px 20px -4px rgba(37, 99, 235, 0.2);
             font-weight: 800;
         }
         .country-pill .check-icon {
@@ -354,7 +358,7 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-indigo-500 selection:text-white relative">
+<body class="antialiased selection:bg-blue-500 selection:text-white relative">
 
     <!-- Background Orbs -->
     <div class="orb orb-1"></div>
@@ -366,12 +370,12 @@
     <nav class="fixed top-0 md:top-4 left-0 right-0 z-50 flex justify-center px-0 md:px-4" id="navbar-container">
         <div class="glass-card !rounded-none md:!rounded-[2rem] !border-t-0 w-full max-w-7xl px-4 py-3 md:px-5 md:py-2 flex justify-between items-center transition-all duration-300 min-h-[60px]" id="navbar">
             <a href="index.html" class="flex items-center gap-2 group px-1">
-                <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center bg-white/60 backdrop-blur-md overflow-hidden p-1 flex-shrink-0 border border-white/50">
-                    <img src="https://raw.githubusercontent.com/sujeshunni-del/bettercall/6673d6ec4830e402627b97c4adf422593b2ec907/Bettercall%20Logo%20SVG%2003.svg" alt="Better Call Logo" class="w-full h-full object-contain">
+                <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center bg-white/80 backdrop-blur-md overflow-hidden p-1 flex-shrink-0 border border-white/50 shadow-sm">
+                    <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg" alt="Benefitz Logo" class="w-full h-full object-contain">
                 </div>
                 <div class="block leading-tight"> 
-                    <h1 class="font-bold text-slate-800 text-sm md:text-lg tracking-wide group-hover:text-brand-primary transition-colors">BETTER CALL</h1>
-                    <p class="text-[9px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em]">Immigration</p>
+                    <h1 class="font-black text-slate-800 text-sm md:text-lg tracking-wide group-hover:text-brand-primary transition-colors">BENEFITZ</h1>
+                    <p class="text-[9px] md:text-xs font-bold text-brand-primary uppercase tracking-[0.2em]">INTERNATIONAL</p>
                 </div>
             </a>
             <div class="hidden lg:flex items-center gap-1">
@@ -410,14 +414,14 @@
             <!-- TAB 1: Profile (Consolidated Personal + Job Details) -->
             <div id="tab-1" class="glass-card p-5 md:p-12 animate-slide-up-fade max-w-4xl mx-auto">
                 <div class="mb-6 md:mb-10 text-center">
-                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-indigo-50 to-pink-50 mb-4 shadow-sm border border-white animate-pulse-slow">
-                        <i class="fa-solid fa-address-card text-2xl text-brand-primary"></i>
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 mb-4 shadow-sm border border-white animate-pulse-slow">
+                        <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg" alt="Benefitz" class="w-8 h-8 object-contain">
                     </div>
                     <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-3 tracking-tight">
-                        Start Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Consultation</span>
+                        Start Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-blue-400">Consultation</span>
                     </h2>
                     <p class="text-slate-500 text-xs md:text-sm tracking-wide font-medium max-w-lg mx-auto leading-relaxed">
-                        Secure your personalized immigration strategy session. Enter your profile details below.
+                        Secure your personalized immigration strategy session with Benefitz International.
                     </p>
                 </div>
 
@@ -522,7 +526,7 @@
                                 <!-- Option 1: Under 10th -->
                                 <label class="cursor-pointer relative group">
                                     <input type="radio" name="qualification" value="UNDER 10 TH" class="peer sr-only" required>
-                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-brand-secondary peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
+                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-blue-600 peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
                                         <div class="absolute inset-0 bg-gradient-to-br from-transparent to-slate-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <i class="fa-solid fa-school text-2xl text-slate-300 group-hover:text-brand-primary/70 transition-colors relative z-10"></i>
                                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-wide relative z-10">Under 10th</span>
@@ -532,7 +536,7 @@
                                 <!-- Option 2: School -->
                                 <label class="cursor-pointer relative group">
                                     <input type="radio" name="qualification" value="SCHOOL" class="peer sr-only">
-                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-brand-secondary peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
+                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-blue-600 peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
                                         <div class="absolute inset-0 bg-gradient-to-br from-transparent to-slate-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <i class="fa-solid fa-book-open text-2xl text-slate-300 group-hover:text-brand-primary/70 transition-colors relative z-10"></i>
                                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-wide relative z-10">School</span>
@@ -542,7 +546,7 @@
                                 <!-- Option 3: Plus Two -->
                                 <label class="cursor-pointer relative group">
                                     <input type="radio" name="qualification" value="PLUS TWO" class="peer sr-only">
-                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-brand-secondary peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
+                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-blue-600 peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
                                         <div class="absolute inset-0 bg-gradient-to-br from-transparent to-slate-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <i class="fa-solid fa-graduation-cap text-2xl text-slate-300 group-hover:text-brand-primary/70 transition-colors relative z-10"></i>
                                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-wide relative z-10">Plus Two</span>
@@ -552,7 +556,7 @@
                                 <!-- Option 4: Diploma -->
                                 <label class="cursor-pointer relative group">
                                     <input type="radio" name="qualification" value="DIPLOMA" class="peer sr-only">
-                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-brand-secondary peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
+                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-blue-600 peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
                                         <div class="absolute inset-0 bg-gradient-to-br from-transparent to-slate-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <i class="fa-solid fa-scroll text-2xl text-slate-300 group-hover:text-brand-primary/70 transition-colors relative z-10"></i>
                                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-wide relative z-10">Diploma</span>
@@ -562,7 +566,7 @@
                                 <!-- Option 5: Bachelor -->
                                 <label class="cursor-pointer relative group">
                                     <input type="radio" name="qualification" value="BACHELOR" class="peer sr-only">
-                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-brand-secondary peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
+                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-blue-600 peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
                                         <div class="absolute inset-0 bg-gradient-to-br from-transparent to-slate-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <i class="fa-solid fa-user-graduate text-2xl text-slate-300 group-hover:text-brand-primary/70 transition-colors relative z-10"></i>
                                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-wide relative z-10">Bachelor</span>
@@ -572,7 +576,7 @@
                                 <!-- Option 6: Master -->
                                 <label class="cursor-pointer relative group">
                                     <input type="radio" name="qualification" value="MASTER" class="peer sr-only">
-                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-brand-secondary peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
+                                    <div class="h-full rounded-2xl border-2 border-slate-200 bg-white p-3 flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-brand-primary peer-checked:to-blue-600 peer-checked:text-white peer-checked:shadow-xl peer-checked:shadow-brand-primary/40 peer-checked:scale-105 peer-checked:[&_i]:text-white peer-checked:[&_span]:text-white peer-checked:[&_.indicator-dot]:bg-white relative overflow-hidden">
                                         <div class="absolute inset-0 bg-gradient-to-br from-transparent to-slate-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <i class="fa-solid fa-medal text-2xl text-slate-300 group-hover:text-brand-primary/70 transition-colors relative z-10"></i>
                                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-wide relative z-10">Master</span>
@@ -847,14 +851,47 @@
     
     <!-- 2. FOOTER -->
     <footer class="mt-0 border-t border-white/20 relative z-10 backdrop-blur-[2px] hidden md:block">
-        <div class="border-t border-white/20 py-8 text-center text-xs text-slate-500 font-medium bg-white/10 backdrop-blur-sm">
-            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p>&copy; 2025 Better Call Immigration. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-brand-primary transition">Privacy</a>
-                    <a href="#" class="hover:text-brand-primary transition">Terms</a>
+        <div class="py-12 bg-white/40 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-white shadow-sm p-1 flex items-center justify-center">
+                            <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg" alt="Benefitz Logo" class="w-full h-full object-contain">
+                        </div>
+                        <div>
+                            <h4 class="font-black text-slate-800 text-lg leading-none">BENEFITZ</h4>
+                            <span class="text-[10px] font-bold text-brand-primary uppercase tracking-widest">INTERNATIONAL</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium leading-relaxed max-w-sm">
+                        Bank Street Building, Bank Street Road<br>
+                        Burjuman, Dubai, UAE
+                    </p>
+                </div>
+                
+                <div>
+                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Contact</h5>
+                    <ul class="space-y-3 text-sm font-semibold text-slate-600">
+                        <li><a href="tel:+971588670129" class="hover:text-brand-primary transition"><i class="fa-solid fa-phone mr-2 text-brand-gold"></i> +971 58 867 0129</a></li>
+                        <li><a href="mailto:benefitzic@gmail.com" class="hover:text-brand-primary transition"><i class="fa-solid fa-envelope mr-2 text-brand-gold"></i> benefitzic@gmail.com</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Connect</h5>
+                    <div class="flex gap-3">
+                        <a href="https://www.instagram.com/benefitz_int/" target="_blank" class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-pink-600 hover:scale-110 transition-all">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                         <a href="https://wa.me/971588670129" target="_blank" class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-green-500 hover:scale-110 transition-all">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="border-t border-slate-200 py-6 text-center text-xs text-slate-400 font-bold bg-slate-50">
+            <p>&copy; 2025 Benefitz International. All rights reserved.</p>
         </div>
     </footer>
 
@@ -865,7 +902,7 @@
             <div class="absolute inset-0 border-4 border-brand-secondary/20 rounded-full animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]" style="animation-delay: 1s"></div>
             <div class="absolute inset-2 border-4 border-t-brand-primary border-r-transparent border-b-brand-secondary border-l-transparent rounded-full animate-spin"></div>
             <div class="absolute inset-0 flex items-center justify-center">
-                <i class="fa-solid fa-satellite-dish text-4xl text-brand-primary animate-pulse"></i>
+                <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg" class="w-12 h-12 object-contain animate-pulse">
             </div>
         </div>
         <h3 id="loaderTitle" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary tracking-widest uppercase mb-2 animate-pulse">
@@ -951,11 +988,6 @@
             { name: "LATVIA", type: "schengen", color: "hover:shadow-rose-400 hover:border-rose-500", bg: "bg-rose-50", icon: "🇱🇻" },
             { name: "POLAND", type: "schengen", color: "hover:shadow-red-400 hover:border-red-500", bg: "bg-red-50", icon: "🇵🇱" },
             { name: "CZECH REPUBLIC", type: "schengen", color: "hover:shadow-blue-300 hover:border-blue-400", bg: "bg-blue-50", icon: "🇨🇿" },
-            /* Disabled Countries 
-            { name: "LITHUANIA", type: "schengen", color: "hover:shadow-yellow-400 hover:border-yellow-500", bg: "bg-yellow-50", icon: "🇱🇹" },
-            { name: "ROMANIA", type: "schengen", color: "hover:shadow-blue-400 hover:border-blue-500", bg: "bg-blue-50", icon: "🇷🇴" },
-            { name: "HUNGARY", type: "schengen", color: "hover:shadow-green-400 hover:border-green-500", bg: "bg-green-50", icon: "🇭🇺" },
-            */
             { name: "SLOVAKIA", type: "schengen", color: "hover:shadow-blue-300 hover:border-blue-400", bg: "bg-blue-50", icon: "🇸🇰" },
             { name: "SERBIA", type: "non-schengen", color: "hover:shadow-red-300 hover:border-red-400", bg: "bg-red-50", icon: "🇷🇸" },
             { name: "ALBANIA", type: "non-schengen", color: "hover:shadow-red-500 hover:border-red-600", bg: "bg-red-50", icon: "🇦🇱" },
@@ -1317,13 +1349,13 @@
         const advisors = [
             { name: "Benitta", country: "India", flag: "🇮🇳", lang: "Malayalam (മലയാളം)", image: null },
             { name: "Anju M Nair", country: "India", flag: "🇮🇳", lang: "Malayalam (മലയാളം), Hindi (हिंदी), English", image: "https://raw.githubusercontent.com/sujeshunni-del/bettercall/bb687d0a11a26c558eb8dfa3486bd809e75379e8/Untitled-1-01.png" },
-            { name: "Better Call", country: "Philippines", flag: "🇵🇭", lang: "English, Malayalam", image: "https://raw.githubusercontent.com/sujeshunni-del/bettercall/6673d6ec4830e402627b97c4adf422593b2ec907/Bettercall%20Logo%20SVG%2003.svg" },
+            { name: "Benefitz Team", country: "UAE", flag: "🇦🇪", lang: "English, Malayalam, Hindi", image: "https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg" },
             { name: "Eunice Kingoo", country: "Africa", flag: "🌍", lang: "English, Kiswahili", image: "https://raw.githubusercontent.com/sujeshunni-del/bettercall/110817d3ca6fd4e0321185ce6e4c3c15e28de1af/kingo.png" }
         ];
 
         // CAL.COM INTEGRATION CONFIG
         const CAL_CONFIG = {
-            "Better Call": "cal_live_56464d96cd70d67aa7588d6735ad55ed",
+            "Benefitz Team": "cal_live_56464d96cd70d67aa7588d6735ad55ed",
             "Anju M Nair": "cal_live_82b9340d588920d9c9270052d13db98a",
             "Benitta": "cal_live_005b958e38d7722c363233d6b97a4ce4",
             "Eunice Kingoo": "cal_live_9489b42b4b6e4cdb8c144e8150fa62c9"
@@ -2153,16 +2185,16 @@
             
             return `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Better Call Immigration//Booking//EN
+PRODID:-//Benefitz International//Booking//EN
 BEGIN:VEVENT
-UID:${Date.now()}@bettercall.online
+UID:${Date.now()}@benefitz.international
 DTSTAMP:${fmt(new Date())}
 DTSTART:${fmt(start)}
 DTEND:${fmt(end)}
 SUMMARY:Strategy Session with ${advisor}
-DESCRIPTION:Immigration Consultation. Prepare your documents.
+DESCRIPTION:Immigration Consultation with Benefitz International. Prepare your documents.
 LOCATION:Online / Phone
-URL:https://bettercall.online
+URL:https://www.instagram.com/benefitz_int/
 END:VEVENT
 END:VCALENDAR`;
         }
@@ -2412,8 +2444,8 @@ Expiry: ${passportExp}
                         <a href="${icsUrl}" download="appointment.ics" class="w-full bg-brand-primary hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
                             <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
                         </a>
-                        <a href="https://www.bettercall.online" class="w-full bg-white text-slate-600 border border-slate-200 font-bold py-3 rounded-xl transition-all hover:bg-slate-50">
-                            Return to Home
+                        <a href="https://www.instagram.com/benefitz_int/" class="w-full bg-white text-slate-600 border border-slate-200 font-bold py-3 rounded-xl transition-all hover:bg-slate-50 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram text-pink-500"></i> Follow us on Instagram
                         </a>
                     </div>
                 </div>
