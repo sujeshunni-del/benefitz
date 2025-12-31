@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIVIC Resume Builder</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+        /* Rich Text Editor Styles */
+        .rich-editor-content { 
+            min-height: 120px; 
+            max-height: 300px; 
+            overflow-y: auto; 
+            outline: none; 
+            font-size: 0.875rem; 
+            line-height: 1.5;
+            color: #374151;
+        }
+        .rich-editor-content ul { list-style-type: disc; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+        .rich-editor-content ol { list-style-type: decimal; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+        .rich-editor-content li { margin-bottom: 0.25rem; }
+        .rich-editor-content p { margin-bottom: 0.5rem; }
+        .rich-editor-content b, .rich-editor-content strong { font-weight: 700; }
+        .rich-editor-content i, .rich-editor-content em { font-style: italic; }
+        .rich-editor-content u { text-decoration: underline; }
+
+        /* Spinner Animation */
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .animate-spin { animation: spin 1s linear infinite; }
+
+        /* Print Styles - CRITICAL for Vector PDF */
+        @media print {
+            @page { margin: 0; size: auto; }
+            body { background: white; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .print-container { 
+                position: absolute; top: 0; left: 0; width: 100%; margin: 0; padding: 0; z-index: 9999; 
+                display: block !important; overflow: visible !important; height: auto !important;
+                transform: none !important;
+            }
+            .a4-page { 
+                box-shadow: none !important; margin: 0 !important; width: 210mm !important; height: auto !important; min-height: 297mm; 
+                transform: none !important; padding: 2.54cm !important;
+            }
+            .break-inside-avoid { break-inside: avoid; page-break-inside: avoid; }
+            
+            /* Hide scrollbars in print */
+            ::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 h-screen flex flex-col overflow-hidden text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-4 z-50 shrink-0 no-print">
+        <div class="flex items-center gap-2">
+            <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-lg shadow-indigo-200">
+                <i data-lucide="file-text" width="20" height="20"></i>
+            </div>
+            <h1 class="font-extrabold text-xl tracking-tight text-slate-800 hidden sm:block">
+                CIVIC <span class="text-indigo-600">Resume Builder</span>
+            </h1>
+            <h1 class="font-extrabold text-lg tracking-tight text-slate-800 sm:hidden">
+                CIVIC <span class="text-indigo-600">Resume</span>
+            </h1>
+        </div>
+        <div class="flex items-center gap-3 relative">
+            <!-- AI Import Button -->
+            <button onclick="document.getElementById('import-file').click()" id="btn-import" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all border border-purple-200 text-purple-700 bg-purple-50 hover:bg-purple-100">
+                <i data-lucide="upload-cloud" width="14"></i>
+                <span class="hidden sm:inline">AI Import</span>
+            </button>
+            <input type="file" id="import-file" accept="image/*" class="hidden" onchange="app.handleImportCV(this)">
+
+            <!-- Preview Toggle Button (Visible on all screens) -->
+            <button onclick="app.toggleView()" id="btn-view-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all border bg-white text-slate-600 border-slate-200 hover:bg-slate-50">
+                <i data-lucide="eye" width="14"></i> <span class="hidden sm:inline">Preview</span>
+            </button>
+
+            <!-- Export Dropdown -->
+            <div class="relative">
+                <button onclick="app.toggleExportMenu()" class="flex items-center gap-2 bg-slate-900 hover:bg-black text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-colors">
+                    <i data-lucide="download" width="14"></i> <span>Export</span> <i data-lucide="chevron-down" width="12"></i>
+                </button>
+                <div id="export-menu" class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
+                    <div class="p-1">
+                        <button onclick="app.handlePrint()" class="w-full text-left flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-slate-50 rounded-lg transition-colors">
+                            <div class="p-1.5 bg-red-50 text-red-600 rounded-md"><i data-lucide="printer" width="16"></i></div>
+                            <div>
+                                <div class="font-bold">PDF (Vector)</div>
+                                <div class="text-[10px] text-gray-400">High Quality Print</div>
+                            </div>
+                        </button>
+                        <button onclick="app.handleDownloadWord()" class="w-full text-left flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-slate-50 rounded-lg transition-colors">
+                            <div class="p-1.5 bg-blue-50 text-blue-600 rounded-md"><i data-lucide="file-type" width="16"></i></div>
+                            <div>
+                                <div class="font-bold">Word Doc</div>
+                                <div class="text-[10px] text-gray-400">Editable .doc</div>
+                            </div>
+                        </button>
+                        <div class="h-px bg-gray-100 my-1"></div>
+                        <button onclick="app.handleDownloadJSON()" class="w-full text-left flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-slate-50 rounded-lg transition-colors">
+                            <div class="p-1.5 bg-green-50 text-green-600 rounded-md"><i data-lucide="file-json" width="16"></i></div>
+                            <div>
+                                <div class="font-bold">JSON Data</div>
+                                <div class="text-[10px] text-gray-400">Backup File</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 flex overflow-hidden relative">
+        
+        <!-- Editor Section -->
+        <div id="editor-panel" class="w-full bg-white flex flex-col transition-transform duration-300 absolute inset-0 z-20 h-full no-print">
+            <!-- Editor Header -->
+            <div class="p-4 border-b border-slate-100 bg-white sticky top-0 z-10 flex items-center justify-between">
+                <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i data-lucide="pen-tool" class="text-blue-600" width="18"></i> Editor
+                </h2>
+                <div class="flex bg-slate-100 p-1 rounded-lg">
+                    <button onclick="app.setCvType('experienced')" id="btn-type-exp" class="px-3 py-1.5 text-xs font-bold rounded-md transition-all">Experienced</button>
+                    <button onclick="app.setCvType('fresher')" id="btn-type-fresh" class="px-3 py-1.5 text-xs font-bold rounded-md transition-all">Fresher</button>
+                </div>
+            </div>
+
+            <!-- Scrollable Form Area -->
+            <div class="flex-1 overflow-y-auto p-4 md:p-8" id="editor-container">
+                <div class="max-w-3xl mx-auto" id="editor-form">
+                    <!-- Dynamic Content Injected Here -->
+                </div>
+                <div class="h-20"></div>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div id="preview-panel" class="w-full bg-slate-200 flex flex-col items-center justify-start p-4 md:p-8 overflow-y-auto absolute inset-0 z-20 h-full transition-transform duration-300 translate-x-full print-container">
+            
+            <!-- Zoom Controls -->
+            <div class="fixed bottom-6 right-6 flex flex-col gap-2 bg-white/90 backdrop-blur shadow-lg border border-slate-200 p-2 rounded-full z-50 no-print">
+                <button onclick="app.adjustZoom(0.1)" class="p-2 hover:bg-slate-100 rounded-full text-slate-700"><i data-lucide="zoom-in" width="20"></i></button>
+                <div class="h-px w-full bg-slate-200"></div>
+                <button onclick="app.adjustZoom(-0.1)" class="p-2 hover:bg-slate-100 rounded-full text-slate-700"><i data-lucide="zoom-out" width="20"></i></button>
+            </div>
+
+            <!-- The A4 Page Wrapper for Scaling -->
+            <div id="a4-wrapper" class="origin-top transition-transform duration-200 ease-out">
+                 <!-- The Actual A4 Page -->
+                <div id="cv-preview-content" class="a4-page bg-white shadow-2xl relative text-slate-900 font-sans">
+                    <!-- Preview Content Injected Here -->
+                </div>
+            </div>
+            
+            <div class="h-20 md:hidden"></div>
+        </div>
+
+    </main>
+
+    <!-- App Logic -->
+    <script>
+        // --- CONSTANTS ---
+        const JOB_DB = {
+            "Management & Executive": ["Branch Manager", "CEO", "CFO", "COO", "CTO", "Project Manager", "Product Manager", "Team Leader"],
+            "Administrative": ["Admin Assistant", "Clerk", "Receptionist", "Secretary", "HR Assistant"],
+            "Tech & Engineering": ["Software Engineer", "Data Scientist", "DevOps Engineer", "Civil Engineer", "Mechanical Engineer", "UX/UI Designer"],
+            "Medical": ["Doctor", "Nurse", "Pharmacist", "Dentist"],
+            "Sales & Marketing": ["Sales Manager", "Marketing Manager", "Brand Manager", "Account Executive"],
+            "Creative": ["Graphic Designer", "Content Writer", "Art Director"]
+        };
+
+        const INITIAL_DATA = {
+            cvType: 'experienced',
+            personal: {
+                firstName: 'Johnathan', surname: 'Doe', title: 'Project Manager',
+                email: 'johndoe@email.com', phone: '+1 555 123 4567', whatsapp: '+1 555 987 6543',
+                alternativePhone: '', country: 'USA', state: 'New York',
+                postalAddress: '123 Business Avenue, Suite 400, NY',
+                nationality: 'American', passportNumber: 'A12345678', passportExpiry: '2030-01-01',
+                dob: '1990-08-15', placeOfBirth: 'Chicago, IL', gender: 'Male', maritalStatus: 'Single',
+                linkedin: 'linkedin.com/in/johndoe', facebook: '', instagram: '', website: 'johndoe.com',
+                photo: null,
+                summary: 'Results-oriented Project Manager with over 8 years of experience leading cross-functional teams. Expert in Agile methodologies, risk management, and stakeholder communication.'
+            },
+            coverLetter: {
+                companyName: "Global Tech Solutions", recipient: "Hiring Manager", jobDescription: "",
+                content: "Dear Hiring Manager,<br><br>I am writing to express my strong interest in the Project Manager position..."
+            },
+            experience: [
+                { id: 1, role: 'Senior Project Manager', company: 'Tech Innovators Inc.', location: 'New York, USA', website: 'techinnovators.com', start: '2019-01', end: 'Present', description: '<ul><li>Lead a team of 15 developers and designers.</li><li>Managed a project portfolio valued at $3.5M.</li><li>Implemented Scrum methodologies.</li></ul>' }
+            ],
+            education: [
+                { id: 1, degree: 'MBA in Project Management', school: 'New York University', website: 'nyu.edu', year: '2015-05', category: 'Academic', cgpa: '3.8/4.0', coursework: 'Strategic Management, Org Behavior' }
+            ],
+            skills: ['Project Management', 'Agile & Scrum', 'Risk Management', 'Team Leadership', 'JIRA'],
+            hobbies: ['Photography', 'Traveling', 'Chess'],
+            languages: [
+                { id: 1, name: 'English', read: 'Native', write: 'Native', speak: 'Native' },
+                { id: 2, name: 'Spanish', read: 'Fluent', write: 'Fluent', speak: 'Fluent' }
+            ],
+            theme: { color: '#4f46e5' } // Indigo-600
+        };
+
+        // --- APP CONTROLLER ---
+        const app = {
+            data: JSON.parse(JSON.stringify(INITIAL_DATA)),
+            view: 'editor',
+            zoom: 1,
+            expandedSection: 'personal',
+            aiLoading: null,
+            isImporting: false,
+            apiKey: "", // Left empty for user prompt
+
+            init() {
+                this.renderEditor();
+                this.renderPreview();
+                this.setupAutoZoom();
+                this.updateCvTypeUI();
+                
+                // Close export menu on outside click
+                document.addEventListener('click', (e) => {
+                    const menu = document.getElementById('export-menu');
+                    const btn = e.target.closest('button');
+                    // Check if click was inside menu or on the toggle button
+                    const isToggle = btn && btn.innerHTML.includes('Export'); 
+                    if (menu && !menu.classList.contains('hidden') && !menu.contains(e.target) && !isToggle) {
+                        menu.classList.add('hidden');
+                    }
+                });
+
+                if(window.lucide) lucide.createIcons();
+            },
+
+            // --- STATE MANAGERS ---
+            update(path, value) {
+                const keys = path.split('.');
+                let obj = this.data;
+                for (let i = 0; i < keys.length - 1; i++) obj = obj[keys[i]];
+                obj[keys[keys.length - 1]] = value;
+                this.renderPreview();
+            },
+
+            updateArrayItem(section, id, field, value) {
+                const item = this.data[section].find(i => i.id === id);
+                if (item) {
+                    item[field] = value;
+                    this.renderPreview();
+                }
+            },
+
+            addItem(section) {
+                const newId = Date.now();
+                const template = section === 'experience' 
+                    ? { id: newId, role: 'Role', company: 'Company', location: '', start: '', end: '', description: '<ul><li>Description...</li></ul>' }
+                    : section === 'education'
+                    ? { id: newId, degree: 'Degree', school: 'School', year: '', category: 'Academic' }
+                    : { id: newId, name: 'Language', speak: 'Intermediate', read: 'Intermediate', write: 'Intermediate' };
+                this.data[section].push(template);
+                this.renderEditor();
+                this.renderPreview();
+            },
+
+            removeItem(section, id) {
+                this.data[section] = this.data[section].filter(i => i.id !== id);
+                this.renderEditor();
+                this.renderPreview();
+            },
+
+            setCvType(type) {
+                this.data.cvType = type;
+                this.updateCvTypeUI();
+                this.renderEditor();
+                this.renderPreview();
+            },
+            
+            updateCvTypeUI() {
+                const type = this.data.cvType;
+                const expBtn = document.getElementById('btn-type-exp');
+                const freshBtn = document.getElementById('btn-type-fresh');
+                
+                if (type === 'experienced') {
+                    expBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md transition-all bg-white shadow text-blue-600";
+                    freshBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md transition-all text-slate-500";
+                } else {
+                    expBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md transition-all text-slate-500";
+                    freshBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md transition-all bg-white shadow text-green-600";
+                }
+            },
+
+            toggleSection(id) {
+                this.expandedSection = this.expandedSection === id ? null : id;
+                this.renderEditor();
+            },
+
+            toggleExportMenu() {
+                const menu = document.getElementById('export-menu');
+                menu.classList.toggle('hidden');
+            },
+
+            // --- VIEW & ZOOM ---
+            toggleView() {
+                this.view = this.view === 'editor' ? 'preview' : 'editor';
+                const editorEl = document.getElementById('editor-panel');
+                const previewEl = document.getElementById('preview-panel');
+                const btnEl = document.getElementById('btn-view-toggle');
+
+                if (this.view === 'preview') {
+                    editorEl.classList.add('-translate-x-full');
+                    previewEl.classList.remove('translate-x-full');
+                    btnEl.innerHTML = '<i data-lucide="arrow-left" width="14"></i> <span class="hidden sm:inline">Back</span>';
+                } else {
+                    editorEl.classList.remove('-translate-x-full');
+                    previewEl.classList.add('translate-x-full');
+                    btnEl.innerHTML = '<i data-lucide="eye" width="14"></i> <span class="hidden sm:inline">Preview</span>';
+                }
+                lucide.createIcons();
+            },
+
+            adjustZoom(delta) {
+                this.zoom = Math.max(0.3, Math.min(1.5, this.zoom + delta));
+                this.applyZoom();
+            },
+
+            applyZoom() {
+                const wrapper = document.getElementById('a4-wrapper');
+                wrapper.style.transform = `scale(${this.zoom})`;
+                wrapper.style.transformOrigin = 'top center';
+            },
+
+            setupAutoZoom() {
+                const fit = () => {
+                    const w = window.innerWidth;
+                    this.zoom = w < 640 ? 0.45 : (w < 1024 ? 0.70 : 1);
+                    this.applyZoom();
+                };
+                window.addEventListener('resize', fit);
+                fit();
+            },
+
+            // --- RICH TEXT ---
+            execCmd(cmd, value = null) {
+                document.execCommand(cmd, false, value);
+            },
+
+            // --- AI & IMPORT ---
+            async callGemini(prompt, systemPrompt, base64Data = null, mimeType = null) {
+                let key = this.apiKey;
+                if (!key) {
+                    key = prompt("Please enter your Google Gemini API Key:", "");
+                    if (!key) return null;
+                    this.apiKey = key; // Cache it for session
+                }
+                
+                try {
+                    const parts = [{ text: prompt }];
+                    if (base64Data) {
+                        parts.push({ inlineData: { mimeType: mimeType || 'image/jpeg', data: base64Data.split(',')[1] } });
+                    }
+
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${key}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ role: 'user', parts: parts }],
+                            systemInstruction: { parts: [{ text: systemPrompt }] }
+                        })
+                    });
+
+                    if (!response.ok) throw new Error(await response.text());
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (e) {
+                    alert("AI Error: " + e.message);
+                    return null;
+                }
+            },
+
+            async handleImportCV(input) {
+                const file = input.files[0];
+                if (!file) return;
+
+                const btn = document.getElementById('btn-import');
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="loader" class="animate-spin" width="14"></i> Parsing...';
+                btn.disabled = true;
+                
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const base64 = e.target.result;
+                    // Simplified prompt for reliability
+                    const systemPrompt = "Extract CV data to JSON: {personal:{firstName,surname,title,email,phone,country,state,summary}, experience:[{role,company,start,end,description,location}], education:[{degree,school,year}], skills:[], languages:[]}. Return only JSON.";
+                    
+                    const res = await this.callGemini("Extract resume data", systemPrompt, base64, file.type);
+                    
+                    if (res) {
+                        try {
+                            const jsonMatch = res.match(/\{[\s\S]*\}/);
+                            if (jsonMatch) {
+                                const parsed = JSON.parse(jsonMatch[0]);
+                                // Deep merge data
+                                this.data = { 
+                                    ...this.data, 
+                                    ...parsed, 
+                                    personal: { ...this.data.personal, ...parsed.personal },
+                                    experience: (parsed.experience || []).map((e,i) => ({...e, id: Date.now()+i})),
+                                    education: (parsed.education || []).map((e,i) => ({...e, id: Date.now()+i+100})),
+                                    languages: (parsed.languages || []).map((e,i) => ({...e, id: Date.now()+i+200})),
+                                };
+                                // Ensure CV Type logic respects import
+                                this.data.cvType = (this.data.experience && this.data.experience.length > 0) ? 'experienced' : 'fresher';
+                                
+                                this.renderEditor();
+                                this.renderPreview();
+                                alert("Import Successful!");
+                            } else throw new Error("AI did not return valid JSON");
+                        } catch (err) { alert("Parse Error: " + err.message); }
+                    }
+                    
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                    lucide.createIcons();
+                    input.value = ''; // Reset
+                };
+                reader.readAsDataURL(file);
+            },
+
+            async handleAiAssist(field, id = null) {
+                let context = "", prompt = "";
+                const btnId = id ? `btn-ai-${field}-${id}` : `btn-ai-${field}`;
+                const btn = document.getElementById(btnId);
+                if(btn) btn.innerHTML = '<i data-lucide="loader" class="animate-spin" width="10"></i>';
+
+                if (field === 'summary') {
+                    context = this.data.personal.summary;
+                    prompt = `Improve this summary professionally: "${context}"`;
+                } else if (field === 'exp') {
+                    const item = this.data.experience.find(i => i.id === id);
+                    context = item.description;
+                    prompt = `Rewrite responsibilities as bullet points (HTML <ul><li>): "${context}"`;
+                } else if (field === 'skills') {
+                    prompt = `Suggest 10 skills for ${this.data.personal.title}. CSV format.`;
+                }
+
+                const res = await this.callGemini(prompt, "You are an expert resume writer. Return only the requested content.");
+                
+                if (res) {
+                    if (field === 'summary') { this.update('personal.summary', res); document.getElementById('rich-summary').innerHTML = res; }
+                    else if (field === 'exp') { this.updateArrayItem('experience', id, 'description', res); document.getElementById(`rich-exp-${id}`).innerHTML = res; }
+                    else if (field === 'skills') { this.data.skills = res.split(',').map(s=>s.trim()); this.renderEditor(); this.renderPreview(); }
+                }
+                
+                if(btn) { btn.innerHTML = '<i data-lucide="wand-2" width="10"></i> AI'; lucide.createIcons(); }
+            },
+
+            handleImage(input) {
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.update('personal.photo', e.target.result);
+                        this.renderEditor();
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            },
+
+            // --- EXPORT ---
+            handlePrint() { window.print(); },
+            
+            handleDownloadWord() {
+                const content = document.getElementById('cv-preview-content').innerHTML;
+                const pre = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>CV</title></head><body>";
+                const post = "</body></html>";
+                const blob = new Blob(['\ufeff', pre + content + post], { type: 'application/msword' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${this.data.personal.firstName}_CV.doc`;
+                document.body.appendChild(link); link.click(); document.body.removeChild(link);
+            },
+            
+            handleDownloadJSON() {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.data, null, 2));
+                const link = document.createElement('a');
+                link.href = dataStr;
+                link.download = "civic_resume_backup.json";
+                document.body.appendChild(link); link.click(); link.remove();
+            },
+
+            // --- RENDERERS ---
+            renderEditor() {
+                const p = this.data.personal;
+                const container = document.getElementById('editor-form');
+
+                // Helper for Input
+                const input = (lbl, path, val, type='text', width='full') => `
+                    <div class="${width === 'half' ? 'md:col-span-1' : 'col-span-2'} mb-3">
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">${lbl}</label>
+                        <input type="${type}" value="${val || ''}" oninput="app.update('${path}', this.value)" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all hover:border-blue-200">
+                    </div>`;
+                
+                // Helper for Rich Text
+                const richArea = (lbl, id, val, onInput, aiField, aiId = null) => `
+                    <div class="col-span-2 mb-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">${lbl}</label>
+                            <button id="btn-ai-${aiField}${aiId ? '-'+aiId : ''}" onclick="app.handleAiAssist('${aiField}', ${aiId})" class="text-[10px] flex items-center gap-1 bg-purple-50 text-purple-600 px-2 py-1 rounded font-bold border border-purple-100 hover:bg-purple-100 transition-colors">
+                                <i data-lucide="wand-2" width="10"></i> AI
+                            </button>
+                        </div>
+                        <div class="border border-slate-200 rounded-lg overflow-hidden bg-white focus-within:ring-2 focus-within:ring-blue-500">
+                            <div class="flex flex-wrap items-center gap-1 p-1 bg-slate-50 border-b border-slate-200">
+                                <button onmousedown="event.preventDefault(); document.execCommand('bold',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="bold" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('italic',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="italic" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('underline',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="underline" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('strikeThrough',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="strikethrough" width="14"></i></button>
+                                <div class="w-px h-4 bg-slate-300 mx-1"></div>
+                                <button onmousedown="event.preventDefault(); document.execCommand('insertUnorderedList',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="list" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('insertOrderedList',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="list-ordered" width="14"></i></button>
+                                <div class="w-px h-4 bg-slate-300 mx-1"></div>
+                                <button onmousedown="event.preventDefault(); document.execCommand('justifyLeft',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="align-left" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('justifyCenter',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="align-center" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('justifyRight',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="align-right" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('justifyFull',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="align-justify" width="14"></i></button>
+                                <div class="w-px h-4 bg-slate-300 mx-1"></div>
+                                <button onmousedown="event.preventDefault(); document.execCommand('subscript',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="subscript" width="14"></i></button>
+                                <button onmousedown="event.preventDefault(); document.execCommand('superscript',false,null)" class="p-1 text-slate-500 hover:text-blue-600 rounded"><i data-lucide="superscript" width="14"></i></button>
+                            </div>
+                            <div id="${id}" contenteditable="true" class="rich-editor-content p-3 text-sm text-slate-700" oninput="${onInput}">${val || ''}</div>
+                        </div>
+                    </div>`;
+
+                let html = `
+                    <!-- Personal Info -->
+                    <div class="border border-slate-100 rounded-xl mb-6 overflow-hidden bg-white shadow-sm">
+                        <button onclick="app.toggleSection('personal')" class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100">
+                            <div class="flex items-center gap-3 font-semibold text-sm text-slate-700"><i data-lucide="user" width="16"></i> Personal Info</div>
+                            <i data-lucide="${this.expandedSection === 'personal' ? 'chevron-up' : 'chevron-down'}" width="16"></i>
+                        </button>
+                        <div class="${this.expandedSection === 'personal' ? 'block' : 'hidden'} p-5 grid grid-cols-2 gap-4">
+                             <div class="col-span-2 flex items-center gap-4 mb-2 p-3 border border-dashed rounded-xl bg-slate-50">
+                                <div class="w-16 h-16 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm flex items-center justify-center">
+                                    ${p.photo ? `<img src="${p.photo}" class="w-full h-full object-cover">` : `<i data-lucide="user" class="text-slate-400"></i>`}
+                                </div>
+                                <label class="cursor-pointer bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-50 transition-colors">
+                                    Upload Photo <input type="file" class="hidden" accept="image/*" onchange="app.handleImage(this)">
+                                </label>
+                            </div>
+                            ${input('First Name', 'personal.firstName', p.firstName, 'text', 'half')}
+                            ${input('Surname', 'personal.surname', p.surname, 'text', 'half')}
+                            ${input('Job Title', 'personal.title', p.title)}
+                            ${input('Email', 'personal.email', p.email, 'email', 'half')}
+                            ${input('Phone', 'personal.phone', p.phone, 'tel', 'half')}
+                            ${input('WhatsApp', 'personal.whatsapp', p.whatsapp, 'tel', 'half')}
+                            ${input('Alt Phone', 'personal.alternativePhone', p.alternativePhone, 'tel', 'half')}
+                            ${input('Country', 'personal.country', p.country, 'text', 'half')}
+                            ${input('State', 'personal.state', p.state, 'text', 'half')}
+                            ${input('Address', 'personal.postalAddress', p.postalAddress)}
+                            ${input('DOB', 'personal.dob', p.dob, 'date', 'half')}
+                            ${input('Nationality', 'personal.nationality', p.nationality, 'text', 'half')}
+                            ${input('Passport No.', 'personal.passportNumber', p.passportNumber, 'text', 'half')}
+                            ${input('Passport Exp.', 'personal.passportExpiry', p.passportExpiry, 'date', 'half')}
+                            ${input('Website', 'personal.website', p.website)}
+                            <div class="col-span-2 pt-2 border-t border-slate-100">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2">Socials</label>
+                                ${input('LinkedIn', 'personal.linkedin', p.linkedin)}
+                                ${input('Facebook', 'personal.facebook', p.facebook)}
+                                ${input('Instagram', 'personal.instagram', p.instagram)}
+                            </div>
+                            ${richArea('Professional Summary', 'rich-summary', p.summary, "app.update('personal.summary', this.innerHTML)", 'summary')}
+                        </div>
+                    </div>
+
+                     <!-- Experience -->
+                    ${this.data.cvType !== 'fresher' ? `
+                    <div class="border border-slate-100 rounded-xl mb-6 overflow-hidden bg-white shadow-sm">
+                        <button onclick="app.toggleSection('exp')" class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100">
+                            <div class="flex items-center gap-3 font-semibold text-sm text-slate-700"><i data-lucide="briefcase" width="16"></i> Experience</div>
+                            <i data-lucide="${this.expandedSection === 'exp' ? 'chevron-up' : 'chevron-down'}" width="16"></i>
+                        </button>
+                        <div class="${this.expandedSection === 'exp' ? 'block' : 'hidden'} p-5 space-y-4">
+                            ${this.data.experience.map(exp => `
+                                <div class="relative p-4 border rounded-xl bg-slate-50">
+                                    <button onclick="app.removeItem('experience', ${exp.id})" class="absolute top-2 right-2 text-slate-400 hover:text-red-500"><i data-lucide="trash-2" width="14"></i></button>
+                                    <div class="grid grid-cols-2 gap-3 mb-3">
+                                        <input value="${exp.role}" oninput="app.updateArrayItem('experience', ${exp.id}, 'role', this.value)" placeholder="Job Role" class="col-span-2 px-3 py-2 rounded border border-slate-200 text-sm font-bold">
+                                        <input value="${exp.company}" oninput="app.updateArrayItem('experience', ${exp.id}, 'company', this.value)" placeholder="Company" class="px-3 py-2 rounded border border-slate-200 text-sm">
+                                        <input value="${exp.location}" oninput="app.updateArrayItem('experience', ${exp.id}, 'location', this.value)" placeholder="Location" class="px-3 py-2 rounded border border-slate-200 text-sm">
+                                        <input type="month" value="${exp.start}" oninput="app.updateArrayItem('experience', ${exp.id}, 'start', this.value)" class="px-3 py-2 rounded border border-slate-200 text-sm">
+                                        <input type="text" value="${exp.end}" oninput="app.updateArrayItem('experience', ${exp.id}, 'end', this.value)" placeholder="End Date" class="px-3 py-2 rounded border border-slate-200 text-sm">
+                                    </div>
+                                    ${richArea('Responsibilities', `rich-exp-${exp.id}`, exp.description, `app.updateArrayItem('experience', ${exp.id}, 'description', this.innerHTML)`, 'exp', exp.id)}
+                                </div>
+                            `).join('')}
+                            <button onclick="app.addItem('experience')" class="w-full py-2 border-2 border-dashed rounded-lg text-xs font-bold text-slate-500 hover:text-blue-600">+ Add Position</button>
+                        </div>
+                    </div>` : ''}
+
+                    <!-- Education -->
+                    <div class="border border-slate-100 rounded-xl mb-6 overflow-hidden bg-white shadow-sm">
+                        <button onclick="app.toggleSection('edu')" class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100">
+                            <div class="flex items-center gap-3 font-semibold text-sm text-slate-700"><i data-lucide="graduation-cap" width="16"></i> Education</div>
+                            <i data-lucide="${this.expandedSection === 'edu' ? 'chevron-up' : 'chevron-down'}" width="16"></i>
+                        </button>
+                        <div class="${this.expandedSection === 'edu' ? 'block' : 'hidden'} p-5 space-y-4">
+                             ${this.data.education.map(edu => `
+                                <div class="relative p-4 border rounded-xl bg-slate-50">
+                                    <button onclick="app.removeItem('education', ${edu.id})" class="absolute top-2 right-2 text-slate-400 hover:text-red-500"><i data-lucide="trash-2" width="14"></i></button>
+                                    <div class="grid grid-cols-2 gap-3 mb-3">
+                                        <input value="${edu.degree}" oninput="app.updateArrayItem('education', ${edu.id}, 'degree', this.value)" placeholder="Degree" class="col-span-2 px-3 py-2 rounded border border-slate-200 text-sm font-bold">
+                                        <input value="${edu.school}" oninput="app.updateArrayItem('education', ${edu.id}, 'school', this.value)" placeholder="University" class="px-3 py-2 rounded border border-slate-200 text-sm">
+                                        <input type="month" value="${edu.year}" oninput="app.updateArrayItem('education', ${edu.id}, 'year', this.value)" class="px-3 py-2 rounded border border-slate-200 text-sm">
+                                        ${this.data.cvType === 'fresher' ? `
+                                            <input value="${edu.cgpa || ''}" oninput="app.updateArrayItem('education', ${edu.id}, 'cgpa', this.value)" placeholder="CGPA/Grade" class="px-3 py-2 rounded border border-slate-200 text-sm">
+                                            <input value="${edu.coursework || ''}" oninput="app.updateArrayItem('education', ${edu.id}, 'coursework', this.value)" placeholder="Coursework" class="col-span-2 px-3 py-2 rounded border border-slate-200 text-sm">
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            `).join('')}
+                            <button onclick="app.addItem('education')" class="w-full py-2 border-2 border-dashed rounded-lg text-xs font-bold text-slate-500 hover:text-blue-600">+ Add Education</button>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="border border-slate-100 rounded-xl mb-6 overflow-hidden bg-white shadow-sm">
+                        <button onclick="app.toggleSection('skills')" class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100">
+                            <div class="flex items-center gap-3 font-semibold text-sm text-slate-700"><i data-lucide="sparkles" width="16"></i> Skills & Interests</div>
+                            <i data-lucide="${this.expandedSection === 'skills' ? 'chevron-up' : 'chevron-down'}" width="16"></i>
+                        </button>
+                         <div class="${this.expandedSection === 'skills' ? 'block' : 'hidden'} p-5 space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-[10px] font-bold text-slate-400 uppercase">Technical Skills</label> <button onclick="app.handleAiAssist('skills')" class="text-[10px] text-purple-600 font-bold"><i data-lucide="wand-2" width="10" class="inline"></i> Suggest</button></div>
+                                <textarea oninput="app.data.skills = this.value.split(','); app.renderPreview()" class="w-full px-3 py-2 border rounded-lg text-sm" rows="3" placeholder="Comma separated...">${this.data.skills.join(',')}</textarea>
+                            </div>
+                             <div>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Hobbies</label>
+                                <textarea oninput="app.data.hobbies = this.value.split(','); app.renderPreview()" class="w-full px-3 py-2 border rounded-lg text-sm" rows="2" placeholder="Comma separated...">${(this.data.hobbies||[]).join(',')}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Languages -->
+                    <div class="border border-slate-100 rounded-xl mb-6 overflow-hidden bg-white shadow-sm">
+                         <button onclick="app.toggleSection('langs')" class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100">
+                            <div class="flex items-center gap-3 font-semibold text-sm text-slate-700"><i data-lucide="globe" width="16"></i> Languages</div>
+                            <i data-lucide="${this.expandedSection === 'langs' ? 'chevron-up' : 'chevron-down'}" width="16"></i>
+                        </button>
+                         <div class="${this.expandedSection === 'langs' ? 'block' : 'hidden'} p-5 space-y-3">
+                             ${this.data.languages.map(l => `
+                                <div class="relative p-3 border rounded-lg bg-slate-50 flex gap-2 items-center">
+                                    <button onclick="app.removeItem('languages', ${l.id})" class="absolute top-2 right-2 text-slate-400 hover:text-red-500"><i data-lucide="trash-2" width="12"></i></button>
+                                    <input value="${l.name}" oninput="app.updateArrayItem('languages', ${l.id}, 'name', this.value)" placeholder="Language" class="w-1/3 px-2 py-1.5 rounded text-sm border font-bold">
+                                    <select onchange="app.updateArrayItem('languages', ${l.id}, 'speak', this.value)" class="w-1/4 px-2 py-1.5 rounded text-xs border">
+                                        <option value="Native" ${l.speak==='Native'?'selected':''}>Native</option>
+                                        <option value="Fluent" ${l.speak==='Fluent'?'selected':''}>Fluent</option>
+                                        <option value="Intermediate" ${l.speak==='Intermediate'?'selected':''}>Intermediate</option>
+                                    </select>
+                                </div>
+                             `).join('')}
+                             <button onclick="app.addItem('languages')" class="w-full py-2 border-2 border-dashed rounded-lg text-xs font-bold text-slate-500 hover:text-blue-600">+ Add Language</button>
+                         </div>
+                    </div>
+
+                    <!-- Cover Letter -->
+                    <div class="border border-slate-100 rounded-xl mb-6 overflow-hidden bg-white shadow-sm">
+                        <button onclick="app.toggleSection('cover')" class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100">
+                            <div class="flex items-center gap-3 font-semibold text-sm text-slate-700"><i data-lucide="file-text" width="16"></i> Cover Letter</div>
+                            <i data-lucide="${this.expandedSection === 'cover' ? 'chevron-up' : 'chevron-down'}" width="16"></i>
+                        </button>
+                        <div class="${this.expandedSection === 'cover' ? 'block' : 'hidden'} p-5">
+                            ${input('Recipient', 'coverLetter.recipient', this.data.coverLetter.recipient)}
+                            ${input('Company', 'coverLetter.companyName', this.data.coverLetter.companyName)}
+                            ${richArea('Letter Body', 'rich-cover', this.data.coverLetter.content, "app.update('coverLetter.content', this.innerHTML)", 'cover')}
+                        </div>
+                    </div>
+                `;
+
+                container.innerHTML = html;
+                lucide.createIcons();
+            },
+
+            // 3. Preview Rendering (Full A4)
+            renderPreview() {
+                const d = this.data;
+                const p = d.personal;
+                const theme = d.theme.color;
+                const fullName = `${p.firstName} ${p.surname}`;
+                const location = [p.state, p.country].filter(Boolean).join(', ');
+
+                // Page Markers
+                const A4_HEIGHT = 1123; 
+                let markers = '';
+                for(let i=1; i<=3; i++) {
+                    markers += `<div class="absolute left-0 w-full border-t-2 border-dashed border-red-300 z-50 flex justify-end pointer-events-none no-print" style="top: ${i * A4_HEIGHT}px"><span class="bg-red-50 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded-b border border-t-0 border-red-200 mr-4">End of Page ${i}</span></div>`;
+                }
+
+                const html = `
+                    ${markers}
+                    <!-- Header -->
+                    <div class="pb-6 mb-6 border-b border-gray-200" style="padding: 2.54cm 2.54cm 0 2.54cm">
+                        <div class="flex justify-between items-start gap-6">
+                            <div class="flex-1">
+                                <h1 class="text-4xl font-extrabold uppercase tracking-tight leading-tight mb-2" style="color: ${theme}">${fullName}</h1>
+                                <p class="text-xl font-medium text-gray-600 tracking-wide uppercase mb-4">${p.title}</p>
+                                <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-gray-500">
+                                    ${p.email ? `<div class="flex items-center gap-2"><i data-lucide="mail" width="12"></i> ${p.email}</div>` : ''}
+                                    ${p.phone ? `<div class="flex items-center gap-2"><i data-lucide="phone" width="12"></i> ${p.phone}</div>` : ''}
+                                    ${location ? `<div class="flex items-center gap-2"><i data-lucide="map-pin" width="12"></i> ${location}</div>` : ''}
+                                    ${p.linkedin ? `<div class="flex items-center gap-2"><i data-lucide="linkedin" width="12"></i> LinkedIn</div>` : ''}
+                                    ${p.website ? `<div class="flex items-center gap-2"><i data-lucide="globe" width="12"></i> Portfolio</div>` : ''}
+                                </div>
+                            </div>
+                            ${p.photo ? `<div class="w-24 h-24 rounded-lg overflow-hidden shadow-sm border-4 border-white shrink-0"><img src="${p.photo}" class="w-full h-full object-cover"></div>` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Body Content -->
+                    <div style="padding: 0 2.54cm 2.54cm 2.54cm">
+                        
+                        <!-- Summary -->
+                        ${p.summary ? `
+                        <div class="mb-6 break-inside-avoid">
+                            <h3 class="text-sm font-bold uppercase tracking-wider mb-2 border-b pb-1" style="color: ${theme}; border-color: #e5e7eb">Professional Profile</h3>
+                            <div class="text-sm text-gray-700 leading-relaxed rich-editor-content">${p.summary}</div>
+                        </div>` : ''}
+
+                        <!-- Skills -->
+                        ${d.skills && d.skills.length > 0 && d.skills[0] !== '' ? `
+                        <div class="mb-6 break-inside-avoid">
+                            <h3 class="text-sm font-bold uppercase tracking-wider mb-3 border-b pb-1" style="color: ${theme}; border-color: #e5e7eb">Core Competencies</h3>
+                            <div class="flex flex-wrap gap-2">
+                                ${d.skills.map(s => `<span class="px-2.5 py-1 bg-gray-100 rounded text-xs font-semibold text-gray-700 border border-gray-200">${s}</span>`).join('')}
+                            </div>
+                        </div>` : ''}
+
+                        <!-- Experience -->
+                        ${d.cvType !== 'fresher' && d.experience.length > 0 ? `
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold uppercase tracking-wider mb-4 border-b pb-1" style="color: ${theme}; border-color: #e5e7eb">Professional Experience</h3>
+                            <div class="space-y-6">
+                                ${d.experience.map(e => `
+                                    <div class="break-inside-avoid">
+                                        <div class="flex justify-between items-baseline mb-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">${e.role}</h4>
+                                            <span class="text-xs font-semibold text-gray-500">${e.start} — ${e.end}</span>
+                                        </div>
+                                        <div class="flex justify-between items-center mb-2">
+                                            <div class="text-xs font-bold" style="color: ${theme}">${e.company}</div>
+                                            <div class="text-xs text-gray-400">${e.location}</div>
+                                        </div>
+                                        <div class="text-sm text-gray-700 leading-relaxed rich-editor-content">${e.description}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>` : ''}
+
+                        <!-- Education -->
+                        ${d.education.length > 0 ? `
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold uppercase tracking-wider mb-4 border-b pb-1" style="color: ${theme}; border-color: #e5e7eb">Education</h3>
+                            <div class="space-y-4">
+                                ${d.education.map(e => `
+                                    <div class="break-inside-avoid">
+                                        <div class="flex justify-between items-baseline">
+                                            <h4 class="font-bold text-gray-900 text-sm">${e.degree}</h4>
+                                            <span class="text-xs font-semibold text-gray-500">${e.year}</span>
+                                        </div>
+                                        <div class="text-xs text-gray-600 mb-1">${e.school}</div>
+                                        ${d.cvType === 'fresher' && (e.cgpa || e.coursework) ? `
+                                            <div class="mt-1 text-xs text-gray-500 bg-gray-50 p-2 rounded border border-gray-100">
+                                                ${e.cgpa ? `<span class="mr-4"><strong>GPA:</strong> ${e.cgpa}</span>` : ''}
+                                                ${e.coursework ? `<span><strong>Key Courses:</strong> ${e.coursework}</span>` : ''}
+                                            </div>` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>` : ''}
+
+                        <!-- Footer Grid (Languages / Interests / Personal) -->
+                        <div class="break-inside-avoid border-t border-gray-200 pt-4 mt-4">
+                            <div class="grid grid-cols-2 gap-8">
+                                ${d.languages && d.languages.length > 0 ? `
+                                <div>
+                                    <h3 class="text-xs font-bold uppercase tracking-wider mb-3 text-gray-500">Languages</h3>
+                                    <ul class="space-y-1">
+                                        ${d.languages.map(l => `<li class="text-xs flex justify-between"><span class="font-medium text-gray-800">${l.name}</span><span class="text-gray-500">${l.speak}</span></li>`).join('')}
+                                    </ul>
+                                </div>` : ''}
+                                <div class="space-y-4">
+                                    ${d.hobbies && d.hobbies.length > 0 && d.hobbies[0] !== '' ? `
+                                    <div>
+                                        <h3 class="text-xs font-bold uppercase tracking-wider mb-2 text-gray-500">Interests</h3>
+                                        <div class="text-xs text-gray-600">${d.hobbies.join(' • ')}</div>
+                                    </div>` : ''}
+                                    <div class="text-[10px] text-gray-400">
+                                        ${p.nationality ? `<span class="mr-3"><strong>Nationality:</strong> ${p.nationality}</span>` : ''}
+                                        ${p.dob ? `<span><strong>DOB:</strong> ${p.dob}</span>` : ''}
+                                        <br/>
+                                        ${p.passportNumber ? `<span class="mr-3"><strong>Passport:</strong> ${p.passportNumber}</span>` : ''}
+                                        ${p.passportExpiry ? `<span><strong>Exp:</strong> ${p.passportExpiry}</span>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('cv-preview-content').innerHTML = html;
+                lucide.createIcons();
+            }
+        };
+
+        app.init();
+    </script>
+</body>
+</html>

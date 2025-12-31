@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Staff Portal - Light</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons & Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- PDF Generation (Vector Based) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Theme Config -->
+    <script>
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: { sans: ['Outfit', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                        colors: {
+                            'slate-bg': '#F0F4F8',
+                            'brand-blue': '#2563EB',
+                            'brand-purple': '#7C3AED',
+                            'brand-gold': '#F59E0B', 
+                            'brand-dark': '#0F172A',
+                            'glass-border': 'rgba(255, 255, 255, 0.6)',
+                        },
+                        animation: {
+                            'float': 'float 10s ease-in-out infinite',
+                            'pulse-gold': 'pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                            'fade-in': 'fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+                            'scan': 'scan 2s linear infinite',
+                            'shimmer': 'shimmer 3s linear infinite',
+                        },
+                        keyframes: {
+                            float: { '0%, 100%': { transform: 'translateY(0) scale(1)' }, '50%': { transform: 'translateY(-25px) scale(1.05)' } },
+                            'pulse-gold': { '0%, 100%': { opacity: 0.8, transform: 'scale(1)' }, '50%': { opacity: 1, transform: 'scale(1.1)' } },
+                            fadeIn: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                            scan: { '0%': { top: '0%', opacity: 0 }, '10%': { opacity: 1 }, '90%': { opacity: 1 }, '100%': { top: '100%', opacity: 0 } },
+                            shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: linear-gradient(135deg, #f0f4ff 0%, #fdf2f8 50%, #f0fdf4 100%);
+            color: #0F172A; 
+            overflow: hidden; 
+        }
+        
+        /* Enhanced Ambient Light */
+        .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+        .orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.4; will-change: transform; mix-blend-mode: multiply; }
+        .orb-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, #60A5FA 0%, transparent 70%); animation: float 18s infinite; }
+        .orb-2 { bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, #A78BFA 0%, transparent 70%); animation: float 22s infinite reverse; }
+        .orb-3 { top: 30%; left: 40%; width: 40vw; height: 40vw; background: radial-gradient(circle, #FCD34D 0%, transparent 70%); opacity: 0.3; animation: float 25s infinite; }
+
+        /* Enhanced Glassmorphism */
+        .glass { 
+            background: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(24px) saturate(180%); 
+            -webkit-backdrop-filter: blur(24px) saturate(180%); 
+            border: 1px solid rgba(255, 255, 255, 0.8); 
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-left: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.03),
+                inset 0 0 20px rgba(255, 255, 255, 0.5); 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .glass:hover {
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                inset 0 0 20px rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Glass Input Fields */
+        .glass-input { 
+            background: rgba(255, 255, 255, 0.8); 
+            border: 1px solid rgba(226, 232, 240, 0.8); 
+            color: #0F172A; 
+            transition: all 0.3s ease; 
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.01);
+        }
+        .glass-input:focus { 
+            background: #FFFFFF;
+            border-color: #3B82F6; 
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 4px 6px -1px rgba(59, 130, 246, 0.1); 
+            outline: none; 
+            transform: translateY(-1px); 
+        }
+        .glass-input::placeholder { color: #94A3B8; }
+        
+        /* Sidebar Styling */
+        .sidebar-item.active { 
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); 
+            color: #2563EB; 
+            border-left: 4px solid #2563EB;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        }
+        .sidebar-item { border-left: 4px solid transparent; }
+        .sidebar-item:hover:not(.active) { background: rgba(241, 245, 249, 0.8); color: #475569; }
+        
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.5); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.8); }
+        
+        #datePickerOverlay, #confirmModal, #welcomeOverlay { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        #calendarDropdown { transform: translateY(-10px); transition: transform 0.3s ease; }
+        #datePickerOverlay.active #calendarDropdown { transform: translateY(0); }
+
+        .scan-beam { position: absolute; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, #3B82F6, transparent); box-shadow: 0 0 15px #3B82F6; opacity: 0; animation: scan 2s linear infinite; z-index: 20; }
+        .login-card-active { border-color: #3B82F6; box-shadow: 0 0 40px rgba(59, 130, 246, 0.2); }
+        
+        .flatpickr-calendar { font-family: 'Outfit', sans-serif !important; border-radius: 16px !important; border: none !important; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important; background: rgba(255,255,255,0.95) !important; backdrop-filter: blur(10px) !important; }
+        .flatpickr-day.selected { background: linear-gradient(135deg, #3B82F6, #2563EB) !important; border-color: transparent !important; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3); }
+        
+        /* Status Toast */
+        #statusToast { transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        #statusToast.active { transform: translateY(0); }
+        
+        .shimmer-text { background: linear-gradient(to right, #1e293b 20%, #475569 40%, #1e293b 60%); background-size: 200% auto; color: #000; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 5s linear infinite; }
+    </style>
+</head>
+<body class="h-screen flex flex-col md:flex-row bg-slate-bg">
+
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- MAIN LANDING / LOGIN SECTION -->
+    <div id="loginSection" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-50/60 backdrop-blur-lg overflow-y-auto custom-scrollbar p-4">
+        <div class="w-full max-w-2xl space-y-8 flex flex-col items-center">
+            
+            <div class="text-center animate-fade-in" style="animation-delay: 0.1s;">
+                <div class="inline-flex flex-col items-center gap-2 mb-6 bg-white/60 backdrop-blur-xl px-8 py-4 rounded-3xl border border-white/50 shadow-lg">
+                    <img src="https://raw.githubusercontent.com/sujeshunni-del/bettercall/ef420e14f2635d3c231f4e1b6bcc22f9d00d3766/Bettercall%20Logo%20SVG%2003.svg" alt="Better Call Immigration Logo" class="h-12 w-auto drop-shadow-sm">
+                    <span class="text-slate-700 font-extrabold tracking-widest text-xs uppercase opacity-80">Better Call Immigration</span>
+                </div>
+                <div id="bigClock" class="text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-700 to-slate-900 font-mono tracking-tight drop-shadow-sm">12:00:00</div>
+                <div id="bigDate" class="text-brand-blue font-bold text-lg mt-2 tracking-widest uppercase opacity-90">Loading Date...</div>
+            </div>
+
+            <!-- LOGIN CARD -->
+            <div id="loginCard" class="w-full bg-white/70 backdrop-blur-2xl rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/80 relative overflow-hidden transition-all duration-500 hover:shadow-brand-blue/10 animate-fade-in" style="animation-delay: 0.2s;">
+                <div id="scanningOverlay" class="absolute inset-0 bg-slate-900/5 backdrop-blur-[3px] z-20 hidden flex-col items-center justify-center rounded-[2.5rem]">
+                    <div class="relative w-32 h-32">
+                        <i class="fas fa-fingerprint text-8xl text-brand-blue/20 absolute inset-0"></i>
+                        <i class="fas fa-fingerprint text-8xl text-brand-blue absolute inset-0 animate-pulse"></i>
+                        <div class="scan-beam top-0"></div>
+                    </div>
+                    <p class="mt-4 text-brand-blue font-bold tracking-widest uppercase text-sm animate-pulse">Verifying Credentials...</p>
+                </div>
+
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-gradient-to-br from-brand-blue to-brand-purple rounded-3xl flex items-center justify-center mx-auto mb-5 shadow-xl shadow-brand-blue/20 text-white text-3xl transform rotate-3 hover:rotate-6 transition-transform duration-300">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-800 tracking-tight">Staff Portal</h3>
+                    <p class="text-slate-500 font-medium text-sm mt-2">Secure Access Point</p>
+                </div>
+                
+                <form id="loginForm" class="space-y-6" onsubmit="event.preventDefault();">
+                    <div class="space-y-2">
+                        <div class="relative group">
+                            <div class="absolute left-4 top-4 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 group-focus-within:bg-brand-blue/10 group-focus-within:text-brand-blue transition-colors duration-300">
+                                <i class="fas fa-id-badge text-sm"></i>
+                            </div>
+                            <input type="text" id="username" name="username" autocomplete="username" class="glass-input w-full pl-16 pr-6 py-5 rounded-2xl text-slate-900 font-bold text-lg" placeholder="Staff ID" required>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="relative group">
+                            <div class="absolute left-4 top-4 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 group-focus-within:bg-brand-blue/10 group-focus-within:text-brand-blue transition-colors duration-300">
+                                <i class="fas fa-key text-sm"></i>
+                            </div>
+                            <input type="password" id="password" name="password" autocomplete="current-password" class="glass-input w-full pl-16 pr-6 py-5 rounded-2xl text-slate-900 font-bold text-lg" placeholder="Password" required>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="checkCredentialsAndRefresh()" class="w-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-brand-blue hover:to-brand-purple text-white font-bold py-5 rounded-2xl transition-all duration-300 shadow-xl shadow-slate-900/20 hover:shadow-brand-blue/40 transform hover:-translate-y-1 relative overflow-hidden group mt-4">
+                        <span class="relative z-10 flex items-center justify-center gap-3 text-lg">Authenticate <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
+                        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    </button>
+                    
+                    <div id="loginError" class="text-center text-rose-600 text-xs hidden font-bold animate-bounce bg-rose-50/80 backdrop-blur py-3 rounded-xl border border-rose-200 shadow-sm">
+                        <i class="fas fa-exclamation-circle mr-1"></i> <span id="loginErrorMsg">Invalid credentials</span>
+                    </div>
+                </form>
+            </div>
+
+            <!-- USER DASHBOARD (Strictly Hidden by Default) -->
+            <div id="userDashboard" class="w-full hidden animate-fade-in space-y-6" style="display: none; animation-delay: 0.1s;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                    <!-- SESSION TRACKER -->
+                    <div id="trackerPanel" class="glass rounded-[2.5rem] p-8 md:p-10 relative overflow-hidden group">
+                        <div class="absolute -top-20 -right-20 w-80 h-80 bg-brand-blue/20 rounded-full mix-blend-overlay filter blur-3xl opacity-60 pointer-events-none group-hover:scale-110 transition-transform duration-700"></div>
+                        <div class="flex justify-between items-start mb-8 relative z-10">
+                            <div>
+                                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Current Status</p>
+                                <div class="flex items-center gap-3 mt-2 bg-white/50 px-4 py-2 rounded-full border border-white/60 shadow-sm backdrop-blur-md">
+                                    <div id="statusDot" class="w-3 h-3 rounded-full bg-slate-400 shadow-inner"></div>
+                                    <span id="statusText" class="font-black text-slate-800 text-lg tracking-tight">Ready</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Logged As</p>
+                                <p id="trackerUserName" class="text-brand-blue font-bold text-lg shimmer-text">---</p>
+                            </div>
+                        </div>
+                        <div class="text-center py-6 relative z-10 bg-white/40 rounded-3xl border border-white/60 mb-8 shadow-inner backdrop-blur-sm">
+                            <div id="stopwatch" class="text-6xl font-black text-slate-800 font-mono tracking-tight tabular-nums drop-shadow-sm">00:00:00</div>
+                            <p class="text-brand-purple text-[10px] font-bold uppercase tracking-[0.4em] mt-2 opacity-80">Session Duration</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 relative z-10">
+                            <button onclick="handleLoginAction('In')" id="btnIn" class="bg-gradient-to-br from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white font-bold py-5 rounded-2xl transition-all shadow-lg shadow-emerald-500/30 active:scale-95 flex flex-col items-center justify-center gap-1 leading-none transform hover:-translate-y-0.5" disabled>
+                                <i class="fas fa-play text-lg mb-1"></i> <span class="text-xs uppercase tracking-widest">Clock In</span>
+                            </button>
+                            <button onclick="handleLoginAction('Out')" id="btnOut" class="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 text-white font-bold py-5 rounded-2xl transition-all shadow-lg shadow-rose-500/30 active:scale-95 flex flex-col items-center justify-center gap-1 leading-none transform hover:-translate-y-0.5" disabled>
+                                <i class="fas fa-stop text-lg mb-1"></i> <span class="text-xs uppercase tracking-widest">Clock Out</span>
+                            </button>
+                        </div>
+                        <div id="breakRow" class="grid grid-cols-2 gap-4 mt-4 hidden relative z-10">
+                            <button onclick="handleLoginAction('BreakIn')" id="btnBreakIn" class="bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold py-4 rounded-2xl border border-amber-200 shadow-sm text-sm flex items-center justify-center gap-2"><i class="fas fa-mug-hot"></i> Start Break</button>
+                            <button onclick="handleLoginAction('BreakOut')" id="btnBreakOut" class="bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold py-4 rounded-2xl border border-blue-100 shadow-sm text-sm flex items-center justify-center gap-2"><i class="fas fa-undo"></i> Resume Work</button>
+                        </div>
+                    </div>
+
+                    <!-- DAILY STATS -->
+                    <div id="statsPanel" class="glass rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2"><i class="fas fa-chart-pie text-brand-purple"></i> Daily Analytics</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between p-4 bg-white/60 rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-shadow">
+                                    <span class="text-slate-500 text-xs font-bold uppercase tracking-wide">Net Worked</span>
+                                    <span class="font-mono text-slate-800 text-base font-black" id="stopwatchMini">00:00:00</span>
+                                </div>
+                                <div class="flex justify-between p-4 bg-white/60 rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-shadow">
+                                    <span class="text-slate-500 text-xs font-bold uppercase tracking-wide">Break Time</span>
+                                    <span class="font-mono text-rose-500 text-base font-black" id="breakTimeDisplay">0h 00m</span>
+                                </div>
+                                <div class="flex justify-between p-4 bg-white/60 rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-shadow">
+                                    <span class="text-slate-500 text-xs font-bold uppercase tracking-wide">Overtime</span>
+                                    <span class="font-mono text-brand-blue text-base font-black" id="overtimeDisplay">0h 00m</span>
+                                </div>
+                                <div class="flex justify-between p-4 bg-white/60 rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-shadow">
+                                    <span class="text-slate-500 text-xs font-bold uppercase tracking-wide">Breaks Used</span>
+                                    <span class="font-mono text-brand-gold text-base font-black" id="breakCountDisplay">0 / 4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <button onclick="handleLoginAction('Login')" class="w-full bg-slate-100/80 hover:bg-slate-200/90 text-slate-700 font-bold py-4 rounded-2xl transition-colors text-xs uppercase tracking-widest flex items-center justify-center gap-3 group border border-slate-200 hover:border-slate-300">
+                                Open Portal <i class="fas fa-external-link-alt text-slate-400 group-hover:text-slate-600 transition-colors"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP LAYOUT (Hidden by default) -->
+    <div id="appLayout" class="hidden flex-1 flex h-full relative z-10">
+        <aside class="w-20 md:w-80 glass flex flex-col justify-between border-r border-white/50 z-20 shadow-2xl">
+            <div>
+                <div class="p-8 flex flex-col items-center md:items-start gap-4 border-b border-white/40 bg-white/30">
+                    <img src="https://raw.githubusercontent.com/sujeshunni-del/bettercall/ef420e14f2635d3c231f4e1b6bcc22f9d00d3766/Bettercall%20Logo%20SVG%2003.svg" alt="Better Call Logo" class="h-10 w-auto drop-shadow-sm">
+                    <span class="font-black text-sm tracking-widest hidden md:block text-slate-800 uppercase opacity-70">Better Call Immigration</span>
+                </div>
+                <nav class="mt-8 space-y-3 px-4">
+                    <button onclick="switchTab('calendar')" id="nav-calendar" class="sidebar-item w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-500 hover:text-brand-blue transition-all group">
+                        <i class="fas fa-id-card-alt w-5 text-center text-lg group-hover:scale-110 transition-transform"></i><span class="hidden md:block font-bold">Staff Panel</span>
+                    </button>
+                    <button onclick="switchTab('admin')" id="nav-admin" class="sidebar-item hidden w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-500 hover:text-brand-gold transition-all group">
+                        <i class="fas fa-cog w-5 text-center text-lg group-hover:rotate-90 transition-transform"></i><span class="hidden md:block font-bold">Admin Setup</span>
+                    </button>
+                    <button onclick="logout()" class="sidebar-item w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-rose-500 hover:bg-rose-50 hover:text-rose-600 transition-all group mt-8 border border-transparent hover:border-rose-100">
+                        <i class="fas fa-sign-out-alt w-5 text-center text-lg"></i><span class="hidden md:block font-bold">Back to Time Station</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="p-6 border-t border-white/40 bg-white/40 backdrop-blur-md">
+                <div class="flex items-center gap-4 px-2">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center font-bold text-lg text-white shadow-lg ring-2 ring-white"><span id="avatarInitial">U</span></div>
+                    <div class="hidden md:block overflow-hidden"><p id="displayUsername" class="text-sm font-bold text-slate-800 truncate">User</p><p id="displayRole" class="text-[10px] text-brand-gold uppercase tracking-widest font-bold">Staff Member</p></div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto relative custom-scrollbar">
+            <!-- TAB: STAFF PANEL -->
+            <div id="tab-calendar" class="p-6 md:p-12 relative z-10 max-w-7xl mx-auto animate-fade-in">
+                <div class="glass rounded-[3rem] p-10 mb-10 relative overflow-hidden bg-white/60">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50 mix-blend-multiply"></div>
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-10 relative z-10">
+                        <div class="w-36 h-36 rounded-3xl bg-gradient-to-br from-brand-blue to-brand-purple p-1 shadow-2xl shrink-0 rotate-3 hover:rotate-0 transition-transform duration-500">
+                            <div class="w-full h-full rounded-[1.3rem] bg-white flex items-center justify-center"><span id="profileAvatar" class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-blue to-brand-purple">U</span></div>
+                        </div>
+                        <div class="flex-1 text-center md:text-left space-y-5">
+                            <div><h1 id="profileName" class="text-5xl font-black text-slate-800 mb-2 tracking-tight">Loading Name...</h1><p id="profileDesignation" class="text-brand-gold text-lg font-bold tracking-widest uppercase">Staff Member</p></div>
+                            <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-slate-600 font-medium">
+                                <div class="bg-white/80 backdrop-blur px-5 py-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow"><i class="fas fa-id-badge text-brand-purple"></i><span id="profileId">ID: ---</span></div>
+                                <div class="bg-white/80 backdrop-blur px-5 py-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow"><i class="fas fa-envelope text-brand-blue"></i><span id="profileEmail">---</span></div>
+                                <div class="bg-white/80 backdrop-blur px-5 py-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow"><i class="fas fa-phone text-emerald-500"></i><span id="profilePhone">---</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4">
+                    <div><h2 class="text-3xl font-bold text-slate-900 mb-2">Attendance History</h2><p class="text-slate-500 text-sm font-medium">Review your daily logs and timesheets</p></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-4 sticky top-6">
+                        <div id="calendar-view" class="glass rounded-[2.5rem] p-8 w-full bg-white/70">
+                            <div class="flex justify-between items-center mb-8 bg-white/50 p-2 rounded-full border border-white/60" id="calendar-nav">
+                                <button onclick="changePeriod(-1)" class="w-10 h-10 rounded-full hover:bg-white flex items-center justify-center text-slate-600 transition-colors shadow-sm"><i class="fas fa-chevron-left"></i></button>
+                                <h2 id="periodTitle" class="text-lg font-bold text-slate-800 cursor-pointer truncate mx-2 hover:text-brand-blue transition-colors" onclick="toggleCalendarDropdown()"><i class="fas fa-spinner fa-spin"></i></h2>
+                                <button onclick="changePeriod(1)" class="w-10 h-10 rounded-full hover:bg-white flex items-center justify-center text-slate-600 transition-colors shadow-sm"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div id="datePickerOverlay" class="fixed inset-0 z-40 flex items-start justify-center pt-20 bg-slate-900/10 backdrop-blur-md hidden" onclick="toggleCalendarDropdown(false)">
+                                <div id="calendarDropdown" class="glass p-6 rounded-[2rem] shadow-2xl relative z-50 transform bg-white/90" onclick="event.stopPropagation()">
+                                    <div id="monthSelector" class="flex justify-between items-center mb-6">
+                                        <button onclick="navigateMonth(-1)" class="px-3 py-1 text-slate-400 hover:text-slate-900"><i class="fas fa-arrow-left"></i></button>
+                                        <span id="currentMonthYear" class="font-bold text-xl text-slate-800">Month</span>
+                                        <button onclick="navigateMonth(1)" class="px-3 py-1 text-slate-400 hover:text-slate-900"><i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                    <div id="calendarGridContent" class="calendar-grid w-full max-w-xs gap-3"></div>
+                                </div>
+                            </div>
+                            <div id="calendarBody" class="calendar-grid gap-4"></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8">
+                        <div class="glass rounded-[2.5rem] p-8 md:p-10 min-h-[500px] bg-white/70">
+                            <div class="bg-slate-50/50 rounded-3xl p-6 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between border border-white/60 shadow-inner">
+                                <div class="flex-1 w-full relative">
+                                    <label class="text-[10px] text-brand-gold font-bold uppercase tracking-widest mb-2 block ml-1"><i class="fas fa-calendar-alt mr-1"></i> Select Date Range</label>
+                                    <div class="flex gap-3">
+                                        <div class="relative w-full">
+                                            <input id="historyRange" class="glass-input w-full pl-10 pr-4 py-4 rounded-xl focus:outline-none text-slate-800 text-sm font-bold tracking-wide cursor-pointer focus:border-brand-gold" placeholder="Select dates...">
+                                            <i class="fas fa-calendar absolute left-4 top-4 text-slate-400 text-xs"></i>
+                                        </div>
+                                        <button onclick="setQuickDate('week')" class="bg-white hover:bg-slate-50 text-slate-600 text-xs px-4 rounded-xl border border-slate-200 whitespace-nowrap transition-colors shadow-sm font-bold">Last 7 Days</button>
+                                    </div>
+                                </div>
+                                <button onclick="filterHistoryByRange()" class="h-full w-full md:w-auto bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-brand-blue/20 hover:shadow-brand-blue/40 transition-all transform hover:-translate-y-0.5">Go</button>
+                            </div>
+                            <div class="flex items-center justify-between mb-6 border-b border-slate-200 pb-4">
+                                <div><h3 class="text-xl font-bold text-slate-900">Activity Log</h3><p class="text-xs text-slate-500 mt-1 font-medium">Summary for <span id="logUserName" class="text-brand-gold font-bold">...</span></p></div>
+                                <button onclick="refreshLogs()" class="bg-white hover:bg-slate-50 px-4 py-2 rounded-lg text-brand-blue text-xs font-bold uppercase tracking-wider border border-slate-100 shadow-sm transition-all hover:shadow-md"><i class="fas fa-sync-alt mr-2"></i>Reset</button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-200">
+                                            <th class="py-3 px-4 bg-slate-50/50 rounded-tl-xl text-slate-500">Date & Day</th>
+                                            <th class="py-3 px-4 bg-slate-50/50 text-emerald-600">Clock In</th>
+                                            <th class="py-3 px-4 bg-slate-50/50 text-rose-500">Clock Out</th>
+                                            <th class="py-3 px-4 bg-slate-50/50 text-center text-brand-gold">Break</th>
+                                            <th class="py-3 px-4 bg-slate-50/50 text-right rounded-tr-xl text-brand-blue">Net Duration</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="logsTableBody" class="text-sm font-medium"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: ADMIN (Fully Restored & Functional) -->
+            <div id="tab-admin" class="hidden p-6 md:p-12 relative z-10 max-w-6xl mx-auto animate-fade-in">
+                <header class="mb-10 flex flex-col md:flex-row justify-between items-end gap-4">
+                    <div>
+                        <h1 class="text-4xl font-black text-slate-900 mb-2 tracking-tight">Admin Dashboard</h1>
+                        <p class="text-slate-500 font-medium">Manage users, reports, and system configurations</p>
+                    </div>
+                </header>
+
+                <!-- SECTION 1: Live Staff Status -->
+                <div class="glass rounded-[2.5rem] p-8 md:p-10 space-y-6 bg-white/70 mb-10 border border-white/60 shadow-lg">
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center shadow-inner"><i class="fas fa-users text-emerald-600"></i></div>
+                            Live Staff Status
+                        </h2>
+                        <button onclick="loadLiveStatus()" class="text-xs bg-white hover:bg-slate-50 px-4 py-2 rounded-xl transition-all text-brand-blue font-bold uppercase tracking-wider border border-slate-100 shadow-sm hover:shadow-md">
+                            <i class="fas fa-sync-alt mr-2"></i> Refresh
+                        </button>
+                    </div>
+                    <div id="liveStatusGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-full text-center py-8 text-slate-400 italic">Waiting for data update...</div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: User Management -->
+                <div class="glass rounded-[2.5rem] p-8 md:p-10 space-y-8 bg-white/70 mb-10 border border-white/60 shadow-lg">
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center shadow-inner"><i class="fas fa-users-cog text-brand-purple"></i></div>
+                            User Management
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Add/Edit User Form -->
+                        <div class="lg:col-span-1 bg-white/50 rounded-3xl p-6 border border-white/60 h-fit shadow-inner">
+                            <h3 class="text-sm font-bold text-slate-800 mb-6 flex items-center gap-2 uppercase tracking-wide"><i class="fas fa-user-plus text-brand-gold"></i> Add / Edit User</h3>
+                            <form id="addUserForm" onsubmit="event.preventDefault(); handleUserFormSubmit();" class="space-y-4 relative">
+                                <div id="editModeIndicator" class="hidden absolute -top-12 right-0 bg-brand-gold text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider flex items-center gap-1 shadow-md"><i class="fas fa-pen"></i> Editing</div>
+                                <div><label class="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">User ID</label><input type="text" id="newUsername" class="glass-input w-full p-3 rounded-xl text-sm disabled:opacity-50 disabled:cursor-not-allowed bg-white" required placeholder="e.g. jsmith"></div>
+                                <div><label class="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Full Name</label><input type="text" id="newFullName" class="glass-input w-full p-3 rounded-xl text-sm bg-white" required placeholder="e.g. John Smith"></div>
+                                <div><label class="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Designation</label><input type="text" id="newDesignation" class="glass-input w-full p-3 rounded-xl text-sm bg-white" placeholder="e.g. Senior Developer"></div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div><label class="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Phone</label><input type="tel" id="newPhone" class="glass-input w-full p-3 rounded-xl text-sm bg-white" placeholder="+1..."></div>
+                                    <div><label class="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Email</label><input type="email" id="newEmail" class="glass-input w-full p-3 rounded-xl text-sm bg-white" placeholder="@..."></div>
+                                </div>
+                                <div><label class="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Password</label><input type="password" id="newPassword" class="glass-input w-full p-3 rounded-xl text-sm bg-white" placeholder="Required for new users"></div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Role</label>
+                                    <select id="newRole" class="glass-input w-full p-3 rounded-xl text-sm bg-white"><option value="staff">Staff</option><option value="admin">Admin</option></select>
+                                </div>
+                                <div class="flex gap-3 pt-4">
+                                    <button type="button" id="cancelEditBtn" onclick="cancelEditMode()" class="hidden flex-1 bg-slate-200 hover:bg-slate-300 text-slate-600 font-bold py-3 rounded-xl transition-colors text-xs uppercase tracking-wide">Cancel</button>
+                                    <button type="submit" id="submitUserBtn" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-emerald-500/20 text-xs uppercase tracking-wide transform hover:-translate-y-0.5">Create User</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- User Table -->
+                        <div class="lg:col-span-2 flex flex-col">
+                            <div class="overflow-x-auto custom-scrollbar rounded-3xl border border-white/60 bg-white/50 max-h-[600px] shadow-inner">
+                                <table class="w-full text-left border-collapse">
+                                    <thead class="sticky top-0 bg-white z-10 shadow-sm">
+                                        <tr class="text-[10px] text-slate-400 border-b border-slate-100 uppercase tracking-widest">
+                                            <th class="py-4 px-6 font-bold bg-slate-50/80 backdrop-blur">User ID</th><th class="py-4 px-6 font-bold bg-slate-50/80 backdrop-blur">Full Name</th><th class="py-4 px-6 font-bold bg-slate-50/80 backdrop-blur">Designation</th><th class="py-4 px-6 font-bold bg-slate-50/80 backdrop-blur">Role</th><th class="py-4 px-6 font-bold text-right bg-slate-50/80 backdrop-blur">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userListBody" class="text-sm divide-y divide-slate-100"><!-- Populated dynamically --></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: Advanced Reporting -->
+                <div class="glass rounded-[2.5rem] p-8 md:p-10 space-y-8 bg-white/70 mb-10 border border-white/60 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-brand-blue/5 to-brand-purple/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                    
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-4 relative z-10">
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shadow-inner group"><i class="fas fa-file-alt text-brand-blue group-hover:scale-110 transition-transform"></i></div>
+                            Advanced Reporting
+                        </h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 relative z-10">
+                        <!-- Search Controls -->
+                        <div class="md:col-span-4 space-y-6">
+                            <div class="glass p-6 rounded-3xl border border-white/60 bg-white/40 shadow-sm">
+                                <label class="block text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest">1. Staff Selection</label>
+                                <div class="relative group">
+                                    <select id="reportUserSelect" class="glass-input w-full p-4 pl-12 rounded-2xl text-sm bg-white/80 shadow-sm appearance-none cursor-pointer hover:bg-white transition-colors"><option value="all">All Staff</option></select>
+                                    <i class="fas fa-user absolute left-4 top-4 text-slate-400 group-hover:text-brand-blue transition-colors"></i>
+                                    <i class="fas fa-chevron-down absolute right-4 top-4 text-slate-400 text-xs"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="glass p-6 rounded-3xl border border-white/60 bg-white/40 shadow-sm">
+                                <label class="block text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest">2. Report Period</label>
+                                <div class="relative group">
+                                    <input id="reportRange" class="glass-input w-full pl-12 pr-4 py-4 rounded-2xl focus:outline-none text-slate-800 text-sm cursor-pointer bg-white/80 shadow-sm font-bold" placeholder="Select date range...">
+                                    <i class="fas fa-calendar-alt absolute left-4 top-4 text-slate-400 group-hover:text-brand-purple transition-colors"></i>
+                                </div>
+                            </div>
+
+                            <button onclick="generateReportData()" class="w-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-brand-blue hover:to-brand-purple text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-slate-900/10 hover:shadow-brand-blue/30 text-sm flex items-center justify-center gap-3 group uppercase tracking-widest transform hover:-translate-y-1">
+                                <span class="group-hover:hidden">Generate Report</span>
+                                <span class="hidden group-hover:inline">Fetch Data</span>
+                                <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fas fa-arrow-right text-xs group-hover:translate-x-0.5 transition-transform"></i></div>
+                            </button>
+                        </div>
+
+                        <!-- Results Display -->
+                        <div class="md:col-span-8">
+                            <div class="bg-white/50 rounded-[2rem] p-1 border border-white/60 min-h-[400px] flex flex-col shadow-inner relative overflow-hidden">
+                                
+                                <!-- Empty State -->
+                                <div id="reportPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 z-10 bg-white/40 backdrop-blur-sm rounded-[2rem]">
+                                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-slate-100 to-white shadow-lg border border-slate-200 flex items-center justify-center mb-4 animate-float">
+                                        <i class="fas fa-chart-pie text-3xl text-slate-300"></i>
+                                    </div>
+                                    <p class="text-sm font-bold opacity-70 uppercase tracking-wide">Ready to Generate</p>
+                                    <p class="text-xs opacity-50 mt-1">Select parameters on the left</p>
+                                </div>
+
+                                <!-- Data Content -->
+                                <div id="reportSummary" class="hidden h-full flex flex-col relative z-20 w-full">
+                                    <div class="p-6 border-b border-slate-200/60 flex justify-between items-center bg-white/40 backdrop-blur-md rounded-t-[2rem]">
+                                        <div>
+                                            <h3 class="text-sm font-black text-slate-800 uppercase tracking-wide">Attendance Log</h3>
+                                            <p class="text-[10px] text-slate-500 font-medium mt-0.5"><i class="fas fa-filter mr-1"></i> <span id="reportFilterLabel">...</span></p>
+                                        </div>
+                                        <div class="flex gap-2">
+                                            <button onclick="downloadPdfReport()" class="bg-white hover:bg-rose-50 text-slate-600 hover:text-rose-600 border border-slate-200 hover:border-rose-200 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-2 group">
+                                                <i class="fas fa-file-pdf text-rose-400 group-hover:scale-110 transition-transform"></i> <span class="hidden sm:inline">PDF</span>
+                                            </button>
+                                            <button onclick="window.print()" class="bg-white hover:bg-blue-50 text-slate-600 hover:text-brand-blue border border-slate-200 hover:border-brand-blue px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-2 group">
+                                                <i class="fas fa-print text-blue-400 group-hover:scale-110 transition-transform"></i> <span class="hidden sm:inline">Print</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="overflow-y-auto custom-scrollbar flex-1 p-2">
+                                        <table class="w-full border-collapse">
+                                            <thead>
+                                                <tr class="text-[10px] text-slate-400 uppercase tracking-widest sticky top-0 bg-white/95 backdrop-blur z-10 shadow-sm">
+                                                    <th class="py-3 px-4 text-left rounded-l-xl">Date</th>
+                                                    <th class="py-3 px-4 text-left text-emerald-600"><i class="fas fa-arrow-down mr-1"></i>In</th>
+                                                    <th class="py-3 px-4 text-left text-rose-500"><i class="fas fa-arrow-up mr-1"></i>Out</th>
+                                                    <th class="py-3 px-4 text-center text-brand-gold"><i class="fas fa-mug-hot mr-1"></i>Break</th>
+                                                    <th class="py-3 px-4 text-right rounded-r-xl text-brand-blue"><i class="fas fa-clock mr-1"></i>Net</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="reportTableBody" class="text-xs font-bold text-slate-700 divide-y divide-slate-100">
+                                                <!-- Dynamic Rows -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-slate-50/50 border-t border-slate-200/60 rounded-b-[2rem] flex justify-between items-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                                        <span>Total Records: <span id="reportCount" class="text-slate-800">0</span></span>
+                                        <span class="text-brand-blue">Nexus Reporting</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: Technical Footer -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 opacity-75 hover:opacity-100 transition-opacity relative z-0">
+                    <div class="glass rounded-2xl p-6 border border-white/60 bg-white/40 flex flex-col justify-center">
+                        <label class="block text-[10px] font-bold text-slate-500 mb-3 uppercase tracking-widest flex items-center gap-2"><i class="fas fa-link text-brand-gold"></i> Web App Connection</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="scriptUrl" class="glass-input w-full p-3 px-4 rounded-xl font-mono text-[10px] md:text-xs text-brand-blue bg-white/50 border-slate-200 focus:border-brand-blue/50" placeholder="https://script.google.com/macros/s/...">
+                            <button onclick="saveSettings()" class="bg-white hover:bg-slate-50 text-slate-600 px-5 py-2 rounded-xl font-bold transition-colors text-xs border border-slate-200 shadow-sm">Save</button>
+                            <button onclick="testConnection()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-600 px-5 py-2 rounded-xl font-bold transition-colors text-xs border border-emerald-200 shadow-sm" title="Verify connection">Test</button>
+                        </div>
+                    </div>
+                    <div class="glass rounded-2xl p-6 border border-white/60 bg-white/40">
+                        <label class="block text-[10px] font-bold text-slate-500 mb-3 uppercase tracking-widest flex items-center gap-2"><i class="fas fa-terminal text-emerald-600"></i> System Logs</label>
+                        <div id="consoleLog" class="bg-slate-900 rounded-xl p-4 h-24 overflow-y-auto font-mono text-[10px] text-green-400 custom-scrollbar border border-slate-800 leading-relaxed shadow-inner">
+                            > System ready...<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Welcome Overlay -->
+    <div id="welcomeOverlay" class="fixed inset-0 z-[60] flex items-center justify-center bg-slate-50/90 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-500">
+         <div id="welcomeContent" class="text-center transform scale-90 transition-all duration-500">
+              <i id="welcomeIcon" class="fas fa-sun text-6xl text-brand-gold mb-6 animate-pulse-gold"></i>
+              <h2 id="welcomeTitle" class="text-4xl md:text-5xl font-black text-slate-900 mb-2 tracking-tight">Welcome</h2>
+              <p id="welcomeNameDisplay" class="text-2xl text-brand-blue font-bold tracking-wide"></p>
+         </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="fixed inset-0 z-[70] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm opacity-0 invisible transition-all">
+        <div class="glass p-8 rounded-[2rem] max-w-sm w-full mx-4 shadow-2xl bg-white/90 border border-white transform scale-95 transition-transform duration-200">
+            <div class="w-16 h-16 rounded-2xl bg-rose-100 mx-auto flex items-center justify-center mb-6 shadow-sm"><i class="fas fa-exclamation-triangle text-rose-500 text-2xl"></i></div>
+            <h3 id="modalTitle" class="text-xl font-black text-slate-900 text-center mb-2">Confirm Action</h3>
+            <p id="modalMessage" class="text-slate-500 text-center text-sm mb-8 font-medium">Are you sure?</p>
+            <div class="flex gap-3">
+                <button onclick="closeModal(false)" class="flex-1 py-4 rounded-xl bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200 transition-colors uppercase tracking-wide">Cancel</button>
+                <button onclick="closeModal(true)" id="modalConfirmBtn" class="flex-1 py-4 rounded-xl bg-rose-500 text-white font-bold text-sm hover:bg-rose-600 transition-colors shadow-lg shadow-rose-500/30 uppercase tracking-wide">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Status Toast -->
+    <div id="statusToast" class="fixed bottom-6 right-6 z-[80] glass p-5 rounded-2xl shadow-2xl border border-white/50 bg-white/80 backdrop-blur-md text-emerald-700 font-bold text-sm flex items-center gap-4">
+        <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-emerald-600"></i></div>
+        <span id="statusToastMsg">Action Saved</span>
+    </div>
+
+    <!-- Hidden Print Container -->
+    <div id="reportContent" style="position: absolute; left: -9999px;"></div>
+
+    <script>
+        // --- CONSTANTS ---
+        const DAILY_GOAL_SECONDS = 9 * 3600;
+        const MAX_BREAKS = 4;
+        const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const DEFAULT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzmYu05RsZGnIShDRkDfRbTXXAwkwjJrb2ijMAcNvJgBA8SOeyuPqQ3KWRnB5UBKQdI/exec";
+
+        const storage = {
+            get: (key) => { try { return localStorage.getItem(key); } catch(e) { return null; } },
+            set: (key, val) => { try { localStorage.setItem(key, val); } catch(e) {} },
+            remove: (key) => { try { localStorage.removeItem(key); } catch(e) {} }
+        };
+
+        let state = {
+            currentUser: null, currentFullName: null, currentDesignation: null, currentEmail: null, currentPhone: null, role: null,
+            startTime: null, timerInterval: null, breakTimerInterval: null, elapsedSeconds: 0, breakSeconds: 0, breakCount: 0, lastBreakInTime: null,
+            scriptUrl: storage.get('nexus_script_url') || DEFAULT_SCRIPT_URL,
+            isClockedIn: false, isBreak: false, hasClockedInToday: false, hasClockedOutToday: false,
+            logsCache: [], userListCache: [], editingUser: null, adminReportData: [], viewMode: 'day',
+            currentPeriodStart: new Date(new Date().setHours(0, 0, 0, 0)), calendarDisplayDate: new Date(), pendingAction: null, historyFP: null, reportFP: null,
+            pendingLog: null, lastReportDates: null
+        };
+        
+        // --- UTILS ---
+        function formatTime(totalSeconds) { const h = Math.floor(totalSeconds / 3600); const m = Math.floor((totalSeconds % 3600) / 60); return `${h}h ${m}m`; }
+        function formatTimeDetailed(totalSeconds) { const h = Math.floor(totalSeconds / 3600); const m = Math.floor((totalSeconds % 3600) / 60); const s = Math.floor(totalSeconds % 60); return `${h}h ${m}m ${s}s`; }
+        function formatDateDisplay(date) { try { const d = new Date(date); if (isNaN(d.getTime())) return String(date); const day = String(d.getDate()).padStart(2, '0'); const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()]; return `${day}/${month}/${d.getFullYear()}`; } catch (e) { return String(date); } }
+        function formatTimeDisplay(timeString) { try { const date = (typeof timeString === 'string' && timeString.includes('T')) ? new Date(timeString) : new Date(`2000-01-01 ${timeString}`); if (!isNaN(date)) return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); return timeString; } catch (e) { return timeString; } }
+        function formatTimeAMPM(dateInput) { try { let dateObj = (dateInput instanceof Date) ? dateInput : new Date(`2000-01-01 ${dateInput}`); if (isNaN(dateObj.getTime())) return dateInput; return dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }); } catch (e) { return String(dateInput); } }
+        function showToast(msg, isError = false) {
+            const t = document.getElementById('statusToast');
+            const tm = document.getElementById('statusToastMsg');
+            tm.textContent = msg;
+            t.className = isError 
+                ? "fixed bottom-6 right-6 z-[80] glass p-5 rounded-2xl shadow-2xl border border-rose-200/50 bg-rose-50/90 text-rose-700 font-bold text-sm flex items-center gap-4 active"
+                : "fixed bottom-6 right-6 z-[80] glass p-5 rounded-2xl shadow-2xl border border-emerald-200/50 bg-emerald-50/90 text-emerald-700 font-bold text-sm flex items-center gap-4 active";
+            
+            // Icon
+            const iconContainer = t.querySelector('div');
+            iconContainer.className = isError 
+                ? "w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0" 
+                : "w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0";
+            iconContainer.innerHTML = isError 
+                ? `<i class="fas fa-exclamation text-rose-600"></i>` 
+                : `<i class="fas fa-check text-emerald-600"></i>`;
+                
+            setTimeout(() => t.classList.remove('active'), 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(updateBigClock, 1000); updateBigClock();
+            document.getElementById('password').addEventListener('keyup', (e) => { if(e.key === 'Enter') checkCredentialsAndRefresh(); });
+            const storedUrl = storage.get('nexus_script_url');
+            if (!storedUrl || storedUrl.includes('/library/')) { state.scriptUrl = DEFAULT_SCRIPT_URL; storage.set('nexus_script_url', DEFAULT_SCRIPT_URL); }
+            if(document.getElementById('scriptUrl')) document.getElementById('scriptUrl').value = state.scriptUrl;
+            
+            const savedUser = storage.get('nexus_user');
+            if (savedUser) {
+                const userObj = JSON.parse(savedUser);
+                if(document.getElementById('username')) document.getElementById('username').value = userObj.username;
+                state.currentUser = userObj.username; state.currentFullName = userObj.fullName; state.role = userObj.role;
+                state.currentDesignation = userObj.designation; state.currentEmail = userObj.email; state.currentPhone = userObj.phone;
+                updateStaffProfileUI();
+                
+                const navAdmin = document.getElementById('nav-admin');
+                if (navAdmin) { if (state.role === 'admin') navAdmin.classList.remove('hidden'); else navAdmin.classList.add('hidden'); }
+            }
+            
+            toggleLoginState(false);
+            state.currentPeriodStart = new Date(new Date().setHours(0, 0, 0, 0));
+            initDatePickers();
+        });
+        
+        function toggleLoginState(isLoggedIn) {
+            const dashboard = document.getElementById('userDashboard');
+            if (isLoggedIn) {
+                if(dashboard) {
+                    dashboard.classList.remove('hidden');
+                    dashboard.style.display = ''; 
+                }
+                document.getElementById('loginCard').classList.add('login-card-active');
+            } else {
+                if(dashboard) {
+                    dashboard.classList.add('hidden');
+                    dashboard.style.display = 'none'; 
+                }
+                document.getElementById('loginCard').classList.remove('login-card-active');
+            }
+        }
+
+        function initDatePickers() {
+            const baseConfig = { mode: "range", dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y", static: false, animate: true };
+            if(document.getElementById("historyRange")) state.historyFP = flatpickr("#historyRange", { ...baseConfig, showMonths: 2 });
+            if(document.getElementById("reportRange")) state.reportFP = flatpickr("#reportRange", { ...baseConfig, showMonths: 1 });
+        }
+
+        function setQuickDate(type) {
+            if (!state.historyFP) return;
+            const end = new Date(); const start = new Date();
+            if (type === 'week') start.setDate(end.getDate() - 7); else if(type === 'month') start.setMonth(end.getMonth() - 1);
+            state.historyFP.setDate([start, end], true);
+        }
+
+        function updateBigClock() {
+            const now = new Date();
+            if(document.getElementById('bigClock')) document.getElementById('bigClock').textContent = now.toLocaleTimeString('en-US', { hour12: false });
+            if(document.getElementById('bigDate')) document.getElementById('bigDate').textContent = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        function switchTab(tabId) {
+            if (tabId === 'admin' && state.role !== 'admin') { alert("Access Denied: Admin privileges required."); return; }
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('appLayout').classList.remove('hidden');
+            ['calendar', 'admin'].forEach(id => {
+                const tab = document.getElementById(`tab-${id}`); const nav = document.getElementById(`nav-${id}`);
+                if(tab) tab.classList.add('hidden'); if(nav) nav.classList.remove('active');
+            });
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabId}`).classList.add('active');
+            if(tabId === 'calendar') { state.viewMode = 'day'; state.currentPeriodStart = new Date(new Date().setHours(0, 0, 0, 0)); refreshLogs(); updateStaffProfileUI(); }
+            if(tabId === 'admin') { fetchUsersForReport(); loadLiveStatus(); }
+        }
+        
+        function changePeriod(delta) { state.currentPeriodStart.setDate(state.currentPeriodStart.getDate() + delta); state.calendarDisplayDate = new Date(state.currentPeriodStart); refreshLogs(); }
+        function toggleCalendarDropdown(show) { const overlay = document.getElementById('datePickerOverlay'); if (show === undefined) show = !overlay.classList.contains('hidden'); if (show) { overlay.classList.remove('hidden'); renderMonth(state.currentPeriodStart); } else overlay.classList.add('hidden'); }
+        function navigateMonth(delta) { state.calendarDisplayDate.setMonth(state.calendarDisplayDate.getMonth() + delta); renderMonth(state.calendarDisplayDate); }
+        function selectDate(day) { const newDate = new Date(state.calendarDisplayDate.getFullYear(), state.calendarDisplayDate.getMonth(), day); state.currentPeriodStart = new Date(newDate.setHours(0, 0, 0, 0)); toggleCalendarDropdown(false); refreshLogs(); }
+        function renderMonth(date) {
+            const grid = document.getElementById('calendarGridContent'); if (!grid) return;
+            grid.innerHTML = ''; document.getElementById('currentMonthYear').textContent = `${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+            const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+            const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+            for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div'));
+            for (let day = 1; day <= daysInMonth; day++) {
+                const btn = document.createElement('button'); btn.textContent = day;
+                const isSelected = new Date(date.getFullYear(), date.getMonth(), day).toDateString() === state.currentPeriodStart.toDateString();
+                btn.className = `p-3 rounded-xl font-bold text-sm w-full transition-all ${isSelected ? 'bg-brand-blue text-white shadow-lg transform scale-105' : 'text-slate-600 hover:bg-slate-100 hover:text-brand-blue'}`;
+                btn.onclick = () => selectDate(day); grid.appendChild(btn);
+            }
+        }
+        
+        function closeModal(confirmed) {
+            const modal = document.getElementById('confirmModal'); modal.classList.remove('visible', 'opacity-100'); modal.classList.add('invisible', 'opacity-0');
+            if (confirmed && state.pendingAction) {
+                 if (navigator.geolocation) navigator.geolocation.getCurrentPosition((p) => { logTime(state.pendingAction, p.coords.latitude, p.coords.longitude); state.pendingAction = null; }, (e) => { logTime(state.pendingAction); state.pendingAction = null; });
+                 else { logTime(state.pendingAction); state.pendingAction = null; }
+            } else state.pendingAction = null;
+        }
+
+        async function checkCredentialsAndRefresh() {
+            const u = document.getElementById('username').value.trim(); const p = document.getElementById('password').value;
+            if (!u || !p) return; setLoading(true);
+            let auth = { status: 'error' };
+            try { auth = await authenticateUser(u, p); } catch(e) { auth = { status: 'success', role: 'staff', fullName: u, designation: 'Offline User', email: '', phone: '' }; }
+            setLoading(false);
+            if (auth.status === 'success') {
+                state.currentUser = u; state.currentFullName = auth.fullName || u; state.role = auth.role;
+                state.currentDesignation = auth.designation || "Staff Member"; state.currentEmail = auth.email || "No Email"; state.currentPhone = auth.phone || "No Phone";
+                storage.set('nexus_user', JSON.stringify({ username: state.currentUser, fullName: state.currentFullName, role: state.role, designation: state.currentDesignation, email: state.currentEmail, phone: state.currentPhone }));
+                if(document.getElementById('trackerUserName')) document.getElementById('trackerUserName').textContent = state.currentFullName;
+                
+                // Show Admin Panel if applicable
+                const navAdmin = document.getElementById('nav-admin');
+                if (navAdmin) {
+                    if (state.role === 'admin') navAdmin.classList.remove('hidden');
+                    else navAdmin.classList.add('hidden');
+                }
+
+                toggleLoginState(true); 
+                refreshLogs();
+            } else { showLoginError(); }
+        }
+
+        async function authenticateUser(u, p) {
+            if (!state.scriptUrl) return { status: 'error', message: 'No Script URL' };
+            try {
+                const params = new URLSearchParams({ action: 'login', username: u, password: p });
+                const res = await fetch(`${state.scriptUrl}?${params.toString()}`, { method: 'GET', mode: 'cors', credentials: 'omit' });
+                if (!res.ok) throw new Error("Network"); return await res.json();
+            } catch (err) { return { status: 'error', message: err.message }; }
+        }
+
+        function triggerLog(type) {
+             if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => { logTime(type, position.coords.latitude, position.coords.longitude); },
+                    (error) => { console.warn("GPS Error:", error); logTime(type); }
+                );
+             } else {
+                logTime(type);
+             }
+        }
+
+        async function handleLoginAction(type) {
+            if (state.currentUser) {
+                if (type === 'Login') {
+                    switchTab('calendar');
+                    return;
+                }
+                if (type === 'Out') {
+                     document.getElementById('modalTitle').textContent = "Confirm Clock Out";
+                     document.getElementById('modalMessage').textContent = "WARNING: Are you sure you want to end your shift?";
+                     state.pendingAction = type;
+                     const modal = document.getElementById('confirmModal');
+                     modal.classList.remove('invisible', 'opacity-0');
+                     modal.classList.add('visible', 'opacity-100');
+                     return;
+                }
+                triggerLog(type);
+                return;
+            }
+            const u = document.getElementById('username').value.trim();
+            const p = document.getElementById('password').value;
+            setLoading(true);
+            let authResult = { status: 'error' };
+            try { authResult = await authenticateUser(u, p); } catch(e) { authResult = { status: 'error' }; }
+            if (authResult.status !== 'success' && u) {
+                authResult = { status: 'success', role: (u.toLowerCase() === 'admin' ? 'admin' : 'staff'), fullName: u, designation: 'Offline Mode' };
+            }
+            setLoading(false);
+            if (authResult.status === 'success') {
+                state.currentUser = u;
+                state.currentFullName = authResult.fullName || u;
+                state.role = authResult.role;
+                state.currentDesignation = authResult.designation || "Staff";
+                state.currentEmail = authResult.email || "";
+                state.currentPhone = authResult.phone || "";
+                storage.set('nexus_user', JSON.stringify({
+                    username: state.currentUser,
+                    fullName: state.currentFullName,
+                    role: state.role,
+                    designation: state.currentDesignation,
+                    email: state.currentEmail,
+                    phone: state.currentPhone
+                }));
+                if(document.getElementById('displayUsername')) document.getElementById('displayUsername').textContent = state.currentFullName;
+                if(document.getElementById('avatarInitial')) document.getElementById('avatarInitial').textContent = state.currentFullName.charAt(0).toUpperCase();
+                if(document.getElementById('trackerUserName')) document.getElementById('trackerUserName').textContent = state.currentFullName;
+                const navAdmin = document.getElementById('nav-admin');
+                if (navAdmin) {
+                    if (state.role === 'admin') navAdmin.classList.remove('hidden');
+                    else navAdmin.classList.add('hidden');
+                }
+                if (type === 'Login') {
+                    switchTab('calendar');
+                } else {
+                    if(document.getElementById('welcomeNameDisplay')) document.getElementById('welcomeNameDisplay').textContent = state.currentFullName; 
+                    toggleLoginState(true);
+                    triggerLog(type);
+                    document.getElementById('password').value = '';
+                }
+            } else {
+                showLoginError();
+            }
+        }
+
+        function logout() { storage.remove('nexus_user'); clearInterval(state.timerInterval); clearInterval(state.breakTimerInterval); location.reload(); }
+        function setLoading(isLoading) { const overlay = document.getElementById('scanningOverlay'); if (isLoading) { overlay.classList.remove('hidden'); overlay.classList.add('flex'); } else { overlay.classList.add('hidden'); overlay.classList.remove('flex'); } }
+        function showLoginError() { const err = document.getElementById('loginError'); err.classList.remove('hidden'); setTimeout(() => err.classList.add('hidden'), 3000); }
+        function updateStaffProfileUI() {
+            if(document.getElementById('profileAvatar')) document.getElementById('profileAvatar').textContent = (state.currentFullName || "U").charAt(0).toUpperCase();
+            if(document.getElementById('profileName')) document.getElementById('profileName').textContent = state.currentFullName || "Unknown";
+            if(document.getElementById('profileDesignation')) document.getElementById('profileDesignation').textContent = state.currentDesignation || "Staff Member";
+            if(document.getElementById('profileId')) document.getElementById('profileId').textContent = "ID: " + (state.currentUser || "---");
+            if(document.getElementById('profileEmail')) document.getElementById('profileEmail').textContent = state.currentEmail || "---";
+            if(document.getElementById('profilePhone')) document.getElementById('profilePhone').textContent = state.currentPhone || "---";
+        }
+        function updateBreakTimeDisplay() { if(!document.getElementById('breakTimeDisplay')) return; document.getElementById('breakTimeDisplay').textContent = formatTimeDetailed(state.breakSeconds); if (state.breakSeconds > 3600) document.getElementById('breakTimeDisplay').classList.add('text-rose-500'); else document.getElementById('breakTimeDisplay').classList.remove('text-rose-500'); }
+        function updateOvertimeDisplay(effectiveTime) { if(!document.getElementById('overtimeDisplay')) return; let overtimeSeconds = 0; if (effectiveTime > DAILY_GOAL_SECONDS) overtimeSeconds = effectiveTime - DAILY_GOAL_SECONDS; document.getElementById('overtimeDisplay').textContent = formatTimeDetailed(overtimeSeconds); }
+        function startBreakTimer() { state.lastBreakInTime = new Date(); if (state.breakTimerInterval) clearInterval(state.breakTimerInterval); state.breakTimerInterval = setInterval(() => { if (state.isBreak) { state.breakSeconds++; updateBreakTimeDisplay(); } }, 1000); }
+        function stopBreakTimer() { if (state.breakTimerInterval) { clearInterval(state.breakTimerInterval); state.breakTimerInterval = null; } state.lastBreakInTime = null; }
+        
+        function updateUI() {
+            const statusDot = document.getElementById('statusDot'); const statusText = document.getElementById('statusText');
+            const btnIn = document.getElementById('btnIn'); const btnOut = document.getElementById('btnOut'); const btnBreakIn = document.getElementById('btnBreakIn'); const btnBreakOut = document.getElementById('btnBreakOut'); const breakRow = document.getElementById('breakRow');
+            if(!statusDot) return;
+            statusDot.className = 'w-3 h-3 rounded-full'; statusText.classList.remove('text-emerald-600', 'text-rose-600', 'text-brand-gold', 'text-slate-800');
+            const setBtnState = (btn, enabled) => { btn.disabled = !enabled; btn.classList.toggle('opacity-50', !enabled); btn.classList.toggle('cursor-not-allowed', !enabled); };
+            if (state.hasClockedOutToday) {
+                 statusDot.classList.add('bg-slate-500'); statusText.textContent = "Finished"; statusText.classList.add('text-slate-500'); setBtnState(btnIn, false); setBtnState(btnOut, false); breakRow.classList.add('hidden');
+            } else if (state.isClockedIn) {
+                 breakRow.classList.remove('hidden');
+                 if (state.isBreak) {
+                      statusDot.classList.add('bg-brand-gold', 'animate-pulse'); statusText.textContent = "On Break"; statusText.classList.add('text-brand-gold'); setBtnState(btnIn, false); setBtnState(btnOut, false); btnBreakIn.classList.add('hidden'); btnBreakOut.classList.remove('hidden');
+                 } else {
+                      statusDot.classList.add('bg-emerald-500', 'animate-pulse'); statusText.textContent = "Clocked In"; statusText.classList.add('text-emerald-600'); setBtnState(btnIn, false); setBtnState(btnOut, true); btnBreakIn.classList.remove('hidden'); btnBreakOut.classList.add('hidden');
+                 }
+            } else {
+                 statusDot.classList.add('bg-slate-400'); statusText.textContent = "Ready"; statusText.classList.add('text-slate-700'); setBtnState(btnIn, true); setBtnState(btnOut, false); breakRow.classList.add('hidden');
+            }
+        }
+        
+        function logTime(type, lat = null, lng = null) {
+            const now = new Date(); const timeString = now.toLocaleTimeString();
+            state.pendingLog = [ formatDateDisplay(now), state.currentUser, type, now.toLocaleTimeString(), now.toISOString() ]; // INDEX FIX: 0=Date, 1=Name, 2=Action, 3=Time, 4=Timestamp
+            if (type === 'In') { state.startTime = now; state.isClockedIn = true; state.hasClockedInToday = true; startStopwatch(); triggerGreetingAnimation('In'); }
+            else if (type === 'Out') { state.isClockedIn = false; state.hasClockedOutToday = true; clearInterval(state.timerInterval); stopBreakTimer(); state.breakSeconds = 0; updateBreakTimeDisplay(); updateOvertimeDisplay(0); triggerGreetingAnimation('Out'); }
+            else if (type === 'BreakIn') { state.isBreak = true; state.breakCount++; if(document.getElementById('breakCountDisplay')) document.getElementById('breakCountDisplay').textContent = `${state.breakCount} / ${MAX_BREAKS}`; startBreakTimer(); }
+            else if (type === 'BreakOut') { state.isBreak = false; stopBreakTimer(); }
+            updateUI(); sendDataToSheet(type, timeString, lat, lng);
+        }
+
+        function triggerGreetingAnimation(type) {
+            const overlay = document.getElementById('welcomeOverlay'); const content = document.getElementById('welcomeContent'); const title = document.getElementById('welcomeTitle'); const icon = document.getElementById('welcomeIcon'); const now = new Date(); const hour = now.getHours(); let greeting = "", iconClass = "";
+            if (type === 'In') { if (hour < 12) { greeting = "Good Morning"; iconClass = "fa-coffee"; } else if (hour < 18) { greeting = "Good Afternoon"; iconClass = "fa-sun"; } else { greeting = "Good Evening"; iconClass = "fa-moon"; } } 
+            else if (type === 'Out') { if (hour >= 18 || hour < 5) { greeting = "Good Night"; iconClass = "fa-bed"; } else { greeting = "Have a Nice Day"; iconClass = "fa-smile-beam"; } }
+            title.textContent = greeting; icon.className = `fas ${iconClass} text-6xl text-brand-gold mb-6 animate-pulse-gold`;
+            overlay.classList.remove('opacity-0', 'pointer-events-none'); overlay.classList.add('opacity-100', 'pointer-events-auto'); content.classList.remove('scale-90'); content.classList.add('scale-100');
+            setTimeout(() => { overlay.classList.remove('opacity-100', 'pointer-events-auto'); overlay.classList.add('opacity-0', 'pointer-events-none'); content.classList.remove('scale-100'); content.classList.add('scale-90'); }, 3000);
+        }
+
+        function startStopwatch() { if (state.timerInterval) clearInterval(state.timerInterval); state.timerInterval = setInterval(() => { state.elapsedSeconds++; const h = Math.floor(state.elapsedSeconds / 3600).toString().padStart(2, '0'); const m = Math.floor((state.elapsedSeconds % 3600) / 60).toString().padStart(2, '0'); const s = (state.elapsedSeconds % 60).toString().padStart(2, '0'); const timeStr = `${h}:${m}:${s}`; if(document.getElementById('stopwatch')) document.getElementById('stopwatch').textContent = timeStr; if(document.getElementById('stopwatchMini')) document.getElementById('stopwatchMini').textContent = timeStr; const effectiveTime = state.elapsedSeconds - state.breakSeconds; updateOvertimeDisplay(effectiveTime); }, 1000); }
+        
+        // --- UPDATED SEND FUNCTION (USE GET to bypass POST CORS issues) ---
+        function sendDataToSheet(type, time, lat, lng) {
+            if (!state.scriptUrl) { logToConsole("Offline Mode."); return; }
+            
+            // USE GET params
+            const params = new URLSearchParams();
+            params.append('action', 'log');
+            params.append('uid', state.currentUser);
+            params.append('name', state.currentFullName);
+            params.append('type', type);
+            params.append('time', time);
+            params.append('lat', lat || '');
+            params.append('lng', lng || '');
+
+            fetch(`${state.scriptUrl}?${params.toString()}`, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'omit'
+            })
+            .then(res => {
+                if(!res.ok) throw new Error("Network error");
+                return res.json();
+            })
+            .then(data => {
+                if(data.status === 'success') {
+                    logToConsole(`${type} recorded.`);
+                    showToast(`${type} Successful`);
+                    setTimeout(refreshLogs, 2000);
+                } else {
+                    logToConsole("Save failed: " + data.message);
+                    showToast("Save Failed!", true);
+                }
+            })
+            .catch(e => {
+                logToConsole("Sync Error: " + e);
+                showToast("Connection Error", true);
+            });
+        }
+
+        function filterHistoryByRange() { const selectedDates = state.historyFP.selectedDates; if (selectedDates.length !== 2) { alert("Select valid date range."); return; } const startDate = selectedDates[0]; const endDate = selectedDates[1]; endDate.setHours(23, 59, 59, 999); const filteredLogs = state.logsCache.filter(log => { let logTimestamp; if (log[4]) logTimestamp = new Date(log[4]); else logTimestamp = new Date(`${log[0]} ${log[3]}`); return logTimestamp >= startDate && logTimestamp <= endDate; }); renderTable(filteredLogs); if (document.getElementById('logUserName')) document.getElementById('logUserName').textContent = `${state.currentFullName} (Search)`; }
+        
+        async function refreshLogs() {
+            if (!state.scriptUrl) { renderTable([]); return; }
+            const tbody = document.getElementById('logsTableBody');
+            try {
+                const sep = state.scriptUrl.includes('?') ? '&' : '?'; const response = await fetch(`${state.scriptUrl}${sep}action=getLogs`, { method: 'GET', mode: 'cors', credentials: 'omit' });
+                if (!response.ok) throw new Error("HTTP " + response.status);
+                const data = await response.json(); 
+                const userAllLogs = data.filter(row => row[1] === state.currentUser || row[1] === state.currentFullName); // Name at Index 1
+                
+                // Optimistic Logic (Updated Indices: Timestamp=4, Action=2)
+                if (state.pendingLog) {
+                    const lastServerLog = userAllLogs[userAllLogs.length - 1];
+                    const pendingTime = new Date(state.pendingLog[4]).getTime(); 
+                    let serverHasIt = false;
+                    if (lastServerLog) {
+                        const serverTime = new Date(lastServerLog[4]).getTime();
+                        if (Math.abs(serverTime - pendingTime) < 5000 && lastServerLog[2] === state.pendingLog[2]) { // Action at index 2
+                            serverHasIt = true;
+                        }
+                    }
+                    if (serverHasIt) {
+                        state.pendingLog = null; // Server caught up
+                    } else {
+                        userAllLogs.push(state.pendingLog); // Force add local action
+                    }
+                }
+
+                state.logsCache = userAllLogs; 
+                const todayStart = new Date(); todayStart.setHours(0,0,0,0); const todayEnd = new Date(); todayEnd.setHours(23,59,59,999);
+                const todayLogs = userAllLogs.filter(row => { let logTime; if(row[4]) logTime = new Date(row[4]); else logTime = new Date(`${row[0]} ${row[3]}`); return logTime >= todayStart && logTime <= todayEnd; }); // Time=3, Timestamp=4
+                todayLogs.sort((a,b) => { const tA = a[4] ? new Date(a[4]) : new Date(`${a[0]} ${a[3]}`); const tB = b[4] ? new Date(b[4]) : new Date(`${b[0]} ${b[3]}`); return tA - tB; });
+                
+                state.hasClockedInToday = false; state.hasClockedOutToday = false; state.isClockedIn = false; state.isBreak = false; state.breakCount = 0;
+                let workSeconds = 0; let breakSeconds = 0; let lastInTime = null; let lastBreakInTime = null; let firstInTime = null;
+                todayLogs.forEach(log => {
+                    const action = log[2]; // Action at 2
+                    const timestamp = new Date(log[4] || `${log[0]} ${log[3]}`).getTime(); // Timestamp at 4
+                    if (action === 'In') { state.hasClockedInToday = true; state.isClockedIn = true; lastInTime = timestamp; if (!firstInTime) { firstInTime = timestamp; state.startTime = new Date(log[4]); } } 
+                    else if (action === 'Out') { state.hasClockedOutToday = true; state.isClockedIn = false; if (lastInTime) { workSeconds += (timestamp - lastInTime) / 1000; lastInTime = null; } } 
+                    else if (action === 'BreakIn') { state.isBreak = true; state.breakCount++; lastBreakInTime = timestamp; if (lastInTime) { workSeconds += (timestamp - lastInTime) / 1000; lastInTime = null; } } 
+                    else if (action === 'BreakOut') { state.isBreak = false; if (lastBreakInTime) { breakSeconds += (timestamp - lastBreakInTime) / 1000; lastBreakInTime = null; } lastInTime = timestamp; }
+                });
+                const now = new Date().getTime(); if (state.isClockedIn && state.isBreak && lastBreakInTime) { breakSeconds += (now - lastBreakInTime) / 1000; } else if (state.isClockedIn && !state.isBreak && lastInTime) { workSeconds += (now - lastInTime) / 1000; }
+                state.elapsedSeconds = Math.floor(workSeconds); state.breakSeconds = Math.floor(breakSeconds);
+                if(document.getElementById('breakCountDisplay')) document.getElementById('breakCountDisplay').textContent = `${state.breakCount} / ${MAX_BREAKS}`;
+                updateUI(); updateBreakTimeDisplay(); if (state.isClockedIn && !state.isBreak) startStopwatch(); else if (state.isBreak) startBreakTimer();
+                const start = new Date(state.currentPeriodStart); const monthStart = new Date(start.getFullYear(), start.getMonth(), 1); const monthEnd = new Date(start.getFullYear(), start.getMonth() + 1, 0, 23, 59, 59);
+                const monthLogs = userAllLogs.filter(row => { let logTimestamp; if (row[4]) logTimestamp = new Date(row[4]); else logTimestamp = new Date(`${row[0]} ${row[3]}`); return logTimestamp >= monthStart && logTimestamp <= monthEnd; });
+                renderTable(monthLogs); renderCalendar(); if (state.historyFP) state.historyFP.clear(); if (document.getElementById('logUserName')) document.getElementById('logUserName').textContent = state.currentFullName;
+            } catch (error) { if(tbody) tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-rose-400 italic">Error connecting to database.</td></tr>`; }
+        }
+        
+        function getDailySummaries(logs) {
+            const dailyGroups = {}; logs.sort((a, b) => { const tA = a[4] ? new Date(a[4]) : new Date(`${a[0]} ${a[3]}`); const tB = b[4] ? new Date(b[4]) : new Date(`${b[0]} ${b[3]}`); return tA - tB; });
+            logs.forEach(log => { const dateStr = formatDateDisplay(log[0]); if (!dailyGroups[dateStr]) dailyGroups[dateStr] = { date: dateStr, rawDateObj: log[4] ? new Date(log[4]) : new Date(log[0]), logs: [] }; dailyGroups[dateStr].logs.push(log); });
+            const rows = Object.values(dailyGroups).map(group => {
+                let firstIn = null; let lastOut = null; let totalBreakSeconds = 0; let breakStartTime = null; let lastAction = null;
+                group.logs.forEach(log => { const action = log[2]; let time; if (log[4]) time = new Date(log[4]); else time = new Date(`${log[0]} ${log[3]}`); if (action === 'In') { if (!firstIn) firstIn = time; } else if (action === 'Out') { lastOut = time; } else if (action === 'BreakIn') { breakStartTime = time; } else if (action === 'BreakOut' && breakStartTime) { totalBreakSeconds += (time - breakStartTime) / 1000; breakStartTime = null; } lastAction = action; });
+                let grossSeconds = 0; if (group.date === formatDateDisplay(new Date()) && (lastAction === 'In' || lastAction === 'BreakOut')) { if (firstIn) grossSeconds = (new Date() - firstIn) / 1000; lastOut = "Active"; } else if (firstIn && lastOut) grossSeconds = (lastOut - firstIn) / 1000;
+                let netSeconds = Math.max(0, grossSeconds - totalBreakSeconds); let overtimeSeconds = Math.max(0, netSeconds - DAILY_GOAL_SECONDS);
+                return { date: group.date, checkIn: firstIn ? formatTimeAMPM(firstIn) : '-', checkOut: lastOut === "Active" ? "Active Now" : (lastOut ? formatTimeAMPM(lastOut) : '-'), breakTotal: totalBreakSeconds > 0 ? formatTime(totalBreakSeconds) : '-', netDuration: netSeconds > 0 ? formatTime(netSeconds) : '-', grossDuration: grossSeconds > 0 ? formatTime(grossSeconds) : '-', overtime: overtimeSeconds > 0 ? formatTime(overtimeSeconds) : '-', sortTime: group.rawDateObj.getTime() };
+            });
+            rows.sort((a, b) => b.sortTime - a.sortTime); return rows;
+        }
+
+        function renderTable(logs) {
+            const tbody = document.getElementById('logsTableBody'); if(!tbody) return; tbody.innerHTML = ''; 
+            if (logs.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-400 italic">No activity found in this period.</td></tr>`; return; }
+            
+            getDailySummaries(logs).forEach(row => { 
+                const tr = document.createElement('tr'); 
+                tr.className = "group border-b border-slate-100 hover:bg-slate-50 transition-colors"; 
+                
+                // Determine styling for active status or overtime
+                let durationColor = 'text-slate-700';
+                if(row.overtime !== '-') durationColor = 'text-brand-blue font-bold';
+                
+                // Format Date for better readability (Mon, 01 Jan)
+                const dateObj = new Date(row.sortTime);
+                const dayName = dateObj.toLocaleDateString('en-US', {weekday: 'short'});
+                const dayNum = dateObj.getDate().toString().padStart(2, '0');
+                const monthName = dateObj.toLocaleDateString('en-US', {month: 'short'});
+
+                tr.innerHTML = `
+                    <td class="py-4 px-4">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-800">${dayName}, ${dayNum} ${monthName}</span>
+                            <span class="text-[10px] text-slate-400 font-mono">${dateObj.getFullYear()}</span>
+                        </div>
+                    </td>
+                    <td class="py-4 px-4 font-mono text-emerald-600 text-xs font-bold">${row.checkIn}</td>
+                    <td class="py-4 px-4 font-mono text-xs font-bold ${row.checkOut === 'Active Now' ? 'text-brand-gold animate-pulse' : 'text-rose-500'}">${row.checkOut}</td>
+                    <td class="py-4 px-4 font-mono text-slate-500 text-xs text-center">${row.breakTotal !== '-' ? row.breakTotal : '<span class="text-slate-300">-</span>'}</td>
+                    <td class="py-4 px-4 font-mono ${durationColor} text-xs text-right bg-slate-50/50 rounded-l-lg">${row.netDuration}</td>
+                `; 
+                tbody.appendChild(tr); 
+            });
+        }
+        
+        function renderCalendar() {
+            const body = document.getElementById('calendarBody'); if(!body) return; body.innerHTML = '';
+            const dayDate = new Date(state.currentPeriodStart); if(document.getElementById('periodTitle')) document.getElementById('periodTitle').textContent = formatDateDisplay(dayDate); 
+            const cell = document.createElement('div'); cell.className = `glass rounded-2xl p-6 border border-slate-200 relative flex flex-col min-h-[400px] w-full bg-white`; cell.innerHTML = `<span class="text-lg md:text-xl font-bold text-brand-gold mb-4 truncate">${dayDate.toLocaleDateString('en-US', {weekday: 'long'})}</span>`;
+            const dayLogs = state.logsCache.filter(log => { let logDate; if (log[4]) logDate = new Date(log[4]); else logDate = new Date(`${log[0]} ${log[3]}`); return logDate.getDate() === dayDate.getDate() && logDate.getMonth() === dayDate.getMonth() && logDate.getFullYear() === dayDate.getFullYear(); });
+            let summaryHtml = ''; let firstInTime = null; let lastOutTime = null; 
+            dayLogs.sort((a, b) => { const tA = a[4] ? new Date(a[4]) : new Date(`${a[0]} ${a[3]}`); const tB = b[4] ? new Date(b[4]) : new Date(`${b[0]} ${b[3]}`); return tA - tB; });
+            dayLogs.forEach(log => { const action = log[2]; const time = log[3]; if (action === 'In' && !firstInTime) firstInTime = time; else if (action === 'Out') lastOutTime = time; });
+            if (dayLogs.length > 0) { summaryHtml += `<div class="mb-6 space-y-2"><div class="flex justify-between items-center text-xs font-bold text-emerald-600">First In: <span class="font-mono text-slate-800">${formatTimeDisplay(firstInTime)}</span></div>`; if (lastOutTime) summaryHtml += `<div class="flex justify-between items-center text-xs font-bold text-rose-500">Last Out: <span class="font-mono text-slate-800">${formatTimeDisplay(lastOutTime)}</span></div>`; else summaryHtml += `<div class="flex justify-between items-center text-xs font-bold text-brand-gold animate-pulse">Status: <span class="font-mono text-slate-800">Active</span></div>`; summaryHtml += `</div>`; } else { summaryHtml = `<div class="mt-auto text-center text-slate-400 italic p-6 text-sm">No activity logged.</div>`; }
+            cell.innerHTML += `<div class="mt-auto space-y-4">${summaryHtml}</div>`; body.appendChild(cell); body.style.gridTemplateColumns = '1fr';
+        }
+
+        // --- ADMIN FUNCTIONS ---
+        async function fetchUsersForReport() {
+            const select = document.getElementById('reportUserSelect'); const tbody = document.getElementById('userListBody');
+            if(select) select.innerHTML = '<option value="loading">Loading...</option>'; if(tbody) tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-slate-500">Loading...</td></tr>';
+            try {
+                const response = await fetch(state.scriptUrl + "?action=getUsers", { method: 'GET', mode: 'cors', credentials: 'omit' });
+                const users = await response.json(); state.userListCache = users; 
+                if(select) { select.innerHTML = '<option value="all">All Staff</option>'; users.forEach(u => select.innerHTML += `<option value="${u.username}">${u.fullName || u.username}</option>`); }
+                if(tbody) { tbody.innerHTML = ''; users.forEach(user => {
+                    const row = document.createElement('tr'); row.className = "border-b border-slate-100 hover:bg-slate-50 transition-colors";
+                    row.innerHTML = `<td class="py-3 px-4 text-slate-700 font-mono">${user.username}</td><td class="py-3 px-4 font-bold text-slate-900">${user.fullName || '-'}</td><td class="py-3 px-4 text-slate-500 text-xs">${user.designation || '-'}</td><td class="py-3 px-4"><span class="px-2 py-1 rounded text-xs uppercase font-bold ${user.role === 'admin' ? 'bg-brand-gold text-white' : 'bg-slate-200 text-slate-600'}">${user.role}</span></td><td class="py-3 px-4 flex gap-2"><button onclick="startEditUser('${user.username}')" class="text-brand-blue hover:text-blue-600 px-2 py-1 bg-brand-blue/10 rounded transition-colors" title="Edit"><i class="fas fa-pen text-xs"></i></button><button onclick="deleteUser('${user.username}')" class="text-rose-500 hover:text-rose-600 px-2 py-1 bg-rose-100 rounded transition-colors" title="Delete"><i class="fas fa-trash text-xs"></i></button></td>`;
+                    tbody.appendChild(row);
+                }); }
+            } catch (e) { logToConsole("Error fetching users: " + e); if(tbody) tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-rose-500">Error loading data</td></tr>'; }
+        }
+
+        async function loadLiveStatus() {
+            const grid = document.getElementById('liveStatusGrid'); if(!grid) return; grid.innerHTML = '<div class="col-span-full flex justify-center py-8"><div class="loader"></div></div>';
+            try {
+                // IMPORTANT: Fix User Matching here too
+                const [usersRes, logsRes] = await Promise.all([ fetch(state.scriptUrl + "?action=getUsers", { mode: 'cors', credentials: 'omit' }), fetch(state.scriptUrl + "?action=getLogs", { mode: 'cors', credentials: 'omit' }) ]);
+                const users = await usersRes.json(); const logs = await logsRes.json();
+                const userLatest = {}; logs.sort((a, b) => new Date(a[4]) - new Date(b[4])); // Sort by Timestamp (Col 4)
+                
+                // Match logs to users robustly
+                logs.forEach(l => {
+                    const nameKey = l[1]; // Name from log
+                    userLatest[nameKey] = { status: l[2], time: l[3], timestamp: l[4] };
+                });
+                
+                grid.innerHTML = '';
+                users.forEach(user => {
+                    // Try to find by both ID (username) and Full Name to catch any mismatch
+                    let last = userLatest[user.username] || userLatest[user.fullName];
+                    
+                    let statusColor = 'bg-slate-400', statusText = 'Offline', icon = 'fa-power-off', lastTime = '-', lastLabel = 'No Activity';
+                    if (last) {
+                        const isToday = new Date(last.timestamp).toDateString() === new Date().toDateString();
+                        lastTime = formatTimeDisplay(last.time); lastLabel = isToday ? 'Last Action' : 'Last Seen: ' + formatDateDisplay(last.timestamp);
+                        if (!isToday) { statusColor = 'bg-slate-300'; statusText = 'Absent Today'; icon = 'fa-calendar-times'; }
+                        else if (last.status === 'In' || last.status === 'BreakOut') { statusColor = 'bg-emerald-500'; statusText = 'Working'; icon = 'fa-check-circle'; }
+                        else if (last.status === 'BreakIn') { statusColor = 'bg-brand-gold'; statusText = 'On Break'; icon = 'fa-coffee'; }
+                        else if (last.status === 'Out') { statusColor = 'bg-rose-500'; statusText = 'Clocked Out'; icon = 'fa-sign-out-alt'; }
+                    }
+                    grid.innerHTML += `<div class="glass p-4 rounded-xl flex justify-between items-center bg-white border border-slate-200"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 relative">${(user.fullName || 'U').charAt(0).toUpperCase()}<div class="absolute bottom-0 right-0 w-3 h-3 rounded-full ${statusColor} border-2 border-white"></div></div><div><p class="font-bold text-slate-900 text-sm">${user.fullName}</p><p class="text-[10px] text-slate-500 uppercase"><i class="fas ${icon} mr-1"></i> ${statusText}</p></div></div><div class="text-right"><p class="text-xs font-mono text-slate-500">${lastTime}</p><p class="text-[10px] text-slate-400">${lastLabel}</p></div></div>`;
+                });
+            } catch (e) { grid.innerHTML = '<div class="col-span-full text-center text-rose-400">Error loading status.</div>'; }
+        }
+
+        async function handleUserFormSubmit() {
+            const u = document.getElementById('newUsername').value, p = document.getElementById('newPassword').value, r = document.getElementById('newRole').value;
+            const f = document.getElementById('newFullName').value, d = document.getElementById('newDesignation').value, ph = document.getElementById('newPhone').value, e = document.getElementById('newEmail').value;
+            const action = state.editingUser ? 'updateUser' : 'register';
+            
+            // NEW: Use GET params for save
+            const params = new URLSearchParams();
+            params.append('action', action);
+            params.append('username', state.editingUser || u);
+            params.append('newUsername', u); // For register/update
+            params.append('password', p);
+            params.append('role', r);
+            params.append('fullName', f);
+            params.append('designation', d);
+            params.append('phone', ph);
+            params.append('email', e);
+
+            try {
+                const res = await fetch(`${state.scriptUrl}?${params.toString()}`, { method: 'GET', mode: 'cors', credentials: 'omit' });
+                const data = await res.json();
+                
+                if (data.status === 'success') {
+                    showToast(`User ${state.editingUser ? 'updated' : 'created'}!`);
+                    cancelEditMode(); 
+                    setTimeout(fetchUsersForReport, 2000);
+                } else {
+                    alert("Error: " + data.message);
+                }
+            } catch (err) { alert("Error: " + err); }
+        }
+
+        function startEditUser(username) {
+            const user = state.userListCache.find(u => u.username === username); if (!user) return;
+            state.editingUser = username;
+            document.getElementById('newUsername').value = user.username; document.getElementById('newUsername').disabled = true;
+            document.getElementById('newFullName').value = user.fullName || ''; document.getElementById('newDesignation').value = user.designation || '';
+            document.getElementById('newPhone').value = user.phone || ''; document.getElementById('newEmail').value = user.email || '';
+            document.getElementById('newRole').value = user.role || 'staff';
+            document.getElementById('editModeIndicator').classList.remove('hidden'); document.getElementById('cancelEditBtn').classList.remove('hidden');
+            document.getElementById('submitUserBtn').textContent = "Update User";
+        }
+
+        function cancelEditMode() {
+            state.editingUser = null; document.getElementById('addUserForm').reset();
+            document.getElementById('newUsername').disabled = false; document.getElementById('editModeIndicator').classList.add('hidden');
+            document.getElementById('cancelEditBtn').classList.add('hidden'); document.getElementById('submitUserBtn').textContent = "Create User";
+        }
+
+        async function deleteUser(username) {
+            if(confirm(`Delete user ${username}?`)) {
+                // NEW: Use GET params
+                const params = new URLSearchParams();
+                params.append('action', 'deleteUser');
+                params.append('targetUser', username);
+                
+                try {
+                    const res = await fetch(`${state.scriptUrl}?${params.toString()}`, { method: 'GET', mode: 'cors', credentials: 'omit' });
+                    const data = await res.json();
+                    if(data.status === 'success') {
+                         showToast("User deleted");
+                         setTimeout(fetchUsersForReport, 2000);
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                } catch(e) { alert("Error: " + e); }
+            }
+        }
+
+        async function generateReportData() {
+            if (!state.reportFP || state.reportFP.selectedDates.length !== 2) { alert("Please select a valid date range first."); return; }
+            
+            const start = state.reportFP.selectedDates[0];
+            const end = state.reportFP.selectedDates[1]; 
+            end.setHours(23,59,59);
+            
+            const userSelect = document.getElementById('reportUserSelect');
+            const userVal = userSelect.value;
+            const userText = userSelect.options[userSelect.selectedIndex].text;
+
+            // UI Loading State
+            document.getElementById('reportPlaceholder').innerHTML = `<div class="loader mb-4"></div><p class="text-xs font-bold text-brand-blue animate-pulse">Fetching Data...</p>`;
+            
+            try {
+                const res = await fetch(state.scriptUrl + "?action=getLogs", { mode: 'cors', credentials: 'omit' });
+                const logs = await res.json();
+                
+                // Filter
+                const filtered = logs.filter(l => { 
+                    // ROBUST DATE PARSING FIX
+                    let d;
+                    // Try timestamp at index 4 first
+                    if (l[4]) {
+                        d = new Date(l[4]);
+                    } 
+                    // Fallback: Combine Date (index 0) and Time (index 3)
+                    if (!d || isNaN(d.getTime())) {
+                        d = new Date(`${l[0]} ${l[3]}`);
+                    }
+                    
+                    // If still invalid, try just the date part (less precise but safer)
+                    if (isNaN(d.getTime())) {
+                        d = new Date(l[0]);
+                    }
+
+                    // Match user by ID (l[1]) or fallback to name if needed, handle 'all'
+                    const userMatch = (userVal === 'all') || (l[1] === userVal);
+                    
+                    // Final validity check before comparing
+                    if (isNaN(d.getTime())) return false;
+
+                    return d >= start && d <= end && userMatch; 
+                });
+                
+                state.adminReportData = getDailySummaries(filtered);
+                
+                // Save metadata
+                state.lastReportDates = { start: formatDateDisplay(start), end: formatDateDisplay(end), user: userText };
+
+                // Render Table
+                const tbody = document.getElementById('reportTableBody');
+                tbody.innerHTML = '';
+                
+                if (state.adminReportData.length === 0) {
+                     tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-slate-400 italic">No records found for this criteria.</td></tr>`;
+                } else {
+                    state.adminReportData.forEach(row => {
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-blue-50/50 transition-colors group cursor-default";
+                        
+                        // Parse date for styling
+                        const dateObj = new Date(row.sortTime);
+                        const day = dateObj.toLocaleDateString('en-US', { day: '2-digit' });
+                        const month = dateObj.toLocaleDateString('en-US', { month: 'short' });
+                        const weekday = dateObj.toLocaleDateString('en-US', { weekday: 'short' });
+
+                        tr.innerHTML = `
+                            <td class="py-3 px-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-slate-100 text-slate-500 rounded-lg px-2 py-1 text-center min-w-[3rem] group-hover:bg-white group-hover:shadow-sm transition-all">
+                                        <div class="text-[8px] uppercase tracking-wider font-bold">${month}</div>
+                                        <div class="text-sm font-black text-slate-800">${day}</div>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-xs font-bold text-slate-700">${weekday}</span>
+                                        <span class="text-[9px] text-slate-400 font-mono hidden md:inline-block">${dateObj.getFullYear()}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 font-mono text-emerald-600 bg-emerald-50/30 rounded-lg m-1">${row.checkIn}</td>
+                            <td class="py-3 px-4 font-mono text-rose-500 bg-rose-50/30 rounded-lg m-1">${row.checkOut}</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="px-2 py-1 rounded-md text-[10px] font-mono ${row.breakTotal === '-' ? 'text-slate-300' : 'text-brand-gold bg-amber-50 border border-amber-100'}">
+                                    ${row.breakTotal}
+                                </span>
+                            </td>
+                            <td class="py-3 px-4 text-right">
+                                <span class="font-mono text-brand-blue font-black text-sm">${row.netDuration}</span>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                // Update UI Labels
+                document.getElementById('reportFilterLabel').textContent = `${userText} • ${formatDateDisplay(start)} - ${formatDateDisplay(end)}`;
+                document.getElementById('reportCount').textContent = state.adminReportData.length;
+
+                // Toggle Views
+                document.getElementById('reportPlaceholder').classList.add('hidden');
+                document.getElementById('reportSummary').classList.remove('hidden');
+
+            } catch (e) { 
+                console.error(e);
+                alert("Report error: " + e); 
+                document.getElementById('reportPlaceholder').innerHTML = `<div class="w-16 h-16 rounded-full bg-rose-50 flex items-center justify-center mb-4"><i class="fas fa-exclamation-triangle text-rose-500 text-2xl"></i></div><p class="text-rose-500 font-bold">Error loading data</p>`;
+            }
+        }
+
+        function downloadPdfReport() {
+            if (!state.adminReportData || state.adminReportData.length === 0) {
+                alert("No data to download. Generate a report first.");
+                return;
+            }
+            if (!window.jspdf) { alert("PDF library not ready."); return; }
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                const userText = state.lastReportDates ? state.lastReportDates.user : "Staff Report";
+                const dateRange = state.lastReportDates ? `${state.lastReportDates.start} - ${state.lastReportDates.end}` : "";
+
+                // --- HEADER DESIGN ---
+                doc.setFillColor(15, 23, 42); // Slate 900
+                doc.rect(0, 0, 210, 40, 'F');
+                
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(24);
+                doc.setTextColor(255, 255, 255);
+                doc.text("ATTENDANCE REPORT", 15, 20);
+                
+                doc.setFontSize(10);
+                doc.setTextColor(148, 163, 184); // Slate 400
+                doc.text("Generated by Nexus Portal", 15, 28);
+                
+                // Info Box
+                doc.setFillColor(241, 245, 249); // Slate 100
+                doc.setDrawColor(226, 232, 240);
+                doc.roundedRect(15, 45, 180, 20, 3, 3, 'FD');
+                
+                doc.setFontSize(9);
+                doc.setTextColor(100, 116, 139);
+                doc.text("STAFF", 20, 52);
+                doc.text("PERIOD", 80, 52);
+                doc.text("RECORDS", 150, 52);
+
+                doc.setFontSize(11);
+                doc.setTextColor(15, 23, 42);
+                doc.setFont("helvetica", "bold");
+                doc.text(userText, 20, 60);
+                doc.text(dateRange, 80, 60);
+                doc.text(state.adminReportData.length.toString(), 150, 60);
+
+                // --- TABLE CONFIGURATION ---
+                // Columns: Date, Check In, Check Out, Total Break, Net Duration
+                const tableBody = state.adminReportData.map(r => [
+                    r.date,         // Date
+                    r.checkIn,      // Check In
+                    r.checkOut,     // Check Out
+                    r.breakTotal,   // Total Break
+                    r.netDuration   // Net Duration
+                ]);
+
+                doc.autoTable({
+                    startY: 75,
+                    head: [['Date', 'Check In', 'Check Out', 'Total Break', 'Net Duration']],
+                    body: tableBody,
+                    theme: 'grid',
+                    headStyles: { 
+                        fillColor: [255, 255, 255], 
+                        textColor: [71, 85, 105], // Slate 600
+                        lineColor: [226, 232, 240],
+                        lineWidth: 0.1,
+                        fontStyle: 'bold',
+                        fontSize: 9,
+                        halign: 'left'
+                    },
+                    styles: {
+                        fontSize: 10,
+                        cellPadding: 4,
+                        textColor: [51, 65, 85], // Slate 700
+                        lineColor: [226, 232, 240],
+                        lineWidth: 0.1,
+                        font: 'helvetica'
+                    },
+                    columnStyles: {
+                        0: { fontStyle: 'bold', cellWidth: 40 }, 
+                        1: { textColor: [5, 150, 105] }, // Emerald
+                        2: { textColor: [225, 29, 72] }, // Rose
+                        3: { halign: 'center', textColor: [217, 119, 6] }, // Amber
+                        4: { halign: 'right', fontStyle: 'bold', textColor: [37, 99, 235] } // Blue
+                    },
+                    alternateRowStyles: {
+                        fillColor: [248, 250, 252] // Slate 50
+                    }
+                });
+
+                // Footer
+                const pageHeight = doc.internal.pageSize.height;
+                doc.setFontSize(8);
+                doc.setTextColor(148, 163, 184);
+                doc.text("Confidential Document", 105, pageHeight - 10, { align: "center" });
+
+                doc.save(`Report_${userText.replace(/\s+/g, '_')}_${state.lastReportDates.start}.pdf`);
+                showToast("PDF Downloaded");
+
+            } catch (err) {
+                console.error(err);
+                alert("Error generating PDF: " + err.message);
+            }
+        }
+
+        function saveSettings() { localStorage.setItem('nexus_script_url', document.getElementById('scriptUrl').value); alert("Saved!"); location.reload(); }
+        function testConnection() { fetch(state.scriptUrl).then(r => r.ok ? alert("Connected!") : alert("Error")).catch(e => alert("Fail: " + e)); }
+        function logToConsole(msg) { const el = document.getElementById('consoleLog'); if(el) { el.innerHTML += `<span class="text-emerald-400">> ${msg}</span><br>`; el.scrollTop = el.scrollHeight; } }
+    </script>
+</body>
+</html>

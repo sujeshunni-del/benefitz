@@ -1,0 +1,266 @@
+import React, { useState, useEffect } from 'react';
+import { Clock, LogIn, LogOut, Settings, CheckCircle, AlertCircle, User, Zap } from 'lucide-react';
+
+export default function TimekeeperApp() {
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [name, setName] = useState('');
+  const [scriptUrl, setScriptUrl] = useState('');
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [statusMsg, setStatusMsg] = useState('');
+  const [showSettings, setShowSettings] = useState(false);
+  const [recentLogs, setRecentLogs] = useState([]);
+
+  // Load URL from local storage on mount
+  useEffect(() => {
+    const savedUrl = localStorage.getItem('gas_script_url');
+    if (savedUrl) setScriptUrl(savedUrl);
+    
+    // Timer for the clock
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleSaveSettings = (url) => {
+    setScriptUrl(url);
+    localStorage.setItem('gas_script_url', url);
+    setShowSettings(false);
+  };
+
+  const handleLog = async (action) => {
+    if (!scriptUrl) {
+      setShowSettings(true);
+      setStatus('error');
+      setStatusMsg('Please configure the Google Sheet Script URL first.');
+      return;
+    }
+    if (!name.trim()) {
+      setStatus('error');
+      setStatusMsg('Please enter your name or ID.');
+      return;
+    }
+
+    setStatus('loading');
+    
+    // Create form data for Google Apps Script
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('action', action);
+
+    try {
+      // mode: 'no-cors' is required for Google Apps Script Web Apps 
+      // when calling from a browser client to avoid CORS errors.
+      // Note: This means we won't get a readable JSON response back, 
+      // but the data will be sent successfully.
+      await fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors', 
+        body: formData
+      });
+
+      // Simulation of success since no-cors hides the response
+      setStatus('success');
+      setStatusMsg(`Successfully clocked ${action}!`);
+      
+      const newLog = {
+        id: Date.now(),
+        name: name,
+        action: action,
+        time: new Date().toLocaleTimeString()
+      };
+      setRecentLogs([newLog, ...recentLogs].slice(0, 3));
+      
+      // Reset status after a delay
+      setTimeout(() => {
+        setStatus('idle');
+        setStatusMsg('');
+        setName(''); // Optional: clear name after log
+      }, 3000);
+
+    } catch (error) {
+      setStatus('error');
+      setStatusMsg('Connection failed. Please check your internet.');
+      console.error(error);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black font-sans text-white flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Background Animated Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div className="absolute top-10 left-10 w-64 h-64 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-64 h-64 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="relative z-10 w-full max-w-md">
+        {/* Main Glass Card */}
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl overflow-hidden p-8">
+          
+          {/* Header & Clock */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center p-3 bg-white/10 rounded-full mb-4 shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+              <Zap className="w-6 h-6 text-yellow-300 fill-yellow-300" />
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-white mb-2">TeamFlow</h1>
+            <div className="text-sm font-medium text-purple-200 uppercase tracking-widest mb-6">Staff Timekeeper</div>
+            
+            <div className="text-5xl font-mono font-light text-white drop-shadow-lg tracking-tighter">
+              {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </div>
+            <div className="text-purple-200 text-sm mt-1">
+              {currentTime.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+            </div>
+          </div>
+
+          {/* User Input */}
+          <div className="space-y-6">
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <User className="h-5 w-5 text-purple-300" />
+              </div>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="block w-full pl-12 pr-4 py-4 bg-black/20 border border-white/10 rounded-xl text-white placeholder-purple-300/50 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:bg-black/30 transition-all text-lg"
+                placeholder="Enter Staff Name or ID"
+              />
+            </div>
+
+            {/* Action Buttons */}
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                onClick={() => handleLog('in')}
+                disabled={status === 'loading'}
+                className="group relative flex flex-col items-center justify-center p-4 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/30 rounded-xl transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <div className="p-3 bg-emerald-500 rounded-full mb-2 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                  <LogIn className="w-6 h-6 text-white" />
+                </div>
+                <span className="font-semibold text-emerald-100">Clock In</span>
+              </button>
+
+              <button
+                onClick={() => handleLog('out')}
+                disabled={status === 'loading'}
+                className="group relative flex flex-col items-center justify-center p-4 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/30 rounded-xl transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <div className="p-3 bg-rose-500 rounded-full mb-2 shadow-lg shadow-rose-500/20 group-hover:scale-110 transition-transform">
+                  <LogOut className="w-6 h-6 text-white" />
+                </div>
+                <span className="font-semibold text-rose-100">Clock Out</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Status Message */}
+          {status !== 'idle' && (
+            <div className={`mt-6 p-4 rounded-xl flex items-center justify-center space-x-2 animate-fade-in ${
+              status === 'success' ? 'bg-emerald-500/20 text-emerald-200 border border-emerald-500/20' : 
+              status === 'error' ? 'bg-red-500/20 text-red-200 border border-red-500/20' : 
+              'bg-blue-500/20 text-blue-200 border border-blue-500/20'
+            }`}>
+              {status === 'loading' && (
+                <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+              )}
+              {status === 'success' && <CheckCircle className="w-5 h-5" />}
+              {status === 'error' && <AlertCircle className="w-5 h-5" />}
+              <span className="font-medium">{status === 'loading' ? 'Syncing with Sheets...' : statusMsg}</span>
+            </div>
+          )}
+
+        </div>
+
+        {/* Recent Activity Mini-Feed */}
+        {recentLogs.length > 0 && (
+            <div className="mt-4 backdrop-blur-md bg-black/20 border border-white/5 rounded-2xl p-4">
+              <h3 className="text-xs font-bold text-white/50 uppercase tracking-wider mb-3 px-1">Recent Activity</h3>
+              <div className="space-y-2">
+                {recentLogs.map((log) => (
+                  <div key={log.id} className="flex items-center justify-between text-sm p-2 rounded-lg bg-white/5 border border-white/5">
+                    <span className="text-white font-medium">{log.name}</span>
+                    <div className="flex items-center space-x-2">
+                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                         log.action === 'in' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'
+                       }`}>
+                         {log.action}
+                       </span>
+                       <span className="text-white/50 font-mono">{log.time}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+        )}
+
+        {/* Footer / Settings Trigger */}
+        <div className="mt-6 text-center">
+          <button 
+            onClick={() => setShowSettings(true)}
+            className="inline-flex items-center space-x-2 text-white/30 hover:text-white/60 transition-colors text-sm"
+          >
+            <Settings className="w-4 h-4" />
+            <span>Connection Settings</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Settings Modal */}
+      {showSettings && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-[#1a1a2e] border border-white/10 w-full max-w-sm rounded-2xl p-6 shadow-2xl transform transition-all scale-100">
+            <h2 className="text-xl font-bold text-white mb-4">Connect Google Sheet</h2>
+            <p className="text-gray-400 text-sm mb-4">
+              Paste the <strong>Web App URL</strong> from your Google Apps Script deployment here.
+            </p>
+            <textarea
+              className="w-full h-24 bg-black/40 border border-white/10 rounded-lg p-3 text-sm text-gray-300 focus:border-purple-500 focus:outline-none mb-4 resize-none font-mono"
+              placeholder="https://script.google.com/macros/s/..."
+              value={scriptUrl}
+              onChange={(e) => setScriptUrl(e.target.value)}
+            />
+            <div className="flex space-x-3">
+              <button 
+                onClick={() => setShowSettings(false)}
+                className="flex-1 py-2 px-4 rounded-lg bg-white/5 text-gray-400 hover:bg-white/10 transition-colors text-sm font-medium"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => handleSaveSettings(scriptUrl)}
+                className="flex-1 py-2 px-4 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition-colors text-sm font-medium"
+              >
+                Save Connection
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes blob {
+          0% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+          100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+    </div>
+  );
+}

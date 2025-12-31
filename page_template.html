@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title | Better Call Immigration</title>
+    <meta name="description" content="Page description goes here.">
+    
+    <!-- Fonts: Outfit (Sans Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    
+    <!-- Config - GLOBAL THEME -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Outfit', 'sans-serif'], 
+                    },
+                    colors: {
+                        'deep-space': '#050B14',
+                        'space-indigo': '#1C2B4C', 
+                        'brand-blue': '#3B82F6',      
+                        'brand-purple': '#8B5CF6',     
+                        'brand-gold': '#FFD700',
+                        'brand-white': '#FFFFFF',
+                        'vfs-teal': '#14B8A6',
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050B14;
+            color: #E2E8F0;
+            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+        }
+
+        /* --- LENIS SMOOTH SCROLL CSS --- */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        /* Ambient Background */
+        .ambient-light {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden; transform: translateZ(0); 
+        }
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.25; will-change: transform; 
+        }
+        .orb-1 { top: -15%; left: -10%; width: 50vw; height: 50vw; background: #3B82F6; animation: float 14s infinite; }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #8B5CF6; animation: float 16s infinite reverse; }
+        .orb-3 { top: 40%; left: 30%; width: 35vw; height: 35vw; background: #FFD700; opacity: 0.15; animation: float 20s infinite; }
+
+        /* Glass Components */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Navigation & Dropdowns */
+        .dropdown-glass {
+            background: rgba(15, 23, 42, 0.7); 
+            backdrop-filter: blur(24px);       
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
+        }
+        .floating-nav {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            transform: translateZ(0); 
+        }
+        .floating-nav.scrolled {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
+        }
+        .dropdown-menu {
+            opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        
+        /* Animations */
+        .reveal-item {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1), transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-item.active { opacity: 1; transform: translateY(0); }
+        
+        /* Search Overlay */
+        #search-overlay { opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #search-overlay.active { opacity: 1; visibility: visible; }
+        #search-container { transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        #search-overlay.active #search-container { transform: scale(1); }
+        .text-highlight { color: #3B82F6; font-weight: 700; background: rgba(59, 130, 246, 0.1); border-radius: 2px; padding: 0 1px; }
+        
+        /* Scrollbars */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050B14; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative" id="page-body">
+
+    <!-- Ambient Background -->
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- NOTE: Navigation is injected via JS -->
+
+    <!-- MAIN PAGE CONTENT (Start Editing Here) -->
+    <main class="flex-grow w-full max-w-7xl mx-auto relative z-10 pt-32 pb-20 px-4 sm:px-6">
+        
+        <!-- Example Section: Remove this and add your content -->
+        <section class="text-center py-20 reveal-item">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Page Title</h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                This is a template page. The Header, Footer, and Search functionality are automatically loaded.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/971503666382" target="_blank" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 group animate-pulse" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- UNIVERSAL COMPONENTS SCRIPT -->
+    <script>
+        // --- LENIS SMOOTH SCROLL INITIALIZATION ---
+        function initSmoothScroll() {
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+                    direction: 'vertical',
+                    gestureDirection: 'vertical',
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: false,
+                    touchMultiplier: 2,
+                });
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+            }
+        }
+
+        const GLOBAL_HEADER = `
+        <nav class="fixed top-2 md:top-6 left-0 right-0 z-50 flex justify-center px-2 md:px-4" id="navbar-container">
+            <div class="floating-nav w-full max-w-7xl px-4 py-4 md:px-3 md:py-3 flex justify-between items-center transition-all duration-300" id="navbar">
+                <a href="index.html" class="flex items-center gap-3 md:gap-4 group px-2 md:px-4">
+                    <div class="w-14 h-14 md:w-12 md:h-12 bg-space-indigo rounded-full border border-white/10 flex items-center justify-center text-brand-white font-bold text-2xl md:text-xl shadow-2xl glass-panel overflow-hidden p-1 flex-shrink-0">
+                        <span class="relative z-10 text-brand-white">BC</span>
+                    </div>
+                    <div class="block leading-tight"> 
+                        <h1 class="font-bold text-white text-xl md:text-xl tracking-wide whitespace-nowrap">BETTER CALL</h1>
+                        <p class="text-xs md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] md:tracking-[0.2em]">Immigration</p>
+                    </div>
+                </a>
+                <div class="hidden lg:flex items-center gap-2">
+                    <a href="index.html" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5">Home</a>
+                    <div class="relative group">
+                        <button class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5 flex items-center gap-1">Programs <svg class="w-4 h-4 text-gray-400 group-hover:text-brand-blue transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                        <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 dropdown-glass rounded-2xl p-2 flex flex-col gap-1 shadow-2xl z-50 max-h-[80vh] overflow-y-auto hide-scrollbar">
+                            <a href="sweden.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-400 hover:bg-blue-500/20 transition block">Sweden</a>
+                            <a href="finland.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-purple-400 hover:bg-purple-500/20 transition block">Finland</a>
+                            <a href="netherlands.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-brand-gold hover:bg-brand-gold/20 transition block">Netherlands</a>
+                            <a href="germany.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-brand-gold hover:bg-brand-gold/20 transition block">Germany</a>
+                            <a href="italy.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-orange-400 hover:bg-orange-500/20 transition block">Italy</a>
+                            <a href="france.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-500 hover:bg-blue-600/20 transition block">France</a>
+                            <a href="poland.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-red-400 hover:bg-red-500/20 transition block">Poland</a>
+                            <a href="czech.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-300 hover:bg-blue-400/20 transition block">Czech Republic</a>
+                            <a href="latvia.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-red-300 hover:bg-red-500/20 transition block">Latvia</a>
+                            <a href="serbia.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-300 hover:bg-blue-500/20 transition block">Serbia</a>
+                            <a href="macedonia.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-yellow-400 hover:bg-yellow-500/20 transition block">Macedonia</a>
+                            <a href="albania.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-red-500 hover:bg-red-600/20 transition block">Albania</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5 flex items-center gap-1">Services <svg class="w-4 h-4 text-gray-400 group-hover:text-brand-blue transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                        <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 dropdown-glass rounded-2xl p-2 flex flex-col gap-1 shadow-2xl z-50">
+                            <a href="vfs.html" class="px-4 py-3 rounded-xl text-base text-vfs-teal font-medium hover:bg-vfs-teal/10 transition block">Visa Appointment</a>
+                            <a href="visa_documentation.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Visa Documentation</a>
+                            <a href="travel_assistance.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Travel Assistance</a>
+                            <a href="insurance_assistance.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Insurance Assistance</a>
+                            <a href="medical_assistance.html" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Medical Assistance</a>
+                            <a href="corporate_b2b.html" class="px-4 py-3 rounded-xl text-base text-brand-purple hover:text-white hover:bg-brand-purple/20 transition block font-bold">Corporate B2B Solution</a>
+                        </div>
+                    </div>
+                    <a href="assessment.html" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5">Free Assessment</a>
+                    <a href="about.html" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5">About Us</a>
+                </div>
+                <div class="flex items-center gap-4 sm:gap-3 px-2">
+                    <button onclick="toggleSearch()" class="group p-3 rounded-full hover:bg-white/10 transition-all duration-300 relative" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass text-white/70 group-hover:text-brand-blue text-3xl md:text-xl"></i>
+                        <span class="hidden lg:inline-flex absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-2 py-0.5 rounded text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/5">Cmd + K</span>
+                    </button>
+                    <button class="lg:hidden p-3 text-white hover:text-brand-blue transition rounded-full hover:bg-white/5" onclick="toggleMobileMenu()">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <a href="book.html" class="hidden sm:flex group relative px-8 py-3 rounded-full bg-brand-blue text-white font-bold text-base overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]">
+                        <span class="relative z-10 group-hover:text-white transition-colors">Book Now</span>
+                        <div class="absolute inset-0 bg-brand-purple transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                    </a>
+                </div>
+            </div>
+            <div id="mobileMenu" class="fixed inset-0 bg-[#0B132B]/98 backdrop-blur-3xl z-[60] transform translate-y-full transition-transform duration-500 flex flex-col items-center justify-start pt-32 pb-10 overflow-y-auto">
+                <button class="absolute top-8 right-8 text-white/50 hover:text-white text-4xl transition" onclick="toggleMobileMenu()">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <a href="index.html" onclick="toggleMobileMenu()" class="text-4xl font-light text-white hover:text-brand-blue mb-8">Home</a>
+                <div class="w-full px-8 space-y-10">
+                    <div class="text-center">
+                        <p class="text-brand-gold text-sm uppercase tracking-widest mb-6 font-bold opacity-70">Destinations</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="sweden.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">SWEDEN</a>
+                            <a href="finland.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">FINLAND</a>
+                            <a href="germany.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">GERMANY</a>
+                            <a href="italy.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">ITALY</a>
+                            <a href="france.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">FRANCE</a>
+                            <a href="netherlands.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">NETHERLANDS</a>
+                            <a href="poland.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">POLAND</a>
+                            <a href="czech.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">CZECHIA</a>
+                            <a href="croatia.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">CROATIA</a>
+                            <a href="latvia.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">LATVIA</a>
+                            <a href="serbia.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">SERBIA</a>
+                            <a href="macedonia.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">MACEDONIA</a>
+                            <a href="albania.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">ALBANIA</a>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-brand-gold text-sm uppercase tracking-widest mb-6 font-bold opacity-70">Services</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="vfs.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-vfs-teal font-medium">Visa Appointment</a>
+                            <a href="visa_documentation.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Visa Documentation</a>
+                            <a href="travel_assistance.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Travel Assistance</a>
+                            <a href="insurance_assistance.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Insurance</a>
+                            <a href="medical_assistance.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Medical Assistance</a>
+                            <a href="corporate_b2b.html" class="px-5 py-3 bg-white/5 rounded-xl text-base text-brand-purple font-bold">Corporate B2B Solution</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-5 items-center w-full px-8 pb-12 mt-8">
+                    <a href="assessment.html" onclick="toggleMobileMenu()" class="w-full max-w-xs text-center text-xl font-bold text-white bg-brand-blue px-8 py-5 rounded-full shadow-lg hover:scale-105 transition-transform">Free Assessment</a>
+                    <a href="book.html" onclick="toggleMobileMenu()" class="w-full max-w-xs text-center text-xl font-bold text-deep-space bg-brand-gold px-8 py-5 rounded-full shadow-xl hover:scale-105 transition-transform">Book Consultation</a>
+                </div>
+            </div>
+        </nav>
+        <div id="search-overlay" class="fixed inset-0 z-[100] bg-deep-space/80 backdrop-blur-xl flex items-start justify-center pt-24 px-4">
+            <div class="absolute inset-0 cursor-default" onclick="toggleSearch()"></div>
+            <div id="search-container" class="w-full max-w-3xl relative z-10 bg-[#0F172A]/90 border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[70vh]">
+                <div class="flex items-center p-6 border-b border-white/5">
+                    <i class="fa-solid fa-magnifying-glass text-brand-blue text-2xl mr-4"></i>
+                    <input type="text" id="global-search-input" placeholder="Search countries, jobs, or services..." class="bg-transparent border-none outline-none text-2xl text-white placeholder-gray-500 w-full font-light" autocomplete="off">
+                    <button onclick="toggleSearch()" class="text-gray-500 hover:text-white transition p-2"><span class="text-sm uppercase font-bold tracking-wider border border-white/10 rounded px-2 py-1">ESC</span></button>
+                </div>
+                <div id="search-results" class="overflow-y-auto p-4 custom-scrollbar">
+                    <div id="search-default" class="p-4">
+                        <p class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-4 opacity-70">Quick Access</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <a href="germany.html" class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition group"><span class="text-3xl">🇩🇪</span><div class="flex flex-col"><span class="text-white text-base font-medium group-hover:text-brand-blue transition">Germany</span><span class="text-sm text-gray-500">Care Home & Specialist Visas</span></div></a>
+                            <a href="assessment.html" class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition group"><div class="w-10 h-10 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center text-sm"><i class="fa-solid fa-clipboard-check"></i></div><div class="flex flex-col"><span class="text-white text-base font-medium group-hover:text-brand-blue transition">Free Assessment</span><span class="text-sm text-gray-500">Check your eligibility instantly</span></div></a>
+                        </div>
+                    </div>
+                    <div id="dynamic-results" class="hidden flex-col gap-2"></div>
+                    <div id="no-results" class="hidden p-10 text-center"><i class="fa-solid fa-circle-question text-gray-600 text-4xl mb-4"></i><p class="text-gray-400 text-base">No results found for your query.</p></div>
+                </div>
+                <div class="bg-black/20 p-4 text-xs text-gray-500 flex justify-between items-center px-6"><div class="flex gap-6"><span class="hidden sm:inline">Use <strong class="text-gray-400">↑</strong> <strong class="text-gray-400">↓</strong> to navigate</span><span class="hidden sm:inline"><strong class="text-gray-400">Enter</strong> to select</span></div><span>Better Call Search</span></div>
+            </div>
+        </div>
+        `;
+
+        const GLOBAL_FOOTER = `
+        <footer class="bg-transparent border-t border-white/5 relative z-10 backdrop-blur-sm">
+            <div class="container mx-auto px-4 py-24">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 md:gap-16 mb-16 md:mb-20">
+                    <div class="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
+                        <a href="index.html" class="flex items-center gap-5 group mb-8 w-fit">
+                            <div class="w-16 h-16 bg-space-indigo rounded-2xl border border-white/10 flex items-center justify-center text-brand-white font-bold text-2xl shadow-2xl glass-panel p-1">
+                                <span class="relative z-10">BC</span>
+                            </div>
+                            <div class="block text-left">
+                                <h4 class="font-bold text-white text-xl tracking-wide">BETTER CALL</h4><p class="text-xs font-bold text-brand-gold uppercase tracking-[0.3em]">Immigration</p>
+                            </div>
+                        </a>
+                        <p class="text-base leading-relaxed max-w-sm mb-10 font-light text-gray-500">Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.</p>
+                        <div class="flex gap-5">
+                            <a href="https://wa.me/971503666382" class="w-14 h-14 rounded-full glass-panel hover:bg-brand-blue hover:text-white flex items-center justify-center transition-all duration-300" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+                            <a href="https://www.instagram.com/the_better_call" class="w-14 h-14 rounded-full glass-panel hover:bg-brand-purple hover:text-white flex items-center justify-center transition-all duration-300" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                            <a href="mailto:admin@thebettercall.com" class="w-14 h-14 rounded-full glass-panel hover:bg-brand-gold hover:text-white flex items-center justify-center transition-all duration-300"><i class="fa-solid fa-envelope text-2xl"></i></a>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 class="text-white font-bold mb-8 text-base uppercase tracking-widest">Destinations</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li><a href="germany.html" class="hover:text-brand-blue transition-colors">Germany</a></li>
+                            <li><a href="sweden.html" class="hover:text-brand-blue transition-colors">Sweden</a></li>
+                            <li><a href="finland.html" class="hover:text-brand-blue transition-colors">Finland</a></li>
+                            <li><a href="italy.html" class="hover:text-brand-blue transition-colors">Italy</a></li>
+                            <li><a href="france.html" class="hover:text-brand-blue transition-colors">France</a></li>
+                            <li><a href="poland.html" class="hover:text-brand-blue transition-colors">Poland</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 class="text-white font-bold mb-8 text-base uppercase tracking-widest">Services</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li><a href="vfs.html" class="hover:text-brand-blue transition-colors">Visa Appointment</a></li>
+                            <li><a href="visa_documentation.html" class="hover:text-brand-blue transition-colors">Documentation</a></li>
+                            <li><a href="travel_assistance.html" class="hover:text-brand-blue transition-colors">Travel Assistance</a></li>
+                            <li><a href="insurance_assistance.html" class="hover:text-brand-blue transition-colors">Insurance</a></li>
+                            <li><a href="medical_assistance.html" class="hover:text-brand-blue transition-colors">Medical</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 class="text-white font-bold mb-8 text-base uppercase tracking-widest">Company</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li><a href="about.html" class="hover:text-brand-blue transition-colors">Our Story</a></li>
+                            <li><a href="assessment.html" class="hover:text-brand-blue transition-colors">Free Assessment</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 class="text-white font-bold mb-8 text-base uppercase tracking-widest">Office</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-brand-gold mt-1"></i><span>R320-12th Floor<br>Dubai Healthcare City<br>UAE</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-phone text-brand-gold"></i><span>+971 50 366 6382</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-envelope text-brand-gold"></i><span>admin@thebettercall.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white/5 pt-10 text-center text-sm text-gray-600 font-light flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; 2025 Better Call Immigration. All rights reserved.</p>
+                    <div class="flex gap-8 mt-6 md:mt-0"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms of Service</a></div>
+                </div>
+            </div>
+        </footer>
+        `;
+
+        // 1. INJECT UNIVERSAL COMPONENTS
+        document.body.insertAdjacentHTML('afterbegin', GLOBAL_HEADER);
+        document.body.insertAdjacentHTML('beforeend', GLOBAL_FOOTER);
+
+        // 2. SCRIPTS & LOGIC
+        // Navbar Scroll Effect
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const nav = document.getElementById('navbar');
+                    if (window.scrollY > 20) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('translate-y-full')) {
+                menu.classList.remove('translate-y-full');
+            } else {
+                menu.classList.add('translate-y-full');
+            }
+        }
+
+        // Reveal Animations
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 }; 
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
+
+        // --- UNIVERSAL SEARCH LOGIC ---
+        const searchData = [
+            // --- GERMANY (Healthcare) ---
+            { title: "Registered Nurse", type: "Job", url: "germany.html", icon: "👩‍⚕️", keywords: "health, medical, care home, germany, hospital, nurse" },
+            { title: "Software Engineer", type: "Job", url: "germany.html", icon: "💻", keywords: "developer, coding, tech, germany, blue card" },
+
+            // --- SERBIA (Construction, Logistics, Service) ---
+            { title: "Truck Driver", type: "Job", url: "serbia.html", icon: "🚛", keywords: "logistics, transport, driver, serbia" },
+            { title: "Delivery Driver (Local)", type: "Job", url: "serbia.html", icon: "🏍️", keywords: "logistics, delivery, bike, serbia" },
+            { title: "Warehouse Staff", type: "Job", url: "serbia.html", icon: "📦", keywords: "logistics, warehouse, packing, serbia" },
+            { title: "Certified Welder", type: "Job", url: "serbia.html", icon: "👨‍🏭", keywords: "construction, trades, welder, serbia" },
+            { title: "Automotive Mechanic", type: "Job", url: "serbia.html", icon: "🔧", keywords: "trades, mechanic, auto, serbia" },
+            { title: "Agriculture Worker", type: "Job", url: "serbia.html", icon: "🌾", keywords: "agriculture, farm, serbia" },
+            { title: "Professional Cook", type: "Job", url: "serbia.html", icon: "👨‍🍳", keywords: "service, cook, chef, serbia" },
+            { title: "Hospitality Staff", type: "Job", url: "serbia.html", icon: "🛎️", keywords: "service, hotel, waiter, serbia" },
+
+            // --- POLAND (Manufacturing, Logistics, Construction, Agriculture) ---
+            { title: "Production Line Worker", type: "Job", url: "poland.html", icon: "🏭", keywords: "manufacturing, factory, poland" },
+            { title: "Quality Control (QC)", type: "Job", url: "poland.html", icon: "🔍", keywords: "manufacturing, qc, poland" },
+            { title: "Packaging Staff", type: "Job", url: "poland.html", icon: "📦", keywords: "manufacturing, packing, poland" },
+            { title: "Assembly Operator", type: "Job", url: "poland.html", icon: "⚙️", keywords: "manufacturing, assembly, poland" },
+            { title: "Machine Operator", type: "Job", url: "poland.html", icon: "🤖", keywords: "manufacturing, machine, poland" },
+            { title: "Picker / Packer", type: "Job", url: "poland.html", icon: "🛒", keywords: "logistics, warehouse, poland" },
+            { title: "Forklift Operator", type: "Job", url: "poland.html", icon: "🚜", keywords: "logistics, forklift, poland" },
+            { title: "Warehouse Assistant", type: "Job", url: "poland.html", icon: "📋", keywords: "logistics, warehouse, poland" },
+            { title: "Inventory Clerk", type: "Job", url: "poland.html", icon: "📝", keywords: "logistics, admin, poland" },
+            { title: "Welder (Certified)", type: "Job", url: "poland.html", icon: "🔥", keywords: "construction, welder, poland" },
+            { title: "Electrician", type: "Job", url: "poland.html", icon: "⚡", keywords: "construction, electrician, poland" },
+            { title: "Mason / Plasterer", type: "Job", url: "poland.html", icon: "🧱", keywords: "construction, mason, poland" },
+            { title: "General Laborer", type: "Job", url: "poland.html", icon: "🔨", keywords: "construction, labor, poland" },
+            { title: "Scaffolder", type: "Job", url: "poland.html", icon: "🏗️", keywords: "construction, scaffold, poland" },
+            { title: "Harvesting Worker", type: "Job", url: "poland.html", icon: "🌾", keywords: "agriculture, harvest, poland" },
+            { title: "Greenhouse Worker", type: "Job", url: "poland.html", icon: "🌱", keywords: "agriculture, greenhouse, poland" },
+            { title: "Poultry Farm Hand", type: "Job", url: "poland.html", icon: "🐔", keywords: "agriculture, farm, poultry, poland" },
+
+            // --- NETHERLANDS (Corporate, Sales, Tech, Ops) ---
+            { title: "Office Clerk / Receptionist", type: "Job", url: "netherlands.html", icon: "💼", keywords: "corporate, office, admin, netherlands" },
+            { title: "Accountant", type: "Job", url: "netherlands.html", icon: "📊", keywords: "corporate, finance, netherlands" },
+            { title: "Manager", type: "Job", url: "netherlands.html", icon: "👔", keywords: "corporate, management, netherlands" },
+            { title: "HR Assistant / Executive", type: "Job", url: "netherlands.html", icon: "👥", keywords: "corporate, hr, netherlands" },
+            { title: "Administrative Assistant", type: "Job", url: "netherlands.html", icon: "📂", keywords: "corporate, admin, netherlands" },
+            { title: "Front Office Executive", type: "Job", url: "netherlands.html", icon: "🆔", keywords: "corporate, front office, netherlands" },
+            { title: "Secretary / PA", type: "Job", url: "netherlands.html", icon: "📅", keywords: "corporate, secretary, netherlands" },
+            { title: "Document Controller", type: "Job", url: "netherlands.html", icon: "📑", keywords: "corporate, document, netherlands" },
+            { title: "Sales & Marketing Exec", type: "Job", url: "netherlands.html", icon: "📢", keywords: "sales, marketing, netherlands" },
+            { title: "Business Dev Exec", type: "Job", url: "netherlands.html", icon: "📈", keywords: "sales, business, netherlands" },
+            { title: "Customer Service Exec", type: "Job", url: "netherlands.html", icon: "🎧", keywords: "sales, service, netherlands" },
+            { title: "Call Centre Executive", type: "Job", url: "netherlands.html", icon: "📞", keywords: "sales, call center, netherlands" },
+            { title: "IT Professional", type: "Job", url: "netherlands.html", icon: "💻", keywords: "tech, it, netherlands" },
+            { title: "Engineer", type: "Job", url: "netherlands.html", icon: "👷", keywords: "tech, engineer, netherlands" },
+            { title: "Project Coordinator", type: "Job", url: "netherlands.html", icon: "📋", keywords: "tech, project, netherlands" },
+            { title: "Data Entry Operator", type: "Job", url: "netherlands.html", icon: "⌨️", keywords: "tech, data, netherlands" },
+            { title: "Logistics Coordinator", type: "Job", url: "netherlands.html", icon: "🚚", keywords: "ops, logistics, netherlands" },
+            { title: "Store Supervisor", type: "Job", url: "netherlands.html", icon: "🏬", keywords: "ops, store, netherlands" },
+            { title: "Procurement Assistant", type: "Job", url: "netherlands.html", icon: "🛒", keywords: "ops, purchase, netherlands" },
+            { title: "Finance Executive", type: "Job", url: "netherlands.html", icon: "🏦", keywords: "ops, finance, netherlands" },
+
+            // --- LATVIA (Construction, Mfg, Logistics, IT, Health, Hospitality) ---
+            { title: "Welder / Fitter", type: "Job", url: "latvia.html", icon: "🔥", keywords: "construction, welder, latvia" },
+            { title: "Electrician", type: "Job", url: "latvia.html", icon: "⚡", keywords: "construction, electrician, latvia" },
+            { title: "Bricklayer / Mason", type: "Job", url: "latvia.html", icon: "🧱", keywords: "construction, mason, latvia" },
+            { title: "CNC Operator", type: "Job", url: "latvia.html", icon: "⚙️", keywords: "manufacturing, cnc, latvia" },
+            { title: "Aircraft Mechanic", type: "Job", url: "latvia.html", icon: "✈️", keywords: "manufacturing, mechanic, latvia" },
+            { title: "Truck Driver (Code 95)", type: "Job", url: "latvia.html", icon: "🚛", keywords: "logistics, driver, latvia" },
+            { title: "Warehouse Packer", type: "Job", url: "latvia.html", icon: "📦", keywords: "logistics, packer, latvia" },
+            { title: "Software Developer", type: "Job", url: "latvia.html", icon: "💻", keywords: "it, developer, latvia" },
+            { title: "IT Systems Analyst", type: "Job", url: "latvia.html", icon: "📊", keywords: "it, analyst, latvia" },
+            { title: "Specialist Doctor", type: "Job", url: "latvia.html", icon: "👨‍⚕️", keywords: "healthcare, doctor, latvia" },
+            { title: "Chef / Cook", type: "Job", url: "latvia.html", icon: "👨‍🍳", keywords: "hospitality, chef, latvia" },
+
+            // --- MACEDONIA (Trades, Mfg, Hospitality, Agriculture) ---
+            { title: "Welder", type: "Job", url: "macedonia.html", icon: "🔥", keywords: "trades, welder, macedonia" },
+            { title: "Electrician", type: "Job", url: "macedonia.html", icon: "⚡", keywords: "trades, electrician, macedonia" },
+            { title: "Plumber", type: "Job", url: "macedonia.html", icon: "🚰", keywords: "trades, plumber, macedonia" },
+            { title: "Mason", type: "Job", url: "macedonia.html", icon: "🧱", keywords: "trades, mason, macedonia" },
+            { title: "Machine Operator", type: "Job", url: "macedonia.html", icon: "⚙️", keywords: "manufacturing, machine, macedonia" },
+            { title: "Assembly Worker", type: "Job", url: "macedonia.html", icon: "🔧", keywords: "manufacturing, assembly, macedonia" },
+            { title: "Chef / Cook", type: "Job", url: "macedonia.html", icon: "👨‍🍳", keywords: "hospitality, chef, macedonia" },
+            { title: "Hotel Staff", type: "Job", url: "macedonia.html", icon: "🛎️", keywords: "hospitality, hotel, macedonia" },
+            { title: "General Laborer", type: "Job", url: "macedonia.html", icon: "💪", keywords: "agriculture, labor, macedonia" },
+
+            // --- CROATIA (Logistics, Construction) ---
+            { title: "Ready-Mix Truck Driver", type: "Job", url: "croatia.html", icon: "🚛", keywords: "logistics, driver, croatia" },
+            { title: "Shuttering Carpenter", type: "Job", url: "croatia.html", icon: "🔨", keywords: "construction, carpenter, croatia" },
+            { title: "Mason", type: "Job", url: "croatia.html", icon: "🧱", keywords: "construction, mason, croatia" },
+            { title: "Ceramic Mason", type: "Job", url: "croatia.html", icon: "⬛", keywords: "construction, ceramic, croatia" },
+            { title: "Plumber", type: "Job", url: "croatia.html", icon: "🚰", keywords: "construction, plumber, croatia" },
+            { title: "Gypsum Board Worker", type: "Job", url: "croatia.html", icon: "🏗️", keywords: "construction, gypsum, croatia" },
+            { title: "Grinder", type: "Job", url: "croatia.html", icon: "⚙️", keywords: "construction, grinder, croatia" },
+            { title: "Facade Worker", type: "Job", url: "croatia.html", icon: "🏢", keywords: "construction, facade, croatia" },
+
+            // --- FINLAND (Supermarket, Farm, Workshop, Catering) ---
+            { title: "Sales Supervisor", type: "Job", url: "finland.html", icon: "👔", keywords: "supermarket, sales, finland" },
+            { title: "System Engineer", type: "Job", url: "finland.html", icon: "💻", keywords: "supermarket, it, finland" },
+            { title: "Data Entry Operator", type: "Job", url: "finland.html", icon: "⌨️", keywords: "supermarket, data, finland" },
+            { title: "Accountant", type: "Job", url: "finland.html", icon: "📊", keywords: "supermarket, finance, finland" },
+            { title: "Sales Workers", type: "Job", url: "finland.html", icon: "🛍️", keywords: "supermarket, sales, finland" },
+            { title: "Office Clerk", type: "Job", url: "finland.html", icon: "📎", keywords: "supermarket, admin, finland" },
+            { title: "Security Guard", type: "Job", url: "finland.html", icon: "👮", keywords: "supermarket, security, finland" },
+            { title: "Forklift Operator", type: "Job", url: "finland.html", icon: "🚜", keywords: "supermarket, forklift, finland" },
+            { title: "Poultry Farm Worker", type: "Job", url: "finland.html", icon: "🐔", keywords: "farm, poultry, finland" },
+            { title: "Dairy Farm Worker", type: "Job", url: "finland.html", icon: "🐄", keywords: "farm, dairy, finland" },
+            { title: "Veterinary Technician", type: "Job", url: "finland.html", icon: "⚕️", keywords: "farm, vet, finland" },
+            { title: "Agriculture Farm Supervisor", type: "Job", url: "finland.html", icon: "🌾", keywords: "agriculture, supervisor, finland" },
+            { title: "Tractor Driver", type: "Job", url: "finland.html", icon: "🚜", keywords: "agriculture, driver, finland" },
+            { title: "Harvester Operator", type: "Job", url: "finland.html", icon: "🚜", keywords: "agriculture, harvester, finland" },
+            { title: "Chief Cook", type: "Job", url: "finland.html", icon: "👨‍🍳", keywords: "catering, chef, finland" },
+            { title: "Pastry Chef", type: "Job", url: "finland.html", icon: "🍰", keywords: "catering, pastry, finland" },
+            { title: "Waiter/Waitress", type: "Job", url: "finland.html", icon: "🍽️", keywords: "catering, waiter, finland" },
+
+            // --- SWEDEN (Civil, Workshop, Catering, Maint, Cargo, Hospital) ---
+            { title: "Civil Engineer", type: "Job", url: "sweden.html", icon: "👷", keywords: "civil, engineer, sweden" },
+            { title: "Land Surveyor", type: "Job", url: "sweden.html", icon: "🗺️", keywords: "civil, surveyor, sweden" },
+            { title: "Welder", type: "Job", url: "sweden.html", icon: "🔥", keywords: "civil, welder, sweden" },
+            { title: "Scaffolder", type: "Job", url: "sweden.html", icon: "🏗️", keywords: "civil, scaffolder, sweden" },
+            { title: "Excavator Operator", type: "Job", url: "sweden.html", icon: "🚜", keywords: "civil, excavator, sweden" },
+            { title: "Tower Crane Operator", type: "Job", url: "sweden.html", icon: "🏗️", keywords: "civil, crane, sweden" },
+            { title: "Mechanical Engineer", type: "Job", url: "sweden.html", icon: "⚙️", keywords: "workshop, mechanic, sweden" },
+            { title: "Diesel Mechanic", type: "Job", url: "sweden.html", icon: "🔧", keywords: "workshop, diesel, sweden" },
+            { title: "Electrical Engineer", type: "Job", url: "sweden.html", icon: "⚡", keywords: "workshop, electrical, sweden" },
+            { title: "Auto Electrician", type: "Job", url: "sweden.html", icon: "🚗", keywords: "workshop, auto, sweden" },
+            { title: "Chief Cook", type: "Job", url: "sweden.html", icon: "👨‍🍳", keywords: "catering, cook, sweden" },
+            { title: "Pastry Chef", type: "Job", url: "sweden.html", icon: "🍰", keywords: "catering, pastry, sweden" },
+            { title: "Driver Light Duty", type: "Job", url: "sweden.html", icon: "🚗", keywords: "maintenance, driver, sweden" },
+            { title: "Security Guard", type: "Job", url: "sweden.html", icon: "👮", keywords: "maintenance, security, sweden" },
+            { title: "Data Entry Operator", type: "Job", url: "sweden.html", icon: "⌨️", keywords: "cargo, data, sweden" },
+            { title: "Head Nurse", type: "Job", url: "sweden.html", icon: "👩‍⚕️", keywords: "hospital, nurse, sweden" },
+            { title: "Radiology Tech", type: "Job", url: "sweden.html", icon: "🩻", keywords: "hospital, radiology, sweden" },
+            { title: "Pharmacist", type: "Job", url: "sweden.html", icon: "💊", keywords: "hospital, pharmacy, sweden" },
+
+            // --- ALBANIA (Hospitality, Construction, Logistics) ---
+            { title: "Construction Worker", type: "Job", url: "albania.html", icon: "🧱", keywords: "albania, blue collar, build, mason" },
+            { title: "Truck Driver", type: "Job", url: "albania.html", icon: "🚛", keywords: "albania, logistics, transport, driver" },
+            { title: "Welder", type: "Job", url: "albania.html", icon: "🔥", keywords: "albania, skilled trade, metal" },
+            { title: "Hotel Staff", type: "Job", url: "albania.html", icon: "🛎️", keywords: "albania, hospitality, room service, housekeeping" },
+            { title: "Warehouse Packer", type: "Job", url: "albania.html", icon: "📦", keywords: "albania, logistics, packing" },
+            { title: "Farm Worker", type: "Job", url: "albania.html", icon: "🌾", keywords: "albania, agriculture, farm" },
+            { title: "Butcher", type: "Job", url: "albania.html", icon: "🔪", keywords: "albania, food processing" },
+
+            // --- CZECH REPUBLIC (Manufacturing, Technical, Logistics) ---
+            { title: "Production Line Worker", type: "Job", url: "czech.html", icon: "🏭", keywords: "czech, factory, manufacturing, unskilled" },
+            { title: "Warehouse Staff", type: "Job", url: "czech.html", icon: "📦", keywords: "czech, logistics, warehouse" },
+            { title: "Construction Helper", type: "Job", url: "czech.html", icon: "🧱", keywords: "czech, construction, helper" },
+            { title: "Welder (Certified)", type: "Job", url: "czech.html", icon: "🔥", keywords: "czech, skilled trade, welder" },
+            { title: "CNC Operator", type: "Job", url: "czech.html", icon: "⚙️", keywords: "czech, technical, cnc" },
+            { title: "Auto Electrician", type: "Job", url: "czech.html", icon: "⚡", keywords: "czech, automotive, electrician" },
+            { title: "Automotive Technician", type: "Job", url: "czech.html", icon: "🔧", keywords: "czech, automotive, mechanic" },
+            { title: "Heavy Goods Driver", type: "Job", url: "czech.html", icon: "🚛", keywords: "czech, logistics, truck driver" },
+            { title: "Software Developer", type: "Job", url: "czech.html", icon: "💻", keywords: "czech, tech, it, developer" },
+
+            // --- FRANCE ---
+            { title: "Care Home Job", type: "Job", url: "france.html", icon: "👩‍⚕️", keywords: "france, nurse, healthcare, elderly care" },
+
+            // --- ITALY ---
+            { title: "Care Home Job", type: "Job", url: "italy.html", icon: "👩‍⚕️", keywords: "italy, nurse, healthcare, elderly care" },
+
+            // --- COUNTRIES ---
+            { title: "Germany", type: "Country", url: "germany.html", icon: "🇩🇪", keywords: "care home, nurse, doctor, blue card, visa" },
+            { title: "Sweden", type: "Country", url: "sweden.html", icon: "🇸🇪", keywords: "airport, engineering, hospitality, north" },
+            { title: "Finland", type: "Country", url: "finland.html", icon: "🇫🇮", keywords: "tech, service, happy, north, seasonal" },
+            { title: "Italy", type: "Country", url: "italy.html", icon: "🇮🇹", keywords: "decreto flussi, seasonal, non-seasonal, construction" },
+            { title: "France", type: "Country", url: "france.html", icon: "🇫🇷", keywords: "talent passport, tech, investor, paris" },
+            { title: "Poland", type: "Country", url: "poland.html", icon: "🇵🇱", keywords: "logistics, manufacturing, schengen, work permit" },
+            { title: "Czech Republic", type: "Country", url: "czech.html", icon: "🇨🇿", keywords: "automotive, engineering, prague, factory" },
+            { title: "Latvia", type: "Country", url: "latvia.html", icon: "🇱🇻", keywords: "baltic, logistics, construction, riga" },
+            { title: "Serbia", type: "Country", url: "serbia.html", icon: "🇷🇸", keywords: "construction, trades, infrastructure, belgrade" },
+            { title: "Macedonia", type: "Country", url: "macedonia.html", icon: "🇲🇰", keywords: "emerging, development, skopje" },
+            { title: "Albania", type: "Country", url: "albania.html", icon: "🇦🇱", keywords: "tourism, hospitality, hotels, tirana" },
+            { title: "Croatia", type: "Country", url: "croatia.html", icon: "🇭🇷", keywords: "coastal, tourism, construction, eu" },
+            { title: "Netherlands", type: "Country", url: "netherlands.html", icon: "🇳🇱", keywords: "tech, high skilled, amsterdam, corporate" },
+            
+            // --- SERVICES ---
+            { title: "Visa Appointment", type: "Service", url: "vfs.html", icon: "📅", keywords: "vfs, embassy, slot, booking, date" },
+            { title: "Visa Documentation", type: "Service", url: "visa_documentation.html", icon: "📄", keywords: "legalization, apostille, translation, civil documents" },
+            { title: "Travel Assistance", type: "Service", url: "travel_assistance.html", icon: "✈️", keywords: "flight, hotel, itinerary, booking, reservation" },
+            { title: "Insurance", type: "Service", url: "insurance_assistance.html", icon: "🛡️", keywords: "medical, health, schengen, coverage, policy" },
+            { title: "Medical Assistance", type: "Service", url: "medical_assistance.html", icon: "🩺", keywords: "exam, checkup, doctor, certificate, health" },
+            { title: "Corporate B2B Solutions", type: "Service", url: "corporate_b2b.html", icon: "🏢", keywords: "business, bulk visa, hr, audit, compliance" },
+            
+            // --- TOOLS ---
+            { title: "Free Assessment", type: "Tool", url: "assessment.html", icon: "📝", keywords: "check, eligibility, qualify, start" },
+            { title: "Book Consultation", type: "Tool", url: "book.html", icon: "📞", keywords: "call, meeting, talk, expert, lawyer" }
+        ];
+
+        // Search Variables (Initialized after DOM injection)
+        let searchOverlay, searchInput, searchResults, defaultResults, dynamicResults, noResults;
+
+        function initSearchElements() {
+             searchOverlay = document.getElementById('search-overlay');
+             searchInput = document.getElementById('global-search-input');
+             searchResults = document.getElementById('search-results');
+             defaultResults = document.getElementById('search-default');
+             dynamicResults = document.getElementById('dynamic-results');
+             noResults = document.getElementById('no-results');
+
+            if(searchInput) {
+                 searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    if (query.length === 0) {
+                        defaultResults.classList.remove('hidden');
+                        dynamicResults.classList.add('hidden');
+                        noResults.classList.add('hidden');
+                        return;
+                    }
+                    const filtered = searchData.filter(item => 
+                        item.title.toLowerCase().includes(query) || 
+                        item.keywords.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query)
+                    );
+                    renderResults(filtered, query);
+                });
+            }
+        }
+        
+        // Call this immediately to bind to the injected elements
+        initSearchElements();
+
+        function toggleSearch() {
+            if(!searchOverlay) initSearchElements(); // Safety check
+            const isActive = searchOverlay.classList.contains('active');
+            if (isActive) {
+                searchOverlay.classList.remove('active');
+                document.body.style.overflow = ''; 
+            } else {
+                searchOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+                setTimeout(() => searchInput.focus(), 100);
+            }
+        }
+
+        // Helper to highlight matching text
+        function highlightMatch(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span class="text-highlight">$1</span>');
+        }
+
+        function renderResults(results, query) {
+            defaultResults.classList.add('hidden');
+            dynamicResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                dynamicResults.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            dynamicResults.classList.remove('hidden');
+
+            results.forEach((result, index) => {
+                const div = document.createElement('a');
+                div.href = result.url;
+                div.className = "flex items-center gap-4 p-4 rounded-xl hover:bg-white/10 transition duration-200 group border border-transparent hover:border-white/5 animate-fade-in-up";
+                div.style.animationDelay = `${index * 50}ms`;
+                
+                let typeColor = "text-gray-500";
+                if(result.type === "Country") typeColor = "text-brand-gold";
+                if(result.type === "Service") typeColor = "text-brand-blue";
+                if(result.type === "Tool") typeColor = "text-brand-purple";
+                if(result.type === "Job") typeColor = "text-vfs-teal";
+
+                // Apply highlighting
+                const highlightedTitle = highlightMatch(result.title, query);
+                const highlightedKeywords = highlightMatch(result.keywords, query);
+
+                div.innerHTML = `
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-2xl shadow-inner">${result.icon}</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-white font-medium group-hover:text-brand-blue transition text-lg">${highlightedTitle}</h4>
+                            <span class="text-xs uppercase font-bold tracking-wider ${typeColor} bg-white/5 px-2 py-0.5 rounded border border-white/5">${result.type}</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1 truncate">${highlightedKeywords}</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-600 group-hover:text-white transition transform group-hover:translate-x-1 text-lg"></i>
+                `;
+                dynamicResults.appendChild(div);
+            });
+        }
+
+        // Keyboard Shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                toggleSearch();
+            }
+            if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
+                toggleSearch();
+            }
+        });
+
+        // Initialize Everything on Load
+        window.onload = function() {
+            // Init Scroll
+            initSmoothScroll();
+            // Init Search
+            initSearchElements();
+        };
+    </script>
+</body>
+</html>

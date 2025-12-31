@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finland Program | Better Call Immigration</title>
+    <meta name="description" content="Secure a 2-year renewable contract in Finland. Opportunities in Agriculture, Logistics, and Service sectors.">
+    
+    <!-- FONTS: Updated to include Asian language support from Template -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Sinhala:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Updated Font Family logic from Template
+                        sans: ['Outfit', 'Noto Sans Devanagari', 'Noto Sans Malayalam', 'Noto Sans Tamil', 'Noto Sans Sinhala', 'sans-serif'],
+                        serif: ['Outfit', 'sans-serif'], 
+                    },
+                    colors: {
+                        'deep-space': '#050B14',
+                        'space-indigo': '#1C2B4C', 
+                        'brand-blue': '#3B82F6',      
+                        'brand-purple': '#8B5CF6',     
+                        'brand-gold': '#FFD700',
+                        'brand-white': '#FFFFFF',
+                        'vfs-teal': '#14B8A6',
+                        // Finland Specific Accents
+                        'finland-blue': '#003580',      
+                        'finland-sky': '#00A3FF',
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050B14;
+            color: #E2E8F0;
+            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* --- LENIS SMOOTH SCROLL CSS --- */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        /* Ambient Background */
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            transform: translateZ(0); 
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.25;
+            will-change: transform; 
+        }
+        /* Finland Colors (Blue, White, Sky) */
+        .orb-1 { top: -15%; left: -10%; width: 50vw; height: 50vw; background: #003580; animation: float 14s infinite; opacity: 0.15; }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #00A3FF; animation: float 16s infinite reverse; opacity: 0.1; }
+        .orb-3 { top: 40%; left: 30%; width: 35vw; height: 35vw; background: #FFFFFF; opacity: 0.05; animation: float 20s infinite; }
+
+        /* Glass Components */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+        }
+        .dropdown-glass {
+            background: rgba(15, 23, 42, 0.7); 
+            backdrop-filter: blur(24px);       
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
+        }
+        .floating-nav {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            transform: translateZ(0); 
+        }
+        .floating-nav.scrolled {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
+        }
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Language Dropdown specific styles from Template */
+        .lang-fab-new { position: fixed; bottom: 2rem; left: 2rem; z-index: 50; }
+        .lang-toggle-btn {
+            background: rgba(5, 11, 20, 0.7);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #E2E8F0; padding: 0.75rem 1.25rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: flex; align-items: center; gap: 0.75rem;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .lang-toggle-btn:hover { background: rgba(5, 11, 20, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); }
+        .lang-toggle-btn.active .fa-chevron-up { transform: rotate(180deg); }
+        .language-dropdown {
+            position: absolute; bottom: 100%; left: 0; margin-bottom: 1rem; width: 12rem;
+            background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px); padding: 0.5rem; border-radius: 1rem;
+            display: flex; flex-direction: column; gap: 0.5rem;
+            opacity: 0; visibility: hidden; transform: scale(0.9); transform-origin: bottom left; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .lang-toggle-btn.active + .language-dropdown { opacity: 1; visibility: visible; transform: scale(1); }
+        .lang-option {
+            padding: 0.5rem 1rem; color: #e2e8f0; font-size: 0.875rem;
+            border-radius: 0.5rem; cursor: pointer; transition: background 0.2s;
+            display: flex; align-items: center; gap: 0.5rem; text-align: left;
+        }
+        .lang-option:hover { background: rgba(255, 255, 255, 0.1); color: #3B82F6; }
+        .lang-option.active { background: rgba(59, 130, 246, 0.2); color: #3B82F6; font-weight: 600; }
+
+        /* Search Overlay Styles from Template */
+        #search-overlay {
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        #search-overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        #search-container {
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #search-overlay.active #search-container {
+            transform: scale(1);
+        }
+
+        /* Smooth Scroll Reveal Classes */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1), transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .text-highlight {
+            color: #3B82F6;
+            font-weight: 700;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050B14; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* --- MODAL STYLES --- */
+        .modal-backdrop {
+            background: rgba(5, 11, 20, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .modal-content {
+            background: #0F172A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Search Animation */
+        .search-glow:focus-within {
+            box-shadow: 0 0 30px rgba(0, 163, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative" id="page-body">
+
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <main class="flex-grow">
+        
+        <!-- HEADER / HERO -->
+        <header class="relative min-h-[70vh] flex flex-col items-center justify-center pt-32 pb-8 overflow-hidden z-20">
+            <div class="container mx-auto px-4 relative z-10 text-center flex flex-col items-center justify-center h-full">
+                
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-finland-blue/30 text-white font-bold tracking-widest text-xs uppercase mb-6 animate-fade-in-up">
+                    <span class="w-2 h-2 rounded-full bg-finland-blue animate-pulse"></span>
+                    <span data-i18n="hiring_now">Hiring Now: Finland 2025</span>
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                </div>
+
+                <div class="mb-6 reveal-item w-full flex flex-col items-center" style="animation-delay: 0.1s;">
+                    <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-none text-white mb-6" style="text-shadow: 0 0 50px rgba(0, 53, 128, 0.5);">
+                        <span data-i18n="hero_title_1">Work in the</span> <br><span class="text-finland-sky" data-i18n="hero_title_2">Happiest Country</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed" data-i18n="hero_subtitle">
+                        Secure a 2-year renewable contract in Agriculture, Supermarkets, or Logistics. <br class="hidden md:block">Visa, Accommodation & Air Ticket Included.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-5 justify-center items-center reveal-item mt-10" style="animation-delay: 0.3s;">
+                    <a href="#jobs" class="w-full sm:w-auto relative group overflow-hidden rounded-full bg-finland-blue px-10 py-4 transition-all duration-300 text-white font-bold text-lg hover:scale-105 shadow-[0_0_30px_rgba(0,53,128,0.4)] hover:shadow-[0_0_50px_rgba(0,53,128,0.7)]">
+                        <span class="relative z-10 flex items-center justify-center gap-3 tracking-wide uppercase">
+                            <span data-i18n="view_positions">View Positions</span>
+                            <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                        </span>
+                    </a>
+                    
+                    <a href="#process" class="w-full sm:w-auto glass-panel px-10 py-4 rounded-full font-bold text-white text-lg hover:bg-white/10 border-white/10 transition-all flex items-center justify-center gap-3 group tracking-wide uppercase">
+                        <span data-i18n="how_it_works">How it Works</span>
+                        <i class="fa-solid fa-play text-finland-blue group-hover:scale-110 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Department Filter Section (Now Expanded and Non-Sticky) -->
+        <div id="category-filter-section" class="py-6 pt-12 relative z-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-7xl mx-auto mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 text-center" data-i18n="select_department">Select Job Department</h3>
+                </div>
+                <!-- Grid of Category Buttons (Horizontal Scroll on Mobile, Grid on Desktop) -->
+                <div class="flex overflow-x-auto md:grid md:grid-cols-5 gap-3 max-w-7xl mx-auto pb-4 md:pb-0 hide-scrollbar snap-x px-1" id="categoryButtons">
+                    <!-- Buttons injected by JS -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW CREATIVE JOB SEARCH SECTION -->
+        <div class="py-6 relative z-30">
+            <div class="container mx-auto px-4">
+                <div class="max-w-2xl mx-auto relative group">
+                    <!-- Glow Effect Background -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-finland-blue via-finland-sky to-finland-blue rounded-full blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                    
+                    <!-- Search Bar -->
+                    <div class="relative glass-panel rounded-full flex items-center px-6 py-4 shadow-2xl border border-white/10 search-glow transition-all duration-300 bg-[#0B132B]/60 backdrop-blur-xl">
+                        <i class="fa-solid fa-magnifying-glass text-finland-sky text-xl mr-4 group-focus-within:scale-110 transition-transform"></i>
+                        <input type="text" id="jobSearchInput" placeholder="Search for positions (e.g. Welder, Driver, Chef)..." 
+                            class="bg-transparent border-none outline-none text-white w-full text-lg placeholder-gray-500 font-medium focus:ring-0"
+                            autocomplete="off"
+                            onkeyup="handleSearch(this.value)">
+                        
+                        <!-- Pulse Indicator -->
+                        <div class="hidden group-focus-within:block absolute right-6">
+                             <span class="relative flex h-3 w-3">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-finland-sky opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-3 w-3 bg-finland-sky"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-6"><p id="jobCount" class="text-sm font-bold text-finland-sky uppercase tracking-wide">Loading...</p></div>
+            </div>
+        </div>
+
+        <section id="jobs" class="py-12 relative z-20">
+            <div class="container mx-auto px-4 relative z-10">
+                <div id="jobContainer" class="flex flex-col gap-16 max-w-7xl mx-auto">
+                    <!-- Jobs Injected Here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-20 relative bg-transparent border-t border-white/5">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center mb-20 reveal-item">
+                    <span class="text-brand-blue font-bold tracking-[0.2em] text-sm uppercase mb-4 block" data-i18n="process_kicker">Process</span>
+                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-4" data-i18n="process_title">Step-by-Step Journey</h2>
+                    <p class="text-xl text-gray-400" data-i18n="process_subtitle">A structured path to your new career in Finland.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-6 gap-6 relative">
+                    <div id="timelineContainer" class="col-span-1 lg:col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Floating Language Selector (From Template) -->
+    <div class="lang-fab-new">
+        <div id="lang-toggle-btn" onclick="toggleLanguageDropdown(event)" class="lang-toggle-btn">
+            <i class="fa-solid fa-globe text-xl text-brand-gold transition-colors"></i>
+            <span class="font-bold text-sm uppercase tracking-wider hidden sm:block">Language</span>
+            <i class="fa-solid fa-chevron-up text-xs opacity-70 transition-transform duration-300"></i>
+        </div>
+        
+        <div id="language-dropdown" class="language-dropdown">
+            <button onclick="setLanguage('en', this);" class="lang-option active">
+                <span>English</span> <span class="text-xs text-gray-500 group-hover:text-white/80">EN</span>
+            </button>
+            <button onclick="setLanguage('ml', this);" class="lang-option font-['Noto_Sans_Malayalam']">
+                <span>മലയാളം</span> <span class="text-xs text-gray-500 group-hover:text-white/80">ML</span>
+            </button>
+            <button onclick="setLanguage('hi', this);" class="lang-option">
+                <span>हिंदी</span> <span class="text-xs text-gray-500 group-hover:text-white/80">HI</span>
+            </button>
+            <button onclick="setLanguage('ta', this);" class="lang-option font-['Noto_Sans_Tamil']">
+                <span>தமிழ்</span> <span class="text-xs text-gray-500 group-hover:text-white/80">TA</span>
+            </button>
+            <button onclick="setLanguage('fil', this);" class="lang-option">
+                <span>Filipino</span> <span class="text-xs text-gray-500 group-hover:text-white/80">FIL</span>
+            </button>
+            <button onclick="setLanguage('si', this);" class="lang-option font-['Noto_Sans_Sinhala']">
+                <span>සිංහල</span> <span class="text-xs text-gray-500 group-hover:text-white/80">SI</span>
+            </button>
+            <button onclick="setLanguage('sw', this);" class="lang-option">
+                <span>Swahili</span> <span class="text-xs text-gray-500 group-hover:text-white/80">SW</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Apply Button (Center) -->
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-xs px-4 sm:px-0 flex justify-center pointer-events-none">
+        <a href="https://forms.clickup.com/90182075750/f/2kzmahb6-538/U84ZR39A6C9IQX7M1M" target="_blank" class="pointer-events-auto relative group bg-gradient-to-r from-finland-blue to-finland-sky text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full shadow-[0_0_30px_rgba(0,53,128,0.5)] hover:shadow-[0_0_50px_rgba(0,53,128,0.8)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 overflow-hidden flex items-center gap-3 border border-white/20">
+            <span class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+            <span class="relative z-10 text-base sm:text-lg tracking-widest uppercase" data-i18n="modal_apply">Apply Now</span>
+            <i class="fa-solid fa-paper-plane relative z-10 group-hover:translate-x-1 transition-transform"></i>
+            <!-- Pulse ring -->
+            <span class="absolute inset-0 rounded-full border-2 border-white/30 animate-ping opacity-20"></span>
+        </a>
+    </div>
+
+    <!-- Floating WhatsApp Button (Right Side) -->
+    <div class="fixed bottom-8 right-4 md:right-8 z-50">
+        <a href="https://wa.me/971503666382" target="_blank" class="bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 group animate-pulse" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp text-3xl md:text-4xl"></i>
+        </a>
+    </div>
+
+    <!-- JOB MODAL -->
+    <div id="jobModal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 modal-backdrop transition-opacity" onclick="closeModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center">
+                <div class="relative transform overflow-hidden rounded-3xl modal-content text-left shadow-2xl transition-all w-full max-w-2xl border border-finland-blue/30">
+                    
+                    <div class="bg-gradient-to-r from-finland-blue to-[#001F4D] px-8 py-8 border-b border-white/10 relative">
+                        <button onclick="closeModal()" class="absolute top-6 right-6 text-white/70 hover:text-white transition bg-white/10 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/20"><i class="fa-solid fa-xmark text-xl"></i></button>
+                        <div class="flex gap-6 items-center">
+                            <div id="modalIcon" class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center text-white text-4xl border border-white/10 shadow-lg"></div>
+                            <div>
+                                <span id="modalDept" class="text-finland-sky text-xs font-bold uppercase tracking-widest mb-2 block"></span>
+                                <h3 id="modalTitle" class="text-3xl md:text-4xl font-bold text-white leading-tight"></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-8 py-8 bg-[#0B1120] text-gray-300 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                        <div class="flex items-center justify-between p-6 bg-white/5 rounded-2xl mb-8 border border-white/5">
+                            <div>
+                                <p class="text-xs text-gray-400 font-bold uppercase mb-1" data-i18n="modal_salary">Monthly Salary</p>
+                                <div id="modalEuro" class="text-3xl font-bold text-brand-gold"></div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-400 font-bold uppercase mb-1" data-i18n="modal_experience">Experience</p>
+                                <span id="modalExp" class="text-lg font-semibold text-white"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-finland-sky uppercase tracking-widest mb-4" data-i18n="modal_benefits">Benefits</h4>
+                            <div class="grid grid-cols-2 gap-4 text-base text-gray-300">
+                                <div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg text-lg md:text-base"><i class="fa-solid fa-house text-finland-blue text-xl"></i> <span data-i18n="benefit_acc">Accommodation</span></div>
+                                <div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg text-lg md:text-base"><i class="fa-solid fa-utensils text-finland-blue text-xl"></i> <span data-i18n="benefit_food">Food Provided</span></div>
+                                <div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg text-lg md:text-base"><i class="fa-solid fa-plane text-finland-blue text-xl"></i> <span data-i18n="benefit_air">Air Ticket</span></div>
+                                <div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg text-lg md:text-base"><i class="fa-solid fa-briefcase-medical text-finland-blue text-xl"></i> <span data-i18n="benefit_med">Medical Ins.</span></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-finland-sky uppercase tracking-widest mb-4" data-i18n="modal_docs">Required Documents</h4>
+                            <div id="modalDocs" class="space-y-3">
+                                <!-- Documents Injected Here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/30 px-8 py-6 flex flex-col sm:flex-row gap-4 border-t border-white/10">
+                         <a href="https://forms.clickup.com/90182075750/f/2kzmahb6-538/U84ZR39A6C9IQX7M1M" target="_blank" class="w-full text-center bg-finland-blue hover:bg-[#002860] text-white font-bold text-lg py-4 rounded-xl transition shadow-lg shadow-finland-blue/20" data-i18n="modal_apply">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- TRANSLATION DATA ---
+        // Expanded to include Job Card and Job Detail translations
+        const translations = {
+            en: {
+                hiring_now: "Hiring Now: Finland 2025",
+                hero_title_1: "Work in the",
+                hero_title_2: "Happiest Country",
+                hero_subtitle: "Secure a 2-year renewable contract in Agriculture, Supermarkets, or Logistics. <br class='hidden md:block'>Visa, Accommodation & Air Ticket Included.",
+                view_positions: "View Positions",
+                how_it_works: "How it Works",
+                select_department: "Select Job Department",
+                process_kicker: "Process",
+                process_title: "Step-by-Step Journey",
+                process_subtitle: "A structured path to your new career in Finland.",
+                modal_salary: "Monthly Salary",
+                modal_experience: "Experience",
+                modal_benefits: "Benefits",
+                modal_docs: "Required Documents",
+                modal_apply: "Apply Now",
+                benefit_acc: "Accommodation",
+                benefit_food: "Food Provided",
+                benefit_air: "Air Ticket",
+                benefit_med: "Medical Ins.",
+                cat_all: "All Jobs",
+                cat_super: "Supermarket",
+                cat_farm: "Farm & Dairy",
+                cat_agri: "Agriculture",
+                cat_cat: "Catering",
+                step_01: "Submission",
+                step_02: "Registration",
+                step_03: "Offer Letter",
+                step_04: "Original Offer",
+                step_05: "Visa Filing",
+                step_06: "Travel",
+                
+                // Job Details
+                dept_supermarket: "Supermarket Department",
+                dept_poultry: "Poultry and Dairy Farm Department",
+                dept_agri: "Agricultural Farm and Workshop Department",
+                dept_catering: "Catering & Restaurant Department",
+                exp_3_years: "3 Years",
+                exp_good_health: "Good Health",
+
+                // Common Template Keys
+                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_assessment: "Free Assessment", nav_about: "About Us", nav_book: "Book Now",
+                search_placeholder_text: "Search Jobs, Countries",
+                footer_destinations: "Destinations", footer_services: "Services", footer_company: "Company", footer_office: "Office", footer_story: "Our Story", footer_privacy: "Privacy Policy", footer_terms: "Terms of Service", footer_rights: "All rights reserved.",
+                country_sweden: "Sweden", country_finland: "Finland", country_netherlands: "Netherlands", country_germany: "Germany", country_italy: "Italy", country_france: "France", country_poland: "Poland", country_czech: "Czech Republic", country_latvia: "Latvia", country_croatia: "Croatia", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania",
+                serv_visa_appt: "Visa Appointment", serv_visa_doc: "Visa Documentation", serv_travel: "Travel Assistance", serv_insurance: "Insurance", serv_medical: "Medical Assistance", serv_corp: "Corporate B2B Solution",
+                btn_consultation: "Book Consultation"
+            },
+            fil: {
+                hiring_now: "Hiring Ngayon: Finland 2025",
+                hero_title_1: "Magtrabaho sa",
+                hero_title_2: "Pinakamasayang Bansa",
+                hero_subtitle: "Kumuha ng 2-taong kontrata sa Agrikultura, Supermarket, o Logistics. <br class='hidden md:block'>Kasama ang Visa, Tirahan at Ticket sa Eroplano.",
+                view_positions: "Tingnan ang mga Posisyon",
+                how_it_works: "Paano ito Gumagana",
+                select_department: "Piliin ang Departamento",
+                process_kicker: "Proseso",
+                process_title: "Hakbang-hakbang na Paglalakbay",
+                process_subtitle: "Isang organisadong daan patungo sa iyong bagong karera sa Finland.",
+                modal_salary: "Buwanang Sahod",
+                modal_experience: "Karanasan",
+                modal_benefits: "Mga Benepisyo",
+                modal_docs: "Kinakailangang Dokumento",
+                modal_apply: "Mag-apply Ngayon",
+                benefit_acc: "Tirahan",
+                benefit_food: "Pagkain",
+                benefit_air: "Ticket sa Eroplano",
+                benefit_med: "Medical Ins.",
+                cat_all: "Lahat ng Trabaho",
+                cat_super: "Supermarket",
+                cat_farm: "Farm & Dairy",
+                cat_agri: "Agrikultura",
+                cat_cat: "Catering",
+                step_01: "Pagsusumite",
+                step_02: "Pagpaparehistro",
+                step_03: "Offer Letter",
+                step_04: "Orihinal na Alok",
+                step_05: "Pag-file ng Visa",
+                step_06: "Paglalakbay",
+                
+                // Job Details
+                dept_supermarket: "Departamento ng Supermarket",
+                dept_poultry: "Departamento ng Manukan at Gatasan",
+                dept_agri: "Departamento ng Agrikultura at Gawaan",
+                dept_catering: "Departamento ng Catering at Restawran",
+                exp_3_years: "3 Taon",
+                exp_good_health: "Mabuting Kalusugan",
+
+                // Common
+                nav_home: "Home", nav_programs: "Mga Programa", nav_services: "Mga Serbisyo", nav_assessment: "Libreng Pagtatasa", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
+                search_placeholder_text: "Maghanap ng Trabaho, Bansa",
+                footer_destinations: "Mga Destinasyon", footer_services: "Mga Serbisyo", footer_company: "Kumpanya", footer_office: "Opisina", footer_story: "Aming Kwento", footer_privacy: "Patakaran sa Privacy", footer_terms: "Mga Tuntunin ng Serbisyo", footer_rights: "Nakalaan ang lahat ng karapatan.",
+                country_sweden: "Sweden", country_finland: "Finland", country_netherlands: "Netherlands", country_germany: "Germany", country_italy: "Italy", country_france: "France", country_poland: "Poland", country_czech: "Czech Republic", country_latvia: "Latvia", country_croatia: "Croatia", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania",
+                serv_visa_appt: "Appointment sa Visa", serv_visa_doc: "Dokumentasyon sa Visa", serv_travel: "Tulong sa Paglalakbay", serv_insurance: "Insurance", serv_medical: "Tulong Medikal", serv_corp: "Solusyon sa Corporate B2B",
+                btn_consultation: "Mag-book ng Konsultasyon"
+            },
+            hi: {
+                hiring_now: "भर्ती शुरू: फिनलैंड 2025",
+                hero_title_1: "काम करें",
+                hero_title_2: "सबसे खुशहाल देश में",
+                hero_subtitle: "कृषि, सुपरमार्केट, या लॉजिस्टिक्स में 2 साल का नवीकरणीय अनुबंध सुरक्षित करें। <br class='hidden md:block'>वीजा, आवास और हवाई टिकट शामिल।",
+                view_positions: "नौकरियां देखें",
+                how_it_works: "यह कैसे काम करता है",
+                select_department: "नौकरी विभाग चुनें",
+                process_kicker: "प्रक्रिया",
+                process_title: "चरण-दर-चरण यात्रा",
+                process_subtitle: "फिनलैंड में आपके नए करियर का एक संरचित मार्ग।",
+                modal_salary: "मासिक वेतन",
+                modal_experience: "अनुभव",
+                modal_benefits: "लाभ",
+                modal_docs: "आवश्यक दस्तावेज",
+                modal_apply: "अभी आवेदन करें",
+                benefit_acc: "आवास",
+                benefit_food: "भोजन उपलब्ध",
+                benefit_air: "हवाई टिकट",
+                benefit_med: "चिकित्सा बीमा",
+                cat_all: "सभी नौकरियां",
+                cat_super: "सुपरमार्केट",
+                cat_farm: "फार्म और डेयरी",
+                cat_agri: "कृषि",
+                cat_cat: "केटरिंग",
+                step_01: "जमा करना",
+                step_02: "पंजीकरण",
+                step_03: "ऑफर लेटर",
+                step_04: "मूल ऑफर",
+                step_05: "वीजा फाइलिंग",
+                step_06: "यात्रा",
+
+                // Job Details
+                dept_supermarket: "सुपरमार्केट विभाग",
+                dept_poultry: "पोल्ट्री और डेयरी फार्म विभाग",
+                dept_agri: "कृषि फार्म और कार्यशाला विभाग",
+                dept_catering: "खानपान और रेस्तरां विभाग",
+                exp_3_years: "3 साल",
+                exp_good_health: "अच्छा स्वास्थ्य",
+
+                // Common
+                nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_assessment: "निःशुल्क मूल्यांकन", nav_about: "हमारे बारे में", nav_book: "अभी बुक करें",
+                search_placeholder_text: "नौकरियां, देश खोजें",
+                footer_destinations: "गंतव्य", footer_services: "सेवाएं", footer_company: "कंपनी", footer_office: "कार्यालय", footer_story: "हमारी कहानी", footer_privacy: "गोपनीयता नीति", footer_terms: "सेवा की शर्तें", footer_rights: "सर्वाधिकार सुरक्षित।",
+                country_sweden: "स्वीडन", country_finland: "फिनलैंड", country_netherlands: "नीदरलैंड", country_germany: "जर्मनी", country_italy: "इटली", country_france: "फ्रांस", country_poland: "पोलैंड", country_czech: "चेक गणराज्य", country_latvia: "लातविया", country_croatia: "क्रोएशिया", country_serbia: "सर्बिया", country_macedonia: "मैसिडोनिया", country_albania: "अल्बानिया",
+                serv_visa_appt: "वीज़ा अपॉइंटमेंट", serv_visa_doc: "वीज़ा दस्तावेज़ीकरण", serv_travel: "यात्रा सहायता", serv_insurance: "बीमा", serv_medical: "चिकित्सा सहायता", serv_corp: "कॉर्पोरेट B2B समाधान",
+                btn_consultation: "परामर्श बुक करें"
+            },
+            ml: {
+                hiring_now: "നിയമനം: ഫിൻലാൻഡ് 2025",
+                hero_title_1: "ജോലി ചെയ്യൂ",
+                hero_title_2: "ഏറ്റവും സന്തോഷമുള്ള രാജ്യത്ത്",
+                hero_subtitle: "അഗ്രികൾച്ചർ, സൂപ്പർമാർക്കറ്റ്, ലോജിസ്റ്റിക്സ് മേഖലകളിൽ 2 വർഷത്തെ കരാർ. <br class='hidden md:block'>വിസ, താമസം, വിമാന ടിക്കറ്റ് എന്നിവ ഉൾപ്പെടുന്നു.",
+                view_positions: "തൊഴിലുകൾ കാണുക",
+                how_it_works: "ഇത് എങ്ങനെ പ്രവർത്തിക്കുന്നു",
+                select_department: "തൊഴിൽ വിഭാഗം തിരഞ്ഞെടുക്കുക",
+                process_kicker: "പ്രക്രിയ",
+                process_title: "ഘട്ടം ഘട്ടമായുള്ള യാത്ര",
+                process_subtitle: "ഫിൻലാൻഡിലെ നിങ്ങളുടെ പുതിയ കരിയറിലേക്കുള്ള വഴി.",
+                modal_salary: "പ്രതിമാസ ശമ്പളം",
+                modal_experience: "പരിചയം",
+                modal_benefits: "ആനുകൂല്യങ്ങൾ",
+                modal_docs: "ആവശ്യമായ രേഖകൾ",
+                modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
+                benefit_acc: "താമസം",
+                benefit_food: "ഭക്ഷണം",
+                benefit_air: "വിമാന ടിക്കറ്റ്",
+                benefit_med: "മെഡിക്കൽ ഇൻഷുറൻസ്",
+                cat_all: "എല്ലാ ജോലികളും",
+                cat_super: "സൂപ്പർമാർക്കറ്റ്",
+                cat_farm: "ഫാം & ഡയറി",
+                cat_agri: "അഗ്രികൾച്ചർ",
+                cat_cat: "കാറ്ററിംഗ്",
+                step_01: "സമർപ്പണം",
+                step_02: "രജിസ്ട്രേഷൻ",
+                step_03: "ഓഫർ ലെറ്റർ",
+                step_04: "ഒറിജിനൽ ഓഫർ",
+                step_05: "വിസ ഫയലിംഗ്",
+                step_06: "യാത്ര",
+
+                // Job Details
+                dept_supermarket: "സൂപ്പർമാർക്കറ്റ് വകുപ്പ്",
+                dept_poultry: "പൗൾട്രി & ഡയറി ഫാം വകുപ്പ്",
+                dept_agri: "അഗ്രികൾച്ചർ ഫാം & വർക്ക്ഷോപ്പ് വകുപ്പ്",
+                dept_catering: "കാറ്ററിംഗ് & റെസ്റ്റോറന്റ് വകുപ്പ്",
+                exp_3_years: "3 വർഷം",
+                exp_good_health: "നല്ല ആരോഗ്യം",
+
+                // Common
+                nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_assessment: "സൗജന്യ വിലയിരുത്തൽ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് നൗ",
+                search_placeholder_text: "ജോലികൾ, രാജ്യങ്ങൾ തിരയുക",
+                footer_destinations: "ഡെസ്റ്റിനേഷൻസ്", footer_services: "സേവനങ്ങൾ", footer_company: "കമ്പനി", footer_office: "ഓഫീസ്", footer_story: "ഞങ്ങളുടെ കഥ", footer_privacy: "സ്വകാര്യത നയം", footer_terms: "സേവന നിബന്ധനകൾ", footer_rights: "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
+                country_sweden: "സ്വീഡൻ", country_finland: "ഫിൻലാൻഡ്", country_netherlands: "നെതർലാൻഡ്സ്", country_germany: "ജർമ്മനി", country_italy: "ഇറ്റലി", country_france: "ഫ്രാൻസ്", country_poland: "പോളണ്ട്", country_czech: "ചെക്ക് റിപ്പബ്ലിക്", country_latvia: "ലാത്വിയ", country_croatia: "ക്രൊയേഷ്യ", country_serbia: "സെർബിയ", country_macedonia: "മാസിഡോണിയ", country_albania: "അൽബാനിയ",
+                serv_visa_appt: "വിസ അപ്പോയിന്റ്മെന്റ്", serv_visa_doc: "വിസ ഡോക്യുമെന്റേഷൻ", serv_travel: "യാത്രാ സഹായം", serv_insurance: "ഇൻഷുറൻസ്", serv_medical: "മെഡിക്കൽ സഹായം", serv_corp: "കോർപ്പറേറ്റ് B2B സൊല്യൂഷൻ",
+                btn_consultation: "കൺസൾട്ടേഷൻ ബുക്ക് ചെയ്യുക"
+            },
+            ta: {
+                hiring_now: "வேலைவாய்ப்பு: பின்லாந்து 2025",
+                hero_title_1: "வேலை செய்யுங்கள்",
+                hero_title_2: "மகிழ்ச்சியான நாட்டில்",
+                hero_subtitle: "விவசாயம், பல்பொருள் அங்காடி அல்லது தளவாடங்களில் 2 ஆண்டு ஒப்பந்தம். <br class='hidden md:block'>விசா, தங்குமிடம் மற்றும் விமான டிக்கெட் சேர்க்கப்பட்டுள்ளது.",
+                view_positions: "வேலைகளைப் பார்க்கவும்",
+                how_it_works: "இது எப்படி வேலை செய்கிறது",
+                select_department: "வேலைத் துறையைத் தேர்ந்தெடுக்கவும்",
+                process_kicker: "செயல்முறை",
+                process_title: "படிப்படியான பயணம்",
+                process_subtitle: "பின்லாந்தில் உங்கள் புதிய வேலைக்கான பாதை.",
+                modal_salary: "மாத சம்பளம்",
+                modal_experience: "அனுபவம்",
+                modal_benefits: "நன்மைகள்",
+                modal_docs: "தேவையான ஆவணங்கள்",
+                modal_apply: "இப்போது விண்ணப்பிக்கவும்",
+                benefit_acc: "தங்குமிடம்",
+                benefit_food: "உணவு வழங்கப்படுகிறது",
+                benefit_air: "விமான டிக்கெட்",
+                benefit_med: "மருத்துவ காப்பீடு",
+                cat_all: "எல்லா வேலைகளும்",
+                cat_super: "பல்பொருள் அங்காடி",
+                cat_farm: "பண்ணை & பால்பண்ணை",
+                cat_agri: "விவசாயம்",
+                cat_cat: "கேட்டரிங்",
+                step_01: "சமர்ப்பித்தல்",
+                step_02: "பதிவு",
+                step_03: "சலுகை கடிதம்",
+                step_04: "அசல் சலுகை",
+                step_05: "விசா தாக்கல்",
+                step_06: "பயணம்",
+
+                // Job Details
+                dept_supermarket: "பல்பொருள் அங்காடி துறை",
+                dept_poultry: "கோழி மற்றும் பால் பண்ணை துறை",
+                dept_agri: "விவசாயப் பண்ணை மற்றும் பட்டறைத் துறை",
+                dept_catering: "உணவு மற்றும் உணவகத் துறை",
+                exp_3_years: "3 ஆண்டுகள்",
+                exp_good_health: "நல்ல ஆரோக்கியம்",
+
+                // Common
+                nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_assessment: "இலவச மதிப்பீடு", nav_about: "எங்களை பற்றி", nav_book: "இப்போதே பதிவு செய்யவும்",
+                search_placeholder_text: "வேலைகள், நாடுகளைத் தேடவும்",
+                footer_destinations: "இலக்குகள்", footer_services: "சேவைகள்", footer_company: "நிறுவனம்", footer_office: "அலுவலகம்", footer_story: "எங்கள் கதை", footer_privacy: "தனியுரிமைக் கொள்கை", footer_terms: "சேவை விதிமுறைகள்", footer_rights: "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+                country_sweden: "ஸ்வீடன்", country_finland: "பின்லாந்து", country_netherlands: "நெதர்லாந்து", country_germany: "ஜெர்மனி", country_italy: "இத்தாலி", country_france: "பிரான்ஸ்", country_poland: "போலந்து", country_czech: "செக் குடியரசு", country_latvia: "லாட்வியா", country_croatia: "குரோஷியா", country_serbia: "செர்பியா", country_macedonia: "மாசிடோனியா", country_albania: "அல்பேனியா",
+                serv_visa_appt: "விசா நியமனம்", serv_visa_doc: "விசா ஆவணங்கள்", serv_travel: "பயண உதவி", serv_insurance: "காப்பீடு", serv_medical: "மருத்துவ உதவி", serv_corp: "கார்ப்பரேட் B2B தீர்வு",
+                btn_consultation: "ஆலோசனையை பதிவு செய்யவும்"
+            },
+            si: {
+                hiring_now: "බඳවා ගැනීම්: ෆින්ලන්තය 2025",
+                hero_title_1: "රැකියාව කරන්න",
+                hero_title_2: "වඩාත්ම සතුටු රටේ",
+                hero_subtitle: "කෘෂිකර්ම, සුපිරි වෙළඳසැල් හෝ ලොජිස්ටික්ස් හි වසර 2ක ගිවිසුමක්. <br class='hidden md:block'>වීසා, නවාතැන් සහ ගුවන් ටිකට්පත් ඇතුළත්.",
+                view_positions: "තනතුරු බලන්න",
+                how_it_works: "ක්‍රියා කරන ආකාරය",
+                select_department: "රැකියා අංශය තෝරන්න",
+                process_kicker: "ක්‍රියාවලිය",
+                process_title: "පියවරෙන් පියවර ගමන",
+                process_subtitle: "ෆින්ලන්තයේ ඔබේ නව වෘත්තියට මාර්ගයක්.",
+                modal_salary: "මාසික වැටුප",
+                modal_experience: "පළපුරුද්ද",
+                modal_benefits: "ප්‍රතිලාභ",
+                modal_docs: "අවශ්‍ය ලියකියවිලි",
+                modal_apply: "දැන් අයදුම් කරන්න",
+                benefit_acc: "නවාතැන්",
+                benefit_food: "ආහාර සපයනු ලැබේ",
+                benefit_air: "ගුවන් ටිකට්පත්",
+                benefit_med: "වෛද්‍ය රක්ෂණ",
+                cat_all: "සියලුම රැකියා",
+                cat_super: "සුපිරි වෙළඳසැල",
+                cat_farm: "ගොවිපල සහ කිරි",
+                cat_agri: "කෘෂිකර්ම",
+                cat_cat: "ආපනශාලා",
+                step_01: "ඉදිරිපත් කිරීම",
+                step_02: "ලියාපදිංචිය",
+                step_03: "පිරිනැුම් ලිපිය",
+                step_04: "මුල් පිරිනැුම",
+                step_05: "වීසා ගොනු කිරීම",
+                step_06: "සංචාරය",
+
+                // Job Details
+                dept_supermarket: "සුපිරි වෙළඳසැල් අංශය",
+                dept_poultry: "කුකුළු සහ කිරි ගොවිපල අංශය",
+                dept_agri: "කෘෂිකාර්මික ගොවිපල සහ වැඩමුළු අංශය",
+                dept_catering: "ආපනශාලා සහ සත්කාරක අංශය",
+                exp_3_years: "වසර 3",
+                exp_good_health: "යහපත් සෞඛ්ය",
+
+                // Common
+                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවාවන්", nav_assessment: "නොමිලේ ඇගයීම", nav_about: "අප ගැන", nav_book: "වෙන් කරවා ගන්න",
+                search_placeholder_text: "රැකියා, රටවල් සොයන්න",
+                footer_destinations: "ගමනාන්ත", footer_services: "සේවාවන්", footer_company: "සමාගම", footer_office: "කාර්යාලය", footer_story: "අපේ කතාව", footer_privacy: "රහස්‍යතා ප්‍රතිපත්තිය", footer_terms: "සේවා කොන්දේසි", footer_rights: "සියලුම හිමිකම් ඇවිරිණි.",
+                country_sweden: "ස්වීඩනය", country_finland: "ෆින්ලන්තය", country_netherlands: "නෙදර්ලන්තය", country_germany: "ජර්මනිය", country_italy: "ඉතාලිය", country_france: "ප්‍රංශය", country_poland: "පෝලන්තය", country_czech: "චෙක් ජනරජය", country_latvia: "ලැට්වියාව", country_croatia: "ක්‍රොඒෂියාව", country_serbia: "සර්බියාව", country_macedonia: "මැසිඩෝනියාව", country_albania: "ඇල්බේනියාව",
+                serv_visa_appt: "වීසා හමුවීම", serv_visa_doc: "වීසා ලියකියවිලි", serv_travel: "සංචාරක සහාය", serv_insurance: "රක්ෂණය", serv_medical: "වෛද්‍ය සහාය", serv_corp: "ආයතනික B2B විසඳුම",
+                btn_consultation: "උපදේශනයක් වෙන්කරන්න"
+            },
+            sw: {
+                hiring_now: "Inaajiri Sasa: Ufini 2025",
+                hero_title_1: "Fanya Kazi",
+                hero_title_2: "Nchi yenye Furaha Zaidi",
+                hero_subtitle: "Pata mkataba wa miaka 2 katika Kilimo, Maduka makubwa, au Usafirishaji. <br class='hidden md:block'>Visa, Malazi na Tikiti ya Ndege Imejumuishwa.",
+                view_positions: "Angalia Nafasi",
+                how_it_works: "Inavyofanya Kazi",
+                select_department: "Chagua Idara ya Kazi",
+                process_kicker: "Mchakato",
+                process_title: "Safari ya Hatua kwa Hatua",
+                process_subtitle: "Njia iliyopangwa kwa kazi yako mpya nchini Ufini.",
+                modal_salary: "Mshahara wa Mwezi",
+                modal_experience: "Uzoefu",
+                modal_benefits: "Faida",
+                modal_docs: "Nyaraka Zinazohitajika",
+                modal_apply: "Omba Sasa",
+                benefit_acc: "Malazi",
+                benefit_food: "Chakula Kimepewa",
+                benefit_air: "Tikiti ya Ndege",
+                benefit_med: "Bima ya Matibabu",
+                cat_all: "Kazi Zote",
+                cat_super: "Duka Kubwa",
+                cat_farm: "Shamba & Maziwa",
+                cat_agri: "Kilimo",
+                cat_cat: "Upishi",
+                step_01: "Uwasilishaji",
+                step_02: "Usajili",
+                step_03: "Barua ya Ofa",
+                step_04: "Ofa Halisi",
+                step_05: "Kufungua Visa",
+                step_06: "Kusafiri",
+
+                // Job Details
+                dept_supermarket: "Idara ya Duka Kubwa",
+                dept_poultry: "Idara ya Kuku na Shamba la Maziwa",
+                dept_agri: "Idara ya Shamba la Kilimo na Karakana",
+                dept_catering: "Idara ya Upishi na Mgahawa",
+                exp_3_years: "Miaka 3",
+                exp_good_health: "Afya Njema",
+
+                // Common
+                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini ya Bure", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
+                search_placeholder_text: "Tafuta Kazi, Nchi",
+                footer_destinations: "Vituo", footer_services: "Huduma", footer_company: "Kampuni", footer_office: "Ofisi", footer_story: "Hadithi Yetu", footer_privacy: "Sera ya Faragha", footer_terms: "Masharti ya Huduma", footer_rights: "Haki zote zimehifadhiwa.",
+                country_sweden: "Uswidi", country_finland: "Ufini", country_netherlands: "Uholanzi", country_germany: "Ujerumani", country_italy: "Italia", country_france: "Ufaransa", country_poland: "Poland", country_czech: "Jamhuri ya Czech", country_latvia: "Latvia", country_croatia: "Kroatia", country_serbia: "Serbia", country_macedonia: "Masedonia", country_albania: "Albania",
+                serv_visa_appt: "Uteuzi wa Visa", serv_visa_doc: "Nyaraka za Visa", serv_travel: "Msaada wa Kusafiri", serv_insurance: "Bima", serv_medical: "Msaada wa Matibabu", serv_corp: "Suluhisho la B2B la Kampuni",
+                btn_consultation: "Weka Ushauri"
+            }
+        };
+
+        // --- LENIS SMOOTH SCROLL INITIALIZATION ---
+        function initSmoothScroll() {
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+                    direction: 'vertical',
+                    gestureDirection: 'vertical',
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: false,
+                    touchMultiplier: 2,
+                });
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+            }
+        }
+
+        // --- TEMPLATE HEADER & FOOTER INJECTION ---
+        const GLOBAL_HEADER = `
+        <nav class="fixed top-2 md:top-6 left-0 right-0 z-50 flex justify-center px-2 md:px-4" id="navbar-container">
+            <div class="floating-nav w-full max-w-7xl px-4 py-4 md:px-3 md:py-3 flex justify-between items-center transition-all duration-300" id="navbar">
+                <a href="index.html" class="flex items-center gap-3 md:gap-4 group px-2 md:px-4">
+                    <div class="w-14 h-14 md:w-12 md:h-12 rounded-full flex items-center justify-center glass-panel overflow-hidden p-1 flex-shrink-0 transition-all duration-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:scale-110 border border-white/10 bg-white/5 backdrop-blur-md">
+                        <img src="https://raw.githubusercontent.com/thebettercall/app/9ca2db3d96700f0412c9f2f420422ed1ccfb52bb/Bettercall%20Logo%20SVG%2003.svg" alt="Better Call Logo" class="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                    </div>
+                    <div class="block leading-tight"> 
+                        <h1 class="font-bold text-white text-xl md:text-xl tracking-wide whitespace-nowrap">BETTER CALL</h1>
+                        <p class="text-xs md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] md:tracking-[0.2em]">Immigration</p>
+                    </div>
+                </a>
+                <div class="hidden lg:flex items-center gap-2">
+                    <a href="index.html" data-i18n="nav_home" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5">Home</a>
+                    <div class="relative group">
+                        <button data-i18n="nav_programs" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5 flex items-center gap-1">Programs <svg class="w-4 h-4 text-gray-400 group-hover:text-brand-blue transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                        <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 dropdown-glass rounded-2xl p-2 flex flex-col gap-1 shadow-2xl z-50 max-h-[80vh] overflow-y-auto hide-scrollbar">
+                            <a href="sweden.html" data-i18n="country_sweden" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-400 hover:bg-blue-500/20 transition block">Sweden</a>
+                            <a href="finland.html" data-i18n="country_finland" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-purple-400 hover:bg-purple-500/20 transition block">Finland</a>
+                            <a href="netherlands.html" data-i18n="country_netherlands" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-brand-gold hover:bg-brand-gold/20 transition block">Netherlands</a>
+                            <a href="germany.html" data-i18n="country_germany" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-brand-gold hover:bg-brand-gold/20 transition block">Germany</a>
+                            <a href="italy.html" data-i18n="country_italy" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-orange-400 hover:bg-orange-500/20 transition block">Italy</a>
+                            <a href="france.html" data-i18n="country_france" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-500 hover:bg-blue-600/20 transition block">France</a>
+                            <a href="poland.html" data-i18n="country_poland" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-red-400 hover:bg-red-500/20 transition block">Poland</a>
+                            <a href="czech.html" data-i18n="country_czech" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-300 hover:bg-blue-400/20 transition block">Czech Republic</a>
+                            <a href="latvia.html" data-i18n="country_latvia" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-red-300 hover:bg-red-500/20 transition block">Latvia</a>
+							<a href="croatia.html" data-i18n="country_croatia" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-red-300 hover:bg-red-500/20 transition block">Croatia</a>
+                            <a href="serbia.html" data-i18n="country_serbia" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-blue-300 hover:bg-blue-500/20 transition block">Serbia</a>
+                            <a href="macedonia.html" data-i18n="country_macedonia" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-yellow-400 hover:bg-yellow-500/20 transition block">Macedonia</a>
+                            <a href="albania.html" data-i18n="country_albania" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-red-500 hover:bg-red-600/20 transition block">Albania</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button data-i18n="nav_services" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5 flex items-center gap-1">Services <svg class="w-4 h-4 text-gray-400 group-hover:text-brand-blue transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                        <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 dropdown-glass rounded-2xl p-2 flex flex-col gap-1 shadow-2xl z-50">
+                            <a href="vfs.html" data-i18n="serv_visa_appt" class="px-4 py-3 rounded-xl text-base text-vfs-teal font-medium hover:bg-vfs-teal/10 transition block">Visa Appointment</a>
+                            <a href="visa_documentation.html" data-i18n="serv_visa_doc" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Visa Documentation</a>
+                            <a href="travel_assistance.html" data-i18n="serv_travel" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Travel Assistance</a>
+                            <a href="insurance_assistance.html" data-i18n="serv_insurance" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Insurance Assistance</a>
+                            <a href="medical_assistance.html" data-i18n="serv_medical" class="px-4 py-3 rounded-xl text-base text-gray-300 hover:text-white hover:bg-brand-blue/20 transition block">Medical Assistance</a>
+                            <a href="corporate_b2b.html" data-i18n="serv_corp" class="px-4 py-3 rounded-xl text-base text-brand-purple font-bold hover:text-white hover:bg-brand-purple/20 transition block">Corporate B2B Solution</a>
+                        </div>
+                    </div>
+                    <a href="assessment.html" data-i18n="nav_assessment" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5">Free Assessment</a>
+                    <a href="about.html" data-i18n="nav_about" class="px-5 py-2.5 text-base text-white hover:text-brand-blue font-medium transition rounded-full hover:bg-white/5">About Us</a>
+                </div>
+                <div class="flex items-center gap-4 sm:gap-3 px-2">
+                    <button onclick="toggleSearch()" class="group p-3 rounded-full hover:bg-white/10 transition-all duration-300 relative" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass text-white/70 group-hover:text-brand-blue text-3xl md:text-xl"></i>
+                        <span class="hidden lg:inline-flex absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-2 py-0.5 rounded text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/5">Cmd + K</span>
+                    </button>
+                    <button class="lg:hidden p-3 text-white hover:text-brand-blue transition rounded-full hover:bg-white/5" onclick="toggleMobileMenu()">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <a href="book.html" class="hidden sm:flex group relative px-8 py-3 rounded-full bg-brand-blue text-white font-bold text-base overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]">
+                        <span data-i18n="nav_book" class="relative z-10 group-hover:text-white transition-colors">Book Now</span>
+                        <div class="absolute inset-0 bg-brand-purple transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                    </a>
+                </div>
+            </div>
+            <div id="mobileMenu" class="fixed inset-0 bg-[#0B132B]/98 backdrop-blur-3xl z-[60] transform translate-y-full transition-transform duration-500 flex flex-col items-center justify-start pt-32 pb-10 overflow-y-auto">
+                <button class="absolute top-8 right-8 text-white/50 hover:text-white text-4xl transition" onclick="toggleMobileMenu()">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <a href="index.html" onclick="toggleMobileMenu()" class="text-4xl font-light text-white hover:text-brand-blue mb-8"><i class="fa-solid fa-house"></i></a>
+                <div class="w-full px-8 space-y-10">
+                    <div class="text-center">
+                        <p data-i18n="footer_destinations" class="text-brand-gold text-sm uppercase tracking-widest mb-6 font-bold opacity-70">Destinations</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="sweden.html" data-i18n="country_sweden" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">SWEDEN</a>
+                            <a href="finland.html" data-i18n="country_finland" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">FINLAND</a>
+                            <a href="germany.html" data-i18n="country_germany" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">GERMANY</a>
+                            <a href="italy.html" data-i18n="country_italy" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">ITALY</a>
+                            <a href="france.html" data-i18n="country_france" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">FRANCE</a>
+                            <a href="netherlands.html" data-i18n="country_netherlands" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">NETHERLANDS</a>
+                            <a href="poland.html" data-i18n="country_poland" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">POLAND</a>
+                            <a href="czech.html" data-i18n="country_czech" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">CZECHIA</a>
+                            <a href="latvia.html" data-i18n="country_latvia" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">LATVIA</a>
+							<a href="croatia.html" data-i18n="country_croatia" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">CROATIA</a>
+                            <a href="serbia.html" data-i18n="country_serbia" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">SERBIA</a>
+                            <a href="macedonia.html" data-i18n="country_macedonia" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">MACEDONIA</a>
+                            <a href="albania.html" data-i18n="country_albania" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">ALBANIA</a>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p data-i18n="nav_services" class="text-brand-gold text-sm uppercase tracking-widest mb-6 font-bold opacity-70">Services</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="vfs.html" data-i18n="serv_visa_appt" class="px-5 py-3 bg-white/5 rounded-xl text-base text-vfs-teal font-medium">Visa Appointment</a>
+                            <a href="visa_documentation.html" data-i18n="serv_visa_doc" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Visa Documentation</a>
+                            <a href="travel_assistance.html" data-i18n="serv_travel" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Travel Assistance</a>
+                            <a href="insurance_assistance.html" data-i18n="serv_insurance" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Insurance</a>
+                            <a href="medical_assistance.html" data-i18n="serv_medical" class="px-5 py-3 bg-white/5 rounded-xl text-base text-gray-300">Medical Assistance</a>
+                            <a href="corporate_b2b.html" data-i18n="serv_corp" class="px-5 py-3 bg-white/5 rounded-xl text-base text-brand-purple font-bold">Corporate B2B Solution</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-5 items-center w-full px-8 pb-12 mt-8">
+                    <a href="assessment.html" onclick="toggleMobileMenu()" data-i18n="nav_assessment" class="w-full max-w-xs text-center text-xl font-bold text-white bg-brand-blue px-8 py-5 rounded-full shadow-lg hover:scale-105 transition-transform">Free Assessment</a>
+                    <a href="book.html" onclick="toggleMobileMenu()" data-i18n="btn_consultation" class="w-full max-w-xs text-center text-xl font-bold text-deep-space bg-brand-gold px-8 py-5 rounded-full shadow-xl hover:scale-105 transition-transform">Book Consultation</a>
+                </div>
+            </div>
+        </div>
+        <div id="search-overlay" class="fixed inset-0 z-[100] bg-deep-space/80 backdrop-blur-xl flex items-start justify-center pt-24 px-4">
+            <div class="absolute inset-0 cursor-default" onclick="toggleSearch()"></div>
+            <div id="search-container" class="w-full max-w-3xl relative z-10 bg-[#0F172A]/90 border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[70vh]">
+                <div class="flex items-center p-3 md:p-6 border-b border-white/5">
+                    <i class="fa-solid fa-magnifying-glass text-brand-blue text-lg md:text-2xl mr-3 md:mr-4"></i>
+                    <input type="text" id="global-search-input" data-i18n="search_placeholder_text" placeholder="Search Jobs, Countries" class="bg-transparent border-none outline-none text-base md:text-2xl text-white placeholder-gray-500 w-full font-light" autocomplete="off">
+                    <button onclick="toggleSearch()" class="text-gray-500 hover:text-white transition p-2"><span class="text-sm uppercase font-bold tracking-wider border border-white/10 rounded px-2 py-1">ESC</span></button>
+                </div>
+                <div id="search-results" class="overflow-y-auto p-4 custom-scrollbar">
+                    <div id="dynamic-results" class="hidden flex-col gap-2"></div>
+                    <div id="no-results" class="hidden p-10 text-center"><i class="fa-solid fa-circle-question text-gray-600 text-4xl mb-4"></i><p class="text-gray-400 text-base">No results found for your query.</p></div>
+                </div>
+                <div class="bg-black/20 p-4 text-xs text-gray-500 flex justify-between items-center px-6"><div class="flex gap-6"><span class="hidden sm:inline">Use <strong class="text-gray-400">↑</strong> <strong class="text-gray-400">↓</strong> to navigate</span><span class="hidden sm:inline"><strong class="text-gray-400">Enter</strong> to select</span></div><span>Better Call Search</span></div>
+            </div>
+        </div>
+        `;
+
+        const GLOBAL_FOOTER = `
+        <footer class="bg-transparent border-t border-white/5 relative z-10 backdrop-blur-sm">
+            <div class="container mx-auto px-4 py-12 md:py-24">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-16 mb-8 md:mb-20">
+                    <div class="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
+                        <a href="index.html" class="flex items-center gap-5 group mb-4 md:mb-8 w-fit">
+                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center glass-panel p-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] hover:scale-105 border border-white/10 bg-white/5 backdrop-blur-md">
+                                <img src="https://raw.githubusercontent.com/thebettercall/app/9ca2db3d96700f0412c9f2f420422ed1ccfb52bb/Bettercall%20Logo%20SVG%2003.svg" alt="Better Call Logo" class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                            </div>
+                            <div class="block text-left">
+                                <h4 class="font-bold text-white text-xl tracking-wide">BETTER CALL</h4><p class="text-xs font-bold text-brand-gold uppercase tracking-[0.3em]">Immigration</p>
+                            </div>
+                        </a>
+                        <p data-i18n="sec_standard_desc" class="text-base leading-relaxed max-w-sm mb-6 md:mb-10 font-light text-gray-500">Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.</p>
+                        <div class="flex gap-5">
+                            <a href="https://wa.me/971503666382" class="w-14 h-14 rounded-full glass-panel hover:bg-brand-blue hover:text-white flex items-center justify-center transition-all duration-300" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+                            <a href="https://www.instagram.com/the_better_call" class="w-14 h-14 rounded-full glass-panel hover:bg-brand-purple hover:text-white flex items-center justify-center transition-all duration-300" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                            <a href="mailto:admin@thebettercall.com" class="w-14 h-14 rounded-full glass-panel hover:bg-brand-gold hover:text-white flex items-center justify-center transition-all duration-300"><i class="fa-solid fa-envelope text-2xl"></i></a>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 data-i18n="footer_destinations" class="text-white font-bold mb-8 text-base uppercase tracking-widest">Destinations</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li><a href="germany.html" data-i18n="country_germany" class="hover:text-brand-blue transition-colors">Germany</a></li>
+                            <li><a href="sweden.html" data-i18n="country_sweden" class="hover:text-brand-blue transition-colors">Sweden</a></li>
+                            <li><a href="finland.html" data-i18n="country_finland" class="hover:text-brand-blue transition-colors">Finland</a></li>
+                            <li><a href="italy.html" data-i18n="country_italy" class="hover:text-brand-blue transition-colors">Italy</a></li>
+                            <li><a href="france.html" data-i18n="country_france" class="hover:text-brand-blue transition-colors">France</a></li>
+                            <li><a href="poland.html" data-i18n="country_poland" class="hover:text-brand-blue transition-colors">Poland</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 data-i18n="footer_services" class="text-white font-bold mb-8 text-base uppercase tracking-widest">Services</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li><a href="vfs.html" data-i18n="serv_visa_appt" class="hover:text-brand-blue transition-colors">Visa Appointment</a></li>
+                            <li><a href="visa_documentation.html" data-i18n="serv_visa_doc" class="hover:text-brand-blue transition-colors">Documentation</a></li>
+                            <li><a href="travel_assistance.html" data-i18n="serv_travel" class="hover:text-brand-blue transition-colors">Travel Assistance</a></li>
+                            <li><a href="insurance_assistance.html" data-i18n="serv_insurance" class="hover:text-brand-blue transition-colors">Insurance</a></li>
+                            <li><a href="medical_assistance.html" data-i18n="serv_medical" class="hover:text-brand-blue transition-colors">Medical</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 data-i18n="footer_company" class="text-white font-bold mb-8 text-base uppercase tracking-widest">Company</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li><a href="about.html" data-i18n="footer_story" class="hover:text-brand-blue transition-colors">Our Story</a></li>
+                            <li><a href="assessment.html" data-i18n="nav_assessment" class="hover:text-brand-blue transition-colors">Free Assessment</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden md:block">
+                        <h4 data-i18n="footer_office" class="text-white font-bold mb-8 text-base uppercase tracking-widest">Office</h4>
+                        <ul class="space-y-5 text-base font-light">
+                            <li class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-brand-gold mt-1"></i><span>R320-12th Floor<br>Dubai Healthcare City<br>UAE</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-phone text-brand-gold"></i><span>+971 50 366 6382</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-envelope text-brand-gold"></i><span>admin@thebettercall.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white/5 pt-10 text-center text-sm text-gray-600 font-light flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; 2025 Better Call Immigration. <span data-i18n="footer_rights">All rights reserved.</span></p>
+                    <div class="flex gap-8 mt-6 md:mt-0"><a href="#" data-i18n="footer_privacy" class="hover:text-white transition">Privacy Policy</a><a href="#" data-i18n="footer_terms" class="hover:text-white transition">Terms of Service</a></div>
+                </div>
+            </div>
+        </footer>
+        `;
+
+        // 1. INJECT UNIVERSAL COMPONENTS
+        document.body.insertAdjacentHTML('afterbegin', GLOBAL_HEADER);
+        document.body.insertAdjacentHTML('beforeend', GLOBAL_FOOTER);
+
+        // --- SPECIFIC JOB DATA ---
+        const jobsData = [
+            // A. Supermarket Department
+            { title: "Sales Supervisor", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-user-tie" },
+            { title: "Cam Supervisor", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-video" },
+            { title: "Transport Supervisor", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-truck-moving" },
+            { title: "Laundry Supervisor", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-jug-detergent" },
+            { title: "System Engineer", dept: "Supermarket Department", euro: "€5,000", exp: "3 Years", icon: "fa-solid fa-server" },
+            { title: "System Operator", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-desktop" },
+            { title: "Data Entry Operator", dept: "Supermarket Department", euro: "€4,000", exp: "3 Years", icon: "fa-solid fa-keyboard" },
+            { title: "Accountant", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-calculator" },
+            { title: "Sales Workers", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-shop" },
+            { title: "Office Clerk", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-stapler" },
+            { title: "Office Assistant", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-file-invoice" },
+            { title: "Store Keeper", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-boxes-stacked" },
+            { title: "Time Keeper", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-clock" },
+            { title: "Security Guard", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-user-lock" },
+            { title: "Laundry Worker", dept: "Supermarket Department", euro: "€1,500", exp: "3 Years", icon: "fa-solid fa-shirt" },
+            { title: "Tanker Driver Head Duty", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-truck-droplet" },
+            { title: "Staff Bus Driver Head Duty", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-bus-simple" },
+            { title: "Driver Light Duty", dept: "Supermarket Department", euro: "€1,500", exp: "3 Years", icon: "fa-solid fa-car" },
+            { title: "Forklift Operator", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-dolly" },
+            { title: "Packing Helper", dept: "Supermarket Department", euro: "€1,000", exp: "Good Health", icon: "fa-solid fa-box-open" },
+            { title: "Trolley Helper", dept: "Supermarket Department", euro: "€1,000", exp: "Good Health", icon: "fa-solid fa-cart-shopping" },
+            { title: "Loading Unloading Workers", dept: "Supermarket Department", euro: "€1,200", exp: "Good Health", icon: "fa-solid fa-truck-ramp-box" },
+            { title: "Cleaning Helper", dept: "Supermarket Department", euro: "€1,000", exp: "Good Health", icon: "fa-solid fa-broom" },
+            { title: "Cashier", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-cash-register" },
+            { title: "Hair Stylist (Barber)", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-scissors" },
+            { title: "Tailor", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-tape" },
+            { title: "Tailor Cutting Master", dept: "Supermarket Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-vest" },
+            { title: "CCTV Technician", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-camera-cctv" },
+            { title: "Air Conditioning Technician", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-fan" },
+            { title: "Electrician", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-bolt" },
+            { title: "Electrical Supervisor", dept: "Supermarket Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-user-gear" },
+            { title: "Plumber", dept: "Supermarket Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-faucet" },
+            { title: "Fire & Safety Officer", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-fire-extinguisher" },
+            { title: "Fire Alarm Technician", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-bell" },
+            { title: "RO Water Technician", dept: "Supermarket Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-filter-circle-dollar" },
+
+            // B. Poultry and Dairy Farm Department
+            { title: "Poultry Farm Worker", dept: "Poultry and Dairy Farm Department", euro: "€2,000", exp: "Good Health", icon: "fa-solid fa-kiwi-bird" },
+            { title: "Poultry Yard Cleaner", dept: "Poultry and Dairy Farm Department", euro: "€2,000", exp: "Good Health", icon: "fa-solid fa-broom" },
+            { title: "Poultry Farm Supervisor", dept: "Poultry and Dairy Farm Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-clipboard-check" },
+            { title: "Dairy Farm Worker", dept: "Poultry and Dairy Farm Department", euro: "€2,000", exp: "Good Health", icon: "fa-solid fa-cow" },
+            { title: "Dairy Farm Supervisor", dept: "Poultry and Dairy Farm Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-clipboard-user" },
+            { title: "Egg Collector", dept: "Poultry and Dairy Farm Department", euro: "€2,000", exp: "Good Health", icon: "fa-solid fa-egg" },
+            { title: "Egg Packer", dept: "Poultry and Dairy Farm Department", euro: "€2,000", exp: "Good Health", icon: "fa-solid fa-box" },
+            { title: "Veterinary Technician", dept: "Poultry and Dairy Farm Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-user-doctor" },
+            { title: "Veterinary Pharmacist", dept: "Poultry and Dairy Farm Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-pills" },
+            { title: "Butcher", dept: "Poultry and Dairy Farm Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-drumstick-bite" },
+
+            // C. Agricultural Farm and Workshop Department
+            { title: "Agriculture Farm Supervisor", dept: "Agricultural Farm and Workshop Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-list-check" },
+            { title: "Agriculture Pharmacist Technician", dept: "Agricultural Farm and Workshop Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-flask" },
+            { title: "Agriculture Field Officer", dept: "Agricultural Farm and Workshop Department", euro: "€4,000", exp: "3 Years", icon: "fa-solid fa-wheat-awn" },
+            { title: "Agriculture Farm Workers", dept: "Agricultural Farm and Workshop Department", euro: "€2,000", exp: "Good Health", icon: "fa-solid fa-seedling" },
+            { title: "Tractor Driver", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-tractor" },
+            { title: "Harvester Machine Operator", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-snowplow" },
+            { title: "Harvester Machine Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-wrench" },
+            { title: "Sprayer Operator", dept: "Agricultural Farm and Workshop Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-spray-can-sparkles" },
+            { title: "Pump Motor Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-gears" },
+            { title: "Sprayer Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-screwdriver-wrench" },
+            { title: "Diesel / Petrol Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-oil-can" },
+            { title: "Hydraulic Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-compressor" },
+            { title: "Generator Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-bolt-lightning" },
+            { title: "Tinker/Welder", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-fire-burner" },
+            { title: "Auto Electrician", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-car-battery" },
+            { title: "Auto Air Conditioning Technician", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-fan" },
+            { title: "Spray Painter", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-paint-roller" },
+            { title: "Workshop Helper", dept: "Agricultural Farm and Workshop Department", euro: "€1,000", exp: "3 Years", icon: "fa-solid fa-toolbox" },
+            { title: "Mechanical Supervisor", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-clipboard-list" },
+            { title: "Battery Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-battery-full" },
+            { title: "Fuel Station Operator", dept: "Agricultural Farm and Workshop Department", euro: "€1,000", exp: "3 Years", icon: "fa-solid fa-gas-pump" },
+            { title: "Water Service Station Helper", dept: "Agricultural Farm and Workshop Department", euro: "€1,000", exp: "Good Health", icon: "fa-solid fa-faucet" },
+            { title: "TV Mechanic", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-tv" },
+            { title: "Tire Man", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-life-ring" },
+            { title: "Liner", dept: "Agricultural Farm and Workshop Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-ruler-combined" },
+
+            // D. Catering & Restaurant Department
+            { title: "Catering Supervisor", dept: "Catering & Restaurant Department", euro: "€3,500", exp: "3 Years", icon: "fa-solid fa-clipboard-user" },
+            { title: "Restaurant Supervisor", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-bell-concierge" },
+            { title: "Bar Supervisor", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-martini-glass" },
+            { title: "Housekeeping Supervisor", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-bed" },
+            { title: "F & B Supervisor", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-wine-glass" },
+            { title: "Steward Supervisor", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-user-tie" },
+            { title: "Health and Safety Officer", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-briefcase-medical" },
+            { title: "Food Quality Inspector", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-magnifying-glass-chart" },
+            { title: "Chief Cook", dept: "Catering & Restaurant Department", euro: "€4,000", exp: "3 Years", icon: "fa-solid fa-hat-chef" },
+            { title: "Assistant Cook", dept: "Catering & Restaurant Department", euro: "€2,500", exp: "3 Years", icon: "fa-solid fa-utensils" },
+            { title: "Head Chef", dept: "Catering & Restaurant Department", euro: "€5,000", exp: "3 Years", icon: "fa-solid fa-kitchen-set" },
+            { title: "Assistant Chef", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-spoon" },
+            { title: "Kitchen Helper", dept: "Catering & Restaurant Department", euro: "€1,500", exp: "Good Health", icon: "fa-solid fa-sink" },
+            { title: "Baker/Pastry Chef", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-cake-candles" },
+            { title: "Food and Beverage", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-burger" },
+            { title: "Waiter", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-hand-holding-dollar" },
+            { title: "Captain", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-user-clock" },
+            { title: "Steward", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-tray" },
+            { title: "Commis III", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-utensil-spoon" },
+            { title: "Pizza Makers", dept: "Catering & Restaurant Department", euro: "€3,000", exp: "3 Years", icon: "fa-solid fa-pizza-slice" },
+            { title: "Chef de Partie", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-fire-burner" },
+            { title: "Bartender / Barman", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-beer-mug-empty" },
+            { title: "Housekeeping Worker", dept: "Catering & Restaurant Department", euro: "€1,000", exp: "Good Health", icon: "fa-solid fa-broom" },
+            { title: "Juice Maker", dept: "Catering & Restaurant Department", euro: "€1,500", exp: "3 Years", icon: "fa-solid fa-blender" },
+            { title: "Chapathi/Parotta Maker", dept: "Catering & Restaurant Department", euro: "€2,000", exp: "3 Years", icon: "fa-solid fa-bread-slice" }
+        ];
+
+        const documentsData = [
+            { title: "Passport Scan", desc: "Full Color Scans of all pages (Cover to Cover). Minimum 6 months validity.", icon: "fa-solid fa-passport" },
+            { title: "Europass CV", desc: "Must be in standard Europass format (Word/PDF). Up-to-date work history.", icon: "fa-regular fa-file-lines" },
+            { title: "Educational Certificates", desc: "Highest Degree/Diploma/School Certificates. Color scans.", icon: "fa-solid fa-graduation-cap" },
+            { title: "Experience Letters", desc: "Employment certificates from previous companies verifying job role.", icon: "fa-solid fa-briefcase" },
+            { title: "Digital Photo", desc: "White background, Schengen standard (35x45mm), recent (last 3 months).", icon: "fa-solid fa-camera" },
+            { title: "Police Clearance", desc: "Valid PCC from country of current residence. English translation if needed.", icon: "fa-solid fa-file-shield" },
+            { title: "Introduction Video", desc: "1-2 min self-introduction video in English. Explain your experience.", icon: "fa-solid fa-video" },
+            { title: "Working Video", desc: "Required for skilled trades (Welder, Chef, etc.) showing you at work.", icon: "fa-solid fa-hammer" }
+        ];
+
+        const timelineData = [
+            { step: "01", key: "step_01", title: "Submission", desc: "Submit Passport, CV, Photos, & Education Docs.", fee: "Free" },
+            { step: "02", key: "step_02", title: "Registration", desc: "Formal system registration (Day 1).", fee: "€1,000" },
+            { step: "03", key: "step_03", title: "Offer Letter", desc: "Conditional Offer (15-45 Days).", fee: "€1,000" },
+            { step: "04", key: "step_04", title: "Original Offer", desc: "Hard copy from Hiring Company.", fee: "€2,000" },
+            { step: "05", key: "step_05", title: "Visa Filing", desc: "Embassy appointment scheduling.", fee: "€1,500" },
+            { step: "06", key: "step_06", title: "Travel", desc: "Flight tickets upon Visa Approval.", fee: "€500" }
+        ];
+        
+        // --- SEARCH DATA (From Template) ---
+        const searchData = [
+            // Added Finland specific jobs to the global search data
+            { title: "Sales Supervisor", type: "Job", url: "#jobs", icon: "👔", keywords: "supermarket, manager, sales, finland" },
+            { title: "Poultry Farm Worker", type: "Job", url: "#jobs", icon: "🐔", keywords: "farm, agriculture, animals, finland" },
+            { title: "Tractor Driver", type: "Job", url: "#jobs", icon: "🚜", keywords: "agriculture, driver, machinery, finland" },
+            { title: "Chef / Cook", type: "Job", url: "#jobs", icon: "👨‍🍳", keywords: "kitchen, restaurant, catering, finland" },
+            { title: "Finland", type: "Country", url: "finland.html", icon: "🇫🇮", keywords: "helsinki, northern lights, work visa, europe" },
+            { title: "Sweden", type: "Country", url: "sweden.html", icon: "🇸🇪", keywords: "stockholm, scandinavia, work permit" },
+            { title: "Germany", type: "Country", url: "germany.html", icon: "🇩🇪", keywords: "berlin, blue card, tech, nursing" },
+            { title: "Visa Appointment", type: "Service", url: "vfs.html", icon: "📅", keywords: "vfs, embassy, slot, booking, date" },
+            { title: "Free Assessment", type: "Tool", url: "assessment.html", icon: "📝", keywords: "check, eligibility, qualify, start" }
+        ];
+
+        let currentCategory = 'All';
+        let currentLang = 'en';
+        let currentSearchTerm = ''; // Track Search Term
+        let languageDropdownOpen = false;
+
+        // --- TRANSLATION HELPER FUNCTIONS ---
+        function getTranslation(key, fallback) {
+            const dict = translations[currentLang] || translations['en'];
+            return dict[key] || fallback;
+        }
+
+        // Helper to generate key from text (e.g. "3 Years" -> "exp_3_years")
+        function getTextKey(text) {
+            if (!text) return "";
+            if (text === "Supermarket Department") return "dept_supermarket";
+            if (text === "Poultry and Dairy Farm Department") return "dept_poultry";
+            if (text === "Agricultural Farm and Workshop Department") return "dept_agri";
+            if (text === "Catering & Restaurant Department") return "dept_catering";
+            if (text === "3 Years") return "exp_3_years";
+            if (text === "Good Health") return "exp_good_health";
+            
+            // For generic job titles, we could generate keys like 'job_sales_supervisor'
+            // Currently, we will fallback to English if no explicit key is found, 
+            // but this structure allows easy expansion.
+            return "job_" + text.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+        }
+
+        // --- RENDER FUNCTIONS ---
+        function renderJobs(data) {
+            const container = document.getElementById('jobContainer');
+            const countLabel = document.getElementById('jobCount');
+            
+            if(!container) return; // Guard against missing element
+            container.innerHTML = "";
+
+            // 1. Start with All Data
+            let filteredData = data;
+            
+            // 2. Filter by Category
+            if (currentCategory !== 'All') {
+                filteredData = filteredData.filter(job => job.dept === currentCategory);
+            }
+            
+            // 3. Filter by Search Term (For the Job Search Input)
+            if (currentSearchTerm.trim() !== '') {
+                const term = currentSearchTerm.toLowerCase();
+                filteredData = filteredData.filter(job => 
+                    job.title.toLowerCase().includes(term) || 
+                    job.dept.toLowerCase().includes(term)
+                );
+            }
+            
+            // 4. Group all *filtered* data by Department
+            const grouped = filteredData.reduce((acc, job) => {
+                acc[job.dept] = acc[job.dept] || [];
+                acc[job.dept].push(job);
+                return acc;
+            }, {});
+
+            let totalShown = 0;
+
+            if (Object.keys(grouped).length === 0) {
+                 // Enhanced No Results Message
+                 container.innerHTML = `
+                    <div class="text-center py-20 animate-fade-in-up">
+                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-magnifying-glass text-4xl text-white/20"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">No positions found</h3>
+                        <p class="text-gray-400">Try adjusting your search or category filter.</p>
+                        <button onclick="clearFilters()" class="mt-6 text-finland-sky font-bold hover:underline">Clear all filters</button>
+                    </div>`;
+                 countLabel.innerText = "0 positions found";
+                 return;
+            }
+
+            // 5. Iterate and Render Sections with Show More Logic
+            for (const [dept, jobs] of Object.entries(grouped)) {
+                // Determine limits for "show more"
+                const limit = 4; // Display only 4 jobs by default for grouping/pagination
+                // If searching, show all matches to avoid hiding relevant results
+                const showAll = currentSearchTerm.trim() !== ''; 
+                
+                const visibleJobs = showAll ? jobs : jobs.slice(0, limit);
+                const hiddenJobs = showAll ? [] : jobs.slice(limit);
+                const hasMore = hiddenJobs.length > 0;
+
+                // Section Wrapper
+                const section = document.createElement('div');
+                section.className = "reveal-item";
+                
+                // Header (Larger Font) - Translated
+                const deptKey = getTextKey(dept);
+                const translatedDept = getTranslation(deptKey, dept);
+                const header = `<h3 class="text-2xl md:text-3xl font-bold text-white mb-8 pl-4 border-l-8 border-finland-blue flex flex-col md:flex-row md:items-baseline gap-2">${translatedDept} <span class="text-base font-normal text-gray-400">(${jobs.length} Positions)</span></h3>`;
+                
+                let gridHTML = `<div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">`; // Desktop grid-cols-3
+                
+                // Job Cards - Translated content
+                const renderCard = (job) => {
+                    const globalIndex = jobsData.findIndex(j => j.title === job.title && j.dept === job.dept);
+                    
+                    // Translate Job Fields
+                    const tTitle = getTranslation(getTextKey(job.title), job.title);
+                    const tExp = getTranslation(getTextKey(job.exp), job.exp);
+
+                    return `
+                        <div onclick="openJobModal(${globalIndex})" class="glass-panel p-3 sm:p-5 rounded-2xl flex flex-col items-start justify-between cursor-pointer group hover:bg-white/5 transition-all relative overflow-hidden h-full">
+                            <div class="absolute inset-0 bg-gradient-to-r from-finland-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="flex items-start gap-2 sm:gap-4 relative z-10 w-full">
+                                <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-finland-blue/10 flex items-center justify-center text-finland-blue border border-finland-blue/20 shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-black/30">
+                                    <i class="${job.icon} text-xl sm:text-2xl"></i>
+                                </div>
+                                <div class="flex-grow min-w-0">
+                                    <h4 class="text-sm sm:text-xl md:text-lg font-bold text-white group-hover:text-finland-sky transition-colors mb-1 leading-tight">${tTitle}</h4>
+                                    <span class="text-gray-300 md:text-gray-400 text-xs sm:text-base font-medium">${tExp}</span>
+                                </div>
+                            </div>
+                            <div class="mt-2 relative z-10 w-full text-left">
+                                <span class="inline-block bg-brand-gold/10 border border-brand-gold/30 text-brand-gold font-bold px-2 py-0.5 rounded-lg text-sm sm:text-lg md:text-base tracking-wide whitespace-nowrap">${job.euro}</span>
+                            </div>
+                        </div>
+                    `;
+                };
+
+                visibleJobs.forEach(job => gridHTML += renderCard(job));
+                gridHTML += `</div>`;
+
+                // "Show More" Logic
+                let moreHTML = "";
+                if (hasMore) {
+                    const hiddenID = `more-${dept.replace(/\s+/g, '-').toLowerCase()}`;
+                    
+                    let hiddenGrid = `<div id="${hiddenID}" class="grid grid-cols-2 md:grid-cols-3 gap-6 hidden transition-all duration-500">`;
+                    hiddenJobs.forEach(job => hiddenGrid += renderCard(job));
+                    hiddenGrid += `</div>`;
+                    
+                    moreHTML = `
+                        ${hiddenGrid}
+                        <div class="text-center mt-6">
+                            <button id="btn-${hiddenID}" onclick="document.getElementById('${hiddenID}').classList.remove('hidden'); this.style.display='none';" class="text-sm font-bold text-finland-blue uppercase tracking-widest hover:text-white transition border border-finland-blue/30 px-8 py-3 rounded-full hover:bg-finland-blue/20">
+                                Show ${hiddenJobs.length} More Positions
+                            </button>
+                        </div>
+                    `;
+                }
+
+                section.innerHTML = header + gridHTML + moreHTML;
+                container.appendChild(section);
+                totalShown += jobs.length;
+            }
+            
+            // Update Count Label
+            if (currentSearchTerm) {
+                 countLabel.innerText = `Found ${totalShown} result${totalShown !== 1 ? 's' : ''} for "${currentSearchTerm}"`;
+            } else {
+                 countLabel.innerText = `Showing ${totalShown} positions in ${currentCategory === 'All' ? 'all departments' : getTranslation(getTextKey(currentCategory), currentCategory)}`;
+            }
+            
+            checkScroll();
+        }
+
+        function selectCategory(category) {
+            currentCategory = category;
+            renderCategoryButtons();
+            renderJobs(jobsData);
+        }
+        
+        function handleSearch(val) {
+            currentSearchTerm = val;
+            renderJobs(jobsData);
+        }
+        
+        function clearFilters() {
+            currentCategory = 'All';
+            currentSearchTerm = '';
+            document.getElementById('jobSearchInput').value = '';
+            renderCategoryButtons();
+            renderJobs(jobsData);
+        }
+
+        function renderCategoryButtons() {
+            const categories = ["All", "Supermarket Department", "Poultry and Dairy Farm Department", "Agricultural Farm and Workshop Department", "Catering & Restaurant Department"];
+            const container = document.getElementById('categoryButtons');
+            
+            // Mapping for legacy button keys, or use the unified Dept keys
+            const catKeys = {
+                "All": "cat_all",
+                "Supermarket Department": "dept_supermarket", // Use new Dept keys
+                "Poultry and Dairy Farm Department": "dept_poultry",
+                "Agricultural Farm and Workshop Department": "dept_agri",
+                "Catering & Restaurant Department": "dept_catering"
+            };
+
+            const t = translations[currentLang] || translations['en'];
+
+            if(container) {
+                container.innerHTML = categories.map(cat => {
+                    const isActive = currentCategory === cat;
+                    const activeClass = isActive 
+                        ? "bg-finland-blue text-white border-finland-blue shadow-lg shadow-finland-blue/30" 
+                        : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10";
+                    
+                    const translatedName = t[catKeys[cat]] || cat;
+
+                    return `
+                    <button onclick="selectCategory('${cat}')" 
+                        class="px-4 py-3 rounded-xl text-sm md:text-base font-bold transition-all border flex items-center justify-center text-center h-full min-w-[150px] md:min-w-0 flex-shrink-0 snap-center whitespace-nowrap ${activeClass}">
+                        ${translatedName}
+                    </button>
+                `}).join('');
+            }
+        }
+
+        function renderTimeline() {
+            const t = translations[currentLang] || translations['en'];
+            const container = document.getElementById('timelineContainer');
+            if(!container) return;
+
+            container.innerHTML = timelineData.map((item, index) => {
+                const translatedTitle = t[item.key] || item.title;
+                
+                return `
+                <div class="relative pl-8 sm:pl-32 py-2 group reveal-item" style="transition-delay: ${index * 50}ms">
+                    <div class="font-bold text-white mb-2 sm:mb-0 sm:absolute sm:left-0 sm:w-24 sm:text-right sm:top-2 text-2xl sm:text-xl text-finland-sky">Step ${item.step}</div>
+                    <div class="absolute left-0 sm:left-0 sm:ml-5 -translate-x-1/2 top-3 w-6 h-6 rounded-full border-4 border-deep-blue bg-finland-blue shadow-md group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-panel p-6 rounded-2xl hover:border-finland-blue/30 transition-all border border-white/10">
+                        <h4 class="font-bold text-white text-xl mb-2">${translatedTitle}</h4>
+                        <p class="text-base text-gray-400 mb-4">${item.desc}</p>
+                        <span class="inline-block px-3 py-1.5 rounded-lg text-sm font-bold border border-finland-blue/30 bg-finland-blue/10 text-finland-sky">Fee: ${item.fee}</span>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        // --- LANGUAGE SWITCHER LOGIC (From Template) ---
+        function toggleLanguageDropdown(event) {
+            const button = document.getElementById('lang-toggle-btn');
+            const isActive = button.classList.toggle('active');
+            event.stopPropagation();
+            if (!isActive) {
+                 document.removeEventListener('click', closeLanguageDropdown);
+            } else {
+                 setTimeout(() => { 
+                    document.addEventListener('click', closeLanguageDropdown);
+                 }, 10);
+            }
+        }
+
+        function closeLanguageDropdown(event) {
+            const dropdown = document.getElementById('language-dropdown');
+            const button = document.getElementById('lang-toggle-btn');
+            if (dropdown && button && !dropdown.contains(event.target) && !button.contains(event.target)) {
+                button.classList.remove('active');
+                document.removeEventListener('click', closeLanguageDropdown);
+            }
+        }
+
+        function setLanguage(lang, element) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-option').forEach(el => el.classList.remove('active'));
+            if(element) element.classList.add('active');
+
+            const dict = translations[lang];
+            if (!dict) return;
+
+            const i18nElements = document.querySelectorAll('[data-i18n]');
+            
+            i18nElements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    if (el.tagName === 'INPUT') {
+                        el.placeholder = dict[key];
+                    } else {
+                        // Using innerHTML to preserve spans inside translations
+                        el.style.opacity = '0';
+                        setTimeout(() => {
+                            el.innerHTML = dict[key];
+                            el.style.opacity = '1';
+                        }, 200);
+                    }
+                }
+            });
+
+            // Re-render components that rely on state/translations
+            renderCategoryButtons();
+            renderJobs(jobsData); // Ensure Jobs are re-rendered with new lang
+            renderTimeline();
+
+            // Font Family Switching Logic
+            if (['hi', 'ml', 'ta', 'si'].includes(lang)) {
+                if (lang === 'hi') document.body.style.fontFamily = "'Noto Sans Devanagari', sans-serif";
+                if (lang === 'ml') document.body.style.fontFamily = "'Noto Sans Malayalam', sans-serif";
+                if (lang === 'ta') document.body.style.fontFamily = "'Noto Sans Tamil', sans-serif";
+                if (lang === 'si') document.body.style.fontFamily = "'Noto Sans Sinhala', sans-serif";
+            } else {
+                document.body.style.fontFamily = "'Outfit', sans-serif";
+            }
+
+            document.getElementById('lang-toggle-btn').classList.remove('active');
+            document.removeEventListener('click', closeLanguageDropdown);
+        }
+
+        // --- SEARCH LOGIC (From Template) ---
+        let searchOverlay, searchInput, searchResults, dynamicResults, noResults;
+
+        function initSearchElements() {
+             searchOverlay = document.getElementById('search-overlay');
+             searchInput = document.getElementById('global-search-input');
+             searchResults = document.getElementById('search-results');
+             dynamicResults = document.getElementById('dynamic-results');
+             noResults = document.getElementById('no-results');
+
+            if(searchInput) {
+                 searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    if (query.length === 0) {
+                        dynamicResults.classList.add('hidden');
+                        noResults.classList.add('hidden');
+                        return;
+                    }
+                    const filtered = searchData.filter(item => 
+                        item.title.toLowerCase().includes(query) || 
+                        item.keywords.toLowerCase().includes(query) ||
+                        item.type.toLowerCase().includes(query)
+                    );
+                    renderResults(filtered, query);
+                });
+            }
+        }
+        
+        function toggleSearch() {
+            if(!searchOverlay) initSearchElements();
+            const isActive = searchOverlay.classList.contains('active');
+            if (isActive) {
+                searchOverlay.classList.remove('active');
+                document.body.style.overflow = ''; 
+            } else {
+                searchOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+                setTimeout(() => searchInput.focus(), 100);
+            }
+        }
+
+        function highlightMatch(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span class="text-highlight">$1</span>');
+        }
+
+        function renderResults(results, query) {
+            dynamicResults.innerHTML = '';
+            if (results.length === 0) {
+                dynamicResults.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+            noResults.classList.add('hidden');
+            dynamicResults.classList.remove('hidden');
+
+            results.forEach((result, index) => {
+                const div = document.createElement('a');
+                div.href = result.url;
+                div.className = "flex items-center gap-4 p-4 rounded-xl hover:bg-white/10 transition duration-200 group border border-transparent hover:border-white/5 animate-fade-in-up";
+                div.style.animationDelay = `${index * 50}ms`;
+                
+                let typeColor = "text-gray-500";
+                if(result.type === "Country") typeColor = "text-brand-gold";
+                if(result.type === "Service") typeColor = "text-brand-blue";
+                if(result.type === "Tool") typeColor = "text-brand-purple";
+                if(result.type === "Job") typeColor = "text-vfs-teal";
+
+                const highlightedTitle = highlightMatch(result.title, query);
+                const highlightedKeywords = highlightMatch(result.keywords, query);
+
+                div.innerHTML = `
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-xl shadow-inner">${result.icon}</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-white font-medium group-hover:text-brand-blue transition">${highlightedTitle}</h4>
+                            <span class="text-[10px] uppercase font-bold tracking-wider ${typeColor} bg-white/5 px-2 py-0.5 rounded border border-white/5">${result.type}</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-0.5 truncate">${highlightedKeywords}</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-600 group-hover:text-white transition transform group-hover:translate-x-1"></i>
+                `;
+                dynamicResults.appendChild(div);
+            });
+        }
+
+        // --- CORE UI LOGIC ---
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const nav = document.getElementById('navbar');
+                    if (nav) {
+                         if (window.scrollY > 20) {
+                            nav.classList.add('scrolled');
+                        } else {
+                            nav.classList.remove('scrolled');
+                        }
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('translate-y-full')) {
+                menu.classList.remove('translate-y-full');
+            } else {
+                menu.classList.add('translate-y-full');
+            }
+        }
+
+        // Reveal Animations
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 }; 
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        function checkScroll() {
+            document.querySelectorAll('.reveal-item').forEach(el => {
+                if (!el.classList.contains('active')) {
+                    observer.observe(el);
+                }
+            });
+        }
+        window.addEventListener('scroll', checkScroll);
+
+        // Job Modal Logic
+        function openJobModal(index) {
+            const job = jobsData[index];
+            if(!job) return;
+
+            // Translate Modal Data
+            const tTitle = getTranslation(getTextKey(job.title), job.title);
+            const tDept = getTranslation(getTextKey(job.dept), job.dept);
+            const tExp = getTranslation(getTextKey(job.exp), job.exp);
+
+            document.getElementById('modalTitle').innerText = tTitle;
+            document.getElementById('modalDept').innerText = tDept;
+            document.getElementById('modalEuro').innerText = job.euro; // Numeric/Symbol usually
+            document.getElementById('modalExp').innerText = tExp;
+            document.getElementById('modalIcon').innerHTML = `<i class="${job.icon}"></i>`;
+            
+            const docsList = document.getElementById('modalDocs');
+            docsList.innerHTML = documentsData.map(doc => `
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-finland-blue/30 transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-finland-blue/20 flex items-center justify-center text-finland-blue shrink-0 mt-0.5"><i class="${doc.icon} text-lg"></i></div>
+                    <div>
+                        <p class="text-lg md:text-base font-bold text-white mb-1">${doc.title}</p>
+                        <p class="text-base md:text-xs text-gray-300 md:text-gray-400 leading-relaxed">${doc.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('jobModal').classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('jobModal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            // CMD/CTRL + K for Search
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                toggleSearch();
+            }
+            // Close Search on ESC
+            if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
+                toggleSearch();
+            }
+            // Close Job Modal
+            if (e.key === 'Escape' && document.getElementById('jobModal').classList.contains('hidden') === false) {
+                closeModal();
+            }
+            // Close Language Dropdown
+            if (e.key === 'Escape' && document.getElementById('lang-toggle-btn').classList.contains('active')) {
+                document.getElementById('lang-toggle-btn').classList.remove('active');
+            }
+        });
+
+        // Initialize Page
+        document.addEventListener('DOMContentLoaded', () => {
+            initSmoothScroll();
+            initSearchElements();
+            renderCategoryButtons();
+            // Start by rendering all jobs grouped
+            renderJobs(jobsData);
+            renderTimeline();
+            checkScroll();
+        });
+    </script>
+</body>
+</html>

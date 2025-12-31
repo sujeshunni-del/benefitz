@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalHire - Emerging Schengen Premium Portal</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -40px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-size: 13px;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+        }
+
+        .glass-card-3d {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .glass-card-3d:hover {
+            transform: translateY(-5px) rotateX(1deg) rotateY(0.5deg);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-pill-active {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transform: scale(1.02);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
+        
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        
+        .role-row:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.002) translateX(4px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="root" class="h-screen w-full flex flex-col relative"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        // Consistent Icon Provider
+        const Icon = ({ name, size = 18, className = "" }) => {
+            const IconComponent = window.lucide.icons[name];
+            if (!IconComponent) return null;
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={size}
+                    height={size}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`lucide lucide-${name} ${className}`}
+                    dangerouslySetInnerHTML={{
+                        __html: IconComponent.map(child => {
+                            const [tag, attrs] = child;
+                            return `<${tag} ${Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ')} />`;
+                        }).join('')
+                    }}
+                />
+            );
+        };
+
+        const DATA = [
+            {
+                id: 'sk',
+                name: 'Slovakia',
+                flag: '🇸🇰',
+                theme: { primary: '#0b4ea2', secondary: '#ee1c25', bg: '#f0f4ff' },
+                desc: 'The automotive manufacturing heart of Central Europe with high-volume industrial roles.',
+                stats: { salary: '€900 - €1,500', roles: 15, success: '90%', time: '3 Months' },
+                pricing: { total: "€5,000", breakdown: "Advance €1,000 + Bal €4,000" },
+                roadmap: [
+                    { s: "01", t: "Registration", d: "Document intake and profile assessment.", i: "FileText" },
+                    { s: "02", t: "Offer", d: "Employer match and signed job offer receipt.", i: "EnvelopeOpen" },
+                    { s: "03", t: "Work Permit", d: "Submission to the Slovak Labour Office.", i: "FileSignature" },
+                    { s: "04", t: "Visa Filing", d: "National Visa D application at the Embassy.", i: "Stamp" },
+                    { s: "05", t: "Visa Success", d: "Granting of the entry permit sticker.", i: "CheckCircle" },
+                    { s: "06", t: "Deployment", d: "Flight ticket and arrival arrangement.", i: "Plane" },
+                    { s: "07", t: "Residency", d: "Foreign Police registration and TRP Card.", i: "PlaneArrival" }
+                ],
+                vault: [
+                    { t: 'Úrad práce', d: 'The Labour Office where vacancies are officially reported.' },
+                    { t: 'Prechodný pobyt', d: 'Temporary residence permit for the purpose of work.' },
+                    { t: 'Cudzinecká polícia', d: 'Foreign Police department handling residency setup.' },
+                    { t: 'Automotive Hub', d: 'World leader in per-capita car production (Kia, Jaguar, VW).' }
+                ],
+                docs: [
+                    { k: 'A', t: 'Application', d: 'Work permit and visa D forms.' },
+                    { k: 'B', t: 'Background', d: 'Apostilled Police Clearance Certificate.' },
+                    { k: 'C', t: 'CV Europass', d: 'Standardized Central European resume.' },
+                    { k: 'D', t: 'Degrees', d: 'Authenticated educational certificates.' },
+                    { k: 'S', t: 'Self Intro', d: 'Video introduction for car factory HR.' },
+                    { k: 'P', t: 'Passport', d: 'Original valid copy (15mo+).' }
+                ],
+                jobs: [
+                    { cat: 'Car Factory Division', roles: ['Automotive Assembly Operator', 'Chassis Line Worker', 'Quality Control Specialist', 'Paint Shop Assistant'], baseSal: 1500, minSal: 1250 },
+                    { cat: 'Production Factory', roles: ['Production Line Operator', 'CNC Machine Operator', 'Electronics Assembler'], baseSal: 1500, minSal: 1100 },
+                    { cat: 'Warehouse & Logistics', roles: ['Forklift Operator', 'Warehouse Associate', 'Loader / Unloader'], baseSal: 1300, minSal: 1100 },
+                    { cat: 'Construction & General', roles: ['Construction Specialist', 'Site Support Worker', 'Factory Assistant', 'Packaging Helper', 'Maintenance Helper'], baseSal: 1400, minSal: 900 }
+                ]
+            },
+            {
+                id: 'pl',
+                name: 'Poland',
+                flag: '🇵🇱',
+                theme: { primary: '#dc143c', secondary: '#ffffff', bg: '#fffafa' },
+                desc: 'Leading logistics gateway and heavy manufacturing hub with rapid visa processing.',
+                stats: { salary: '4,000 - 8,000 PLN', roles: 15, success: '93%', time: '2 Months' },
+                pricing: { total: "€4,500", breakdown: "Advance €1,000 + Bal €3,500" },
+                roadmap: [
+                    { s: "01", t: "Inquiry", d: "Profile check and employer vacancy matching.", i: "Search" },
+                    { s: "02", t: "Labour Test", d: "Employer applies for the Labour Market Test.", i: "FileText" },
+                    { s: "03", t: "Permit", d: "Voivodeship Office issues Type A Work Permit.", i: "FileSignature" },
+                    { s: "04", t: "E-Konsulat", d: "Online visa appointment registration.", i: "Globe" },
+                    { s: "05", t: "Embassy", d: "Visa D submission and biometrics.", i: "Stamp" },
+                    { s: "06", t: "Visa Grant", d: "Passport collection with National Visa.", i: "CheckCircle" },
+                    { s: "07", t: "Arrival", d: "ZUS registration and PESEL ID setup.", i: "PlaneArrival" }
+                ],
+                vault: [
+                    { t: 'ZUS', d: 'Social Insurance Institution for health and pension.' },
+                    { t: 'PESEL', d: 'The national identity number required for all services.' },
+                    { t: 'Karta Pobytu', d: 'Residence card issued by the Voivodeship office.' },
+                    { t: 'Type A Permit', d: 'Primary work permit for third-country nationals.' }
+                ],
+                docs: [
+                    { k: 'A', t: 'Type A Permit', d: 'Original work permit document.' },
+                    { k: 'B', t: 'Bank Proof', d: 'Sufficient funds for initial stay.' },
+                    { k: 'I', t: 'Insurance', d: 'Standard ZUS-compliant health coverage.' },
+                    { k: 'P', t: 'Passport', d: 'Complete scan of all visa pages.' },
+                    { k: 'S', t: 'Self Intro', d: 'Video intro for production manager.' },
+                    { k: 'Z', t: 'Zaświadczenie', d: 'Employer certificate of intention.' }
+                ],
+                jobs: [
+                    { cat: 'Manufacturing', roles: ['Production Line Worker', 'Quality Control (QC)', 'Packaging Staff', 'Assembly Operator', 'Machine Operator'], baseSal: 6000, minSal: 4000 },
+                    { cat: 'Logistics', roles: ['Picker / Packer', 'Forklift Operator', 'Warehouse Assistant', 'Inventory Clerk'], baseSal: 6500, minSal: 4000 },
+                    { cat: 'Construction & Agri', roles: ['Welder (Certified)', 'Electrician', 'Mason / Plasterer', 'General Laborer', 'Scaffolder', 'Harvesting Worker'], baseSal: 8000, minSal: 3800 }
+                ]
+            },
+            {
+                id: 'lv',
+                name: 'Latvia',
+                flag: '🇱🇻',
+                theme: { primary: '#9e3039', secondary: '#ffffff', bg: '#f9f5f5' },
+                desc: 'Baltic tech hub and logistics crossroads with high demand for skilled trades.',
+                stats: { salary: '€1,200 - €2,800', roles: 11, success: '88%', time: '2 Months' },
+                pricing: { total: "€4,000", breakdown: "Full Support Package" },
+                roadmap: [
+                    { s: "01", t: "Verification", d: "Document intake and OCMA registration.", i: "FileText" },
+                    { s: "02", t: "Invitation", d: "Employer generates the OCMA Invite Number.", i: "UserCheck" },
+                    { s: "03", t: "Medical", d: "Mandatory TB X-ray clearance report.", i: "Stethoscope" },
+                    { s: "04", t: "Embassy", d: "Visa D application and biometrics.", i: "Stamp" },
+                    { s: "05", t: "Decision", d: "Granting of the biometric permit card.", i: "CheckCircle" },
+                    { s: "06", t: "Travel", d: "Final flight and arrival logistics.", i: "Plane" },
+                    { s: "07", t: "Residency", d: "Smart-ID setup and local registration.", i: "PlaneArrival" }
+                ],
+                vault: [
+                    { t: 'OCMA', d: 'Office of Citizenship and Migration Affairs (PMLP).' },
+                    { t: 'Smart-ID', d: 'App-based digital identity for banking/govt.' },
+                    { t: 'Code 95', d: 'Professional driver certification for truckers.' },
+                    { t: 'TUA', d: 'Temporary Residence Permit card.' }
+                ],
+                docs: [
+                    { k: 'I', t: 'Invitation #', d: 'Official OCMA invitation number.' },
+                    { k: 'X', t: 'X-Ray Report', d: 'Tuberculosis clearance report.' },
+                    { k: 'P', t: 'Passport', d: 'Validity of 1.5 years required.' },
+                    { k: 'S', t: 'Self Intro', d: 'Video intro for Baltic employers.' },
+                    { k: 'C', t: 'Certs', d: 'Verified professional trade certs.' }
+                ],
+                jobs: [
+                    { cat: 'Construction & Manu', roles: ['Welder / Fitter', 'Electrician (Certified)', 'Bricklayer / Mason', 'CNC Operator', 'Aircraft Mechanic'], baseSal: 2800, minSal: 1537 },
+                    { cat: 'Logistics & Tech', roles: ['Truck Driver (Code 95)', 'Warehouse Packer', 'Software Developer', 'IT Systems Analyst'], baseSal: 3000, minSal: 1537 },
+                    { cat: 'Medical & Service', roles: ['Specialist Doctor', 'Chef / Cook'], baseSal: 5000, minSal: 1537 }
+                ]
+            },
+            {
+                id: 'cz',
+                name: 'Czech Republic',
+                flag: '🇨🇿',
+                theme: { primary: '#11457e', secondary: '#d7141a', bg: '#f2f7fc' },
+                desc: 'Leading Technical, Automotive, and Engineering core of Central Europe.',
+                stats: { salary: '€1,000 - €2,500', roles: 9, success: '85%', time: '2-3 Months' },
+                pricing: { total: "€4,800", breakdown: "Advance €1,000 + Bal €3,800" },
+                roadmap: [
+                    { s: "01", t: "Vacancy Report", d: "Job listed with Labor Office for 30 days.", i: "FileText" },
+                    { s: "02", t: "Contract", d: "Receive Vacancy Number and contract.", i: "EnvelopeOpen" },
+                    { s: "03", t: "Application", d: "Submit Employee Card request at Embassy.", i: "FileSignature" },
+                    { s: "04", t: "OAMP Review", d: "Interior Ministry processes application.", i: "Search" },
+                    { s: "05", t: "Approval", d: "Visa D issued for entry to collect card.", i: "CheckCircle" },
+                    { s: "06", t: "Entry", d: "Travel to Czech Republic.", i: "Plane" },
+                    { s: "07", t: "Biometrics", d: "Register at OAMP for plastic card.", i: "ShieldCheck" }
+                ],
+                vault: [
+                    { t: 'OAMP', d: 'Department for Asylum and Migration Policy.' },
+                    { t: 'Rodné číslo', d: 'Unique birth number assigned to residents.' },
+                    { t: 'Nostrification', d: 'Recognition of foreign education diploma.' },
+                    { t: 'Employee Card', d: 'Dual permit for work and residence.' }
+                ],
+                docs: [
+                    { k: 'C', t: 'Contract', d: 'Signed employment contract.' },
+                    { k: 'A', t: 'Accommodation', d: 'Proof of housing availability.' },
+                    { k: 'N', t: 'Nostrification', d: 'Diploma recognition proof.' },
+                    { k: 'P', t: 'Passport', d: 'Valid travel document.' },
+                    { k: 'S', t: 'Self Intro', d: 'Introduction video.' }
+                ],
+                jobs: [
+                    { cat: 'Automotive & Tech', roles: ['Auto Electrician', 'Automotive Technician', 'CNC Operator', 'Welder (Certified)', 'Software Developer'], baseSal: 2500, minSal: 1400 },
+                    { cat: 'Logistics & Unskilled', roles: ['Heavy Goods Driver (C+E)', 'Warehouse Staff', 'Production Line Worker', 'Construction Helper'], baseSal: 1800, minSal: 900 }
+                ]
+            },
+            {
+                id: 'hr',
+                name: 'Croatia',
+                flag: '🇭🇷',
+                theme: { primary: '#ff0000', secondary: '#ffffff', bg: '#fff0f0' },
+                desc: 'Rapidly growing Service, Tourism, and Construction economy.',
+                stats: { salary: '€800 - €1,500', roles: 8, success: '89%', time: '4-6 Weeks' },
+                pricing: { total: "€4,200", breakdown: "Advance €1,000 + Bal €3,200" },
+                roadmap: [
+                    { s: "01", t: "Labor Test", d: "Employer requests labor market test.", i: "Search" },
+                    { s: "02", t: "Work Permit", d: "Application to Ministry of Interior (MUP).", i: "FileSignature" },
+                    { s: "03", t: "Approval", d: "Positive opinion and permit issuance.", i: "CheckCircle" },
+                    { s: "04", t: "Visa D", d: "Apply for entry visa if required.", i: "Stamp" },
+                    { s: "05", t: "Travel", d: "Flight to Croatia.", i: "Plane" },
+                    { s: "06", t: "Registration", d: "Register address at local police.", i: "MapPin" },
+                    { s: "07", t: "ID Card", d: "Biometric residence permit issuance.", i: "ShieldCheck" }
+                ],
+                vault: [
+                    { t: 'OIB', d: 'Personal Identification Number for tax/contracts.' },
+                    { t: 'MUP', d: 'Ministry of Interior handling permits.' },
+                    { t: 'HZZ', d: 'Croatian Employment Service.' },
+                    { t: 'Boravišna', d: 'Residence card for foreigners.' }
+                ],
+                docs: [
+                    { k: 'C', t: 'Contract', d: 'Employment agreement.' },
+                    { k: 'P', t: 'Passport', d: 'Valid travel document.' },
+                    { k: 'B', t: 'Background', d: 'Clean criminal record.' },
+                    { k: 'S', t: 'Self Intro', d: 'Video for tourism partners.' },
+                    { k: 'O', t: 'OIB', d: 'Tax ID application form.' }
+                ],
+                jobs: [
+                    { cat: 'Service & Tourism', roles: ['Construction Worker', 'Hotel Staff', 'Truck Driver', 'Welder', 'Warehouse Packer', 'Farm Worker', 'Butcher', 'Chef'], baseSal: 1200, minSal: 600 }
+                ]
+            }
+        ];
+
+        const App = () => {
+            const [sel, setSel] = useState('sk');
+            const [tab, setTab] = useState('jobs');
+            const [query, setQuery] = useState('');
+            const country = useMemo(() => DATA.find(c => c.id === sel) || DATA[0], [sel]);
+
+            const flatJobs = useMemo(() => {
+                let all = [];
+                country.jobs.forEach(group => {
+                    const count = group.roles.length * 2; // Simulated density
+                    for(let i = 0; i < count; i++) {
+                        const role = group.roles[i % group.roles.length];
+                        const salary = i % 2 === 0 ? (country.id === 'pl' ? `${group.baseSal} PLN` : `€${group.baseSal}`) : (country.id === 'pl' ? `${group.minSal} PLN` : `€${group.minSal}`);
+                        all.push({
+                            title: role, cat: group.cat,
+                            ref: `BC-E-${country.id.toUpperCase()}-${1000 + all.length}`,
+                            exp: i % 3 === 0 ? '3 Years' : 'Entry/0 Exp',
+                            salary: salary, demand: 85 + (i % 12)
+                        });
+                    }
+                });
+                return all.filter(j => j.title.toLowerCase().includes(query.toLowerCase()) || j.cat.toLowerCase().includes(query.toLowerCase()));
+            }, [country, query]);
+
+            return (
+                <div className="h-screen w-full flex flex-col relative transition-all duration-700" style={{ backgroundColor: country.theme.bg }}>
+                    {/* Animated Glow Blobs */}
+                    <div className="absolute top-[-10%] right-[-5%] w-[45vw] h-[45vw] rounded-full blur-[100px] opacity-10 animate-blob pointer-events-none" style={{ backgroundColor: country.theme.primary }}></div>
+
+                    {/* TOP NAVIGATION */}
+                    <header className="flex-none p-3 flex items-center justify-between bg-white/70 backdrop-blur-2xl border-b z-50 shadow-sm border-white/50">
+                        <div className="flex items-center gap-3 pl-4 border-r pr-8 border-slate-200/50">
+                            <Icon name="Factory" className="text-amber-600" size={24} />
+                            <span className="text-xl font-black tracking-tighter text-slate-800 uppercase leading-none">
+                                GLOBAL<span className="text-amber-600 font-light">HIRE</span>
+                            </span>
+                        </div>
+                        <div className="flex bg-slate-100/50 p-1 rounded-xl gap-2 border border-slate-200 shadow-inner">
+                            {DATA.map(c => (
+                                <button
+                                    key={c.id}
+                                    onClick={() => { setSel(c.id); setQuery(''); setTab('jobs'); }}
+                                    className={`px-8 py-2 rounded-lg font-black text-xs transition-all flex items-center gap-3 border ${sel === c.id ? 'bg-white shadow-lg nav-pill-active' : 'text-slate-400 border-transparent hover:text-slate-600'}`}
+                                    style={sel === c.id ? { color: country.theme.primary, borderColor: `${country.theme.primary}30` } : {}}
+                                >
+                                    <span className="text-2xl leading-none">{c.flag}</span>{c.name.toUpperCase()}
+                                </button>
+                            ))}
+                        </div>
+                        <button onClick={() => window.open('https://bettercall.online/appointment')} className="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-[10px] font-black hover:bg-cyan-700 transition-all flex items-center gap-2 ml-auto mr-4 uppercase tracking-widest shadow-xl group">
+                            ASSESSMENT <Icon name="ArrowRight" size={12} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                    </header>
+
+                    {/* HERO HEAD */}
+                    <section className="flex-none px-12 py-4 flex items-center justify-between relative overflow-hidden">
+                        <div className="flex items-center gap-8 group">
+                            <div className="text-[90px] drop-shadow-2xl leading-none select-none transform transition-transform group-hover:scale-105 group-hover:rotate-2">{country.flag}</div>
+                            <div className="space-y-0.5">
+                                <div className="flex items-center gap-3">
+                                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter leading-none uppercase">{country.name}</h1>
+                                    <span className="px-3 py-1 rounded-full bg-white text-amber-700 text-[10px] font-black uppercase tracking-widest border border-amber-100 shadow-sm">Emerging Schengen Tier</span>
+                                </div>
+                                <p className="text-slate-500 text-lg font-medium max-w-2xl leading-tight opacity-80">{country.desc}</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-10">
+                            <div className="text-right">
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Avg Salary</p>
+                                <p className="text-3xl font-black" style={{ color: country.theme.primary }}>{country.stats.salary}</p>
+                            </div>
+                            <div className="h-10 w-px bg-slate-200 self-center"></div>
+                            <div className="text-right pr-4">
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Visa Speed</p>
+                                <p className="text-3xl font-black text-emerald-600 leading-none">{country.stats.time}</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* TABS BAR */}
+                    <nav className="flex-none px-10 flex gap-4 bg-white/40 backdrop-blur-md border-b border-white">
+                        {[
+                            { id: 'jobs', label: 'Job vacancies', icon: 'Briefcase', color: '#0ea5e9' },
+                            { id: 'docs', label: 'a-z document', icon: 'FileText', color: '#10b981' },
+                            { id: 'vault', label: 'Knowledge Vault', icon: 'Library', color: '#f59e0b' },
+                            { id: 'roadmap', label: 'Roadmap & Pricing', icon: 'Clock', color: '#6366f1' }
+                        ].map(t => (
+                            <button 
+                                key={t.id} 
+                                onClick={() => setTab(t.id)} 
+                                className={`flex items-center gap-3 px-8 py-5 text-[10px] font-black uppercase tracking-widest transition-all border-b-[4px] relative group ${tab === t.id ? '' : 'border-transparent text-slate-400 hover:text-slate-600'}`}
+                                style={tab === t.id ? { color: t.color, borderColor: t.color, backgroundColor: `${t.color}10` } : {}}
+                            >
+                                <Icon name={t.icon} size={20} className={tab === t.id ? 'animate-bounce' : ''} />
+                                {t.label}
+                            </button>
+                        ))}
+                    </nav>
+
+                    {/* MAIN CONTENT */}
+                    <main className="flex-1 overflow-y-auto p-8 scroll-smooth bg-slate-50/50">
+                        <div className="max-w-[1800px] mx-auto">
+                            
+                            {/* JOB VACANCIES */}
+                            {tab === 'jobs' && (
+                                <div className="space-y-4">
+                                    <div className="flex premium-glass p-3 rounded-[1.5rem] items-center gap-5 shadow-sm max-w-xl mb-10 border-white/50">
+                                        <div className="p-2.5 bg-white rounded-xl text-slate-300 shadow-inner"><Icon name="Search" size={20} /></div>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Search by position or department..." 
+                                            className="bg-transparent w-full outline-none font-bold text-lg text-slate-700 placeholder-slate-300"
+                                            value={query}
+                                            onChange={e => setQuery(e.target.value)}
+                                        />
+                                        <div className="px-5 py-1.5 bg-slate-900 text-white text-[10px] font-black rounded-lg uppercase tracking-tighter whitespace-nowrap shadow-lg">{flatJobs.length} Positions</div>
+                                    </div>
+
+                                    <div className="bg-slate-900 text-white px-10 py-3.5 text-[9px] font-black uppercase tracking-[0.3em] rounded-2xl mb-4 shadow-xl border border-white/10 grid grid-cols-12 items-center">
+                                        <div className="col-span-5 flex items-center gap-2"><Icon name="ShieldCheck" size={12} className="text-cyan-400" /> Position Verification & Reference</div>
+                                        <div className="col-span-3 text-center">Department Domain</div>
+                                        <div className="col-span-1 text-center">Seniority</div>
+                                        <div className="col-span-2 text-center">Monthly Net</div>
+                                        <div className="col-span-1 text-right pr-6">Action</div>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        {flatJobs.map((j, i) => (
+                                            <div key={i} className="grid grid-cols-12 px-10 py-8 premium-glass border border-white rounded-[2.5rem] items-center transition-all group border-l-[12px] border-l-transparent role-row mb-1 hover:shadow-2xl shadow-sm" style={{ borderLeftColor: i % 2 === 0 ? country.theme.primary : 'transparent' }}>
+                                                <div className="col-span-5 flex items-center gap-8 relative z-10">
+                                                    <div className="w-16 h-16 rounded-[1.5rem] bg-slate-100 text-slate-400 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all shadow-inner border border-slate-100"><Icon name="Briefcase" size={28} /></div>
+                                                    <div>
+                                                        <p className="font-black text-slate-800 text-2xl leading-none mb-1 tracking-tighter uppercase transition-colors" style={{ color: i % 2 === 0 ? country.theme.primary : '#1e293b' }}>{j.title}</p>
+                                                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{j.ref}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="col-span-3 text-[13px] font-black text-slate-500 uppercase tracking-widest text-center">{j.cat}</div>
+                                                <div className="col-span-1 text-center"><span className="px-5 py-2 bg-slate-100 rounded-full text-[11px] font-black text-slate-500 uppercase tracking-tighter">{j.exp}</span></div>
+                                                <div className="col-span-2 text-center font-mono font-black text-emerald-600 text-4xl tracking-tighter relative z-10">{j.salary}</div>
+                                                <div className="col-span-1 text-right relative z-10">
+                                                    <button onClick={() => window.open('https://bettercall.online/appointment')} className="p-4 rounded-3xl bg-slate-100 text-slate-300 hover:bg-slate-900 hover:text-white transition-all border border-slate-100 shadow-sm"><Icon name="ExternalLink" size={24} /></button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* a-z document */}
+                            {tab === 'docs' && (
+                                <div className="space-y-12 py-2">
+                                    <div className="premium-glass p-10 rounded-[4rem] border-white/80 shadow-sm flex justify-between items-center relative overflow-hidden bg-white/30">
+                                        <div className="absolute top-0 right-0 p-8 opacity-5"><Icon name="Shield" size={180} /></div>
+                                        <div>
+                                            <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase mb-2 leading-none">Administrative Compliance</h3>
+                                            <p className="text-slate-400 font-black text-lg uppercase tracking-widest leading-none">A to Z document requirements for Emerging Schengen onboarding.</p>
+                                        </div>
+                                        <div className="flex gap-8 items-center px-12 border-l border-slate-200">
+                                            <div className="text-right">
+                                                <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Audit</p>
+                                                <p className="text-emerald-600 font-black text-2xl uppercase leading-none tracking-tighter">Approved</p>
+                                            </div>
+                                            <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-[2.2rem] flex items-center justify-center shadow-inner border-2 border-emerald-100"><Icon name="ShieldCheck" size={40} /></div>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+                                        {country.docs.map((d, i) => (
+                                            <div key={i} className="p-10 glass-card-3d rounded-[3.5rem] flex flex-col items-center text-center group relative overflow-hidden shadow-sm">
+                                                <div className="absolute top-0 right-0 p-4 opacity-5 text-[110px] font-black leading-none uppercase select-none pointer-events-none">{d.k}</div>
+                                                <div className="w-20 h-20 text-white rounded-[1.8rem] flex items-center justify-center font-black text-5xl mb-10 shadow-2xl relative z-10 transition-transform group-hover:scale-110 group-hover:rotate-6" style={{ backgroundColor: country.theme.primary }}>{d.k}</div>
+                                                <p className="font-black text-2xl text-slate-900 mb-3 tracking-tighter uppercase relative z-10 leading-none">{d.t}</p>
+                                                <p className="text-[14px] text-slate-400 font-bold leading-relaxed relative z-10">{d.d}</p>
+                                            </div>
+                                        ))}
+                                        {[
+                                            {k:'I', t:'Insurance', d:'Schengen travel coverage (Min €30,000 for 90 days).'},
+                                            {k:'M', t:'Medical', d:'Standard health clearance report.'},
+                                            {k:'F', t:'Finance', d:'Bank proof of subsistence funds for arrival.'},
+                                            {k:'P', t:'Police', d:'Apostilled clean criminal record certificate.'}
+                                        ].map((d, i) => (
+                                            <div key={i+100} className="p-10 bg-slate-900 text-white rounded-[3.5rem] shadow-2xl flex flex-col items-center text-center transition-all hover:scale-[1.03] group relative overflow-hidden">
+                                                <div className="absolute top-0 right-0 p-4 opacity-10 text-[100px] font-black leading-none pointer-events-none uppercase">{d.k}</div>
+                                                <div className="w-16 h-16 bg-white/10 text-cyan-400 rounded-[1.5rem] flex items-center justify-center font-black text-4xl mb-8 shadow-inner border border-white/10 uppercase relative z-10">{d.k}</div>
+                                                <p className="font-black text-xl text-white mb-2 tracking-tighter uppercase relative z-10 leading-none">{d.t}</p>
+                                                <p className="text-[12px] text-white/40 font-black uppercase tracking-widest relative z-10 mt-2 leading-tight">{d.d}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Knowledge Vault */}
+                            {tab === 'vault' && (
+                                <div className="grid grid-cols-3 gap-12 py-4 max-w-[1700px] mx-auto tab-content-active">
+                                    <div className="col-span-2 space-y-8">
+                                        <h3 className="text-4xl font-black text-slate-800 mb-10 flex items-center gap-6 uppercase tracking-tighter leading-none"><Icon name="Library" size={40} className="text-cyan-600" /> Strategic Knowledge Intelligence</h3>
+                                        {country.vault.map((t, i) => (
+                                            <div key={i} className="p-12 bg-white rounded-[3rem] border border-white shadow-xl flex gap-12 items-start border-l-[15px] hover:translate-x-3 transition-all duration-300 glass-card-3d" style={{ borderLeftColor: country.theme.primary }}>
+                                                <div className="w-20 h-20 bg-cyan-50 text-cyan-600 rounded-[1.8rem] flex items-center justify-center shrink-0 font-black text-4xl shadow-inner border-2 border-cyan-100" style={{ color: country.theme.primary }}>{i+1}</div>
+                                                <div>
+                                                    <p className="font-black text-4xl text-slate-900 mb-3 tracking-tighter leading-none uppercase">{t.t}</p>
+                                                    <p className="text-slate-500 text-2xl font-medium leading-relaxed">{t.d}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="space-y-8 h-fit sticky top-10">
+                                        <div className="p-12 bg-slate-900 text-white rounded-[4rem] shadow-2xl relative overflow-hidden">
+                                            <Icon name="ShieldCheck" size={200} className="absolute -bottom-20 -right-20 opacity-5" />
+                                            <h4 className="text-3xl font-black mb-12 relative z-10 flex items-center gap-6 pb-8 border-b border-white/10 uppercase tracking-tighter leading-none"><Icon name="CreditCard" size={32} /> Strategic Policy</h4>
+                                            <div className="space-y-12 relative z-10">
+                                                <div className="p-8 bg-white/5 rounded-3xl border border-white/10">
+                                                    <p className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.4em] mb-4 leading-none">Taxation Framework</p>
+                                                    <p className="text-xl font-bold leading-relaxed opacity-90">Progressive systems with high social safety net and welfare benefits.</p>
+                                                </div>
+                                                <div className="p-8 bg-white/5 rounded-3xl border border-white/10">
+                                                    <p className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.4em] mb-4 leading-none">Healthcare Status</p>
+                                                    <p className="text-xl font-bold leading-relaxed opacity-90">Universal public coverage accessible for nominal fees upon residency setup.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Roadmap & Pricing */}
+                            {tab === 'roadmap' && (
+                                <div className="grid grid-cols-12 gap-10 py-2 max-w-[1750px] mx-auto tab-content-active">
+                                    <div className="col-span-8 space-y-10">
+                                        <h3 className="text-4xl font-black text-slate-800 mb-12 flex items-center gap-8 uppercase tracking-tighter leading-none"><Icon name="Clock" size={40} className="text-cyan-600" /> Career Transformation Roadmap</h3>
+                                        <div className="space-y-8 relative pr-12">
+                                            <div className="absolute left-[47px] top-12 bottom-12 w-1 bg-slate-200/50"></div>
+                                            {country.roadmap.map((step, i) => (
+                                                <div key={i} className="flex gap-12 items-start relative z-10 group">
+                                                    <div className="w-24 h-24 bg-white border-8 border-slate-100 rounded-[2.5rem] flex items-center justify-center shrink-0 shadow-2xl group-hover:border-cyan-500 transition-all duration-500"><Icon name={step.i} size={32} className="text-cyan-600" /></div>
+                                                    <div className="p-10 bg-white border-2 border-white rounded-[3.5rem] shadow-xl flex-1 group-hover:translate-x-3 transition-all duration-500 glass-card-3d">
+                                                        <div className="flex items-center gap-4 mb-2">
+                                                            <span className="px-4 py-1.5 bg-cyan-50 text-cyan-600 text-[10px] font-black rounded-xl uppercase tracking-widest border border-cyan-100 shadow-sm">Phase {step.s}</span>
+                                                            <h4 className="text-3xl font-black text-slate-800 tracking-tighter leading-none uppercase">{step.t}</h4>
+                                                        </div>
+                                                        <p className="text-slate-500 text-xl font-medium leading-relaxed">{step.d}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="col-span-4 h-fit sticky top-10">
+                                        <div className="bg-slate-900 p-12 rounded-[5rem] text-white shadow-2xl relative overflow-hidden">
+                                            <Icon name="Wallet" size={180} className="absolute -bottom-10 -right-10 opacity-5" />
+                                            <h3 className="text-3xl font-black mb-2 relative z-10 tracking-tight leading-none uppercase">Investment</h3>
+                                            <p className="text-cyan-400 text-sm font-black uppercase tracking-[0.3em] mb-12 relative z-10 leading-none uppercase tracking-widest">Fixed Process Model</p>
+                                            
+                                            <div className="text-center py-16 bg-white/5 rounded-[4rem] border-2 border-white/10 mb-12 relative z-10 shadow-inner group overflow-hidden">
+                                                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                                <p className="text-xs font-black uppercase tracking-[0.4em] text-slate-400 mb-6 leading-none relative z-10 text-[10px]">Total Premium Package</p>
+                                                <div className="text-7xl font-black tracking-tighter text-white leading-none relative z-10 mb-2">{country.pricing.total}</div>
+                                                <p className="text-lg font-black text-cyan-400 mt-10 uppercase tracking-[0.3em] leading-none relative z-10 text-[11px]">{country.pricing.breakdown}</p>
+                                            </div>
+
+                                            <div className="p-10 bg-emerald-500/10 rounded-[3rem] border-2 border-emerald-500/20 flex gap-8 items-center relative z-10 shadow-2xl">
+                                                <div className="w-16 h-16 bg-emerald-500 rounded-[1.5rem] flex items-center justify-center shrink-0 shadow-2xl shadow-emerald-500/40"><Icon name="CheckCircle" className="text-white" size={32} /></div>
+                                                <p className="text-base font-black leading-tight uppercase text-white/90 tracking-tight text-xs">Includes Work Permit, legal processing, and Flight assistance.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

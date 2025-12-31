@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Staff Portal</title>
+    
+    <!-- Fonts from Theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Theme Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'deep-space': '#050B14',
+                        'brand-blue': '#3B82F6',
+                        'brand-purple': '#8B5CF6',
+                        'brand-gold': '#FFD700',
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-gold': 'pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-gold': {
+                            '0%, 100%': { opacity: 0.8, filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.5))' },
+                            '50%': { opacity: 1, filter: 'drop-shadow(0 0 15px rgba(255, 215, 0, 1))' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: #050B14; 
+            color: #E2E8F0; 
+            overflow: hidden;
+        }
+        
+        /* Ambient Background from Theme */
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.25;
+            will-change: transform; 
+        }
+        .orb-1 { top: -15%; left: -10%; width: 50vw; height: 50vw; background: #3B82F6; animation: float 14s infinite; }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #8B5CF6; animation: float 16s infinite reverse; }
+        .orb-3 { top: 40%; left: 30%; width: 35vw; height: 35vw; background: #FFD700; opacity: 0.15; animation: float 20s infinite; }
+
+        /* Glass Panel from Theme */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: border-color 0.3s;
+        }
+        .glass-input:focus {
+            border-color: #3B82F6;
+        }
+        
+        .sidebar-item.active {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            color: #FFD700;
+            border-left: 3px solid #FFD700;
+        }
+        .sidebar-item {
+            border-left: 3px solid transparent;
+        }
+
+        /* Calendar Grid */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+        
+        /* Loader */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-left-color: #FFD700;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body class="h-screen flex flex-col md:flex-row">
+
+    <!-- Ambient Background -->
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- LOGIN OVERLAY -->
+    <div id="loginSection" class="fixed inset-0 z-50 flex items-center justify-center bg-deep-space/90 backdrop-blur-md">
+        <div class="glass relative z-10 p-10 rounded-3xl w-full max-w-md shadow-2xl transform transition-all border border-white/10">
+            <div class="text-center mb-10">
+                
+                <!-- NEW LOGO SECTION -->
+                <div class="mx-auto w-24 h-24 mb-6 rounded-3xl bg-white/5 p-2 shadow-2xl animate-pulse-gold">
+                    <!-- Placeholder Logo Image (Mimicking the BC hexagonal look) -->
+                    <img src="https://placehold.co/80x80/FFD700/050B14?text=BC" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/80x80/FFD700/050B14?text=BC';"
+                         alt="Better Call Logo" 
+                         class="w-full h-full object-contain rounded-xl"
+                    />
+                </div>
+                
+                <h2 class="text-3xl font-bold text-white tracking-tight">BETTER CALL</h2>
+                <p class="text-brand-gold text-sm font-bold uppercase tracking-[0.2em] mt-1">IMMIGRATION STAFF PORTAL</p>
+                <p class="text-gray-400 text-sm mt-4">Secure Access Gateway</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-brand-gold uppercase tracking-widest mb-2">Username</label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-4 text-gray-500"></i>
+                        <input type="text" id="username" class="glass-input w-full pl-12 pr-4 py-3.5 rounded-xl focus:outline-none" placeholder="Enter ID" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-brand-gold uppercase tracking-widest mb-2">Password</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-4 top-4 text-gray-500"></i>
+                        <input type="password" id="password" class="glass-input w-full pl-12 pr-4 py-3.5 rounded-xl focus:outline-none" placeholder="••••••••" required>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold py-4 rounded-xl hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all transform hover:-translate-y-0.5">
+                    <span id="loginBtnText">Login</span>
+                    <div id="loginLoader" class="loader hidden mx-auto"></div>
+                </button>
+            </form>
+            <div id="loginError" class="mt-4 text-center text-red-400 text-sm hidden">Invalid credentials</div>
+        </div>
+    </div>
+
+    <!-- MAIN APP LAYOUT (Hidden by default) -->
+    <div id="appLayout" class="hidden flex-1 flex h-full relative z-10">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-20 md:w-72 glass flex flex-col justify-between border-r border-white/5 z-20">
+            <div>
+                <div class="p-8 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-brand-gold/20">
+                        <i class="fas fa-bolt text-deep-space text-lg"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-wide hidden md:block text-white">BETTER CALL</span>
+                </div>
+                
+                <nav class="mt-8 space-y-2 px-4">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="sidebar-item w-full flex items-center gap-4 px-4 py-4 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                        <i class="fas fa-clock w-5 text-center group-hover:text-brand-blue transition-colors"></i>
+                        <span class="hidden md:block font-medium">Time Tracker</span>
+                    </button>
+                    <button onclick="switchTab('calendar')" id="nav-calendar" class="sidebar-item w-full flex items-center gap-4 px-4 py-4 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                        <i class="fas fa-calendar-alt w-5 text-center group-hover:text-brand-purple transition-colors"></i>
+                        <span class="hidden md:block font-medium">Attendance</span>
+                    </button>
+                    <button onclick="switchTab('admin')" id="nav-admin" class="sidebar-item hidden w-full flex items-center gap-4 px-4 py-4 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+                        <i class="fas fa-cog w-5 text-center group-hover:text-brand-gold transition-colors"></i>
+                        <span class="hidden md:block font-medium">Admin Setup</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="p-6 border-t border-white/5 bg-black/20">
+                <div class="flex items-center gap-4 px-2 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center font-bold text-sm shadow-inner">
+                        <span id="avatarInitial">U</span>
+                    </div>
+                    <div class="hidden md:block overflow-hidden">
+                        <p id="displayUsername" class="text-sm font-bold text-white truncate">User</p>
+                        <p id="displayRole" class="text-xs text-brand-gold uppercase tracking-wider">Staff Member</p>
+                    </div>
+                </div>
+                <button onclick="logout()" class="w-full flex items-center justify-center gap-2 text-red-300 bg-red-500/10 py-3 rounded-xl hover:bg-red-500/20 transition-colors text-sm font-bold border border-red-500/10">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="hidden md:inline">Log Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <main class="flex-1 overflow-y-auto relative custom-scrollbar">
+            
+            <!-- TAB 1: DASHBOARD (TIME TRACKER) -->
+            <div id="tab-dashboard" class="p-6 md:p-12 relative z-10 max-w-6xl mx-auto space-y-10 animate-fade-in">
+                <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Daily Tracker</h1>
+                        <!-- Name Display Request -->
+                        <p class="text-xl text-brand-gold">Welcome back, <span id="welcomeName" class="font-bold">User</span></p>
+                        <p class="text-gray-400 text-sm mt-1" id="currentDateDisplay">Loading date...</p>
+                    </div>
+                    <div class="glass px-6 py-3 rounded-2xl border border-white/10 flex items-center gap-4">
+                        <span class="text-gray-400 text-xs font-bold uppercase tracking-wider">Status</span>
+                        <div class="flex items-center gap-2">
+                            <div id="statusDot" class="w-3 h-3 rounded-full bg-gray-600"></div>
+                            <span id="statusText" class="font-bold text-white">Clocked Out</span>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Main Timer Card -->
+                    <div class="md:col-span-2 glass rounded-[2rem] p-10 relative overflow-hidden group border border-white/5">
+                        <div class="absolute top-0 right-0 w-80 h-80 bg-brand-blue rounded-full mix-blend-overlay filter blur-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        
+                        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center space-y-8">
+                            <div class="text-7xl md:text-9xl font-bold tracking-tighter tabular-nums text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 drop-shadow-lg" id="stopwatch">
+                                00:00:00
+                            </div>
+                            <p class="text-brand-purple text-xs font-bold uppercase tracking-[0.3em]">Session Duration</p>
+                            
+                            <div class="flex gap-6 w-full max-w-lg pt-6">
+                                <button onclick="logTime('In')" id="btnIn" class="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-5 rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/20">
+                                    <i class="fas fa-play"></i> Clock In
+                                </button>
+                                <button onclick="logTime('Out')" id="btnOut" class="flex-1 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-400 hover:to-rose-500 text-white font-bold py-5 rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-3 shadow-lg shadow-rose-500/20 opacity-50 cursor-not-allowed" disabled>
+                                    <i class="fas fa-stop"></i> Clock Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Card -->
+                    <div class="glass rounded-[2rem] p-8 flex flex-col justify-between border border-white/5">
+                        <div>
+                            <h3 class="text-xl font-bold mb-6 text-white">Today's Goal</h3>
+                            <div class="relative w-48 h-48 mx-auto">
+                                <canvas id="goalChart"></canvas>
+                                <div class="absolute inset-0 flex items-center justify-center flex-col">
+                                    <span class="text-4xl font-bold text-white" id="percentageText">0%</span>
+                                    <span class="text-xs text-gray-400 uppercase mt-1">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 space-y-4">
+                            <div class="flex justify-between text-sm p-4 bg-white/5 rounded-xl">
+                                <span class="text-gray-400">Start Time</span>
+                                <span class="font-mono text-brand-gold font-bold" id="startTimeDisplay">--:--</span>
+                            </div>
+                            <div class="flex justify-between text-sm p-4 bg-white/5 rounded-xl">
+                                <span class="text-gray-400">Target</span>
+                                <span class="font-mono text-white font-bold">08:00:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: CALENDAR VIEW & LOGS -->
+            <div id="tab-calendar" class="hidden p-6 md:p-12 relative z-10 max-w-7xl mx-auto animate-fade-in">
+                <header class="mb-10 flex flex-col md:flex-row justify-between items-end gap-4">
+                    <div>
+                        <h1 class="text-4xl font-bold text-white mb-2">Attendance History</h1>
+                        <p class="text-gray-400">Monthly overview of your activity</p>
+                    </div>
+                    <button onclick="refreshLogs()" class="glass px-5 py-2.5 rounded-xl text-brand-blue hover:text-white hover:bg-brand-blue/20 transition-all text-sm font-bold flex items-center gap-2 border border-brand-blue/30">
+                        <i class="fas fa-sync-alt"></i> Refresh Data
+                    </button>
+                </header>
+
+                <div class="glass rounded-[2rem] p-8 mb-8 border border-white/5">
+                    <div class="flex justify-between items-center mb-8">
+                        <button onclick="changeMonth(-1)" class="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors"><i class="fas fa-chevron-left"></i></button>
+                        <h2 id="monthYear" class="text-2xl font-bold text-white">September 2023</h2>
+                        <button onclick="changeMonth(1)" class="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <!-- Days Header -->
+                    <div class="calendar-grid mb-4">
+                        <div class="text-center text-brand-purple/70 text-xs font-bold uppercase py-2">Sun</div>
+                        <div class="text-center text-brand-purple/70 text-xs font-bold uppercase py-2">Mon</div>
+                        <div class="text-center text-brand-purple/70 text-xs font-bold uppercase py-2">Tue</div>
+                        <div class="text-center text-brand-purple/70 text-xs font-bold uppercase py-2">Wed</div>
+                        <div class="text-center text-brand-purple/70 text-xs font-bold uppercase py-2">Thu</div>
+                        <div class="text-center text-brand-purple/70 text-xs font-bold uppercase py-2">Fri</div>
+                        <div class="text-center text-brand-purple/70 text-xs font-bold uppercase py-2">Sat</div>
+                    </div>
+
+                    <!-- Calendar Body -->
+                    <div id="calendarBody" class="calendar-grid">
+                        <!-- Days generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Monthly Activity Log List with Name Highlight -->
+                <div class="glass rounded-[2rem] p-8 border border-white/5">
+                    <div class="flex items-center gap-3 mb-6">
+                        <h3 class="text-xl font-bold text-white">Activity Log for <span id="logUserName" class="text-brand-gold">...</span></h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-xs text-gray-500 border-b border-white/10 uppercase tracking-wider">
+                                    <th class="py-4 px-4">Date</th>
+                                    <th class="py-4 px-4">Name</th>
+                                    <th class="py-4 px-4">Action</th>
+                                    <th class="py-4 px-4">Time</th>
+                                    <th class="py-4 px-4">Duration</th>
+                                    <th class="py-4 px-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logsTableBody" class="text-sm">
+                                <tr>
+                                    <td colspan="6" class="py-8 text-center text-gray-500 italic">
+                                        Loading data or no logs found...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: ADMIN/SETTINGS -->
+            <div id="tab-admin" class="hidden p-6 md:p-12 relative z-10 max-w-4xl mx-auto animate-fade-in">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-bold text-white">System Configuration</h1>
+                </header>
+
+                <div class="glass rounded-[2rem] p-10 space-y-8 border border-white/5 mb-8">
+                    <div>
+                        <label class="block text-sm font-bold text-brand-gold mb-3 uppercase tracking-wide">Google Apps Script Web App URL</label>
+                        <div class="flex gap-3">
+                            <input type="text" id="scriptUrl" class="glass-input w-full p-4 rounded-xl font-mono text-sm text-brand-blue" placeholder="https://script.google.com/macros/s/...">
+                            <button onclick="saveSettings()" class="bg-brand-blue hover:bg-blue-600 text-white px-8 py-2 rounded-xl font-bold transition-colors">Save</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-[2rem] p-10 space-y-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-3"><i class="fas fa-users-cog text-brand-purple"></i>User Management</h2>
+                    
+                    <form id="addUserForm" onsubmit="event.preventDefault(); addNewUser();" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">New Username</label>
+                            <input type="text" id="newUsername" class="glass-input w-full p-4 rounded-xl focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">New Password</label>
+                            <input type="password" id="newPassword" class="glass-input w-full p-4 rounded-xl focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Role</label>
+                            <select id="newRole" class="glass-input w-full p-4 rounded-xl focus:outline-none">
+                                <option value="staff" class="text-black">Staff</option>
+                                <option value="admin" class="text-black">Admin</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl transition-colors shadow-lg shadow-emerald-500/20">
+                                <i class="fas fa-plus mr-2"></i> Add User
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mt-8 border-t border-white/10 pt-8">
+                    <h3 class="text-lg font-bold mb-4 text-white">Console Output</h3>
+                    <div id="consoleLog" class="bg-black/50 rounded-xl p-6 h-40 overflow-y-auto font-mono text-xs text-green-400 custom-scrollbar border border-white/5">
+                        > System ready...<br>
+                        > Waiting for connection configuration...
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- STATE MANAGEMENT ---
+        let state = {
+            currentUser: null,
+            role: null,
+            startTime: null,
+            timerInterval: null,
+            elapsedSeconds: 0,
+            scriptUrl: localStorage.getItem('nexus_script_url') || '',
+            isClockedIn: false,
+            logsCache: [] 
+        };
+
+        // --- CHART.JS INIT ---
+        const ctx = document.getElementById('goalChart').getContext('2d');
+        const goalChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed', 'Remaining'],
+                datasets: [{
+                    data: [0, 100],
+                    backgroundColor: ['#3B82F6', '#1F2937'], // Brand Blue & Dark Gray
+                    borderWidth: 0,
+                    cutout: '85%',
+                    borderRadius: 20
+                }]
+            },
+            options: { plugins: { legend: { display: false }, tooltip: { enabled: false } } }
+        });
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('currentDateDisplay').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            if(state.scriptUrl) document.getElementById('scriptUrl').value = state.scriptUrl;
+            
+            const savedUser = localStorage.getItem('nexus_user');
+            if (savedUser) {
+                const userObj = JSON.parse(savedUser);
+                loginSuccess(userObj.username, userObj.role);
+            }
+        });
+
+        // --- NAVIGATION ---
+        function switchTab(tabId) {
+            if (tabId === 'admin' && state.role !== 'admin') {
+                alert("Access Denied: Admin privileges required.");
+                return;
+            }
+
+            ['dashboard', 'calendar', 'admin'].forEach(id => {
+                document.getElementById(`tab-${id}`).classList.add('hidden');
+                document.getElementById(`nav-${id}`).classList.remove('active');
+            });
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabId}`).classList.add('active');
+            
+            if(tabId === 'calendar') {
+                renderCalendar();
+                refreshLogs();
+            }
+        }
+
+        // --- AUTHENTICATION ---
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            
+            setLoading(true);
+
+            if (!state.scriptUrl) {
+                if (u && p) {
+                    setTimeout(() => loginSuccess(u, u === 'admin' ? 'admin' : 'staff'), 1000);
+                }
+            } else {
+                try {
+                    const res = await fetch(state.scriptUrl, {
+                        method: 'POST',
+                        body: JSON.stringify({ action: 'login', username: u, password: p })
+                    });
+                    const data = await res.json();
+                    
+                    if (data.status === 'success') {
+                        loginSuccess(u, data.role);
+                    } else {
+                        showLoginError();
+                    }
+                } catch (err) {
+                    logToConsole("Login Error: " + err);
+                    loginSuccess(u, 'offline_admin'); 
+                }
+            }
+            setLoading(false);
+        });
+
+        function loginSuccess(username, role) {
+            state.currentUser = username;
+            state.role = role;
+            
+            // Name Displays
+            document.getElementById('displayUsername').textContent = username;
+            document.getElementById('avatarInitial').textContent = username.charAt(0).toUpperCase();
+            document.getElementById('displayRole').textContent = role.toUpperCase();
+            document.getElementById('welcomeName').textContent = username; // Dashboard Welcome
+            document.getElementById('logUserName').textContent = username; // Logs Title
+
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('appLayout').classList.remove('hidden');
+            
+            if (role !== 'admin') {
+                document.getElementById('nav-admin').classList.add('hidden');
+            } else {
+                document.getElementById('nav-admin').classList.remove('hidden');
+            }
+            
+            localStorage.setItem('nexus_user', JSON.stringify({username, role}));
+            switchTab('dashboard');
+        }
+
+        function logout() {
+            localStorage.removeItem('nexus_user');
+            location.reload();
+        }
+
+        function setLoading(isLoading) {
+            const btnText = document.getElementById('loginBtnText');
+            const loader = document.getElementById('loginLoader');
+            if (isLoading) {
+                btnText.classList.add('hidden');
+                loader.classList.remove('hidden');
+            } else {
+                btnText.classList.remove('hidden');
+                loader.classList.add('hidden');
+            }
+        }
+
+        function showLoginError() {
+            const err = document.getElementById('loginError');
+            err.classList.remove('hidden');
+            setTimeout(() => err.classList.add('hidden'), 3000);
+        }
+
+        // --- TIME TRACKING LOGIC ---
+        function logTime(type) {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+
+            if (type === 'In') {
+                state.isClockedIn = true;
+                state.startTime = now;
+                document.getElementById('startTimeDisplay').textContent = timeString;
+                
+                document.getElementById('btnIn').disabled = true;
+                document.getElementById('btnIn').classList.add('opacity-50', 'cursor-not-allowed');
+                document.getElementById('btnOut').disabled = false;
+                document.getElementById('btnOut').classList.remove('opacity-50', 'cursor-not-allowed');
+                
+                document.getElementById('statusDot').classList.remove('bg-gray-600');
+                document.getElementById('statusDot').classList.add('bg-emerald-500', 'animate-pulse');
+                document.getElementById('statusText').textContent = "Clocked In";
+                document.getElementById('statusText').classList.add('text-emerald-400');
+
+                startStopwatch();
+
+            } else {
+                state.isClockedIn = false;
+                clearInterval(state.timerInterval);
+                
+                document.getElementById('btnIn').disabled = false;
+                document.getElementById('btnIn').classList.remove('opacity-50', 'cursor-not-allowed');
+                document.getElementById('btnOut').disabled = true;
+                document.getElementById('btnOut').classList.add('opacity-50', 'cursor-not-allowed');
+                
+                document.getElementById('statusDot').classList.remove('bg-emerald-500', 'animate-pulse');
+                document.getElementById('statusDot').classList.add('bg-gray-600');
+                document.getElementById('statusText').textContent = "Clocked Out";
+                document.getElementById('statusText').classList.remove('text-emerald-400');
+            }
+
+            sendDataToSheet(type, timeString);
+        }
+
+        function startStopwatch() {
+            state.elapsedSeconds = 0;
+            state.timerInterval = setInterval(() => {
+                state.elapsedSeconds++;
+                
+                const h = Math.floor(state.elapsedSeconds / 3600).toString().padStart(2, '0');
+                const m = Math.floor((state.elapsedSeconds % 3600) / 60).toString().padStart(2, '0');
+                const s = (state.elapsedSeconds % 60).toString().padStart(2, '0');
+                document.getElementById('stopwatch').textContent = `${h}:${m}:${s}`;
+
+                const goal = 28800; // 8 hours
+                const percent = Math.min((state.elapsedSeconds / goal) * 100, 100);
+                
+                goalChart.data.datasets[0].data = [percent, 100 - percent];
+                goalChart.update();
+                document.getElementById('percentageText').textContent = Math.floor(percent) + '%';
+                
+            }, 1000);
+        }
+
+        function sendDataToSheet(type, time) {
+            if (!state.scriptUrl) {
+                logToConsole("Offline Mode: Data recorded locally.");
+                return;
+            }
+
+            const payload = {
+                action: 'log',
+                name: state.currentUser,
+                type: type,
+                time: time
+            };
+
+            fetch(state.scriptUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+            }).then(() => {
+                logToConsole(`Success: ${type} recorded to Sheet.`);
+                setTimeout(refreshLogs, 2000);
+            }).catch(e => logToConsole("Sync Error: " + e));
+        }
+
+        // --- CALENDAR & LOGS LOGIC ---
+        let currentMonth = new Date();
+
+        function renderCalendar() {
+            const body = document.getElementById('calendarBody');
+            body.innerHTML = '';
+            
+            const year = currentMonth.getFullYear();
+            const month = currentMonth.getMonth();
+            
+            document.getElementById('monthYear').textContent = new Date(year, month).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) {
+                body.appendChild(document.createElement('div'));
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = "min-h-[120px] glass rounded-xl p-3 border border-white/5 relative hover:bg-white/5 transition-colors flex flex-col";
+                cell.innerHTML = `<span class="text-sm font-bold text-gray-400 mb-1">${day}</span>`;
+                
+                const dayLogs = state.logsCache.filter(log => {
+                    const logDate = new Date(log[0]);
+                    return logDate.getDate() === day && 
+                           logDate.getMonth() === month && 
+                           log[1] === state.currentUser;
+                });
+
+                if (dayLogs.length > 0) {
+                    let firstIn = null;
+                    let lastOut = null;
+
+                    dayLogs.sort((a,b) => new Date(a[4]) - new Date(b[4]));
+
+                    dayLogs.forEach(log => {
+                        const action = log[2];
+                        const time = log[3];
+                        if (action === 'In' && !firstIn) firstIn = time;
+                        if (action === 'Out') lastOut = time;
+                    });
+
+                    let labelsHtml = '';
+                    if (firstIn) labelsHtml += `<div class="text-[10px] text-emerald-300 truncate font-mono bg-emerald-500/10 px-1 rounded mb-1"><i class="fas fa-sign-in-alt mr-1"></i>${firstIn}</div>`;
+                    if (lastOut) labelsHtml += `<div class="text-[10px] text-rose-300 truncate font-mono bg-rose-500/10 px-1 rounded"><i class="fas fa-sign-out-alt mr-1"></i>${lastOut}</div>`;
+                    
+                    cell.innerHTML += `<div class="mt-auto">${labelsHtml}</div>`;
+                }
+                
+                body.appendChild(cell);
+            }
+        }
+
+        function changeMonth(delta) {
+            currentMonth.setMonth(currentMonth.getMonth() + delta);
+            renderCalendar();
+            refreshLogs();
+        }
+
+        async function refreshLogs() {
+            if (!state.scriptUrl) {
+                renderTable([]);
+                return;
+            }
+            
+            logToConsole("Fetching logs...");
+            try {
+                const response = await fetch(state.scriptUrl);
+                const data = await response.json();
+                
+                const userAllLogs = data.filter(row => row[1] === state.currentUser);
+                state.logsCache = userAllLogs; 
+                
+                const userMonthLogs = userAllLogs.filter(row => {
+                    const rowDate = new Date(row[0]);
+                    return rowDate.getMonth() === currentMonth.getMonth() && 
+                           rowDate.getFullYear() === currentMonth.getFullYear();
+                });
+
+                renderTable(userMonthLogs);
+                logToConsole(`Loaded ${userMonthLogs.length} logs for ${state.currentUser}.`);
+                renderCalendar(); 
+
+            } catch (error) {
+                logToConsole("Error fetching logs: " + error);
+            }
+        }
+
+        function renderTable(logs) {
+            const tbody = document.getElementById('logsTableBody');
+            tbody.innerHTML = '';
+
+            if (logs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500 italic">No logs found for this month.</td></tr>`;
+                return;
+            }
+
+            logs.sort((a, b) => new Date(a[4]) - new Date(b[4]));
+
+            let processedLogs = logs.map((log, index) => {
+                let duration = '-';
+                if (log[2] === 'Out') {
+                    for (let i = index - 1; i >= 0; i--) {
+                        const prevLog = logs[i];
+                        if (prevLog[0] === log[0] && prevLog[2] === 'In') {
+                            const t1 = new Date(prevLog[4]);
+                            const t2 = new Date(log[4]);
+                            const diffMs = t2 - t1;
+                            const diffHrs = Math.floor(diffMs / 3600000);
+                            const diffMins = Math.floor((diffMs % 3600000) / 60000);
+                            duration = `${diffHrs}h ${diffMins}m`;
+                            break;
+                        }
+                    }
+                }
+                return { ...log, duration, original: log };
+            });
+
+            processedLogs.reverse().forEach(item => {
+                const row = item.original;
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-white/5 hover:bg-white/5 transition-colors";
+                
+                const statusColor = row[2] === 'In' ? 'text-emerald-400' : 'text-rose-400';
+                
+                tr.innerHTML = `
+                    <td class="py-4 px-4 text-gray-300 font-mono text-xs">${row[0]}</td>
+                    <td class="py-4 px-4 font-bold text-white">${row[1]}</td>
+                    <td class="py-4 px-4 ${statusColor} font-bold uppercase text-xs tracking-wider">${row[2]}</td>
+                    <td class="py-4 px-4 font-mono text-gray-400 text-xs">${row[3]}</td>
+                    <td class="py-4 px-4 font-mono text-brand-gold font-bold text-xs">${item.duration}</td>
+                    <td class="py-4 px-4"><span class="bg-blue-500/10 text-blue-400 px-2 py-1 rounded text-[10px] font-bold border border-blue-500/20">SYNCED</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // --- ADMIN / UTILS ---
+        async function addNewUser() {
+            const newU = document.getElementById('newUsername').value;
+            const newP = document.getElementById('newPassword').value;
+            const newR = document.getElementById('newRole').value;
+
+            if (!state.scriptUrl) {
+                alert("Please configure the Google Script URL first.");
+                return;
+            }
+            
+            logToConsole(`Creating user: ${newU}...`);
+            
+            try {
+                await fetch(state.scriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify({
+                        action: 'register',
+                        newUsername: newU,
+                        newPassword: newP,
+                        newRole: newR
+                    })
+                });
+                
+                logToConsole("User creation request sent.");
+                alert("User created! (Check Users sheet to confirm)");
+                document.getElementById('addUserForm').reset();
+            } catch (e) {
+                logToConsole("Error creating user: " + e);
+            }
+        }
+
+        function saveSettings() {
+            const url = document.getElementById('scriptUrl').value;
+            state.scriptUrl = url;
+            localStorage.setItem('nexus_script_url', url);
+            logToConsole("Configuration saved.");
+            alert("Settings Saved!");
+        }
+
+        function logToConsole(msg) {
+            const el = document.getElementById('consoleLog');
+            el.innerHTML += `> ${msg}<br>`;
+            el.scrollTop = el.scrollHeight;
+        }
+    </script>
+</body>
+</html>

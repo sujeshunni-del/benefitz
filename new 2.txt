@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Program | Better Call Immigration</title>
+    <meta name="description" content="Launch your career abroad. Join leading industries with stable career opportunities.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Sinhala:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    
+    <script>
+        // --- 1. COLOR CONFIGURATION ---
+        // Edit these two colors to match the country's flag/theme
+        const COUNTRY_PRIMARY = '#2563EB';   // Main accent (e.g., Blue for Sweden)
+        const COUNTRY_SECONDARY = '#F59E0B'; // Secondary accent (e.g., Yellow for Sweden)
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Outfit', 'Noto Sans Devanagari', 'Noto Sans Malayalam', 'Noto Sans Tamil', 'Noto Sans Sinhala', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-black': '#0F172A',
+                        'brand-grey': '#64748B',
+                        'brand-blue': '#2563EB',      
+                        'brand-purple': '#7C3AED',     
+                        'brand-gold': '#F59E0B',
+                        
+                        // Dynamic Country Colors (Used in HTML classes as 'country-primary' etc)
+                        'country-primary': COUNTRY_PRIMARY,
+                        'country-secondary': COUNTRY_SECONDARY,
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" }
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                        'glass-hover': '0 10px 40px rgba(0, 0, 0, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F0F4F8;
+            color: #0F172A;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND BLOBS --- */
+        .bg-blobs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; pointer-events: none; }
+        .blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(255, 255, 255, 0) 70%); border-radius: 50%; filter: blur(40px); animation: blob 20s infinite alternate; }
+        .blob-2 { position: absolute; bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(255, 255, 255, 0) 70%); border-radius: 50%; filter: blur(40px); animation: blob 25s infinite alternate-reverse; }
+        .blob-3 { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, rgba(255, 255, 255, 0) 70%); border-radius: 50%; filter: blur(40px); animation: blob 22s infinite alternate; }
+
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; }
+
+        /* --- GLASSMORPHISM --- */
+        .glass-frosted { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); }
+        .glass-frosted-heavy { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); }
+
+        /* --- LENIS & UTILS --- */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        
+        .floating-nav { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 9999px; transition: all 0.3s ease; }
+        .floating-nav.scrolled { background: rgba(255, 255, 255, 0.85); border-color: rgba(203, 213, 225, 0.4); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
+        
+        .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s ease; }
+        .group:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15); }
+
+        .job-card-grid { background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        @media (min-width: 768px) { .job-card-grid { padding: 24px; border-radius: 16px; } }
+        .job-card-grid:hover { border-color: rgba(37, 99, 235, 0.3); background: rgba(255, 255, 255, 0.85); box-shadow: 0 20px 40px -12px rgba(37, 99, 235, 0.2); transform: translateY(-6px); }
+
+        .glass-panel-dock { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 9999px; position: relative; z-index: 50; }
+        .dock-icon-btn { color: #94A3B8; transition: color 0.2s ease, transform 0.2s ease; }
+        .dock-icon-btn:hover { color: #2563EB; transform: translateY(-2px); }
+        
+        .explore-btn-wrapper { position: relative; top: -20px; width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); border: 2px solid rgba(255, 255, 255, 0.5); backdrop-filter: blur(4px); background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), linear-gradient(to right, #2563EB, #7C3AED); background-origin: border-box; background-clip: content-box, border-box; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); transition: all 0.3s; z-index: 10; }
+        .explore-btn-wrapper:hover { transform: translateY(-4px) scale(1.05); }
+        .explore-icon { font-size: 24px; background: linear-gradient(135deg, #2563EB, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .lang-toggle-btn { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.5); color: #64748B; padding: 0.5rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; transition: all 0.2s ease; font-size: 0.875rem; font-weight: 500; }
+        .lang-toggle-btn:hover { border-color: #2563EB; color: #2563EB; background: rgba(255, 255, 255, 0.9); }
+        .language-dropdown { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.5); padding: 0.5rem; border-radius: 16px; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1); }
+        .lang-option { padding: 0.6rem 1rem; color: #64748B; font-size: 0.875rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .lang-option.active { background: rgba(37, 99, 235, 0.15); color: #2563EB; font-weight: 600; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(203, 213, 225, 0.5); border-radius: 10px; }
+        .reveal-item { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal-item.active { opacity: 1; transform: translateY(0); }
+        #job-search-section { transition: all 0.3s ease; }
+        #job-search-section.search-hidden { opacity: 0; visibility: hidden; transform: translateY(-10px); pointer-events: none; }
+        input:focus { outline: none; border-color: #2563EB; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative" id="page-body">
+
+    <!-- Background Blobs -->
+    <div class="bg-blobs">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+        <div class="blob-3"></div>
+    </div>
+
+    <main class="flex-grow w-full max-w-6xl mx-auto relative z-10 space-y-8 md:space-y-12 pt-28 md:pt-32 pb-24 px-3 sm:px-6">
+
+        <!-- HERO SECTION: Customize this for the specific country -->
+        <header class="text-center space-y-4 md:space-y-6 animate-slide-up">
+            <div class="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-white/70 backdrop-blur-sm border border-white/50 text-slate-600 font-bold tracking-wider text-[9px] md:text-[10px] uppercase mb-1 shadow-sm hover:shadow-md transition-shadow">
+                <span class="w-1.5 h-1.5 rounded-full bg-country-primary animate-pulse"></span>
+                <span data-i18n="hero_badge" class="text-slate-700">High Demand Sectors</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-country-secondary animate-pulse"></span>
+            </div>
+
+            <h1 class="text-3xl md:text-7xl font-black text-brand-black tracking-tight leading-tight drop-shadow-sm">
+                <span data-i18n="hero_title_1">Launch Your Career in</span> <br>
+                <!-- CHANGE: Text Gradient for Country -->
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-country-primary to-country-secondary" data-i18n="hero_title_2">Country Name</span>
+            </h1>
+            
+            <p class="max-w-xl mx-auto text-sm md:text-lg text-slate-500 font-normal leading-relaxed px-2 glass-frosted rounded-xl p-4">
+                <span data-i18n="hero_subtitle">Join leading industries. Experience a rich culture with stable career opportunities.</span>
+            </p>
+        </header>
+
+        <!-- SEARCH SECTION (Standard Template) -->
+        <div id="job-search-section" class="sticky top-20 md:top-24 z-40 max-w-2xl mx-auto w-full">
+            <div class="glass-frosted rounded-xl md:rounded-2xl p-2 transition-all duration-300 hover:shadow-glass-hover">
+                <div class="relative group">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-brand-blue/50 text-base md:text-lg group-hover:text-brand-blue transition-colors"></i>
+                    <input type="text" id="pageSearchInput" class="w-full pl-9 md:pl-12 pr-4 py-2.5 md:py-3.5 bg-white/40 rounded-lg md:rounded-xl text-brand-black font-medium placeholder-slate-500 focus:bg-white/70 transition-all text-xs md:text-base border border-transparent focus:border-brand-blue/30" data-placeholder-i18n="search_placeholder" placeholder="Filter jobs (e.g. IT, Driver)..." onkeyup="filterPageJobs()">
+                </div>
+                <div class="mt-2 md:mt-3 flex gap-2 overflow-x-auto hide-scrollbar px-1 pb-1" id="categoryChips">
+                    <!-- Chips injected dynamically -->
+                </div>
+            </div>
+            <div class="text-center mt-2 md:mt-3"><p id="jobCountLabel" class="text-[9px] md:text-[10px] font-bold text-brand-blue uppercase tracking-widest opacity-80 backdrop-blur-sm inline-block px-2 py-1 rounded-full bg-white/30">Loading...</p></div>
+        </div>
+
+        <div id="jobContainer" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5">
+            <!-- Jobs injected dynamically -->
+        </div>
+
+        <!-- PROCESS SECTION -->
+        <section id="process" class="py-10 md:py-16 relative border-t border-slate-200/50">
+            <div class="container mx-auto px-2 relative z-10">
+                <div class="text-center mb-8 md:mb-16">
+                    <span class="text-brand-blue font-bold tracking-[0.2em] text-[9px] md:text-[10px] uppercase mb-1 md:mb-2 block" data-i18n="process_badge">Process Roadmap</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-brand-black mb-1 md:mb-2" data-i18n="process_title">Your Journey</h2>
+                    <p class="text-xs md:text-sm text-slate-500 font-medium inline-block glass-frosted px-3 py-1 rounded-full" data-i18n="process_subtitle">Estimated time: 3-4 months.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-4 md:left-1/2 md:-translate-x-px w-0.5 bg-gradient-to-b from-slate-200 via-brand-blue/30 to-slate-200"></div>
+                        <div id="timelineContainer" class="space-y-8 md:space-y-12">
+                            <!-- Timeline injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION: Customize Plan Amounts -->
+        <div class="max-w-7xl mx-auto pt-8 md:pt-10 border-t border-slate-200/50" id="pricing">
+            <h3 class="text-2xl md:text-3xl font-bold text-center text-brand-black mb-8 md:mb-12 reveal-item" data-i18n="pricing_title">Flexible plans</h3>
+            
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-5">
+                <!-- Example Plan 1 -->
+                <div class="glass-frosted rounded-xl md:rounded-2xl p-3 md:p-6 flex flex-col h-full hover:border-country-primary transition-all reveal-item group relative overflow-hidden hover:shadow-glass-hover">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-country-primary"></div>
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-2 md:mb-4">
+                        <h4 class="text-sm md:text-xl font-bold text-brand-black" data-i18n="plan_1_title">Plan A</h4>
+                        <span class="text-[8px] md:text-[10px] font-bold px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-full bg-blue-50/80 text-brand-blue uppercase border border-blue-100 mt-1 md:mt-0" data-i18n="badge_best">Best Value</span>
+                    </div>
+                    <!-- CHANGE: Price -->
+                    <div class="text-2xl md:text-4xl font-black text-brand-black mb-0.5 md:mb-1">€ 2,000</div>
+                    <div class="text-[8px] md:text-[10px] text-slate-400 mb-3 md:mb-6 uppercase tracking-wider font-bold" data-i18n="inc_vat">Total inc. VAT</div>
+                    
+                    <ul class="space-y-2 md:space-y-3 text-[10px] md:text-sm text-slate-600 mb-4 md:mb-8 flex-grow">
+                        <li class="flex justify-between border-b border-dashed border-slate-200/50 pb-1 md:pb-2"><span class="font-bold text-brand-black truncate pr-1" data-i18n="full_payment">Full Payment</span> <span>€ 2,000</span></li>
+                    </ul>
+                    <a href="https://www.bettercall.online/appointment" class="w-full bg-brand-black text-white font-bold py-2 md:py-3.5 rounded-lg md:rounded-xl hover:bg-slate-800 transition text-center text-[10px] md:text-xs uppercase tracking-widest shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform" data-i18n="btn_select">
+                        Select
+                    </a>
+                </div>
+                
+                <!-- Add more plans as needed using similar structure -->
+                 <div class="glass-frosted rounded-xl md:rounded-2xl p-3 md:p-6 flex flex-col h-full hover:border-country-secondary transition-all reveal-item group relative overflow-hidden hover:shadow-glass-hover" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-country-secondary"></div>
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-2 md:mb-4">
+                        <h4 class="text-sm md:text-xl font-bold text-brand-black" data-i18n="plan_2_title">Plan B</h4>
+                    </div>
+                    <div class="text-2xl md:text-4xl font-black text-brand-black mb-0.5 md:mb-1">€ 2,500</div>
+                    <div class="text-[8px] md:text-[10px] text-slate-400 mb-3 md:mb-6 uppercase tracking-wider font-bold" data-i18n="inc_vat">Total inc. VAT</div>
+                    
+                    <ul class="space-y-2 md:space-y-3 text-[10px] md:text-sm text-slate-600 mb-4 md:mb-8 flex-grow">
+                        <li class="flex justify-between border-b border-dashed border-slate-200/50 pb-1 md:pb-2"><span class="truncate pr-1">Deposit</span> <span>€ 1,000</span></li>
+                        <li class="flex justify-between border-b border-dashed border-slate-200/50 pb-1 md:pb-2"><span class="truncate pr-1">Final</span> <span>€ 1,500</span></li>
+                    </ul>
+                    <a href="https://www.bettercall.online/appointment" class="w-full bg-white/50 border border-slate-200 text-brand-black font-bold py-2 md:py-3.5 rounded-lg md:rounded-xl hover:bg-white transition text-center text-[10px] md:text-xs uppercase tracking-widest" data-i18n="btn_select">
+                        Select
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FABs -->
+    <a href="https://wa.me/971503666382" target="_blank" class="hidden md:flex fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white w-14 h-14 rounded-full items-center justify-center hover:shadow-2xl hover:shadow-green-400/40 transition-all duration-300 hover:scale-110 group border-2 border-white/30 backdrop-blur-sm" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <div class="lang-fab-new hidden md:block fixed bottom-8 left-8 z-[100]">
+        <button id="lang-toggle-btn" onclick="toggleLanguageDropdown(event)" class="lang-toggle-btn shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20" type="button">
+            <i class="fa-solid fa-globe text-brand-blue"></i>
+            <span class="text-xs font-bold uppercase tracking-wider hidden sm:block text-slate-600">Lang</span>
+        </button>
+        <div id="language-dropdown" class="language-dropdown absolute bottom-full left-0 mb-3 w-48 opacity-0 invisible transform scale-95 origin-bottom-left transition-all duration-200">
+            <button onclick="setLanguage('en', this);" class="lang-option active w-full text-left flex justify-between"><span>English</span> <span class="text-xs text-slate-400">EN</span></button>
+            <button onclick="setLanguage('ml', this);" class="lang-option w-full text-left flex justify-between font-['Noto_Sans_Malayalam']"><span>മലയാളം</span> <span class="text-xs text-slate-400">ML</span></button>
+            <button onclick="setLanguage('hi', this);" class="lang-option w-full text-left flex justify-between"><span>हिंदी</span> <span class="text-xs text-slate-400">HI</span></button>
+            <!-- Add more languages as needed -->
+        </div>
+    </div>
+
+    <!-- MOBILE DOCK -->
+    <div class="fixed bottom-6 inset-x-0 z-[90] md:hidden flex justify-center pointer-events-none animate-slide-up">
+        <div class="pointer-events-auto glass-panel-dock px-8 py-3 flex justify-between items-center w-[85%] max-w-sm relative z-50 shadow-2xl shadow-blue-900/10">
+            <a href="index.html" class="dock-icon-btn flex-1 group text-center flex flex-col items-center justify-center transition-transform active:scale-95"><i class="fa-solid fa-house text-xl"></i></a>
+            <button onclick="toggleMobileLanguage()" class="dock-icon-btn flex-1 group text-center flex flex-col items-center justify-center transition-transform active:scale-95"><i class="fa-solid fa-language text-xl"></i></button>
+            <div class="relative w-12 flex justify-center">
+                <button onclick="toggleMobileDestinations()" class="group flex flex-col items-center justify-center absolute -top-8 transition-transform active:scale-95">
+                    <div class="explore-btn-wrapper ring-4 ring-white/60 !top-0 !w-14 !h-14 !shadow-glass-hover"><i class="fa-solid fa-earth-europe explore-icon text-white text-2xl"></i></div>
+                </button>
+            </div>
+            <button onclick="toggleMobileApply()" class="dock-icon-btn flex-1 group text-center flex flex-col items-center justify-center transition-transform active:scale-95"><i class="fa-solid fa-paper-plane text-xl"></i></button>
+            <a href="https://wa.me/971503666382" target="_blank" class="dock-icon-btn flex-1 group text-center flex flex-col items-center justify-center transition-transform active:scale-95"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+        </div>
+
+        <!-- Mobile Menus (Apply, Language, Destinations) -->
+        <div id="mobile-apply-menu" class="pointer-events-auto absolute bottom-[calc(100%+20px)] w-[90%] max-w-sm p-4 rounded-[2rem] glass-frosted-heavy shadow-2xl opacity-0 invisible transition-all duration-300 transform translate-y-4 z-40">
+             <!-- Content same as Belarus -->
+             <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-200/50">
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-widest pl-2">Start Journey</span>
+                <button onclick="toggleMobileApply()" class="w-8 h-8 rounded-full bg-slate-50/50 flex items-center justify-center text-slate-400 hover:text-slate-800"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="flex flex-col gap-3">
+                <a href="assessment.html" class="flex items-center gap-4 p-4 rounded-2xl bg-white/40 border border-white/60 hover:border-blue-200 transition-all group backdrop-blur-sm">
+                    <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-brand-blue"><i class="fa-solid fa-clipboard-list text-lg"></i></div>
+                    <div><h4 class="text-slate-900 font-bold text-base">Free Assessment</h4><p class="text-[10px] text-slate-500 uppercase tracking-wider">Check eligibility</p></div>
+                    <i class="fa-solid fa-chevron-right ml-auto text-slate-300 group-hover:text-brand-blue"></i>
+                </a>
+            </div>
+        </div>
+
+        <div id="mobile-language-menu" class="pointer-events-auto absolute bottom-[calc(100%+20px)] w-[90%] max-w-sm p-4 rounded-[2rem] glass-frosted-heavy shadow-2xl opacity-0 invisible transition-all duration-300 transform translate-y-4 z-40">
+             <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-200/50">
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-widest pl-2">Select Language</span>
+                <button onclick="toggleMobileLanguage()" class="w-8 h-8 rounded-full bg-slate-50/50 flex items-center justify-center text-slate-400 hover:text-slate-800"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="grid grid-cols-2 gap-2 max-h-[40vh] overflow-y-auto">
+                <button onclick="setLanguage('en', this); toggleMobileLanguage()" class="text-left p-3 rounded-xl hover:bg-white/40 text-sm text-slate-700 font-bold border border-transparent hover:border-white/60">English</button>
+                <button onclick="setLanguage('ml', this); toggleMobileLanguage()" class="text-left p-3 rounded-xl hover:bg-white/40 text-sm text-slate-700 font-bold border border-transparent hover:border-white/60 font-['Noto_Sans_Malayalam']">മലയാളം</button>
+                <!-- Add more languages -->
+            </div>
+        </div>
+
+        <div id="mobile-destinations-menu" class="pointer-events-auto absolute bottom-[calc(100%+20px)] w-[90%] max-w-sm p-4 rounded-[2rem] glass-frosted-heavy shadow-2xl opacity-0 invisible transition-all duration-300 transform translate-y-4 z-40">
+            <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-200/50">
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-widest pl-2">Select Country</span>
+                <button onclick="toggleMobileDestinations()" class="w-8 h-8 rounded-full bg-slate-50/50 flex items-center justify-center text-slate-400 hover:text-slate-800"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="grid grid-cols-4 gap-2.5 max-h-[50vh] overflow-y-auto custom-scrollbar pr-1">
+                <a href="germany.html" class="flex flex-col items-center justify-center py-3 rounded-xl bg-white/40 border border-transparent hover:border-yellow-200 hover:bg-yellow-50/50 transition text-2xl">🇩🇪</a>
+                <a href="sweden.html" class="flex flex-col items-center justify-center py-3 rounded-xl bg-white/40 border border-transparent hover:border-blue-200 hover:bg-blue-50/50 transition text-2xl">🇸🇪</a>
+                <!-- Add other countries -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Modal -->
+    <div id="jobModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-md transition-opacity" onclick="closeModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div class="relative transform overflow-hidden rounded-2xl glass-frosted-heavy shadow-2xl transition-all w-full max-w-lg border border-white/50">
+                    <div class="bg-gradient-to-r from-brand-black to-slate-900 px-6 py-6 border-b border-white/10 relative">
+                        <button onclick="closeModal()" class="absolute top-4 right-4 text-white/50 hover:text-white transition"><i class="fa-solid fa-xmark text-xl"></i></button>
+                        <h3 id="modalTitle" class="text-2xl font-bold text-white">Job Title</h3>
+                        <p id="modalDept" class="text-white/60 text-xs font-bold uppercase tracking-widest mt-1">Department</p>
+                    </div>
+                    <div class="p-6 space-y-6 max-h-[60vh] overflow-y-auto">
+                        <div class="flex items-center justify-between p-4 rounded-xl border border-white/40 bg-white/30 backdrop-blur-sm">
+                            <div><p class="text-[10px] text-slate-500 font-bold uppercase mb-1" data-i18n="modal_salary">Monthly Salary</p><span id="modalSalary" class="text-xl font-black text-brand-black">€0</span></div>
+                            <div class="text-right"><p class="text-[10px] text-slate-500 font-bold uppercase mb-1" data-i18n="modal_benefit">Benefits</p><span class="text-xs font-bold text-brand-blue bg-blue-100/50 border border-blue-200 px-2.5 py-1 rounded">Accommodation</span></div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-brand-black uppercase tracking-widest mb-3 flex items-center gap-2"><i class="fa-solid fa-list-check text-brand-gold"></i> <span data-i18n="modal_checklist">Requirements</span></h4>
+                            <div id="modalDocs" class="grid grid-cols-1 gap-2.5"><!-- Docs Injected --></div>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-200/50 flex gap-3 bg-white/20 backdrop-blur-sm">
+                        <a href="https://www.bettercall.online/appointment" target="_blank" class="flex-1 bg-gradient-to-r from-brand-blue to-brand-purple text-white text-center font-bold py-3.5 rounded-xl hover:shadow-lg transition text-sm uppercase tracking-wide" data-i18n="modal_apply">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 2. DATA CONFIGURATION ---
+        const LOGO_URL = "https://raw.githubusercontent.com/thebettercall/app/9ca2db3d96700f0412c9f2f420422ed1ccfb52bb/Bettercall%20Logo%20SVG%2003.svg";
+        
+        // GLOBAL HEADER & FOOTER
+        // (Copied from main file - keeps the search bar style)
+        const GLOBAL_HEADER = `
+        <nav class="fixed top-3 md:top-5 left-0 right-0 z-50 flex justify-center w-full pointer-events-none" id="navbar-container">
+            <div class="floating-nav pointer-events-auto w-[94%] md:w-[90%] max-w-7xl px-3 md:px-6 py-2 md:py-3 flex justify-between items-center shadow-lg shadow-slate-200/20" id="navbar">
+                <a href="index.html" class="flex items-center gap-1.5 md:gap-2 group">
+                    <div class="w-7 h-7 md:w-10 md:h-10 rounded-full flex items-center justify-center bg-white/70 backdrop-blur-sm border border-white/50 shadow-sm p-1 transition-transform group-hover:scale-105">
+                        <img src="${LOGO_URL}" alt="Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="block leading-tight"> 
+                        <h1 class="font-bold text-brand-black text-xs md:text-lg tracking-wide">BETTER CALL</h1>
+                        <p class="text-[7px] md:text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em]">Immigration</p>
+                    </div>
+                </a>
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="index.html" class="px-4 py-2 text-sm text-slate-600 hover:text-brand-blue font-bold transition rounded-full hover:bg-white/40">Home</a>
+                    <a href="assessment.html" class="px-4 py-2 text-sm text-slate-600 hover:text-brand-blue font-bold transition rounded-full hover:bg-white/40">Assessment</a>
+                </div>
+                <div class="flex items-center gap-1.5 md:gap-3">
+                    <button onclick="toggleSearch()" class="w-7 h-7 md:w-10 md:h-10 rounded-full flex items-center justify-center text-slate-500 hover:text-brand-blue hover:bg-white/40 transition"><i class="fa-solid fa-magnifying-glass text-sm md:text-lg"></i></button>
+                    <a href="book.html" class="hidden sm:inline-flex px-6 py-2.5 rounded-full bg-brand-black text-white font-bold text-sm transition hover:bg-slate-800 shadow-lg hover:shadow-xl hover:-translate-y-0.5">Book Now</a>
+                </div>
+            </div>
+        </nav>
+        <div id="search-overlay" class="fixed inset-0 z-[100] bg-white/60 backdrop-blur-xl flex items-start justify-center pt-32 px-4 opacity-0 invisible transition-all duration-300">
+            <button class="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/50 border border-white/60 flex items-center justify-center text-slate-500 hover:bg-white transition" onclick="toggleSearch()"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <div id="search-container" class="w-full max-w-2xl transform scale-95 transition-transform duration-300">
+                <div class="relative group">
+                   <div class="absolute -inset-1 bg-gradient-to-r from-brand-blue via-brand-purple to-brand-gold rounded-full blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
+                   <div class="relative flex items-center bg-white/90 backdrop-blur-xl ring-1 ring-slate-900/5 rounded-full shadow-2xl p-2.5">
+                       <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center text-white shadow-lg shadow-blue-500/30"><i class="fa-solid fa-magnifying-glass text-lg"></i></div>
+                       <input type="text" id="global-search-input" placeholder="Type to search..." class="w-full bg-transparent border-none text-brand-black text-xl md:text-2xl font-bold placeholder-slate-400/80 focus:outline-none focus:ring-0 h-12 px-4">
+                       <div class="hidden md:flex items-center pr-4 border-l border-slate-200 pl-4 h-8"><span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">ESC</span></div>
+                   </div>
+                </div>
+                <div id="search-results" class="mt-10 space-y-3">
+                    <div id="dynamic-results" class="hidden flex-col gap-3"></div>
+                    <div id="no-results" class="hidden flex flex-col items-center text-center py-10 opacity-50"><i class="fa-solid fa-ghost text-4xl mb-2"></i><p class="text-slate-500">No results found.</p></div>
+                </div>
+            </div>
+        </div>`;
+
+        const GLOBAL_FOOTER = `<footer class="hidden md:block bg-white/60 backdrop-blur-md border-t border-slate-200/50 pt-20 pb-10"><div class="container mx-auto px-6 text-center text-slate-500"><p>&copy; 2025 Better Call Immigration</p></div></footer>`;
+
+        document.body.insertAdjacentHTML('afterbegin', GLOBAL_HEADER);
+        document.body.insertAdjacentHTML('beforeend', GLOBAL_FOOTER);
+
+        // --- 3. PAGE CONTENT DATA (EDIT THIS) ---
+        
+        // JOBS LIST
+        const jobsData = [
+            { i18n_id: "Job Title 1", i18n_dept: "Category A", cat: "CategoryA", euro: "€2,000", exp: "2 Years", icon: "fa-solid fa-briefcase text-blue-500", bg: "bg-blue-50/70" },
+            { i18n_id: "Job Title 2", i18n_dept: "Category B", cat: "CategoryB", euro: "€1,800", exp: "Entry", icon: "fa-solid fa-user text-green-500", bg: "bg-green-50/70" }
+        ];
+
+        // TIMELINE
+        const timelineData = [
+            { step: "1", key: "Sign Up", descKey: "Initial assessment.", fee: "Sign-up" },
+            { step: "2", key: "Documentation", descKey: "Submit papers.", fee: "Process" },
+            { step: "3", key: "Visa", descKey: "Apply at embassy.", fee: "Visa" }
+        ];
+
+        // TRANSLATIONS
+        const translations = {
+            en: {
+                hero_badge: "High Demand",
+                hero_title_1: "Launch Career in",
+                hero_title_2: "Country Name", // Edit Default
+                hero_subtitle: "Subtitle goes here.",
+                process_badge: "Roadmap",
+                process_title: "Your Journey",
+                pricing_title: "Pricing Plans",
+                plan_1_title: "Plan A",
+                badge_best: "Best Value",
+                inc_vat: "Inc VAT",
+                full_payment: "Full Payment",
+                btn_select: "Select",
+                modal_salary: "Salary",
+                modal_benefit: "Benefits",
+                modal_checklist: "Requirements",
+                modal_apply: "Apply",
+            }
+            // Add other languages here (hi, ml, etc)
+        };
+        
+        const documentsData = [
+            { i18n_id: "Passport", desc: "Valid 6 months", icon: "fa-solid fa-passport text-blue-500" },
+            { i18n_id: "CV", desc: "English Format", icon: "fa-solid fa-file text-purple-500" }
+        ];
+        
+        const searchData = [
+            { title: "Example Job", type: "Job", url: "#", icon: "💼", keywords: "test" }
+        ];
+
+        // --- 4. LOGIC (DO NOT EDIT USUALLY) ---
+        let currentLang = 'en';
+        let currentFilter = 'All';
+        let ticking = false;
+        
+        // Search & Filter Logic
+        function toggleLanguageDropdown(e) { document.getElementById('language-dropdown').classList.toggle('invisible'); document.getElementById('language-dropdown').classList.toggle('opacity-0'); e.stopPropagation(); }
+        
+        function t(key) { return translations[currentLang]?.[key] || translations['en']?.[key] || key; }
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n')); });
+            document.querySelectorAll('[data-placeholder-i18n]').forEach(el => { el.placeholder = t(el.getAttribute('data-placeholder-i18n')); });
+            renderCategoryChips(); filterPageJobs(); renderTimeline();
+        }
+        
+        function toggleMobileMenuId(id) { document.getElementById(id).classList.toggle('invisible'); document.getElementById(id).classList.toggle('opacity-0'); }
+        function toggleMobileDestinations() { toggleMobileMenuId('mobile-destinations-menu'); }
+        function toggleMobileLanguage() { toggleMobileMenuId('mobile-language-menu'); }
+        function toggleMobileApply() { toggleMobileMenuId('mobile-apply-menu'); }
+
+        function renderCategoryChips() {
+             // Unique Categories
+             const cats = ['All', ...new Set(jobsData.map(j => j.cat))];
+             const container = document.getElementById('categoryChips');
+             container.innerHTML = cats.map(cat => {
+                const active = currentFilter === cat;
+                return `<button onclick="setCategory('${cat}')" class="px-4 py-2 rounded-full text-xs font-bold uppercase transition ${active ? 'bg-brand-black text-white' : 'bg-white/50 text-slate-500'}">${cat}</button>`;
+             }).join('');
+        }
+        function setCategory(c) { currentFilter = c; renderCategoryChips(); filterPageJobs(); }
+
+        function filterPageJobs() {
+            const query = document.getElementById('pageSearchInput').value.toLowerCase();
+            const container = document.getElementById('jobContainer');
+            const filtered = jobsData.filter(j => (currentFilter === 'All' || j.cat === currentFilter) && (j.i18n_id.toLowerCase().includes(query) || j.i18n_dept.toLowerCase().includes(query)));
+            
+            document.getElementById('jobCountLabel').innerText = `${filtered.length} positions`;
+            container.innerHTML = filtered.map((job, idx) => `
+                <div onclick="openJobModal(${jobsData.indexOf(job)})" class="job-card-grid group animate-fade-in" style="animation-delay: ${idx * 50}ms">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-xl ${job.bg} flex items-center justify-center"><i class="${job.icon} text-xl"></i></div>
+                        <span class="text-[9px] font-bold uppercase text-slate-500 bg-white/50 px-2 py-1 rounded-full">${job.i18n_dept}</span>
+                    </div>
+                    <div><h4 class="text-lg font-bold text-slate-800 group-hover:text-brand-blue transition">${job.i18n_id}</h4>
+                    <p class="text-xs text-slate-500 mt-1">${job.euro} • ${job.exp}</p></div>
+                </div>
+            `).join('');
+        }
+
+        function renderTimeline() {
+            document.getElementById('timelineContainer').innerHTML = timelineData.map((item, idx) => `
+                <div class="flex flex-col md:flex-row items-center relative group">
+                     <div class="hidden md:block md:w-1/2 ${idx%2===0?'order-1':'order-2'}"></div>
+                     <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-4 border-white bg-slate-200 group-hover:bg-brand-blue z-10"></div>
+                     <div class="pl-12 md:pl-0 md:w-1/2 ${idx%2===0?'md:pr-12 md:text-right order-2':'md:pl-12 order-1'} pb-8">
+                        <div class="glass-frosted p-4 rounded-xl"><span class="text-[9px] font-black text-slate-400 uppercase">Step ${item.step}</span><h4 class="font-bold text-slate-800">${item.key}</h4><p class="text-xs text-slate-500">${item.descKey}</p></div>
+                     </div>
+                </div>
+            `).join('');
+        }
+
+        function openJobModal(idx) {
+            const job = jobsData[idx];
+            document.getElementById('modalTitle').innerText = job.i18n_id;
+            document.getElementById('modalDept').innerText = job.i18n_dept;
+            document.getElementById('modalSalary').innerText = job.euro;
+            document.getElementById('modalDocs').innerHTML = documentsData.map(d => `<div class="flex gap-3 p-3 rounded-lg border border-white/60"><i class="${d.icon}"></i><div><p class="text-sm font-bold">${d.i18n_id}</p><p class="text-xs text-slate-500">${d.desc}</p></div></div>`).join('');
+            document.getElementById('jobModal').classList.remove('hidden');
+        }
+        function closeModal() { document.getElementById('jobModal').classList.add('hidden'); }
+
+        // Global Search Logic (Simplified)
+        let searchOverlay, searchInput;
+        function initSearch() {
+             searchOverlay = document.getElementById('search-overlay');
+             searchInput = document.getElementById('global-search-input');
+             if(searchInput) searchInput.addEventListener('input', (e) => {
+                 const q = e.target.value.toLowerCase();
+                 const results = searchData.filter(x => x.title.toLowerCase().includes(q));
+                 const div = document.getElementById('dynamic-results');
+                 div.classList.remove('hidden');
+                 div.innerHTML = results.map(r => `<a href="${r.url}" class="block p-3 bg-white/50 rounded-lg mb-2 hover:bg-white">${r.title}</a>`).join('');
+                 if(results.length === 0) div.innerHTML = '<p class="text-center text-slate-400">No results</p>';
+                 if(q.length === 0) div.classList.add('hidden');
+             });
+        }
+        function toggleSearch() { 
+            if(!searchOverlay) initSearch();
+            searchOverlay.classList.toggle('invisible'); searchOverlay.classList.toggle('opacity-0'); 
+            if(!searchOverlay.classList.contains('invisible')) setTimeout(() => searchInput.focus(), 100);
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof Lenis !== 'undefined') { const lenis = new Lenis({smooth: true}); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf); }
+            renderCategoryChips(); filterPageJobs(); renderTimeline();
+            initSearch();
+            document.querySelectorAll('.reveal-item').forEach(el => new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('active'))).observe(el));
+        });
+    </script>
+</body>
+</html>

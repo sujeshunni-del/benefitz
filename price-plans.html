@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immigration Service Packages Comparison</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
+        body { font-family: 'Outfit', sans-serif; }
+        
+        /* Smooth Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+        
+        .glass-dark {
+            background: rgba(10, 15, 30, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        /* Animations */
+        @keyframes gradient-xy {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-xy 20s ease infinite;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+        .animate-pulse-soft { animation: pulse-soft 4s infinite ease-in-out; }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Step Connector */
+        .step-connector::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 19px;
+            bottom: -4px;
+            width: 2px;
+            background: #cbd5e1;
+            z-index: 0;
+        }
+        .dark-connector::before { background: #334155; }
+        .step-item:last-child .step-connector::before { display: none; }
+
+        /* List Item Hover */
+        .list-item-hover {
+            transition: all 0.2s ease;
+        }
+        .list-item-hover:hover {
+            background: rgba(255,255,255,0.8);
+            transform: translateX(4px);
+        }
+        .glass-dark .list-item-hover:hover {
+            background: rgba(255,255,255,0.08);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-rose-50 via-violet-50 to-teal-50 animate-gradient text-slate-800 p-4 md:p-8 min-h-screen relative overflow-x-hidden selection:bg-violet-200 selection:text-violet-900">
+
+    <!-- Decorative Floating Blobs -->
+    <div class="fixed top-20 left-10 w-80 h-80 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-soft pointer-events-none"></div>
+    <div class="fixed bottom-20 right-10 w-96 h-96 bg-violet-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-soft pointer-events-none" style="animation-delay: 1s;"></div>
+    <div class="fixed top-1/2 left-1/2 w-80 h-80 bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-12 animate-fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4 tracking-tight drop-shadow-sm">Immigration Plans</h1>
+            <p class="text-xl text-slate-600 font-light max-w-2xl mx-auto">Choose your pathway to a new beginning with our transparent, secure, and professional packages.</p>
+        </div>
+
+        <!-- Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Plan 1: Essential -->
+            <div class="animate-fade-up delay-100 glass-card rounded-[2rem] flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-teal-100/50 overflow-hidden group border-white/60">
+                <div class="p-8 pb-4 text-center relative">
+                    <h2 class="text-sm font-bold text-teal-600 uppercase tracking-[0.2em]">Essential Pathway</h2>
+                    <div class="mt-4 flex items-baseline justify-center gap-1">
+                        <span class="text-2xl text-slate-400">€</span>
+                        <span class="text-6xl font-bold text-slate-800 tracking-tighter">2,500</span>
+                    </div>
+                    <div class="mt-4 inline-flex items-center px-4 py-1.5 rounded-full bg-rose-50 text-rose-500 text-xs font-bold border border-rose-100 shadow-sm">
+                        Strict Non-Refundable
+                    </div>
+                </div>
+                
+                <div class="p-6 flex-grow">
+                    <ul class="space-y-2 text-sm">
+                        <!-- New Policy Items -->
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-rose-50 border border-rose-100 mb-3">
+                            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 text-rose-500 shadow-sm"><i class="fa-solid fa-ban text-sm"></i></div>
+                            <span class="ml-3 font-semibold text-rose-600">No Refund Policy</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-60 grayscale">
+                            <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 text-slate-400"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Free Backup Country Filing</span>
+                        </li>
+
+                        <!-- Standard Items -->
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0 text-teal-600"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-700 font-medium">Consultation & Assessment</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0 text-teal-600"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-700 font-medium">Work Permit Filing</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0 text-teal-600"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-700 font-medium">Employment Contract Review</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0 text-teal-600"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-700 font-medium">Accommodation Proof (Visa)</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0 text-teal-600"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-700 font-medium">Visa Application Filing</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0 text-teal-600"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-700 font-medium">Cover Letter Drafting</span>
+                        </li>
+                        
+                        <!-- Excluded -->
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">VFS/Embassy Appointment</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Passport & PCC Services</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Certificate Attestation</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Insurance & Medical Support</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Dedicated WhatsApp Agent</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Visa Refusal Appeal</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Flight & Pickup</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Housing & Essentials</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                            <span class="ml-3 text-slate-400">Priority Processing</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Installments -->
+                <div class="bg-gradient-to-t from-white to-white/60 p-6 border-t border-white/60">
+                    <div class="space-y-0">
+                        <!-- Step 1 -->
+                        <div class="flex relative pb-6 step-item">
+                            <div class="step-connector"></div>
+                            <div class="w-10 h-10 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center z-10 shrink-0 text-sm font-bold text-slate-600">1</div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Registration</p>
+                                <p class="text-lg font-bold text-slate-800">€1,000</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="flex relative pb-6 step-item">
+                            <div class="step-connector"></div>
+                            <div class="w-10 h-10 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center z-10 shrink-0 text-sm font-bold text-slate-600">2</div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Doc Approved</p>
+                                <p class="text-lg font-bold text-slate-800">€750</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="flex relative step-item">
+                            <div class="w-10 h-10 rounded-full bg-teal-600 shadow-xl flex items-center justify-center z-10 shrink-0 text-sm font-bold text-white"><i class="fa-solid fa-check"></i></div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Submission</p>
+                                <p class="text-lg font-bold text-slate-800">€750</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-8 py-4 bg-white border-2 border-teal-50 text-teal-700 font-bold rounded-2xl hover:bg-teal-50 hover:border-teal-100 hover:scale-[1.02] transition-all duration-300 text-sm uppercase tracking-widest shadow-lg shadow-teal-100/50">Select Essential</button>
+                </div>
+            </div>
+
+            <!-- Plan 2: Supported (Highlighted) -->
+            <div class="animate-fade-up delay-200 glass-card rounded-[2rem] flex flex-col transform md:-translate-y-6 transition-all duration-300 hover:-translate-y-8 overflow-hidden relative group z-10 border-violet-200 shadow-2xl shadow-violet-200/40">
+                <div class="absolute top-0 right-0 bg-gradient-to-l from-violet-600 to-fuchsia-600 text-white text-[10px] font-bold px-6 py-2 rounded-bl-2xl shadow-lg uppercase tracking-widest animate-pulse-soft">Recommended</div>
+                <div class="p-8 pb-4 text-center relative bg-gradient-to-b from-violet-50/50 to-transparent">
+                    <h2 class="text-sm font-bold text-violet-600 uppercase tracking-[0.2em]">Supported Journey</h2>
+                    <div class="mt-4 flex items-baseline justify-center gap-1">
+                        <span class="text-2xl text-violet-400">€</span>
+                        <span class="text-6xl font-bold text-slate-900 tracking-tighter">4,000</span>
+                    </div>
+                    <div class="mt-4 inline-flex items-center px-4 py-1.5 rounded-full bg-violet-100 text-violet-700 text-xs font-bold border border-violet-200 shadow-sm">
+                        <i class="fa-solid fa-shield-halved mr-2"></i> Refund Protected
+                    </div>
+                </div>
+                
+                <div class="p-6 flex-grow">
+                    <ul class="space-y-2 text-sm">
+                         <!-- New Policy Items -->
+                         <li class="list-item-hover flex items-center p-2 rounded-xl bg-violet-50 border border-violet-100">
+                            <div class="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-solid fa-money-bill-transfer text-sm"></i></div>
+                            <span class="ml-3 font-semibold text-violet-700">Admin Fees Refundable</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl bg-fuchsia-50 border border-fuchsia-100 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-fuchsia-100 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-earth-americas text-sm"></i></div>
+                            <span class="ml-3 font-semibold text-fuchsia-700">Free Backup Filing (If Rejected)</span>
+                         </li>
+
+                         <!-- Core Legal -->
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Consultation & Assessment</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Work Permit Filing</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Employment Contract Review</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Accommodation Proof (Visa)</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Visa Application Filing</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Cover Letter Drafting</span>
+                         </li>
+                         
+                         <!-- Included in Supported -->
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">VFS/Embassy Appointment</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Passport Services</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">PCC Services</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Certificate Attestation</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Insurance Issuance</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Medical Exam Coordination</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Travel Documents Prep</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl bg-violet-50/50">
+                             <div class="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center shrink-0 text-violet-600"><i class="fa-brands fa-whatsapp text-sm"></i></div>
+                             <span class="ml-3 text-violet-900 font-bold">Dedicated WhatsApp Agent</span>
+                         </li>
+                         <li class="list-item-hover flex items-center p-2 rounded-xl">
+                             <div class="w-8 h-8 rounded-full bg-fuchsia-50 flex items-center justify-center shrink-0 text-fuchsia-600"><i class="fa-solid fa-check text-sm"></i></div>
+                             <span class="ml-3 text-slate-700 font-medium">Visa Refusal Appeal</span>
+                         </li>
+
+                        <!-- Excluded Logistics -->
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                             <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                             <span class="ml-3 text-slate-400">Flight Ticket</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                             <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                             <span class="ml-3 text-slate-400">Airport Pickup</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                             <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                             <span class="ml-3 text-slate-400">First Week Essentials</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                             <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                             <span class="ml-3 text-slate-400">Verified Housing Placement</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl opacity-40 hover:opacity-100 transition-opacity">
+                             <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-300"><i class="fa-solid fa-xmark text-sm"></i></div>
+                             <span class="ml-3 text-slate-400">Expedited Priority Processing</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Installments -->
+                <div class="bg-gradient-to-t from-violet-50 to-white/60 p-6 border-t border-violet-100">
+                    <div class="space-y-0">
+                        <!-- Step 1 -->
+                        <div class="flex relative pb-6 step-item">
+                            <div class="step-connector border-l-2 border-violet-200"></div>
+                            <div class="w-10 h-10 rounded-full bg-white shadow-md border border-violet-200 flex items-center justify-center z-10 shrink-0 text-sm font-bold text-violet-600">1</div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-violet-600 font-bold uppercase tracking-wider">Registration</p>
+                                <p class="text-lg font-bold text-slate-800">€1,500</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="flex relative pb-6 step-item">
+                            <div class="step-connector border-l-2 border-violet-200"></div>
+                            <div class="w-10 h-10 rounded-full bg-white shadow-md border border-violet-200 flex items-center justify-center z-10 shrink-0 text-sm font-bold text-violet-600">2</div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-violet-600 font-bold uppercase tracking-wider">Doc Approved</p>
+                                <p class="text-lg font-bold text-slate-800">€1,250</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="flex relative step-item">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-600 to-fuchsia-600 shadow-xl flex items-center justify-center z-10 shrink-0 text-sm font-bold text-white"><i class="fa-solid fa-check"></i></div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-violet-600 font-bold uppercase tracking-wider">Submission</p>
+                                <p class="text-lg font-bold text-slate-800">€1,250</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-8 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold rounded-2xl hover:scale-[1.02] hover:shadow-xl hover:shadow-violet-500/30 transition-all duration-300 text-sm uppercase tracking-widest">Select Supported</button>
+                </div>
+            </div>
+
+            <!-- Plan 3: Elite -->
+            <div class="animate-fade-up delay-300 glass-dark rounded-[2rem] flex flex-col text-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden group">
+                <div class="p-8 pb-4 text-center relative overflow-hidden">
+                    <!-- Background Glow -->
+                    <div class="absolute -top-24 -right-24 w-64 h-64 bg-amber-500 rounded-full mix-blend-overlay filter blur-[60px] opacity-40"></div>
+                    
+                    <div class="relative z-10">
+                        <h2 class="text-sm font-bold text-amber-500 uppercase tracking-[0.2em] flex justify-center items-center gap-2"><i class="fa-solid fa-crown text-amber-400"></i> Elite Relocation</h2>
+                        <div class="mt-4 flex items-baseline justify-center gap-1">
+                            <span class="text-2xl text-amber-600">€</span>
+                            <span class="text-6xl font-bold text-white tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400">5,500</span>
+                        </div>
+                        <div class="mt-4 inline-flex items-center px-4 py-1.5 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30 shadow-lg shadow-amber-500/10">
+                            <i class="fa-solid fa-star mr-2"></i> All-Inclusive VIP
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 flex-grow">
+                    <ul class="space-y-2 text-sm">
+                        <!-- New Policy Items -->
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-teal-900/30 border border-teal-500/30">
+                            <div class="w-8 h-8 rounded-full bg-teal-900/50 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-money-bill-transfer text-sm"></i></div>
+                            <span class="ml-3 font-semibold text-teal-400">Admin Fees Refundable</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-amber-900/20 border border-amber-500/20 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-amber-900/50 flex items-center justify-center shrink-0 text-amber-400"><i class="fa-solid fa-earth-americas text-sm"></i></div>
+                            <span class="ml-3 font-semibold text-amber-400">Free Backup Filing (If Rejected)</span>
+                        </li>
+
+                        <!-- All Included -->
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Consultation & Assessment</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Work Permit Filing</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Employment Contract Review</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Accommodation Proof (Visa)</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Visa Application Filing</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Cover Letter Drafting</span>
+                        </li>
+                        
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">VFS/Embassy Appointment</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Passport Services</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">PCC Services</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Certificate Attestation</span>
+                        </li>
+                        
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Insurance Issuance</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Medical Exam Coordination</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Travel Documents Prep</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-white/5">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-brands fa-whatsapp text-sm"></i></div>
+                            <span class="ml-3 text-white font-bold">Dedicated WhatsApp Agent</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-teal-400"><i class="fa-solid fa-check text-sm"></i></div>
+                            <span class="ml-3 text-slate-300">Visa Refusal Appeal</span>
+                        </li>
+                        
+                        <!-- Elite Exclusive -->
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 text-amber-400"><i class="fa-solid fa-plane-up text-sm"></i></div>
+                            <span class="ml-3 font-bold text-amber-400">Flight Ticket</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 text-amber-400"><i class="fa-solid fa-car text-sm"></i></div>
+                            <span class="ml-3 font-bold text-amber-400">Airport Pickup</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 text-amber-400"><i class="fa-solid fa-basket-shopping text-sm"></i></div>
+                            <span class="ml-3 font-bold text-amber-400">First Week Essentials</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 text-amber-400"><i class="fa-solid fa-house-chimney text-sm"></i></div>
+                            <span class="ml-3 font-bold text-amber-400">Verified Housing Placement</span>
+                        </li>
+                        <li class="list-item-hover flex items-center p-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 text-amber-400"><i class="fa-solid fa-bolt text-sm"></i></div>
+                            <span class="ml-3 font-bold text-amber-400">Expedited Priority Processing</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Installments -->
+                <div class="bg-black/30 backdrop-blur-md p-6 border-t border-white/10">
+                    <div class="space-y-0">
+                        <!-- Step 1 -->
+                        <div class="flex relative pb-6 step-item dark-connector">
+                            <div class="step-connector"></div>
+                            <div class="w-10 h-10 rounded-full bg-slate-800 border border-amber-500 flex items-center justify-center z-10 shrink-0 text-sm font-bold text-amber-400">1</div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Registration</p>
+                                <p class="text-lg font-bold text-white">€2,000</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="flex relative pb-6 step-item dark-connector">
+                            <div class="step-connector"></div>
+                            <div class="w-10 h-10 rounded-full bg-slate-800 border border-amber-500 flex items-center justify-center z-10 shrink-0 text-sm font-bold text-amber-400">2</div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Doc Approved</p>
+                                <p class="text-lg font-bold text-white">€2,000</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="flex relative step-item">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 flex items-center justify-center z-10 shrink-0 text-sm font-bold text-slate-900"><i class="fa-solid fa-check"></i></div>
+                            <div class="ml-4 flex justify-between w-full items-center">
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Submission</p>
+                                <p class="text-lg font-bold text-white">€1,500</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-slate-900 font-bold rounded-2xl hover:scale-[1.02] hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-sm uppercase tracking-widest">Select Elite Plan</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

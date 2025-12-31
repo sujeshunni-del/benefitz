@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center | Better Call Immigration</title>
+    <meta name="description" content="Comprehensive guide to European Long-Stay Visas, Residency, and Document Verification.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-blue': '#2563eb',      
+                        'brand-purple': '#7c3aed',     
+                        'brand-gold': '#d97706',
+                        'glass-border': 'rgba(255, 255, 255, 0.6)',
+                        'vfs-teal': '#0d9488',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-padding-top: 120px;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            font-family: 'Outfit', sans-serif;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* Light Glass Components */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            transform: translateY(-2px);
+        }
+
+        /* Active Sidebar Link */
+        .nav-link.active {
+            color: #2563eb;
+            font-weight: 700;
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 3px solid #2563eb;
+        }
+
+        /* Accordion */
+        .accordion-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-item.active .accordion-content {
+            opacity: 1;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Ambient Orbs */
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+        .orb-1 { top: -5%; left: -5%; width: 40vw; height: 40vw; background: #bfdbfe; }
+        .orb-2 { bottom: -5%; right: -5%; width: 50vw; height: 50vw; background: #e9d5ff; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .sticky-sidebar {
+            position: sticky;
+            top: 7rem;
+            max-height: calc(100vh - 8rem);
+            overflow-y: auto;
+        }
+        
+        .country-flag {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+            line-height: 1;
+        }
+
+        .external-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+        .external-link:hover {
+            background-color: rgba(37, 99, 235, 0.2);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative selection:bg-brand-blue selection:text-white">
+
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <!-- Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition-transform">
+                    <span>BC</span>
+                </div>
+                <div class="block leading-tight"> 
+                    <h1 class="font-bold text-slate-900 text-lg tracking-wide">BETTER CALL</h1>
+                    <p class="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em]">Immigration</p>
+                </div>
+            </a>
+            <div class="flex gap-6">
+                <a href="index.html" class="text-sm font-bold text-slate-500 hover:text-slate-900 transition">Home</a>
+                <a href="assessment.html" class="text-sm font-bold text-brand-blue hover:text-blue-700 transition">Assessment</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-20">
+        
+        <!-- Hero Section -->
+        <section class="container mx-auto px-4 mb-16">
+            <div class="max-w-4xl mx-auto text-center animate-fade-in">
+                <span class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-brand-gold font-bold tracking-[0.1em] text-xs uppercase mb-6 inline-block shadow-sm">Knowledge Base</span>
+                <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tight">Help Center</h1>
+                <p class="text-slate-500 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium">Clear, official answers regarding European Visas, Residency Permits, and Technical Verifications.</p>
+                
+                <div class="relative max-w-2xl mx-auto group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+                    <div class="relative bg-white rounded-full flex items-center p-2 border border-slate-200 shadow-xl">
+                        <i class="fa-solid fa-search text-slate-400 ml-5 text-lg"></i>
+                        <input type="text" id="help-search" placeholder="Search for 'Germany', 'Apostille', 'Salary'..." class="w-full bg-transparent border-none focus:ring-0 text-slate-800 px-4 py-3 placeholder-slate-400 outline-none font-medium text-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8">
+                
+                <!-- Sidebar Navigation -->
+                <aside class="hidden lg:block w-1/4">
+                    <div class="glass-panel rounded-2xl p-4 sticky-sidebar custom-scrollbar">
+                        <h3 class="text-slate-800 font-black mb-4 px-3 uppercase tracking-widest text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-list-ul text-slate-400"></i> Index
+                        </h3>
+                        <nav class="space-y-1" id="toc-nav"></nav>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="w-full lg:w-3/4 space-y-8" id="content-feed">
+                    
+                    <!-- Part 1: Schengen Basics -->
+                    <div class="help-section scroll-mt-32" id="part-1">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-4 mb-6 border-b border-slate-200 pb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-earth-europe"></i></div>
+                                <h2 class="text-2xl font-black text-slate-900">Part 1: Schengen vs. Non-Schengen</h2>
+                            </div>
+                            <div class="prose prose-slate max-w-none text-slate-600 space-y-4">
+                                <p class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r font-medium text-blue-900 text-sm">Understanding the difference is vital. A Schengen visa grants access to 29 countries, but not all of Europe.</p>
+                                
+                                <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden bg-white/50">
+                                    <button class="w-full flex justify-between items-center p-5 text-left font-bold text-slate-800 hover:bg-white transition" onclick="toggleAccordion(this)">
+                                        What is the Schengen Area?
+                                        <i class="fa-solid fa-chevron-down accordion-icon text-sm text-slate-400"></i>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <div class="p-5 pt-0 text-slate-500 text-sm leading-relaxed">
+                                            The Schengen Area is a zone of 29 European countries that have abolished internal borders.
+                                            <br><br>
+                                            <strong class="text-slate-800">The 29 Countries:</strong> Austria, Belgium, Bulgaria*, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania*, Slovakia, Slovenia, Spain, Sweden, and Switzerland.
+                                            <br><br>
+                                            <em class="text-xs text-slate-400">*Bulgaria and Romania joined in March 2024 (air/sea borders only).</em>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 2: Visa Types -->
+                    <div class="help-section scroll-mt-32" id="part-2">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-4 mb-6 border-b border-slate-200 pb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-purple-50 text-brand-purple flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-passport"></i></div>
+                                <h2 class="text-2xl font-black text-slate-900">Part 2: Visa Types</h2>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-white/60 p-5 rounded-2xl border border-white shadow-sm">
+                                    <span class="text-brand-blue font-black text-2xl block mb-1">Type C</span>
+                                    <span class="text-[10px] uppercase tracking-widest text-slate-400 block mb-3 font-bold">Short-Stay (90 Days)</span>
+                                    <p class="text-sm text-slate-600 font-medium">Tourists, business trips, or family visits. Strict 90/180 day rolling limit.</p>
+                                </div>
+                                <div class="bg-amber-50/50 p-5 rounded-2xl border border-amber-100 shadow-sm">
+                                    <span class="text-brand-gold font-black text-2xl block mb-1">Type D</span>
+                                    <span class="text-[10px] uppercase tracking-widest text-amber-600/60 block mb-3 font-bold">National Long-Stay</span>
+                                    <p class="text-sm text-slate-600 font-medium">For living and working (>90 days). The primary visa for employment and residency.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 3 -->
+                    <div class="help-section scroll-mt-32" id="part-3">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 3: Submission Centers</h2>
+                            <p class="text-slate-600 text-sm mb-4">Official outsourced partners for visa collection:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                <div class="bg-white/60 p-4 rounded-xl border border-slate-100"><strong>VFS Global:</strong> France, Germany, Italy, Netherlands.</div>
+                                <div class="bg-white/60 p-4 rounded-xl border border-slate-100"><strong>TLScontact:</strong> France (some regions), Belgium.</div>
+                                <div class="bg-white/60 p-4 rounded-xl border border-slate-100"><strong>BLS International:</strong> Spain, Italy (some regions).</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 4 -->
+                    <div class="help-section scroll-mt-32" id="part-4">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 4: Core Documents</h2>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm bg-white/50 p-6 rounded-2xl border border-slate-100">
+                                <li><strong>Valid Passport:</strong> Must have 2 blank pages & valid >3 months beyond stay.</li>
+                                <li><strong>Photos:</strong> Biometric standard (ICAO), white background, 35x45mm.</li>
+                                <li><strong>Insurance:</strong> Minimum €30,000 coverage for medical emergencies.</li>
+                                <li><strong>Proof of Means:</strong> Bank statements showing sufficient funds.</li>
+                                <li><strong>Accommodation:</strong> Rental agreement or Hotel booking.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Part 5 -->
+                    <div class="help-section scroll-mt-32" id="part-5">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 5: Proof of Income</h2>
+                            <p class="text-slate-600 text-sm mb-4">Crucial for avoiding rejection. Do not use "Lump Sum" deposits.</p>
+                            <div class="bg-amber-50 p-4 rounded-xl border border-amber-100 text-sm text-amber-900">
+                                <strong>Tip:</strong> Officers look for consistent salary credits or business income over 6 months, not just the final balance.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 6: Covering Letter -->
+                    <div class="help-section scroll-mt-32" id="part-6">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 6: Covering Letter</h2>
+                            <p class="text-slate-500 mb-4 text-sm font-medium">A narrative summary of your application. Must include:</p>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs font-bold text-slate-600 uppercase tracking-wider">
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 text-center shadow-sm">Introduction</div>
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 text-center shadow-sm">Purpose</div>
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 text-center shadow-sm">Itinerary</div>
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 text-center shadow-sm">Financials</div>
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 text-center shadow-sm">Ties to Home</div>
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 text-center shadow-sm">Checklist</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 7 -->
+                    <div class="help-section scroll-mt-32" id="part-7">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 7: Police Clearance (PCC)</h2>
+                            <div class="text-slate-600 text-sm space-y-2 font-medium">
+                                <p><strong>What is it?</strong> Official criminal record summary.</p>
+                                <p><strong>Requirement:</strong> Mandatory for almost all Type D Work Visas.</p>
+                                <p class="text-red-500">Must be issued within the last 3-6 months and often requires Apostille.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 8: Apostille -->
+                    <div class="help-section scroll-mt-32" id="part-8">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 8: Apostille & Verification</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-white/60 p-5 rounded-2xl border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2">Apostille</h4>
+                                    <p class="text-xs text-slate-500">Stamp verifying authenticity for Hague Convention countries. Replaces legalization.</p>
+                                </div>
+                                <div class="bg-white/60 p-5 rounded-2xl border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2">Superlegalization</h4>
+                                    <p class="text-xs text-slate-500">For Non-Hague countries (e.g. UAE to Canada). Requires MFA + Embassy stamps.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 9 -->
+                    <div class="help-section scroll-mt-32" id="part-9">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 9: Language Levels (CEFR)</h2>
+                            <div class="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
+                                <div class="min-w-[100px] bg-green-50 border border-green-100 p-4 rounded-2xl text-center shadow-sm">
+                                    <div class="text-2xl font-black text-green-600">A1/A2</div>
+                                    <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Basic</div>
+                                </div>
+                                <div class="min-w-[100px] bg-blue-50 border border-blue-100 p-4 rounded-2xl text-center shadow-sm">
+                                    <div class="text-2xl font-black text-blue-600">B1/B2</div>
+                                    <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Indep.</div>
+                                </div>
+                                <div class="min-w-[100px] bg-purple-50 border border-purple-100 p-4 rounded-2xl text-center shadow-sm">
+                                    <div class="text-2xl font-black text-purple-600">C1/C2</div>
+                                    <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Expert</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 10 -->
+                    <div class="help-section scroll-mt-32" id="part-10">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 10: Job Seeker Visas</h2>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <li class="bg-white/60 p-3 rounded-xl border border-slate-100 text-sm text-slate-600"><strong>🇩🇪 Germany:</strong> Opportunity Card (Points based).</li>
+                                <li class="bg-white/60 p-3 rounded-xl border border-slate-100 text-sm text-slate-600"><strong>🇵🇹 Portugal:</strong> 120 Days. Requires savings.</li>
+                                <li class="bg-white/60 p-3 rounded-xl border border-slate-100 text-sm text-slate-600"><strong>🇦🇹 Austria:</strong> Red-White-Red Card.</li>
+                                <li class="bg-white/60 p-3 rounded-xl border border-slate-100 text-sm text-slate-600"><strong>🇸🇪 Sweden:</strong> High-skilled/Degree only.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Part 11 -->
+                    <div class="help-section scroll-mt-32" id="part-11">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 11: Work Cards</h2>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                                    <p class="text-sm text-slate-600"><strong>EU Blue Card:</strong> Highly skilled, salary threshold met, degree required.</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                                    <p class="text-sm text-slate-600"><strong>Single Permit:</strong> Combined work & residence authorization.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 12 -->
+                    <div class="help-section scroll-mt-32" id="part-12">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 12: TRP vs. TRC</h2>
+                            <div class="flex gap-4">
+                                <div class="flex-1 bg-amber-50 p-4 rounded-2xl border border-amber-100 text-center">
+                                    <h3 class="text-brand-gold font-bold mb-1">TRP (Status)</h3>
+                                    <p class="text-xs text-slate-500">The Legal Decision.</p>
+                                </div>
+                                <div class="flex-1 bg-blue-50 p-4 rounded-2xl border border-blue-100 text-center">
+                                    <h3 class="text-brand-blue font-bold mb-1">TRC (Card)</h3>
+                                    <p class="text-xs text-slate-500">The Plastic ID.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 13 -->
+                    <div class="help-section scroll-mt-32" id="part-13">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 13: Rejections</h2>
+                            <div class="bg-red-50 border border-red-100 rounded-2xl p-5">
+                                <h4 class="text-red-600 font-bold mb-2 text-sm uppercase tracking-wide">Common Triggers</h4>
+                                <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                    <li>"Funds Parking" (Lump sum deposits).</li>
+                                    <li>Unclear purpose of stay.</li>
+                                    <li>Lack of rootedness (ties to home).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 14 -->
+                    <div class="help-section scroll-mt-32" id="part-14">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <h2 class="text-xl font-black text-slate-900 mb-4">Part 14: Deportation vs. Blacklist</h2>
+                            <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                <table class="w-full text-sm text-left text-slate-600">
+                                    <thead class="bg-slate-50 text-slate-900 font-bold">
+                                        <tr><th class="p-3">Type</th><th class="p-3">Scope</th><th class="p-3">Duration</th></tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 bg-white">
+                                        <tr><td class="p-3 font-medium">Deportation</td><td class="p-3">Single Country</td><td class="p-3">Immediate</td></tr>
+                                        <tr><td class="p-3 font-medium text-red-600">Blacklist (SIS)</td><td class="p-3">All Schengen</td><td class="p-3">1-5 Years</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 15 -->
+                    <div class="help-section scroll-mt-32" id="part-15">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">🌍</span>
+                                <h2 class="text-xl font-black text-slate-900">Part 15: African Applicants</h2>
+                            </div>
+                            <div class="accordion-item bg-white/60 border border-slate-200 rounded-2xl mb-2">
+                                <button class="w-full p-4 text-left text-slate-800 font-bold" onclick="toggleAccordion(this)">Superlegalization</button>
+                                <div class="accordion-content p-4 pt-0 text-sm text-slate-600">
+                                    Required for Non-Hague countries (Nigeria, Ghana, Kenya). Process: Notary &rarr; MFA &rarr; Embassy.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 16 -->
+                    <div class="help-section scroll-mt-32" id="part-16">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">🇦🇪</span>
+                                <h2 class="text-xl font-black text-slate-900">Part 16: UAE Residents</h2>
+                            </div>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-2 bg-white/50 p-4 rounded-2xl border border-slate-100">
+                                <li><strong>NOC:</strong> Must guarantee return to employment.</li>
+                                <li><strong>Residency Validity:</strong> Must be valid 3+ months after return date.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Part 17 -->
+                    <div class="help-section scroll-mt-32" id="part-17">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">🇵🇭</span>
+                                <h2 class="text-xl font-black text-slate-900">Part 17: Philippines</h2>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-2xl border border-blue-100 text-sm text-slate-600">
+                                <strong>Double Exit Rule:</strong> Requires European Visa + OEC (DMW/POEA clearance) to leave PH airports.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 18 -->
+                    <div class="help-section scroll-mt-32" id="part-18">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">🇮🇳</span>
+                                <h2 class="text-xl font-black text-slate-900">Part 18: India (ECR)</h2>
+                            </div>
+                            <p class="text-sm text-slate-600 font-medium"><strong>Good News:</strong> Europe is ECNR. You do NOT need POE clearance to work in Europe, even with an ECR passport.</p>
+                        </div>
+                    </div>
+
+                    <!-- Part 19 -->
+                    <div class="help-section scroll-mt-32" id="part-19">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">🚛</span>
+                                <h2 class="text-xl font-black text-slate-900">Part 19: Code 95</h2>
+                            </div>
+                            <p class="text-sm text-slate-600">Mandatory EU certification for commercial drivers. Usually obtained <em>after</em> arrival.</p>
+                        </div>
+                    </div>
+
+                    <!-- Part 20 -->
+                    <div class="help-section scroll-mt-32" id="part-20">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-4 mb-4 pb-4 border-b border-slate-200">
+                                <div class="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-money-bill-wave"></i></div>
+                                <h2 class="text-xl font-black text-slate-900">Part 20: Netto vs. Brutto</h2>
+                            </div>
+                            <div class="flex items-center justify-around text-center">
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-slate-400 font-bold">Brutto</p>
+                                    <p class="text-lg font-black text-slate-700">Gross</p>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-slate-300"></i>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-slate-400 font-bold">Netto</p>
+                                    <p class="text-lg font-black text-green-600">In Hand</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 21: Nordic Premium -->
+                    <div class="help-section scroll-mt-32" id="part-21">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-4 mb-6 border-b border-slate-200 pb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-brand-blue flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-snowflake"></i></div>
+                                <h2 class="text-2xl font-black text-slate-900">Part 21: Nordic Premium Guide</h2>
+                            </div>
+                            
+                            <!-- Sweden -->
+                            <div class="mb-10">
+                                <h3 class="text-xl font-black text-slate-800 mb-4 flex items-center"><span class="country-flag">🇸🇪</span> Sweden</h3>
+                                
+                                <div class="mb-6">
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Glossary</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                            <strong class="text-brand-blue block text-sm mb-1">Skatteverket</strong>
+                                            <p class="text-xs text-slate-500 font-medium">The Tax Agency. Issues ID card & Personnummer.</p>
+                                        </div>
+                                        <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                            <strong class="text-brand-blue block text-sm mb-1">Personnummer</strong>
+                                            <p class="text-xs text-slate-500 font-medium">10-digit Personal ID. Critical for banking/healthcare.</p>
+                                        </div>
+                                        <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                            <strong class="text-brand-blue block text-sm mb-1">BankID</strong>
+                                            <p class="text-xs text-slate-500 font-medium">Digital signature system for online services.</p>
+                                        </div>
+                                        <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                            <strong class="text-brand-blue block text-sm mb-1">Kollektivavtal</strong>
+                                            <p class="text-xs text-slate-500 font-medium">Collective Agreement ensuring fair salary/benefits.</p>
+                                        </div>
+                                        <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                            <strong class="text-brand-blue block text-sm mb-1">Migrationsverket</strong>
+                                            <p class="text-xs text-slate-500 font-medium">Migration Agency. Authority for permits.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-6">
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Documents</h4>
+                                    <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                        <li>Passport (Valid Contract + 3mo)</li>
+                                        <li>CV Europass (English/Swedish)</li>
+                                        <li>Service Letters (3+ Years Exp)</li>
+                                        <li>Union Opinion (Fackligt Yttrande)</li>
+                                        <li>Power of Attorney (Fullmakt)</li>
+                                        <li>Offer Letter (Anställningserbjudande)</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Official Resources</h4>
+                                    <div class="flex flex-wrap gap-4">
+                                        <a href="https://www.migrationsverket.se" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Migrationsverket</a>
+                                        <a href="https://www.skatteverket.se" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Skatteverket</a>
+                                        <a href="https://www.swedenabroad.se" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Sweden Abroad</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="border-slate-200 my-8">
+
+                             <!-- Finland -->
+                             <div>
+                                <h3 class="text-xl font-black text-slate-800 mb-4 flex items-center"><span class="country-flag">🇫🇮</span> Finland</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">TE Office</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Employment Office. Reviews labor terms (Partial Decision).</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">Migri</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Finnish Immigration Service. Final decision maker.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">Henkilötunnus</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Personal Identity Code (DVV).</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">Verokortti</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Tax Card. Mandatory to avoid 60% emergency tax.</p>
+                                    </div>
+                                </div>
+
+                                <div class="mb-6">
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Documents</h4>
+                                    <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                        <li>TEM 0.54 Form (Terms of Employment)</li>
+                                        <li>Passport (Valid duration of stay)</li>
+                                        <li>Qualifications (Translated)</li>
+                                        <li>Work History Certificates</li>
+                                        <li>Housing Proof (for DVV)</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Official Resources</h4>
+                                    <div class="flex flex-wrap gap-4">
+                                        <a href="https://migri.fi/en/home" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Migri</a>
+                                        <a href="https://enterfinland.fi/eServices" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Enter Finland</a>
+                                        <a href="https://dvv.fi/en/individuals" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> DVV (Digital Agency)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 22: Western Schengen -->
+                    <div class="help-section scroll-mt-32" id="part-22">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-4 mb-6 border-b border-slate-200 pb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-landmark"></i></div>
+                                <h2 class="text-2xl font-black text-slate-900">Part 22: Western Schengen Guide</h2>
+                            </div>
+
+                            <!-- Germany -->
+                            <div class="mb-10">
+                                <h3 class="text-xl font-black text-slate-800 mb-4 flex items-center"><span class="country-flag">🇩🇪</span> Germany</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">Anmeldung</strong>
+                                        <p class="text-xs text-slate-500 font-medium">City Registration at Bürgeramt. Vital for Tax ID.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">ZAB</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Central Office for Foreign Education (Zeugnisbewertung).</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">VIDEX</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Digital Visa Application Form.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">Ausländerbehörde</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Immigration Authority (ABH).</p>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Official Resources</h4>
+                                    <div class="flex flex-wrap gap-4">
+                                        <a href="https://videx.diplo.de" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> VIDEX Form</a>
+                                        <a href="https://www.make-it-in-germany.com/en/" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Make it in Germany</a>
+                                        <a href="https://www.kmk.org/zab/central-office-for-foreign-education.html" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> ZAB</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr class="border-slate-200 my-8">
+
+                            <!-- Netherlands -->
+                            <div class="mb-10">
+                                <h3 class="text-xl font-black text-slate-800 mb-4 flex items-center"><span class="country-flag">🇳🇱</span> Netherlands</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">BSN</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Citizen Service Number (Burgerservicenummer).</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">MVV</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Provisional Residence Permit (Visa D).</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">IND</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Immigration and Naturalisation Service.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">DigiD</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Digital Identity for government services.</p>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Official Resources</h4>
+                                    <div class="flex flex-wrap gap-4">
+                                        <a href="https://ind.nl/en" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> IND</a>
+                                        <a href="https://www.government.nl" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Govt.nl</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="border-slate-200 my-8">
+
+                             <!-- France -->
+                             <div class="mb-10">
+                                <h3 class="text-xl font-black text-slate-800 mb-4 flex items-center"><span class="country-flag">🇫🇷</span> France</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">VLS-TS</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Visa serving as Residence Permit (Passeport Talent).</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">OFII</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Office for Immigration & Integration (Medicals).</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">Cerfa</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Official administrative form standard.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-blue block text-sm mb-1">CPAM</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Health Insurance Fund (Carte Vitale).</p>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Official Resources</h4>
+                                    <div class="flex flex-wrap gap-4">
+                                        <a href="https://france-visas.gouv.fr/en_US/web/france-visas" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> France-Visas</a>
+                                        <a href="https://administration-etrangers-en-france.interieur.gouv.fr/" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Étrangers en France</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="border-slate-200 my-8">
+
+                            <!-- Italy -->
+                            <div>
+                                <h3 class="text-xl font-black text-slate-800 mb-4 flex items-center"><span class="country-flag">🇮🇹</span> Italy</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">Nulla Osta</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Work Authorization issued by SUI.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">Codice Fiscale</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Fiscal Code. Mandatory for contracts/tax.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">Kit Giallo</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Yellow Postal Kit for residence permit.</p>
+                                    </div>
+                                    <div class="bg-white/60 p-4 rounded-2xl border border-slate-100 shadow-sm">
+                                        <strong class="text-brand-gold block text-sm mb-1">Decreto Flussi</strong>
+                                        <p class="text-xs text-slate-500 font-medium">Annual Quota Decree.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3">Official Resources</h4>
+                                    <div class="flex flex-wrap gap-4">
+                                        <a href="https://www.interno.gov.it/it/temi/immigrazione-e-asilo" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Ministry of Interior</a>
+                                        <a href="https://nullaostalavoro.dlci.interno.it/" target="_blank" class="external-link"><i class="fa-solid fa-link"></i> Portale Servizi</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 23: Emerging Schengen -->
+                    <div class="help-section scroll-mt-32" id="part-23">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-4 mb-6 border-b border-slate-200 pb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-500 flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-rocket"></i></div>
+                                <h2 class="text-2xl font-black text-slate-900">Part 23: Emerging Schengen Guide</h2>
+                            </div>
+                            
+                            <div class="space-y-8">
+                                <!-- Slovakia -->
+                                <div class="p-6 bg-white/60 rounded-3xl border border-slate-100 shadow-sm">
+                                    <h3 class="font-bold text-slate-800 mb-3 text-lg"><span class="country-flag">🇸🇰</span> Slovakia</h3>
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Terms:</strong> Úrad práce (Labour Office), Prechodný pobyt (Temp Residence), Cudzinecká polícia.</p>
+                                    <p class="text-sm text-slate-500 font-medium mb-3"><strong>Roadmap:</strong> Registration &rarr; Offer &rarr; Work Permit &rarr; Visa D &rarr; Arrival &rarr; Foreign Police.</p>
+                                    <div class="flex flex-wrap gap-3 mt-3 border-t border-slate-200 pt-3">
+                                        <a href="https://www.minv.sk/?residence-of-a-foreigner" target="_blank" class="external-link text-xs">Foreign Police</a>
+                                        <a href="https://www.upsvr.gov.sk/" target="_blank" class="external-link text-xs">Labour Office</a>
+                                    </div>
+                                </div>
+
+                                <!-- Poland -->
+                                <div class="p-6 bg-white/60 rounded-3xl border border-slate-100 shadow-sm">
+                                    <h3 class="font-bold text-slate-800 mb-3 text-lg"><span class="country-flag">🇵🇱</span> Poland</h3>
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Terms:</strong> ZUS (Social), PESEL (ID), Karta Pobytu (Card), Type A Permit.</p>
+                                    <p class="text-sm text-slate-500 font-medium mb-3"><strong>Roadmap:</strong> Inquiry &rarr; Labour Test &rarr; Type A Permit &rarr; E-Konsulat &rarr; Visa &rarr; ZUS/PESEL.</p>
+                                    <div class="flex flex-wrap gap-3 mt-3 border-t border-slate-200 pt-3">
+                                        <a href="https://www.gov.pl/web/udsc" target="_blank" class="external-link text-xs">Office for Foreigners</a>
+                                        <a href="https://secure.e-konsulat.gov.pl/" target="_blank" class="external-link text-xs">E-Konsulat</a>
+                                    </div>
+                                </div>
+
+                                <!-- Latvia -->
+                                <div class="p-6 bg-white/60 rounded-3xl border border-slate-100 shadow-sm">
+                                    <h3 class="font-bold text-slate-800 mb-3 text-lg"><span class="country-flag">🇱🇻</span> Latvia</h3>
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Terms:</strong> OCMA/PMLP (Migration), Smart-ID, Code 95, Invitation Number.</p>
+                                    <p class="text-sm text-slate-500 font-medium mb-3"><strong>Roadmap:</strong> Verification &rarr; Invitation &rarr; Medical (TB) &rarr; Embassy &rarr; Decision &rarr; Travel.</p>
+                                    <div class="flex flex-wrap gap-3 mt-3 border-t border-slate-200 pt-3">
+                                        <a href="https://www.pmlp.gov.lv/en" target="_blank" class="external-link text-xs">OCMA / PMLP</a>
+                                    </div>
+                                </div>
+
+                                <!-- Czech Republic -->
+                                <div class="p-6 bg-white/60 rounded-3xl border border-slate-100 shadow-sm">
+                                    <h3 class="font-bold text-slate-800 mb-3 text-lg"><span class="country-flag">🇨🇿</span> Czech Republic</h3>
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Terms:</strong> OAMP (Asylum/Migration), Rodné číslo (Birth #), Nostrification (Diploma Rec).</p>
+                                    <p class="text-sm text-slate-500 font-medium mb-3"><strong>Roadmap:</strong> Vacancy Report &rarr; Contract &rarr; Employee Card App &rarr; OAMP Review &rarr; Visa &rarr; Biometrics.</p>
+                                    <div class="flex flex-wrap gap-3 mt-3 border-t border-slate-200 pt-3">
+                                        <a href="https://www.mvcr.cz/mvcren/" target="_blank" class="external-link text-xs">Ministry of Interior (OAMP)</a>
+                                        <a href="https://www.mpsv.cz/web/en" target="_blank" class="external-link text-xs">Ministry of Labour</a>
+                                    </div>
+                                </div>
+
+                                <!-- Croatia -->
+                                <div class="p-6 bg-white/60 rounded-3xl border border-slate-100 shadow-sm">
+                                    <h3 class="font-bold text-slate-800 mb-3 text-lg"><span class="country-flag">🇭🇷</span> Croatia</h3>
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Terms:</strong> OIB (Tax ID), MUP (Ministry), HZZ (Employment Service).</p>
+                                    <p class="text-sm text-slate-500 font-medium mb-3"><strong>Roadmap:</strong> Labor Test &rarr; Work Permit (MUP) &rarr; Visa D &rarr; Travel &rarr; Police Reg &rarr; ID.</p>
+                                    <div class="flex flex-wrap gap-3 mt-3 border-t border-slate-200 pt-3">
+                                        <a href="https://mup.gov.hr/en" target="_blank" class="external-link text-xs">MUP (Ministry of Interior)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 24: Non-Schengen -->
+                    <div class="help-section scroll-mt-32" id="part-24">
+                        <div class="glass-panel rounded-3xl p-8">
+                            <div class="flex items-center gap-4 mb-6 border-b border-slate-200 pb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-globe"></i></div>
+                                <h2 class="text-2xl font-black text-slate-900">Part 24: Non-Schengen Guide</h2>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Montenegro -->
+                                <div class="bg-white/60 p-5 rounded-2xl border border-slate-100 shadow-sm">
+                                    <h3 class="text-brand-gold font-bold mb-2 flex items-center gap-2"><span class="text-xl">🇲🇪</span> Montenegro</h3>
+                                    <p class="text-xs text-slate-500 mb-2"><strong>MUP:</strong> Interior Ministry. <strong>Boravak:</strong> Residence. <strong>Radna dozvola:</strong> Work Permit.</p>
+                                    <div class="mt-2 border-t border-slate-200 pt-2">
+                                        <a href="https://www.gov.me/en/mup" target="_blank" class="external-link text-xs">Gov.me (MUP)</a>
+                                    </div>
+                                </div>
+
+                                <!-- Macedonia -->
+                                <div class="bg-white/60 p-5 rounded-2xl border border-slate-100 shadow-sm">
+                                    <h3 class="text-brand-gold font-bold mb-2 flex items-center gap-2"><span class="text-xl">🇲🇰</span> Macedonia</h3>
+                                    <p class="text-xs text-slate-500 mb-2"><strong>AVRM:</strong> Employment Agency. <strong>Lična karta:</strong> ID Card.</p>
+                                    <div class="mt-2 border-t border-slate-200 pt-2">
+                                        <a href="https://av.gov.mk/" target="_blank" class="external-link text-xs">Employment Agency</a>
+                                    </div>
+                                </div>
+
+                                <!-- Serbia -->
+                                <div class="bg-white/60 p-5 rounded-2xl border border-slate-100 shadow-sm">
+                                    <h3 class="text-brand-gold font-bold mb-2 flex items-center gap-2"><span class="text-xl">🇷🇸</span> Serbia</h3>
+                                    <p class="text-xs text-slate-500 mb-2"><strong>NSZ:</strong> National Employment. <strong>Bela Karta:</strong> White Card. <strong>Single Permit:</strong> 3 Years.</p>
+                                    <div class="mt-2 border-t border-slate-200 pt-2">
+                                        <a href="http://www.mup.gov.rs/wps/portal/en" target="_blank" class="external-link text-xs">Ministry of Interior</a>
+                                    </div>
+                                </div>
+
+                                <!-- Albania -->
+                                <div class="bg-white/60 p-5 rounded-2xl border border-slate-100 shadow-sm">
+                                    <h3 class="text-brand-gold font-bold mb-2 flex items-center gap-2"><span class="text-xl">🇦🇱</span> Albania</h3>
+                                    <p class="text-xs text-slate-500 mb-2"><strong>Leja Unike:</strong> Unique Permit. <strong>AKPA:</strong> Employment Agency.</p>
+                                    <div class="mt-2 border-t border-slate-200 pt-2">
+                                        <a href="https://e-albania.al/" target="_blank" class="external-link text-xs">e-Albania Portal</a>
+                                    </div>
+                                </div>
+
+                                <!-- Belarus -->
+                                <div class="bg-white/60 p-5 rounded-2xl border border-slate-100 shadow-sm md:col-span-2">
+                                    <h3 class="text-brand-gold font-bold mb-2 flex items-center gap-2"><span class="text-xl">🇧🇾</span> Belarus</h3>
+                                    <p class="text-xs text-slate-500 mb-2"><strong>Special Permit:</strong> Work Right. <strong>OGiM:</strong> Migration Dept.</p>
+                                    <div class="mt-2 border-t border-slate-200 pt-2">
+                                        <a href="https://mvd.gov.by/en" target="_blank" class="external-link text-xs">Ministry of Internal Affairs</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-center text-slate-400 text-sm">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Better Call Immigration. All rights reserved.</p>
+            <div class="flex justify-center gap-6 mt-4 font-bold">
+                <a href="#" class="hover:text-brand-blue transition">Privacy Policy</a>
+                <a href="#" class="hover:text-brand-blue transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Generate Sidebar Links Dynamically ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.help-section');
+            const navContainer = document.getElementById('toc-nav');
+
+            sections.forEach(section => {
+                const title = section.querySelector('h2').innerText;
+                const id = section.id;
+                const shortTitle = title.replace(/Part \d+:\s*/, '');
+
+                const link = document.createElement('a');
+                link.href = `#${id}`;
+                link.className = 'nav-link block px-4 py-2 text-sm text-slate-500 hover:text-brand-blue hover:bg-blue-50 rounded-r border-l-2 border-transparent transition-all truncate font-medium';
+                link.innerText = shortTitle;
+                
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const element = document.getElementById(id);
+                    const offset = 120;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = element.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                });
+
+                navContainer.appendChild(link);
+            });
+
+            // --- ScrollSpy ---
+            const observerOptions = { root: null, rootMargin: '-130px 0px -70% 0px', threshold: 0 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                        const activeLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+                        if(activeLink) activeLink.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+            // --- Search Functionality ---
+            const searchInput = document.getElementById('help-search');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                sections.forEach(section => {
+                    const text = section.innerText.toLowerCase();
+                    if (text.includes(query)) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+
+            // --- Lenis Scroll ---
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        });
+
+        // --- Accordion Logic ---
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const content = item.querySelector('.accordion-content');
+            
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                content.style.maxHeight = null;
+            } else {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    </script>
+</body>
+</html>

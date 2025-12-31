@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalHire - Western Schengen Premium Portal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f2f5;
+            color: #1e293b;
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism 2.0 Base */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.2); }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="root" class="min-h-screen w-full"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        const Icon = ({ name, size = 18, className = "" }) => {
+            const IconComponent = window.lucide.icons[name];
+            if (!IconComponent) return null;
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={size}
+                    height={size}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`lucide lucide-${name} ${className}`}
+                    dangerouslySetInnerHTML={{
+                        __html: IconComponent.map(child => {
+                            const [tag, attrs] = child;
+                            return `<${tag} ${Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ')} />`;
+                        }).join('')
+                    }}
+                />
+            );
+        };
+
+        const DATA = [
+            {
+                id: 'de',
+                name: 'Germany',
+                flag: '🇩🇪',
+                theme: { primary: '#dd0000', secondary: '#ffce00', bg: '#fffafa', accent: '#000000' },
+                desc: 'Engineering heart of Europe and leading Healthcare hub with diverse technical roles.',
+                stats: { salary: '€3,000 - €6,000+', roles: 26, success: '91%', time: '4-6 Months' },
+                pricing: { total: "€6,500", breakdown: "Advance €1,000 + Balance €5,500" },
+                roadmap: [
+                    { s: "01", t: "Qualification", d: "Formal recognition of foreign qualifications via ZAB (Central Office for Foreign Education) and preliminary profile evaluation for legal compliance.", i: "FileText" },
+                    { s: "02", t: "Assessment", d: "Direct interview with potential employers to assess technical fit, followed by a professional assessment of soft skills and German language potential.", i: "UserCheck" },
+                    { s: "03", t: "Offer", d: "Issuance of a binding employment contract (Arbeitsvertrag) compliant with German labor law, including specific salary thresholds for visa approval.", i: "EnvelopeOpen" },
+                    { s: "04", t: "VIDEX Filing", d: "Digital completion of the VIDEX National Visa application form, ensuring all data matches the employment contract and ZAB certification exactly.", i: "FileSignature" },
+                    { s: "05", t: "Embassy", d: "Personal appointment at the German Mission for biometric data collection and submission of the complete physical application dossier.", i: "Stamp" },
+                    { s: "06", t: "Stamping", d: "Processing and stamping of the National Visa (D-Visa) into the passport, authorizing entry for the purpose of long-term employment.", i: "CheckCircle" },
+                    { s: "07", t: "Anmeldung", d: "Mandatory city registration (Anmeldung) at the local Bürgeramt upon arrival to obtain the Meldebescheinigung and Tax ID.", i: "PlaneArrival" }
+                ],
+                vault: [
+                    { t: 'Anmeldung', d: 'Mandatory **municipal registration** (Meldebestätigung) at the *Bürgeramt* under § 17 BMG. Prerequisite for tax ID issuance (*Steuer-ID*), banking compliance (KYC), and social security enrollment.' },
+                    { t: 'ZAB', d: 'The **Central Office for Foreign Education**. Issues the *Statement of Comparability* (Zeugnisbewertung) under the Lisbon Convention, technically validating foreign academic credentials against the German Qualifications Framework (DQR).' },
+                    { t: 'Rentenversicherung', d: 'Statutory **Pension Insurance** (GRV) under SGB VI. A mandatory payroll deduction (approx. 18.6%) securing rehabilitation claims, disability pensions (*Erwerbsminderungsrente*), and long-term retirement benefits.' },
+                    { t: 'Ausländerbehörde', d: 'The **Immigration Authority** (ABH). Adjudicates residence titles (*Aufenthaltstitel*) under the Residence Act (AufenthG). Responsible for converting the initial D-Visa into a biometric residence permit (*Elektronischer Aufenthaltstitel* - eAT).' }
+                ],
+                docs: [
+                    { k: 'A', t: 'Anmeldung', d: 'Meldebescheinigung (Registration Certificate). Issued by the local town hall confirming your German address.' },
+                    { k: 'B', t: 'Blue Card', d: 'Application for the EU Blue Card, reserved for highly qualified academics meeting specific salary thresholds.' },
+                    { k: 'C', t: 'CV Europass', d: 'A detailed curriculum vitae formatted to European standards, highlighting specific dates, skills, and educational history without gaps.' },
+                    { k: 'D', t: 'Degrees', d: 'University diplomas and transcripts, legally translated and certified, often accompanied by the ZAB Statement of Comparability.' },
+                    { k: 'S', t: 'Self Intro', d: 'A professional 1-2 minute video introduction (S-Intro) showcasing your language skills, motivation, and professional personality.' },
+                    { k: 'P', t: 'Passport', d: 'Valid national passport with at least two empty pages and validity extending at least 15 months beyond the intended travel date.' },
+                    { k: 'V', t: 'VIDEX', d: 'The printed and signed output of the digital VIDEX application form, including the barcode page for scanning at the embassy.' }
+                ],
+                jobs: [
+                    { cat: 'Healthcare Division', roles: ['Care Home Staff'], count: 1, baseSal: 2600, minSal: 2000 },
+                    { cat: 'Corporate & Office', roles: ['Office Clerk', 'Receptionist', 'Accountant', 'Manager', 'HR Assistant', 'HR Executive', 'Administrative Assistant', 'Front Office Executive', 'Secretary', 'Personal Assistant', 'Document Controller'], count: 11, baseSal: 6000, minSal: 5000 },
+                    { cat: 'Sales & Marketing', roles: ['Sales Executive', 'Marketing Executive', 'Business Development Executive', 'Customer Service Executive', 'Call Centre Executive'], count: 5, baseSal: 5500, minSal: 5000 },
+                    { cat: 'Technical & Engineering', roles: ['IT Professional', 'Engineer', 'Project Coordinator', 'Data Entry Operator'], count: 4, baseSal: 6000, minSal: 5000 },
+                    { cat: 'Operations & Logistics', roles: ['Logistics Coordinator', 'Store Supervisor', 'Procurement Assistant', 'Warehouse worker', 'Construction Worker'], count: 5, baseSal: 5500, minSal: 5000 }
+                ]
+            },
+            {
+                id: 'nl',
+                name: 'Netherlands',
+                flag: '🇳🇱',
+                theme: { primary: '#21468b', secondary: '#ff4f00', bg: '#fff5f0', accent: '#ae1c28' },
+                desc: 'Strategic logistics and digital gateway to Western Europe with high-salary corporate tracks.',
+                stats: { salary: '€5,000 - €6,500', roles: 20, success: '95%', time: '2-3 Months' },
+                pricing: { total: "€6,500", breakdown: "Advance €1,000 + Balance €5,500" },
+                roadmap: [
+                    { s: "01", t: "Advice", d: "Comprehensive legal review of candidate profile to ensure eligibility for the Highly Skilled Migrant (HSM) visa track and salary threshold compliance.", i: "FileText" },
+                    { s: "02", t: "Employer Match", d: "Selection process with IND-recognized sponsors (Referent) to secure a position that qualifies for the accelerated immigration procedure.", i: "UserCheck" },
+                    { s: "03", t: "Contract", d: "Signing of the employment contract, which serves as the primary document for the residence permit application and HSM verification.", i: "EnvelopeOpen" },
+                    { s: "04", t: "TEV Submission", d: "The employer (Sponsor) submits the TEV (Entry and Residence) application directly to the IND (Immigration and Naturalisation Service) in the Netherlands.", i: "FileSignature" },
+                    { s: "05", t: "MVV Stamping", d: "Upon IND approval, the candidate visits the Dutch embassy in their home country for biometric data collection and to collect the MVV sticker.", i: "Stamp" },
+                    { s: "06", t: "Grant", d: "Issuance of the MVV (Provisional Residence Permit), allowing entry into the Netherlands for stays longer than 90 days to initiate residency.", i: "CheckCircle" },
+                    { s: "07", t: "BSN Setup", d: "Appointment at the Expat Center or Municipality to register in the BRP (Personal Records Database) and receive the BSN (Citizen Service Number).", i: "PlaneArrival" }
+                ],
+                vault: [
+                    { t: 'BSN', d: '**Burgerservicenummer** (Citizen Service Number). The unique fiscal identifier issued via the *Basisregistratie Personen* (BRP). Critical for payroll tax withholding (*Loonheffing*), mandatory health insurance (Zvw), and fiscal reporting.' },
+                    { t: 'MVV', d: '**Machtiging tot Voorlopig Verblijf**. A Type D provisional entry visa acting as a pre-residence authorization. Required for non-EU/EEA nationals to legally enter for stays >90 days pending the formal VVR (*Verblijfsvergunning*).' },
+                    { t: 'IND', d: '**Immigratie- en Naturalisatiedienst**. The sovereign administrative body implementing the Aliens Act 2000. Adjudicates TEV procedures, HSM (*Kennismigrant*) sponsorship compliance, and Article 1F assessments.' },
+                    { t: 'DigiD', d: '**Digital Identity** Authentication. A cross-sectoral SSO (Single Sign-On) framework using 2FA. Mandatory for accessing the *MijnOverheid* portal, tax returns (*Belastingdienst*), and UWV employment records.' }
+                ],
+                docs: [
+                    { k: 'A', t: 'Antecedents', d: 'Antecedents Certificate. A signed declaration stating you have no criminal history, required for the residence permit application.' },
+                    { k: 'B', t: 'BSN App', d: 'Confirmation of your appointment with the municipality to register in the Key Register of Persons (BRP).' },
+                    { k: 'C', t: 'Contract', d: 'The official employment agreement signed by both parties, detailing role, salary, and working hours, meeting HSM criteria.' },
+                    { k: 'T', t: 'TB Check', d: 'Tuberculosis test referral form. Depending on nationality, you may need to undergo a TB test at the GGD (Municipal Health Service) upon arrival.' },
+                    { k: 'S', t: 'Self Intro', d: 'A concise professional video pitch directed at Dutch employers, emphasizing adaptability and English proficiency.' },
+                    { k: 'P', t: 'Passport', d: 'High-resolution color scan of every page of the passport, including blank pages and the cover, valid for duration of stay.' }
+                ],
+                jobs: [
+                    { cat: 'Corporate & Office', roles: ['Office Clerk', 'Receptionist', 'Accountant', 'Manager', 'HR Assistant', 'Executive', 'Administrative Assistant', 'Front Office', 'Personal Assistant', 'Document Controller'], count: 10, baseSal: 6000, minSal: 5000 },
+                    { cat: 'Sales & Marketing', roles: ['Sales Executive', 'Marketing Executive', 'Business Development', 'Customer Service', 'Call Centre'], count: 5, baseSal: 5500, minSal: 5000 },
+                    { cat: 'Tech & Operations', roles: ['IT Professional', 'Engineer', 'Project Coordinator', 'Data Entry', 'Logistics Coordinator'], count: 5, baseSal: 6000, minSal: 5000 }
+                ]
+            },
+            {
+                id: 'fr',
+                name: 'France',
+                flag: '🇫🇷',
+                theme: { primary: '#002395', secondary: '#ed2939', bg: '#f9fbff', accent: '#002395' },
+                desc: 'Administrative and cultural core offering strong healthcare and administrative pathways.',
+                stats: { salary: '€1,200 - €4,500', roles: 24, success: '90%', time: '3-4 Months' },
+                pricing: { total: "€5,500", breakdown: "Advance €1,000 + Balance €4,500" },
+                roadmap: [
+                    { s: "01", t: "Authorization", d: "The employer applies for the work authorization (Autorisation de travail) via the dedicated online portal for foreign talent.", i: "FileText" },
+                    { s: "02", t: "Cerfa Prep", d: "Preparation of the Cerfa visa application forms, ensuring all information matches the work authorization and passport details exactly.", i: "FileSignature" },
+                    { s: "03", t: "Submission", d: "Online submission of the visa request via the France-Visas portal, generating the registration receipt needed for the appointment.", i: "Globe" },
+                    { s: "04", t: "Biometrics", d: "Physical appointment at the visa center (e.g., VFS/TLS) to submit the application file and provide biometric data (fingerprints/photo).", i: "UserCheck" },
+                    { s: "05", t: "VLS-TS", d: "Issuance of the VLS-TS (Long-stay visa serving as a residence permit), labeled 'Passeport Talent' or 'Salarié', valid for up to one year.", i: "Stamp" },
+                    { s: "06", t: "OFII Prep", d: "Online validation of the VLS-TS visa within 3 months of arrival to legalize residence and payment of the issuance tax.", i: "CheckCircle" },
+                    { s: "07", t: "Validation", d: "Mandatory medical examination with the OFII and registration for French social security (Sécurité Sociale) to obtain the Carte Vitale.", i: "PlaneArrival" }
+                ],
+                vault: [
+                    { t: 'VLS-TS', d: '**Visa de Long Séjour valant Titre de Séjour**. A hybrid Type D visa serving as a de facto residence permit (CESEDA R431-16). Requires digital validation ensuring legality pending the multi-year *Carte de Séjour Pluriannuelle*.' },
+                    { t: 'OFII', d: '**Office Français de l\'Immigration et de l\'Intégration**. Administers the *Contrat d\'Intégration Républicaine* (CIR). Conducts mandatory medical prophylactic screenings and validates the *Timbre Fiscal* (tax stamp) payment.' },
+                    { t: 'Cerfa', d: 'Official **Administrative Form** Standard. Specifically *Cerfa n°14571* for work permits. Regulates standardized data submission to the French administration, ensuring compliance with the *Code du travail*.' },
+                    { t: 'CPAM', d: '**Caisse Primaire d\'Assurance Maladie**. The local branch of the *Sécurité Sociale* (CNAM). Manages affiliation to PUMA (*Protection universelle maladie*), reimbursement of care acts, and issuance of the *Carte Vitale*.' }
+                ],
+                docs: [
+                    { k: 'C', t: 'Cerfa', d: 'The completed and signed Cerfa form generated by the France-Visas portal, containing the barcode for processing.' },
+                    { k: 'M', t: 'Medical', d: 'A standard medical certificate attesting to general good health and absence of contagious diseases.' },
+                    { k: 'O', t: 'OFII Form', d: 'The residence form required for the OFII validation process, to be stamped upon entry into France.' },
+                    { k: 'S', t: 'Self Intro', d: 'A structured video presentation (S-Video) highlighting professional experience and motivation for moving to France.' },
+                    { k: 'P', t: 'Passport', d: 'Original passport valid for at least 3 months beyond the expiry of the requested visa, with at least two blank pages.' },
+                    { k: 'L', t: 'Legalization', d: 'Birth certificate legalized or apostilled in the country of origin, often required for social security registration.' }
+                ],
+                jobs: [
+                    { cat: 'Healthcare', roles: ['Care Home Assistant', 'Nursing Assistant', 'Elderly Care Staff', 'Healthcare Support'], count: 4, baseSal: 1600, minSal: 1200 },
+                    { cat: 'Corporate & Office', roles: ['Office Clerk', 'Receptionist', 'Accountant', 'Manager', 'HR Assistant'], count: 8, baseSal: 3000, minSal: 1500 },
+                    { cat: 'Sales & Tech', roles: ['Sales & Marketing', 'Business Dev', 'IT Professional', 'Engineer', 'Logistics Coordinator', 'Store Supervisor'], count: 12, baseSal: 3500, minSal: 1600 }
+                ]
+            },
+            {
+                id: 'it',
+                name: 'Italy',
+                flag: '🇮🇹',
+                theme: { primary: '#009246', secondary: '#ce2b37', bg: '#fafffa', accent: '#009246' },
+                desc: 'Mediterranean powerhouse with high demand for luxury service and tech manufacturing.',
+                stats: { salary: '€1,200 - €3,500', roles: 14, success: '89%', time: '4-6 Months' },
+                pricing: { total: "€5,000", breakdown: "Advance €1,000 + Balance €4,000" },
+                roadmap: [
+                    { s: "01", t: "Quota Check", d: "Verification of the annual 'Decreto Flussi' quotas to ensure availability of work permits for non-EU nationals in specific sectors.", i: "Clock" },
+                    { s: "02", t: "Nulla Osta", d: "The Italian employer submits the request for 'Nulla Osta' (Work Authorization) to the Sportello Unico per l'Immigrazione (SUI).", i: "FileText" },
+                    { s: "03", t: "Clearance", d: "Issuance of the official Nulla Osta certificate by the SUI after clearance from the Questura (Police HQ) and Labor Office.", i: "CheckCircle" },
+                    { s: "04", t: "Visa Filing", d: "Submission of the National Visa (Type D) application at the Italian Consulate/Embassy in the home country, referencing the Nulla Osta.", i: "Stamp" },
+                    { s: "05", t: "Entry", d: "Entry into Italy and mandatory declaration of presence at the local Questura within 8 days of arrival to avoid illegal status.", i: "PlaneArrival" },
+                    { s: "06", t: "Permesso", d: "Application for the Residence Permit (Permesso di Soggiorno) via the 'Kit Giallo' at a qualified Post Office (Poste Italiane).", i: "FileSignature" },
+                    { s: "07", t: "ID Setup", d: "Appointment at the Questura for fingerprinting and subsequent collection of the electronic residence permit card and Codice Fiscale.", i: "UserCheck" }
+                ],
+                vault: [
+                    { t: 'Nulla Osta', d: '**Nulla Osta al Lavoro**. An inter-ministerial clearance issued by the *Sportello Unico per l\'Immigrazione* (SUI). Certifies compliance with the *Testo Unico sull\'Immigrazione* (TUI) regarding housing (Idoneità) and contractual limits.' },
+                    { t: 'Codice Fiscale', d: 'The **Fiscal Code**. An alphanumeric algorithm-generated identifier (D.P.R. 605/1973). Mandatory for tax registration (*Agenzia delle Entrate*), INPS social security enrollment, and executing binding legal contracts.' },
+                    { t: 'Decreto Flussi', d: 'The **Flow Decree**. Prime Ministerial Decree (DPCM) establishing annual quotas for non-EU subordinate work. Determines sector-specific allocations (e.g., *lavoro subordinato*) and conversion limits.' },
+                    { t: 'Kit Giallo', d: 'The **Postal Kit** (Modello 209). A bureaucratic packet for the *Permesso di Soggiorno*. Contains Module 1/2 for requesting the electronic residence card (*PSE*) via the specialized *Sportello Amico* postal network.' }
+                ],
+                docs: [
+                    { k: 'N', t: 'Nulla Osta', d: 'The original or digital copy of the work authorization issued by the Sportello Unico per l\'Immigrazione.' },
+                    { k: 'K', t: 'Kit Giallo', d: 'The application forms (Moduli 1 & 2) found inside the yellow envelope, completed in black ink for the residence permit.' },
+                    { k: 'C', t: 'Codice', d: 'Certificate attributing the Codice Fiscale, often issued by the Consulate or applied for immediately upon arrival.' },
+                    { k: 'S', t: 'Self Intro', d: 'A video introduction emphasizing relevant skills and willingness to integrate into Italian work culture.' },
+                    { k: 'P', t: 'Passport', d: 'Valid passport with validity exceeding the visa duration by at least 3 months, with required blank pages.' },
+                    { k: 'H', t: 'Housing', d: 'Proof of accommodation (Idoneità Alloggiativa) or a hospitality declaration certified by the municipality.' }
+                ],
+                jobs: [
+                    { cat: 'Healthcare', roles: ['Care Home Assistant', 'Nursing Assistant', 'Elderly Care', 'Healthcare Support'], count: 4, baseSal: 1600, minSal: 1200 },
+                    { cat: 'Commercial', roles: ['Office Clerk', 'Accountant', 'Manager', 'HR Assistant', 'Sales', 'Business Dev', 'IT Pro', 'Engineer', 'Logistics', 'Store Supervisor'], count: 10, baseSal: 3500, minSal: 1500 }
+                ]
+            }
+        ];
+
+        const App = () => {
+            const [sel, setSel] = useState('de');
+            const [tab, setTab] = useState('jobs');
+            const [query, setQuery] = useState('');
+            const [dept, setDept] = useState('All');
+            const country = useMemo(() => DATA.find(c => c.id === sel) || DATA[0], [sel]);
+
+            useEffect(() => {
+                setDept('All');
+                setQuery('');
+            }, [sel]);
+
+            const flatJobs = useMemo(() => {
+                let all = [];
+                // Dynamic job generation derived from Western Schengen logic
+                country.jobs.forEach(group => {
+                    for(let i = 0; i < group.count; i++) {
+                        const role = group.roles[i % group.roles.length];
+                        const salary = i % 3 === 0 ? `€${group.baseSal}` : `€${group.minSal}`;
+                        all.push({
+                            title: role, 
+                            cat: group.cat,
+                            ref: `BC-W-${country.id.toUpperCase()}-${1000 + all.length}`,
+                            exp: i % 3 === 0 ? '3-5 Years' : 'Entry Level',
+                            salary: salary, 
+                            demand: 85 + (i % 15)
+                        });
+                    }
+                });
+                return all.filter(j => {
+                    const matchesQuery = j.title.toLowerCase().includes(query.toLowerCase()) || j.ref.toLowerCase().includes(query.toLowerCase());
+                    const matchesDept = dept === 'All' || j.cat === dept;
+                    return matchesQuery && matchesDept;
+                });
+            }, [country, query, dept]);
+
+            const departments = useMemo(() => {
+                return ['All', ...new Set(country.jobs.map(j => j.cat))];
+            }, [country]);
+
+            // Add markdown rendering helper
+            const renderMarkdown = (text) => {
+                const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+                return parts.map((part, index) => {
+                    if (part.startsWith('**') && part.endsWith('**')) {
+                        return <strong key={index} className="font-bold text-slate-800">{part.slice(2, -2)}</strong>;
+                    } else if (part.startsWith('*') && part.endsWith('*')) {
+                        return <em key={index} className="italic text-slate-600 font-semibold">{part.slice(1, -1)}</em>;
+                    }
+                    return part;
+                });
+            };
+
+            return (
+                <div 
+                    className="min-h-screen w-full flex flex-col relative transition-colors duration-1000 ease-in-out font-sans overflow-hidden"
+                    style={{ 
+                        background: `radial-gradient(circle at 10% 20%, ${country.theme.bg} 0%, #ffffff 90%)` 
+                    }}
+                >
+                    {/* Atmospheric Glow */}
+                    <div 
+                        className="fixed top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full blur-[120px] opacity-20 animate-blob pointer-events-none transition-colors duration-1000" 
+                        style={{ backgroundColor: country.theme.primary }}
+                    ></div>
+                    <div 
+                        className="fixed bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full blur-[100px] opacity-15 animate-blob animation-delay-2000 pointer-events-none transition-colors duration-1000" 
+                        style={{ backgroundColor: country.theme.secondary }}
+                    ></div>
+
+                    {/* --- HEADER --- */}
+                    <header className="sticky top-0 z-50 px-4 md:px-8 py-4">
+                        <div className="glass-panel rounded-2xl p-2 md:p-3 flex flex-col md:flex-row items-center justify-between gap-4 max-w-7xl mx-auto">
+                            
+                            <div className="flex items-center gap-3 px-2 w-full md:w-auto justify-between md:justify-start">
+                                <div className="flex items-center gap-2">
+                                    <div className="p-2 bg-slate-900 text-white rounded-lg shadow-lg">
+                                        <Icon name="Award" size={20} />
+                                    </div>
+                                    <span className="text-lg font-bold tracking-tight text-slate-800 uppercase leading-none">
+                                        GLOBAL<span style={{ color: country.theme.primary }}>HIRE</span>
+                                    </span>
+                                </div>
+                                <button onClick={() => window.open('https://bettercall.online/appointment')} className="md:hidden bg-slate-900 text-white p-2 rounded-lg shadow-lg">
+                                     <Icon name="ArrowRight" size={16} />
+                                </button>
+                            </div>
+
+                            <div className="flex bg-slate-100/50 p-1 rounded-xl gap-1 relative overflow-hidden border border-slate-200 w-full md:w-auto">
+                                {DATA.map(c => (
+                                    <button
+                                        key={c.id}
+                                        onClick={() => { setSel(c.id); setQuery(''); setTab('jobs'); }}
+                                        className={`flex-1 md:flex-none px-4 md:px-6 py-2 rounded-lg font-bold text-xs transition-all flex items-center justify-center gap-2 relative z-10 ${sel === c.id ? 'bg-white shadow-md text-slate-800 ring-1 ring-black/5' : 'text-slate-400 hover:text-slate-600 hover:bg-white/40'}`}
+                                    >
+                                        <span className="text-lg">{c.flag}</span>
+                                        <span className="uppercase tracking-wide">{c.name}</span>
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button onClick={() => window.open('https://bettercall.online/appointment')} className="hidden md:flex bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-xl text-xs font-bold transition-all items-center gap-2 uppercase tracking-widest shadow-xl transform hover:scale-105 active:scale-95">
+                                Free Assessment <Icon name="ArrowRight" size={14} />
+                            </button>
+                        </div>
+                    </header>
+
+                    {/* --- CONTENT --- */}
+                    <main className="flex-1 overflow-y-auto px-4 md:px-8 py-4 md:py-8 scroll-smooth z-10">
+                        <div className="max-w-7xl mx-auto space-y-8 pb-20">
+                            
+                            {/* HERO */}
+                            <section className="glass-card rounded-[2.5rem] p-6 md:p-10 relative overflow-hidden group">
+                                <div className="absolute right-0 top-0 w-64 h-64 bg-gradient-to-br from-transparent to-white/30 rounded-bl-[100px] opacity-50 pointer-events-none"></div>
+                                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+                                    <div className="space-y-4 max-w-2xl relative z-10">
+                                        <div className="flex items-center gap-3 animate-fade-in">
+                                            <span className="px-3 py-1 rounded-full bg-white text-[10px] font-black uppercase tracking-widest border border-slate-200 shadow-sm text-slate-500">
+                                                Premium Tier
+                                            </span>
+                                            <div className="h-px w-10 bg-slate-300"></div>
+                                            <span style={{ color: country.theme.primary }} className="font-bold text-sm uppercase tracking-wider">Official Portal</span>
+                                        </div>
+                                        <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none uppercase drop-shadow-sm">
+                                            {country.name} <br/>
+                                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-400">Schengen</span>
+                                        </h1>
+                                        <p className="text-slate-500 text-sm md:text-lg font-medium leading-relaxed max-w-lg">
+                                            {country.desc}
+                                        </p>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4 w-full lg:w-auto">
+                                        <div className="glass-panel p-5 rounded-2xl border-l-4" style={{ borderLeftColor: country.theme.primary }}>
+                                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Monthly Net</p>
+                                            <p className="text-xl md:text-2xl font-black text-slate-800">{country.stats.salary.split('-')[1].trim()}</p>
+                                        </div>
+                                        <div className="glass-panel p-5 rounded-2xl border-l-4" style={{ borderLeftColor: country.theme.secondary }}>
+                                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Visa Success</p>
+                                            <p className="text-xl md:text-2xl font-black text-emerald-600">{country.stats.success}</p>
+                                        </div>
+                                        <div className="glass-panel p-5 rounded-2xl border-l-4 col-span-2 border-slate-300">
+                                            <div className="flex justify-between items-center">
+                                                <div>
+                                                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Time to Visa</p>
+                                                    <p className="text-xl font-black text-slate-800">{country.stats.time}</p>
+                                                </div>
+                                                <Icon name="Users" className="text-slate-300" size={32}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* TABS */}
+                            <nav className="flex overflow-x-auto pb-4 md:pb-0 gap-2 md:gap-4 no-scrollbar">
+                                {[
+                                    { id: 'jobs', label: 'Vacancies', icon: 'Briefcase' },
+                                    { id: 'docs', label: 'Documents', icon: 'FileText' },
+                                    { id: 'vault', label: 'Knowledge', icon: 'Library' },
+                                    { id: 'roadmap', label: 'Roadmap', icon: 'Map' }
+                                ].map(t => (
+                                    <button 
+                                        key={t.id} 
+                                        onClick={() => setTab(t.id)} 
+                                        className={`flex-none flex items-center gap-2 px-6 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${tab === t.id ? 'bg-white shadow-xl translate-y-[-2px]' : 'bg-white/40 border-transparent hover:bg-white/60 text-slate-400'}`}
+                                        style={tab === t.id ? { color: country.theme.primary, borderColor: country.theme.primary } : {}}
+                                    >
+                                        <Icon name={t.icon} size={16} />
+                                        {t.label}
+                                    </button>
+                                ))}
+                            </nav>
+
+                            <div className="min-h-[500px]">
+                                {tab === 'jobs' && (
+                                    <div className="space-y-6 animate-fade-in">
+                                        <div className="glass-panel p-3 rounded-2xl shadow-lg sticky top-24 z-20 space-y-3">
+                                            <div className="flex items-center bg-white/50 rounded-xl px-2">
+                                                <div className="p-3 bg-white rounded-lg text-slate-400 shadow-sm">
+                                                    <Icon name="Search" size={18} />
+                                                </div>
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="Search positions..." 
+                                                    className="bg-transparent w-full outline-none font-bold text-slate-700 px-4"
+                                                    value={query}
+                                                    onChange={e => setQuery(e.target.value)}
+                                                />
+                                                <div className="hidden md:block px-4 py-1.5 bg-slate-900 text-white text-[10px] font-black rounded-lg uppercase tracking-wider whitespace-nowrap">
+                                                    {flatJobs.length} Positions Available
+                                                </div>
+                                            </div>
+
+                                            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar items-center">
+                                                <div className="px-2 text-[10px] font-black text-slate-400 uppercase tracking-widest shrink-0">Filter By:</div>
+                                                {departments.map(d => (
+                                                    <button
+                                                        key={d}
+                                                        onClick={() => setDept(d)}
+                                                        className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-all border shrink-0 ${dept === d ? 'bg-slate-900 text-white border-slate-900 shadow-lg' : 'bg-white/50 text-slate-500 border-transparent hover:bg-white'}`}
+                                                    >
+                                                        {d}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+                                            {flatJobs.map((j, i) => (
+                                                <div 
+                                                    key={i} 
+                                                    className="group glass-card rounded-2xl p-4 flex flex-col gap-3 hover:bg-white transition-all border-t-[4px] relative h-full justify-between"
+                                                    style={{ borderTopColor: i % 2 === 0 ? country.theme.primary : 'transparent' }}
+                                                >
+                                                    <div>
+                                                        <div className="flex items-start gap-3 mb-2">
+                                                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow-sm transition-colors ${i % 2 === 0 ? 'bg-slate-50 text-slate-400' : 'bg-slate-900 text-white'}`}>
+                                                                <Icon name="Briefcase" size={14} />
+                                                            </div>
+                                                            <div className="flex-1 min-w-0">
+                                                                <h3 className="font-bold text-slate-800 text-sm leading-tight group-hover:text-cyan-700 transition-colors line-clamp-2" title={j.title}>{j.title}</h3>
+                                                                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">{j.ref}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex flex-wrap gap-1.5 mb-2">
+                                                            <span className="text-[9px] font-bold text-slate-500 bg-slate-100/80 px-2 py-1 rounded-md border border-slate-200 line-clamp-1 break-all" title={j.cat}>{j.cat}</span>
+                                                            <span className="text-[9px] font-bold text-slate-500 bg-slate-100/80 px-2 py-1 rounded-md border border-slate-200 whitespace-nowrap">{j.exp}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex items-end justify-between pt-3 border-t border-slate-100/50 mt-auto">
+                                                        <div>
+                                                            <p className="text-[9px] font-bold text-slate-400 uppercase">Net Monthly</p>
+                                                            <p className="font-mono font-bold text-emerald-600 text-sm tracking-tight">{j.salary}</p>
+                                                        </div>
+                                                        <button 
+                                                            onClick={() => window.open('https://bettercall.online/appointment')}
+                                                            className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-900 hover:text-white transition-colors"
+                                                        >
+                                                            <Icon name="ExternalLink" size={14} />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {tab === 'docs' && (
+                                    <div className="space-y-8 animate-fade-in">
+                                        <div className="glass-card rounded-[2rem] p-8 flex flex-col md:flex-row items-center justify-between relative overflow-hidden bg-white/40">
+                                            <div className="relative z-10 text-center md:text-left">
+                                                <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-2">Compliance Hub</h3>
+                                                <p className="text-slate-500 font-medium">Mandatory documentation checklist for {country.name}.</p>
+                                            </div>
+                                            <div className="mt-6 md:mt-0 px-6 py-2 bg-emerald-50 text-emerald-600 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center gap-2 border border-emerald-100">
+                                                <Icon name="ShieldCheck" size={16} /> Verified
+                                            </div>
+                                            <Icon name="Shield" size={200} className="absolute -bottom-10 -right-10 text-slate-900/5 pointer-events-none" />
+                                        </div>
+
+                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                                            {country.docs.map((d, i) => (
+                                                <div key={i} className="glass-card p-6 rounded-[2rem] flex flex-col items-center text-center group hover:bg-white">
+                                                    <div 
+                                                        className="w-14 h-14 rounded-2xl flex items-center justify-center text-white text-xl font-bold mb-4 shadow-lg transform group-hover:scale-110 transition-transform"
+                                                        style={{ backgroundColor: country.theme.primary }}
+                                                    >
+                                                        {d.k}
+                                                    </div>
+                                                    <h4 className="font-bold text-slate-800 uppercase tracking-tight mb-2">{d.t}</h4>
+                                                    <p className="text-xs text-slate-500 leading-relaxed">{d.d}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {tab === 'vault' && (
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in">
+                                        <div className="lg:col-span-2 space-y-4">
+                                            <h3 className="text-xl font-black text-slate-800 px-2 uppercase tracking-tight flex items-center gap-2">
+                                                <Icon name="Library" size={20} className="text-slate-400"/> Knowledge Base
+                                            </h3>
+                                            {country.vault.map((t, i) => (
+                                                <div key={i} className="glass-card p-6 rounded-[2rem] flex items-start gap-6 group hover:bg-white">
+                                                    <span className="text-4xl font-black text-slate-100 group-hover:text-slate-200 transition-colors">0{i+1}</span>
+                                                    <div>
+                                                        <h4 className="text-lg font-black text-slate-800 uppercase mb-2 group-hover:text-cyan-700 transition-colors">{t.t}</h4>
+                                                        <p className="text-slate-500 font-medium leading-relaxed text-sm">{renderMarkdown(t.d)}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="space-y-4">
+                                            <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                                                <h4 className="text-lg font-black uppercase tracking-widest mb-8 border-b border-white/10 pb-4">Strategic Policy</h4>
+                                                <div className="space-y-6">
+                                                    <div>
+                                                        <p className="text-[10px] font-black text-cyan-400 uppercase tracking-widest mb-1">Taxation</p>
+                                                        <p className="text-sm font-medium text-slate-300">Progressive systems with high social safety net.</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[10px] font-black text-cyan-400 uppercase tracking-widest mb-1">Healthcare</p>
+                                                        <p className="text-sm font-medium text-slate-300">Universal coverage upon residency registration.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {tab === 'roadmap' && (
+                                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-fade-in">
+                                        <div className="lg:col-span-8">
+                                            <div className="relative pl-4 md:pl-8 space-y-8">
+                                                <div className="absolute left-[27px] md:left-[43px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-slate-200 via-slate-300 to-transparent"></div>
+                                                {country.roadmap.map((step, i) => (
+                                                    <div key={i} className="relative flex items-start gap-6 group">
+                                                        <div className="relative z-10 w-6 h-6 md:w-8 md:h-8 rounded-full bg-white border-4 border-slate-100 shadow-md flex items-center justify-center shrink-0 mt-2" style={{ borderColor: i === 0 ? country.theme.primary : '#f1f5f9' }}>
+                                                            {i === 0 && <div className="w-2 h-2 rounded-full" style={{ backgroundColor: country.theme.primary }}></div>}
+                                                        </div>
+                                                        <div className="glass-card flex-1 p-6 rounded-[2rem] hover:translate-x-2 transition-transform duration-300">
+                                                            <div className="flex items-center gap-3 mb-2">
+                                                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Phase {step.s}</span>
+                                                                <Icon name={step.i} size={14} className="text-slate-400" />
+                                                            </div>
+                                                            <h4 className="text-lg font-black text-slate-800 uppercase tracking-tight mb-1">{step.t}</h4>
+                                                            <p className="text-sm text-slate-500 leading-snug">{step.d}</p>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="lg:col-span-4 space-y-6">
+                                            <div className="glass-panel p-8 rounded-[3rem] text-center border-t-8 shadow-xl sticky top-24" style={{ borderTopColor: country.theme.primary }}>
+                                                <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Total Investment</p>
+                                                <div className="text-5xl font-black text-slate-900 tracking-tighter mb-2">{country.pricing.total}</div>
+                                                <p className="text-[10px] font-bold text-emerald-600 bg-emerald-50 inline-block px-3 py-1 rounded-full uppercase tracking-wider mb-8">{country.pricing.breakdown}</p>
+                                                <div className="bg-slate-900 text-white p-6 rounded-3xl text-left shadow-inner">
+                                                    <div className="flex items-start gap-4">
+                                                        <Icon name="CheckCircle" className="text-emerald-400 shrink-0 mt-1" />
+                                                        <p className="text-xs font-bold leading-relaxed opacity-90">Includes Work Permit, legal processing, and Flight assistance.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
