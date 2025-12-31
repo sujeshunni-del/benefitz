@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Visa Documentation Services | Better Call Immigration</title>
-    <meta name="description" content="Precision-crafted visa documentation services. Zero-error guarantee for SOPs, cover letters, and application forms.">
+    <title>VFS Appointment Services | BENEFITZ INTERNATIONAL</title>
+    <meta name="description" content="24/7 Automated VFS Appointment Monitoring. We secure your visa slots for Schengen, UK, USA, and Canada.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +72,7 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* --- GLASSMORPHISM 2.0 (Matched to About) --- */
+        /* --- GLASSMORPHISM 2.0 --- */
         .glass-creative {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(20px) saturate(180%);
@@ -134,39 +134,26 @@
             background-size: 200% auto;
             animation: shimmer 5s linear infinite;
         }
+        
+        .text-gradient-teal {
+            background: linear-gradient(to right, #14B8A6, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* --- POPUPS & DOCK --- */
-        .glass-dock-modern {
-            background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 15px 40px -10px rgba(139, 92, 246, 0.2), 0 4px 10px -2px rgba(0, 0, 0, 0.05); transform: translateZ(0); 
-        }
-        .dock-item {
-            flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: #64748B; position: relative; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 12px;
-        }
-        .dock-item:active { transform: scale(0.9); color: #8B5CF6; background: rgba(139, 92, 246, 0.05); }
-        .dock-item.active { color: #8B5CF6; font-weight: 600; }
-
-        .glass-creative-popup {
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 -15px 50px -10px rgba(0, 0, 0, 0.15); transform-origin: bottom center;
-        }
-        /* Specific visibility class for popups */
-        .glass-creative-popup.visible { opacity: 1 !important; visibility: visible !important; transform: translate(-50%, 0) scale(1) !important; }
+        /* --- UNIFIED FLOATING BUTTONS CSS --- */
+        .float-btn-unified { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; }
+        .float-btn-unified:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); border-color: white; }
         
-        .glass-pad-btn {
-            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .glass-pad-btn:hover, .glass-pad-btn:active {
-            background: rgba(255, 255, 255, 0.6); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
+        /* Dropdown for Language */
+        .dropdown-menu { opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15); border-radius: 20px; }
+        
+        /* Dropdown Glass specific for the mega-menu to ensure readability */
+        .dropdown-glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 20px 40px -5px rgba(139, 92, 246, 0.15); }
+        
         /* --- DESKTOP LANGUAGE FAB --- */
         .lang-fab-new { position: fixed; bottom: 2rem; left: 2rem; z-index: 50; }
         .lang-toggle-btn {
@@ -191,11 +178,43 @@
         .lang-option:hover { background: #E2E8F0; color: #8B5CF6; }
         .lang-option.active { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; font-weight: 600; }
 
-         /* Dropdown Menus for Desktop Nav */
-        .dropdown-menu { opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15); border-radius: 20px; }
+        /* --- MOBILE DOCK & POPUPS --- */
+        .glass-dock-modern {
+            background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 40px -10px rgba(139, 92, 246, 0.2), 0 4px 10px -2px rgba(0, 0, 0, 0.05); transform: translateZ(0); 
+        }
+        .dock-item {
+            flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #64748B; position: relative; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 12px;
+        }
+        .dock-item:active { transform: scale(0.9); color: #8B5CF6; background: rgba(139, 92, 246, 0.05); }
+        .dock-item.active { color: #8B5CF6; font-weight: 600; }
+
+        .glass-creative-popup {
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 -15px 50px -10px rgba(0, 0, 0, 0.15); transform-origin: bottom center;
+        }
+        .glass-creative-popup.visible { opacity: 1 !important; visibility: visible !important; transform: translate(-50%, 0) scale(1) !important; }
+        
+        .glass-pad-btn {
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-pad-btn:hover, .glass-pad-btn:active {
+            background: rgba(255, 255, 255, 0.6); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Modal specific */
+        .modal-open { overflow: hidden; }
+        .modal-backdrop {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
         nav .group .dropdown-menu { transform: translate(-50%, 20px); left: 50%; }
         nav .group:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
-        .dropdown-glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 20px 40px -5px rgba(139, 92, 246, 0.15); }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col relative text-slate-700 selection:bg-creative-pink selection:text-white" id="page-body">
@@ -208,211 +227,196 @@
         <div class="ambient-blob blob-amber"></div>
     </div>
 
-    <main class="flex-grow pt-24 md:pt-32 pb-12 md:pb-24 relative z-10">
+    <main class="flex-grow pt-24 md:pt-32 pb-12 md:pb-24 relative z-10 px-4">
         
         <!-- Header Section -->
-        <header class="relative pt-8 pb-12 md:pt-12 md:pb-20 overflow-hidden text-center px-4">
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="inline-flex items-center gap-3 glass-creative px-4 py-2 md:px-6 md:py-2.5 rounded-full mb-6 md:mb-10 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <span class="relative flex h-2 w-2">
-                      <span class="animate-pulse absolute inline-flex h-full w-full rounded-full bg-creative-teal opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-creative-teal"></span>
-                    </span>
-                    <span class="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-widest">Zero-Error Guarantee</span>
-                </div>
-
-                <h1 class="text-4xl md:text-8xl font-black mb-4 md:mb-8 leading-[1.05] tracking-tight text-brand-black reveal-item" style="animation-delay: 0.2s;">
-                    Precision-Crafted <br>
-                    <span class="text-gradient-hero font-black">Visa Documentation</span>
-                </h1>
-
-                <p class="text-base md:text-2xl text-slate-600 max-w-4xl mx-auto mb-8 md:mb-14 font-light leading-relaxed reveal-item px-2" style="animation-delay: 0.3s;">
-                    Rejections often happen due to minor clerical errors. We construct your file with <span class="text-creative-purple font-bold">forensic accuracy</span> to ensure first-time approval.
-                </p>
+        <header class="text-center space-y-6 animate-fade-in-up mb-12 md:mb-20">
+            <div class="inline-flex items-center gap-3 glass-creative px-4 py-2 md:px-6 md:py-2.5 rounded-full mb-4">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-pulse absolute inline-flex h-full w-full rounded-full bg-creative-teal opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-creative-teal"></span>
+                </span>
+                <span class="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-widest">24/7 Automated Monitoring</span>
             </div>
+
+            <h1 class="text-4xl md:text-7xl font-black text-brand-black tracking-tight leading-[1.1] reveal-item">
+                Visa Appointment <br>
+                <span class="text-gradient-teal">Assistance Services</span>
+            </h1>
+            
+            <p class="max-w-xl mx-auto text-base md:text-xl text-slate-600 font-light leading-relaxed reveal-item px-2" style="animation-delay: 0.1s;">
+                Stop refreshing the page. We monitor VFS, TLS, and BLS appointment slots <span class="font-bold text-creative-teal">24/7</span> so you don't have to.
+            </p>
         </header>
 
-        <!-- Main Feature Card -->
-        <section class="container mx-auto px-4 mb-20 relative z-20">
-            <div class="glass-creative rounded-[2.5rem] p-2 relative overflow-hidden group reveal-item hover:bg-white/70">
-                <div class="absolute inset-0 bg-gradient-to-r from-creative-purple/5 to-creative-blue/5 opacity-100"></div>
-                
-                <div class="glass-deep rounded-[2rem] p-6 md:p-12 relative z-10">
-                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start justify-between">
-                        
-                        <div class="flex items-center gap-6">
-                            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-creative-purple to-creative-blue flex items-center justify-center text-white shadow-xl shadow-creative-purple/30 relative overflow-hidden group-hover:scale-110 transition-transform duration-500">
-                                <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
-                                <i class="fa-solid fa-file-contract text-3xl relative z-10"></i>
-                            </div>
-                            <div class="text-center md:text-left">
-                                <h2 class="text-2xl md:text-3xl font-black text-brand-black mb-2">Full Document Prep</h2>
-                                <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs md:text-sm font-medium text-slate-500">
-                                    <span class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200">Covering Letter</span>
-                                    <span class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200">Visa Application</span>
-                                    <span class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200">SOP</span>
-                                    <span class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200">Itinerary</span>
-                                </div>
+        <!-- Guaranteed Slots Main Card -->
+        <div class="max-w-5xl mx-auto glass-creative rounded-[2.5rem] p-1 relative overflow-hidden group cursor-pointer reveal-item mb-12 md:mb-20 shadow-xl" onclick="openModal()" style="transition-delay: 100ms;">
+            <div class="absolute inset-0 bg-gradient-to-r from-creative-teal/5 to-creative-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="bg-white/40 backdrop-blur-xl rounded-[2.3rem] p-6 md:p-12 relative z-10">
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start justify-between">
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                        <div class="w-24 h-24 rounded-[2rem] bg-gradient-to-br from-creative-teal/20 to-creative-blue/20 flex items-center justify-center text-creative-teal shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <i class="fa-solid fa-calendar-check text-4xl"></i>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <h2 class="text-3xl md:text-4xl font-black text-brand-black mb-3">Guaranteed Slots</h2>
+                            <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 text-sm">
+                                <span class="px-4 py-1.5 rounded-full bg-white/60 border border-white text-slate-600 text-xs font-bold shadow-sm">Schengen</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/60 border border-white text-slate-600 text-xs font-bold shadow-sm">UK</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/60 border border-white text-slate-600 text-xs font-bold shadow-sm">USA</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/60 border border-white text-slate-600 text-xs font-bold shadow-sm">Canada</span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="text-center md:text-right bg-slate-50/50 p-4 rounded-2xl md:bg-transparent md:p-0">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Accuracy</p>
-                            <p class="text-4xl font-black text-creative-purple mb-4">100%</p>
-                            <a href="#packages" class="inline-block bg-brand-black text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-creative-purple transition-all shadow-lg hover:shadow-creative-purple/30 transform hover:-translate-y-1">
-                                Select Package
+                    <div class="text-center md:text-right bg-white/50 p-6 rounded-3xl border border-white/50 shadow-sm">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Success Rate</p>
+                        <p class="text-4xl md:text-5xl font-black text-creative-teal mb-4">99%</p>
+                        <button class="bg-gradient-to-r from-creative-teal to-creative-blue text-white px-8 py-3 rounded-full font-bold text-sm hover:shadow-lg hover:shadow-creative-teal/30 transition-all flex items-center gap-2 mx-auto md:mx-0">
+                            Check Availability <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 md:mt-12 border-t border-slate-200/50 pt-8">
+                    <div class="text-center md:text-left">
+                        <i class="fa-solid fa-robot text-creative-purple mb-2 text-xl"></i>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Technology</p>
+                        <p class="text-brand-black font-bold text-sm">Automated Bot</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <i class="fa-solid fa-bell text-creative-pink mb-2 text-xl"></i>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Alerts</p>
+                        <p class="text-brand-black font-bold text-sm">Instant SMS/Email</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <i class="fa-solid fa-shield-halved text-creative-blue mb-2 text-xl"></i>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Security</p>
+                        <p class="text-brand-black font-bold text-sm">Encrypted Data</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <i class="fa-solid fa-bolt text-creative-amber mb-2 text-xl"></i>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Speed</p>
+                        <p class="text-brand-black font-bold text-sm">Real-Time Booking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Steps Section -->
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 md:mb-20">
+            <div class="glass-creative p-8 rounded-[2rem] relative overflow-hidden reveal-item group hover:bg-white/80" style="transition-delay: 200ms;">
+                <div class="absolute -right-4 -top-4 text-9xl font-black text-slate-100 group-hover:text-creative-purple/10 transition-colors duration-500">1</div>
+                <div class="w-12 h-12 rounded-2xl bg-creative-purple/10 flex items-center justify-center text-creative-purple mb-6 relative z-10"><i class="fa-solid fa-user-plus text-xl"></i></div>
+                <h3 class="text-xl font-bold text-brand-black mb-3 relative z-10">Register Request</h3>
+                <p class="text-sm text-slate-500 relative z-10 leading-relaxed font-medium">Tell us your destination, visa type, and preferred dates. We support families and groups.</p>
+            </div>
+             <div class="glass-creative p-8 rounded-[2rem] relative overflow-hidden reveal-item group hover:bg-white/80" style="transition-delay: 300ms;">
+                <div class="absolute -right-4 -top-4 text-9xl font-black text-slate-100 group-hover:text-creative-blue/10 transition-colors duration-500">2</div>
+                <div class="w-12 h-12 rounded-2xl bg-creative-blue/10 flex items-center justify-center text-creative-blue mb-6 relative z-10"><i class="fa-solid fa-radar text-xl"></i></div>
+                <h3 class="text-xl font-bold text-brand-black mb-3 relative z-10">We Monitor</h3>
+                <p class="text-sm text-slate-500 relative z-10 leading-relaxed font-medium">Our system scans the official VFS/TLS portals every few seconds for cancellations and openings.</p>
+            </div>
+             <div class="glass-creative p-8 rounded-[2rem] relative overflow-hidden reveal-item group hover:bg-white/80" style="transition-delay: 400ms;">
+                <div class="absolute -right-4 -top-4 text-9xl font-black text-slate-100 group-hover:text-creative-teal/10 transition-colors duration-500">3</div>
+                <div class="w-12 h-12 rounded-2xl bg-creative-teal/10 flex items-center justify-center text-creative-teal mb-6 relative z-10"><i class="fa-solid fa-check-double text-xl"></i></div>
+                <h3 class="text-xl font-bold text-brand-black mb-3 relative z-10">Slot Secured</h3>
+                <p class="text-sm text-slate-500 relative z-10 leading-relaxed font-medium">Once a slot is found, we either auto-book it for you or notify you instantly to confirm.</p>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="max-w-4xl mx-auto reveal-item" style="transition-delay: 500ms;">
+            <div class="glass-deep rounded-[2.5rem] p-2 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-creative-purple/20 to-creative-blue/20 rounded-full blur-[80px] pointer-events-none"></div>
+                
+                <div class="bg-white/50 backdrop-blur-md rounded-[2rem] p-8 md:p-12 relative z-10 border border-white/60">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                        <div class="text-center md:text-left">
+                            <div class="inline-block bg-creative-amber/10 text-creative-amber border border-creative-amber/20 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
+                                Premium Service
+                            </div>
+                            <h3 class="text-3xl font-black text-brand-black mb-2">Service Fee</h3>
+                            <p class="text-slate-500 text-sm max-w-sm font-medium">Pay only when your appointment is successfully confirmed. No hidden charges.</p>
+                        </div>
+
+                        <div class="text-center md:text-right flex-shrink-0 w-full md:w-auto">
+                            <div class="mb-6">
+                                <p class="text-sm text-slate-400 font-semibold uppercase tracking-wider">Starting from</p>
+                                <p class="text-5xl font-black text-brand-black tracking-tighter">AED 500</p>
+                                <p class="text-xs text-creative-purple font-bold mt-2 uppercase tracking-wide">Per Applicant</p>
+                            </div>
+                            
+                            <a href="https://wa.me/971588670129?text=I%20need%20help%20with%20VFS%20Appointment" target="_blank" class="inline-flex justify-center items-center w-full md:w-auto bg-brand-black text-white font-bold py-4 px-10 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+                                <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> Request Slot
                             </a>
                         </div>
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 pt-8 border-t border-slate-200">
-                        <div class="flex gap-4 items-start">
-                            <div class="w-10 h-10 rounded-full bg-creative-purple/10 flex items-center justify-center text-creative-purple shrink-0">
-                                <i class="fa-solid fa-pen-nib"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-brand-black font-bold text-sm">Professional Writing</h4>
-                                <p class="text-xs text-slate-500 mt-1 leading-relaxed">SOPs and Cover Letters written by immigration lawyers, not AI.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-10 h-10 rounded-full bg-creative-blue/10 flex items-center justify-center text-creative-blue shrink-0">
-                                <i class="fa-solid fa-stamp"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-brand-black font-bold text-sm">Format Validation</h4>
-                                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Ensuring every scan, photo, and signature meets embassy DPI standards.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-10 h-10 rounded-full bg-creative-teal/10 flex items-center justify-center text-creative-teal shrink-0">
-                                <i class="fa-solid fa-list-check"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-brand-black font-bold text-sm">Financial Structuring</h4>
-                                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Organizing bank statements and sponsorship proofs clearly.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Packages Section -->
-        <section id="packages" class="container mx-auto px-4 mb-20">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                
-                <!-- Package 1: Basic -->
-                <div class="glass-creative p-6 md:p-8 rounded-[2rem] reveal-item hover:bg-white/90 group flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-black text-brand-black">Review & Edit</h3>
-                        <span class="text-slate-500 font-bold bg-slate-100 px-3 py-1 rounded-full text-xs">AED 300</span>
-                    </div>
-                    <p class="text-sm text-slate-500 mb-6 min-h-[40px] leading-relaxed">You fill the forms, we audit them for errors before submission.</p>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-slate-300"></i> Application Audit</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-slate-300"></i> Photo Validation</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-slate-300"></i> Missing Doc Alert</li>
-                    </ul>
-                    <a href="https://wa.me/971503666382?text=I%20need%20Document%20Review" class="block w-full text-center py-3 rounded-xl border-2 border-slate-200 text-slate-600 font-bold hover:border-creative-purple hover:text-creative-purple transition-all">Select Basic</a>
-                </div>
-
-                <!-- Package 2: Popular -->
-                <div class="glass-creative p-6 md:p-8 rounded-[2rem] relative reveal-item transform md:-translate-y-4 shadow-xl border-creative-blue/30 group flex flex-col" style="transition-delay: 100ms;">
-                    <div class="absolute top-0 right-8 bg-gradient-to-r from-creative-purple to-creative-blue text-white text-[10px] font-bold px-4 py-1.5 rounded-b-xl uppercase tracking-widest shadow-lg">Popular</div>
-                    <div class="flex justify-between items-start mb-4 mt-2">
-                        <h3 class="text-2xl font-black text-brand-black">Full Preparation</h3>
-                        <span class="text-creative-blue font-bold bg-blue-50 px-3 py-1 rounded-full text-xs">AED 750</span>
-                    </div>
-                    <p class="text-sm text-slate-500 mb-6 min-h-[40px] leading-relaxed">We create the entire file from scratch. Just sign and submit.</p>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-blue"></i> Form Filling</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-blue"></i> Custom Itinerary</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-blue"></i> Hotel/Flight Dummy</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-blue"></i> Cover Letter</li>
-                    </ul>
-                    <a href="https://wa.me/971503666382?text=I%20need%20Full%20Visa%20Documentation" class="block w-full text-center py-3 rounded-xl bg-gradient-to-r from-creative-purple to-creative-blue text-white font-bold hover:shadow-lg hover:shadow-creative-blue/30 transition-all transform hover:-translate-y-1">Select Full</a>
-                </div>
-
-                <!-- Package 3: Complex -->
-                <div class="glass-creative p-6 md:p-8 rounded-[2rem] reveal-item hover:bg-white/90 group flex flex-col" style="transition-delay: 200ms;">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-black text-brand-black">Complex Cases</h3>
-                        <span class="text-creative-purple font-bold bg-purple-50 px-3 py-1 rounded-full text-xs">AED 1500+</span>
-                    </div>
-                    <p class="text-sm text-slate-500 mb-6 min-h-[40px] leading-relaxed">For refused visas, appeals, or complex financial situations.</p>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-purple"></i> Refusal Analysis</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-purple"></i> Legal Justification Letter</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-purple"></i> Sponsorship Structuring</li>
-                        <li class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-creative-purple"></i> Interview Prep</li>
-                    </ul>
-                    <a href="https://wa.me/971503666382?text=I%20need%20Complex%20Case%20Help" class="block w-full text-center py-3 rounded-xl border-2 border-creative-purple text-creative-purple font-bold hover:bg-creative-purple hover:text-white transition-all">Consult Expert</a>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Specialized Services Grid -->
-        <section class="container mx-auto px-4 reveal-item">
-            <h3 class="text-3xl md:text-4xl font-black text-brand-black text-center mb-10">Specialized Services</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Service 1 -->
-                <div class="glass-creative p-6 rounded-[2rem] flex items-start gap-4 cursor-pointer group hover:bg-white transition-all" onclick="window.open('https://wa.me/971503666382?text=I%20need%20Covering%20Letter%20Services')">
-                    <div class="bg-creative-purple/10 p-3 rounded-2xl text-creative-purple flex-shrink-0 h-14 w-14 flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-envelope-open-text text-xl"></i></div>
-                    <div>
-                        <h4 class="text-brand-black font-bold text-lg mb-1 group-hover:text-creative-purple transition-colors">Covering Letter</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">Tailored narratives explaining your travel intent, ties to home, and financial status.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="glass-creative p-6 rounded-[2rem] flex items-start gap-4 cursor-pointer group hover:bg-white transition-all" onclick="window.open('https://wa.me/971503666382?text=I%20need%20Visa%20Application%20Services')">
-                    <div class="bg-creative-blue/10 p-3 rounded-2xl text-creative-blue flex-shrink-0 h-14 w-14 flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-file-pen text-xl"></i></div>
-                    <div>
-                        <h4 class="text-brand-black font-bold text-lg mb-1 group-hover:text-creative-blue transition-colors">Visa Application</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">Error-free form filling for Schengen, UK, USA (DS-160), and Canada portals.</p>
-                    </div>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="glass-creative p-6 rounded-[2rem] flex items-start gap-4 cursor-pointer group hover:bg-white transition-all" onclick="window.open('https://wa.me/971503666382?text=I%20need%20PCC%20Assistance')">
-                    <div class="bg-creative-amber/10 p-3 rounded-2xl text-creative-amber flex-shrink-0 h-14 w-14 flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-user-shield text-xl"></i></div>
-                    <div>
-                        <h4 class="text-brand-black font-bold text-lg mb-1 group-hover:text-creative-amber transition-colors">PCC Assistance</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">Guidance on obtaining Police Clearance Certificates from UAE, India, and globally.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="glass-creative p-6 rounded-[2rem] flex items-start gap-4 cursor-pointer group hover:bg-white transition-all" onclick="window.open('https://wa.me/971503666382?text=I%20need%20Passport%20Services')">
-                     <div class="bg-creative-teal/10 p-3 rounded-2xl text-creative-teal flex-shrink-0 h-14 w-14 flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-passport text-xl"></i></div>
-                    <div>
-                        <h4 class="text-brand-black font-bold text-lg mb-1 group-hover:text-creative-teal transition-colors">Passport Services</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">Assistance with Passport Renewal, Data Correction, and reissue.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="glass-creative p-6 rounded-[2rem] flex items-start gap-4 cursor-pointer group hover:bg-white transition-all" onclick="window.open('https://wa.me/971503666382?text=I%20need%20Attestation%20Services')">
-                     <div class="bg-creative-pink/10 p-3 rounded-2xl text-creative-pink flex-shrink-0 h-14 w-14 flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-certificate text-xl"></i></div>
-                    <div>
-                        <h4 class="text-brand-black font-bold text-lg mb-1 group-hover:text-creative-pink transition-colors">Attestation</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">MOFA attestation, Embassy legalization, and Hague Convention Apostille.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="glass-creative p-6 rounded-[2rem] flex items-start gap-4 cursor-pointer group hover:bg-white transition-all" onclick="window.open('https://wa.me/971503666382?text=I%20need%20Notarization%20Services')">
-                     <div class="bg-creative-indigo/10 p-3 rounded-2xl text-creative-indigo flex-shrink-0 h-14 w-14 flex items-center justify-center group-hover:scale-110 transition-transform"><i class="fa-solid fa-stamp text-xl"></i></div>
-                    <div>
-                        <h4 class="text-brand-black font-bold text-lg mb-1 group-hover:text-creative-indigo transition-colors">Notarization</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">Drafting and notarizing Affidavits, Sponsorship Declarations, and POA.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
+
+    <!-- Modal for Supported Countries -->
+    <div id="infoModal" class="fixed inset-0 z-[150] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 modal-backdrop transition-opacity" onclick="closeModal()"></div>
+        <div class="fixed inset-0 z-20 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-[2.5rem] bg-white text-left shadow-2xl transition-all sm:my-8 w-full max-w-lg border border-white/50">
+                    
+                    <div class="bg-gradient-to-r from-creative-teal to-creative-blue px-8 py-8 relative">
+                        <button onclick="closeModal()" class="absolute top-6 right-6 text-white/70 hover:text-white transition bg-white/10 rounded-full w-8 h-8 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-xmark"></i></button>
+                        <h3 class="text-2xl font-black text-white">Supported Countries</h3>
+                        <p class="text-blue-50 text-sm mt-2 font-medium">We cover all major VFS & TLS destinations</p>
+                    </div>
+
+                    <div class="p-8 space-y-6 max-h-[60vh] overflow-y-auto custom-scrollbar bg-slate-50/50">
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇫🇷</span> <span class="text-slate-700 font-bold">France</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇮🇹</span> <span class="text-slate-700 font-bold">Italy</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇩🇪</span> <span class="text-slate-700 font-bold">Germany</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇪🇸</span> <span class="text-slate-700 font-bold">Spain</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇬🇧</span> <span class="text-slate-700 font-bold">UK</span>
+                            </div>
+                             <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇨🇦</span> <span class="text-slate-700 font-bold">Canada</span>
+                            </div>
+                             <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇺🇸</span> <span class="text-slate-700 font-bold">USA</span>
+                            </div>
+                             <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                                <span class="text-xl">🇵🇱</span> <span class="text-slate-700 font-bold">Poland</span>
+                            </div>
+                        </div>
+                         <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
+                            <h4 class="text-xs font-black text-creative-blue uppercase tracking-widest mb-3">Required Info</h4>
+                            <ul class="space-y-2 text-sm text-slate-600 font-medium">
+                                <li class="flex gap-3"><i class="fa-solid fa-check text-creative-teal mt-1"></i> Passport Copy</li>
+                                <li class="flex gap-3"><i class="fa-solid fa-check text-creative-teal mt-1"></i> Preferred Dates Range</li>
+                                <li class="flex gap-3"><i class="fa-solid fa-check text-creative-teal mt-1"></i> VFS Login Details (If created)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-6 border-t border-slate-100 bg-white flex gap-3">
+                        <a href="https://wa.me/971588670129" class="flex-1 bg-brand-black text-white text-center font-bold py-3.5 rounded-xl hover:bg-slate-800 transition shadow-lg">Contact on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- UNIFIED FLOATING ACTION BAR -->
     <div class="floating-action-bar">
@@ -433,7 +437,7 @@
                     <button onclick="setLanguage('si', this);" class="lang-option font-['Noto_Sans_Sinhala']"><span>සිංහල</span> <span class="text-xs text-slate-400">SI</span></button>
                 </div>
             </div>
-            <a href="https://wa.me/971503666382" target="_blank" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg border-2 border-white/50"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
+            <a href="https://wa.me/971588670129" target="_blank" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg border-2 border-white/50"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
         </div>
     </div>
 
@@ -445,11 +449,11 @@
             <button onclick="toggleMobileLanguage()" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-solid fa-language text-xl text-slate-500 group-hover:text-creative-purple"></i><span class="text-[9px] font-bold tracking-wide">Lang</span></button>
             <div class="w-20 flex justify-center items-center z-20"><button onclick="toggleMobileDestinations()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-creative-purple to-creative-pink flex items-center justify-center text-white transform active:scale-90 group relative shadow-lg shadow-creative-purple/40"><div class="absolute inset-0 rounded-full bg-creative-purple blur-md opacity-40 animate-pulse-slow"></div><i class="fa-solid fa-earth-europe text-2xl relative z-10 drop-shadow-md"></i></button></div>
             <button onclick="toggleMobileApply()" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-solid fa-paper-plane text-xl text-slate-500 group-hover:text-creative-purple"></i><span class="text-[9px] font-bold tracking-wide">Apply</span></button>
-            <a href="https://wa.me/971503666382" target="_blank" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i><span class="text-[9px] font-bold tracking-wide">Chat</span></a>
+            <a href="https://wa.me/971588670129" target="_blank" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i><span class="text-[9px] font-bold tracking-wide">Chat</span></a>
         </div>
     </div>
 
-    <!-- Mobile Action Sheets (Popups) -->
+    <!-- Mobile Action Sheets -->
     <div id="mobile-apply-menu" class="pointer-events-auto fixed bottom-28 left-1/2 -translate-x-1/2 w-[90%] max-w-[340px] p-4 rounded-[2rem] glass-creative-popup opacity-0 invisible transition-all duration-300 transform translate-y-8 scale-90 z-[130]">
         <div class="flex justify-center items-center mb-4 pb-2 border-b border-white/20"><span class="text-xs font-black text-slate-800 uppercase tracking-widest">Start Journey</span></div>
         <div class="grid grid-cols-2 gap-3">
@@ -494,7 +498,7 @@
     </div>
 
     <script>
-        const LOGO_URL = "https://raw.githubusercontent.com/thebettercall/app/9ca2db3d96700f0412c9f2f420422ed1ccfb52bb/Bettercall%20Logo%20SVG%2003.svg";
+        const LOGO_URL = "https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg";
         
         // --- GLOBAL HEADER & FOOTER INJECTION ---
         const GLOBAL_HEADER = `
@@ -502,11 +506,11 @@
             <div class="floating-nav w-full max-w-7xl px-3 py-1.5 md:px-4 md:py-3 flex justify-between items-center transition-all duration-300 shadow-lg" id="navbar">
                 <a href="index.html" class="flex items-center gap-1.5 md:gap-4 group px-2 md:px-4 text-left">
                     <div class="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center glass-creative overflow-hidden p-1 flex-shrink-0 bg-white/90">
-                        <img src="${LOGO_URL}" alt="Better Call Logo" class="w-full h-full object-contain">
+                        <img src="${LOGO_URL}" alt="BENEFITZ Logo" class="w-full h-full object-contain">
                     </div>
                     <div class="block leading-tight"> 
-                        <h1 class="font-black text-brand-black text-[11px] md:text-xl tracking-wide group-hover:text-creative-purple transition-colors">BETTER CALL</h1>
-                        <p class="text-[7px] md:text-[10px] font-bold text-creative-amber uppercase tracking-[0.2em]">Immigration</p>
+                        <h1 class="font-black text-brand-black text-[11px] md:text-xl tracking-wide group-hover:text-creative-purple transition-colors">BENEFITZ</h1>
+                        <p class="text-[7px] md:text-[10px] font-bold text-creative-amber uppercase tracking-[0.2em]">INTERNATIONAL</p>
                     </div>
                 </a>
                 <div class="hidden lg:flex items-center gap-2">
@@ -554,7 +558,7 @@
                         </div>
                     </div>
                     <a href="assessment.html" data-i18n="nav_assessment" class="px-5 py-2.5 text-sm font-bold text-slate-700 hover:text-creative-purple transition rounded-full hover:bg-white/40">Free Assessment</a>
-                    <a href="about.html" data-i18n="nav_about" class="px-5 py-2.5 text-sm font-bold text-slate-700 hover:text-creative-purple transition rounded-full hover:bg-white/40">About Us</a>
+                    <a href="about.html" data-i18n="nav_about" class="px-5 py-2.5 text-sm font-bold text-creative-purple bg-purple-50/50 rounded-full">About Us</a>
                 </div>
                 <div class="flex items-center gap-4 sm:gap-3 px-2">
                     <button class="lg:hidden p-1 text-brand-black hover:text-creative-purple transition rounded-full hover:bg-white/50" id="mobile-hamburger-btn" onclick="toggleMobileMenu()">
@@ -631,17 +635,17 @@
                     <div class="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
                         <a href="index.html" class="flex items-center gap-5 group mb-4 md:mb-8 w-fit">
                             <div class="w-16 h-16 rounded-2xl flex items-center justify-center glass-deep p-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(233,30,99,0.2)] hover:scale-105 border border-white/60 bg-white/50 backdrop-blur-md">
-                                <img src="${LOGO_URL}" alt="Better Call Logo" class="w-full h-full object-contain drop-shadow-sm">
+                                <img src="${LOGO_URL}" alt="BENEFITZ Logo" class="w-full h-full object-contain drop-shadow-sm">
                             </div>
                             <div class="block text-left leading-tight">
-                                <h4 class="font-black text-brand-black text-xl tracking-wide">BETTER CALL</h4><p class="text-[10px] font-bold text-creative-pink uppercase tracking-[0.3em]">Immigration</p>
+                                <h4 class="font-black text-brand-black text-xl tracking-wide">BENEFITZ</h4><p class="text-[10px] font-bold text-creative-pink uppercase tracking-[0.3em]">INTERNATIONAL</p>
                             </div>
                         </a>
                         <p data-i18n="sec_standard_desc" class="text-base leading-relaxed max-w-sm mb-6 md:mb-10 font-medium text-slate-600">Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.</p>
                         <div class="flex gap-5">
-                            <a href="https://wa.me/971503666382" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-purple hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
-                            <a href="https://www.instagram.com/the_better_call" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-pink hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
-                            <a href="mailto:admin@thebettercall.com" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-amber hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60"><i class="fa-solid fa-envelope text-2xl"></i></a>
+                            <a href="https://wa.me/971588670129" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-purple hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+                            <a href="https://www.instagram.com/benefitz_int/" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-pink hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                            <a href="mailto:benefitzic@gmail.com" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-amber hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60"><i class="fa-solid fa-envelope text-2xl"></i></a>
                         </div>
                     </div>
                     <div class="hidden md:block">
@@ -675,14 +679,14 @@
                     <div class="hidden md:block">
                         <h4 data-i18n="footer_office" class="text-slate-800 font-bold mb-8 text-base uppercase tracking-widest">Office</h4>
                         <ul class="space-y-5 text-base font-medium text-slate-600">
-                            <li class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-creative-amber mt-1"></i><span>R320-12th Floor<br>Dubai Healthcare City<br>UAE</span></li>
-                            <li class="flex items-center gap-4"><i class="fa-solid fa-phone text-creative-amber"></i><span>+971 50 366 6382</span></li>
-                            <li class="flex items-center gap-4"><i class="fa-solid fa-envelope text-creative-amber"></i><span>admin@thebettercall.com</span></li>
+                            <li class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-creative-amber mt-1"></i><span>Bank Street Building<br>Bank Street Road, Burjuman<br>Dubai, UAE</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-phone text-creative-amber"></i><span>+971 58 867 0129</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-envelope text-creative-amber"></i><span>benefitzic@gmail.com</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="border-t border-slate-200/60 pt-10 text-center text-sm text-slate-500 font-medium flex flex-col md:flex-row justify-between items-center">
-                    <p>&copy; 2025 Better Call Immigration. <span data-i18n="footer_rights">All rights reserved.</span></p>
+                    <p>&copy; 2025 BENEFITZ INTERNATIONAL. <span data-i18n="footer_rights">All rights reserved.</span></p>
                     <div class="flex gap-8 mt-6 md:mt-0"><a href="#" data-i18n="footer_privacy" class="hover:text-creative-purple transition">Privacy Policy</a><a href="#" data-i18n="footer_terms" class="hover:text-creative-purple transition">Terms of Service</a></div>
                 </div>
             </div>
@@ -760,6 +764,55 @@
             }
         }
 
+        // --- COMMON EVENT LISTENERS ---
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const nav = document.getElementById('navbar');
+                    if (nav) {
+                        if (window.scrollY > 20) nav.classList.add('scrolled');
+                        else nav.classList.remove('scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 }; 
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // --- LENIS SMOOTH SCROLL ---
+        function initSmoothScroll() {
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    direction: 'vertical',
+                    gestureDirection: 'vertical',
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: false,
+                    touchMultiplier: 2,
+                });
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+                window.lenis = lenis;
+            }
+        }
+
         // --- TRANSLATION LOGIC ---
         const translations = {
             en: {
@@ -796,7 +849,7 @@
                 sec_standard_desc: "உலகளாவிய குடியேற்றத்தில் தொழில்முறை, முழுமையான வெளிப்படைத்தன்மை மற்றும் வாடிக்கையாளர் வெற்றி ஆகியவற்றிற்கான துறை தரநிலையை வரையறுத்தல்."
             },
             fil: {
-                nav_home: "Home", nav_programs: "Mga Programa", nav_services: "Mga Serbisyo", nav_assessment: "Libreng Pagtatasa", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
+                nav_home: "Home", nav_programs: "Mga Programa", nav_services: "Mga Serbisyo", nav_assessment: "Libreng Pagsusuri", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 footer_destinations: "Mga Destinasyon", footer_services: "Mga Serbisyo", footer_company: "Kumpanya", footer_office: "Opisina", footer_story: "Aming Kwento", footer_privacy: "Patakaran sa Privacy", footer_terms: "Mga Tuntunin ng Serbisyo", footer_rights: "Nakalaan ang lahat ng karapatan.",
                 country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_italy: "Italy", country_france: "France", country_poland: "Poland",
                 serv_visa_appt: "Appointment sa Visa", serv_visa_doc: "Dokumentasyon sa Visa", serv_travel: "Tulong sa Paglalakbay", serv_insurance: "Insurance", serv_medical: "Tulong Medikal", serv_corp: "Solusyon sa Corporate",
@@ -812,7 +865,7 @@
                 sec_standard_desc: "ගෝලීය සංක්‍රමණයේදී වෘත්තීයභාවය, පූර්ණ විනිවිදභාවය සහ සේවාදායක සාර්ථකත්වය සඳහා කර්මාන්ත මිණුම් ලකුණ නිර්වචනය කිරීම."
             },
             sw: {
-                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini ya Bure", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
+                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 footer_destinations: "Vituo", footer_services: "Huduma", footer_company: "Kampuni", footer_office: "Ofisi", footer_story: "Hadithi Yetu", footer_privacy: "Sera ya Faragha", footer_terms: "Masharti ya Huduma", footer_rights: "Haki zote zimehifadhiwa.",
                 country_germany: "Ujerumani", country_sweden: "Sweden", country_finland: "Finland", country_italy: "Italia", country_france: "Ufaransa", country_poland: "Poland",
                 serv_visa_appt: "Uteuzi wa Visa", serv_visa_doc: "Nyaraka za Visa", serv_travel: "Msaada wa Kusafiri", serv_insurance: "Bima", serv_medical: "Msaada wa Matibabu", serv_corp: "Suluhisho la B2B",

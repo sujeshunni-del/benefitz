@@ -11,7 +11,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Insurance Assistance | Better Call Immigration</title>
+    <title>Insurance Assistance | BENEFITZ INTERNATIONAL</title>
     <meta name="description" content="Mandatory Schengen and Travel Insurance assistance for visa approvals. Comprehensive health protection for global migration.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,6 +124,19 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
         
         .pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+        /* Updated Dock Styles from About Page */
+        .glass-dock-modern {
+            background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 40px -10px rgba(33, 70, 139, 0.2), 0 4px 10px -2px rgba(0, 0, 0, 0.05); transform: translateZ(0); 
+        }
+        .dock-item {
+            flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #64748B; position: relative; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 12px;
+        }
+        .dock-item:active { transform: scale(0.9); color: #21468B; background: rgba(33, 70, 139, 0.05); }
+        .dock-item.active { color: #21468B; font-weight: 600; }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col relative" id="page-body">
@@ -152,7 +165,7 @@
                 <a href="#packages" class="w-full sm:w-auto bg-theme-primary px-10 py-4 rounded-full text-white font-bold hover:scale-105 shadow-lg transition-all">
                     <span data-i18n="view_plans">View Plans</span>
                 </a>
-                <a href="https://wa.me/971503666382" target="_blank" class="w-full sm:w-auto glass-frosted px-10 py-4 rounded-full font-semibold text-brand-black flex items-center justify-center gap-3">
+                <a href="https://wa.me/971588670129" target="_blank" class="w-full sm:w-auto glass-frosted px-10 py-4 rounded-full font-semibold text-brand-black flex items-center justify-center gap-3">
                     <span data-i18n="get_quote">Get Quote</span>
                     <i class="fa-brands fa-whatsapp text-green-500"></i>
                 </a>
@@ -191,7 +204,7 @@
                     <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-theme-primary"></i> <span data-i18n="benefit_zero_ded">Zero Deductible Plans</span></li>
                     <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-theme-primary"></i> <span data-i18n="benefit_repat">Repatriation Included</span></li>
                 </ul>
-                <a href="https://wa.me/971503666382?text=Schengen%20Insurance" class="block w-full py-3 rounded-xl bg-slate-50 border border-slate-200 text-center text-sm font-bold text-theme-primary hover:bg-theme-primary hover:text-white transition-all" data-i18n="btn_select">Select Plan</a>
+                <a href="https://wa.me/971588670129?text=Schengen%20Insurance" class="block w-full py-3 rounded-xl bg-slate-50 border border-slate-200 text-center text-sm font-bold text-theme-primary hover:bg-theme-primary hover:text-white transition-all" data-i18n="btn_select">Select Plan</a>
             </div>
 
             <div class="glass-frosted p-8 rounded-3xl border-t-4 border-theme-secondary relative scale-105 shadow-2xl z-10 reveal-item">
@@ -203,7 +216,7 @@
                     <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-theme-secondary"></i> <span data-i18n="benefit_covid">COVID-19 Full Coverage</span></li>
                     <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-theme-secondary"></i> <span data-i18n="benefit_assist">24/7 Global Concierge</span></li>
                 </ul>
-                <a href="https://wa.me/971503666382?text=Platinum%20Insurance" class="block w-full py-3 rounded-xl bg-theme-secondary text-center text-sm font-bold text-white hover:opacity-90 transition-all shadow-lg shadow-amber-500/30" data-i18n="btn_platinum">Select Platinum</a>
+                <a href="https://wa.me/971588670129?text=Platinum%20Insurance" class="block w-full py-3 rounded-xl bg-theme-secondary text-center text-sm font-bold text-white hover:opacity-90 transition-all shadow-lg shadow-amber-500/30" data-i18n="btn_platinum">Select Platinum</a>
             </div>
 
             <div class="glass-frosted p-8 rounded-3xl border-t-4 border-theme-accent reveal-item">
@@ -214,7 +227,7 @@
                     <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-theme-accent"></i> <span data-i18n="benefit_uni">University Compliant</span></li>
                     <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-theme-accent"></i> <span data-i18n="benefit_pre_exist">Pre-existing Condition Cover</span></li>
                 </ul>
-                <a href="https://wa.me/971503666382?text=Student%20Insurance" class="block w-full py-3 rounded-xl bg-slate-50 border border-slate-200 text-center text-sm font-bold text-theme-accent hover:bg-theme-accent hover:text-white transition-all" data-i18n="btn_explore">Select Plan</a>
+                <a href="https://wa.me/971588670129?text=Student%20Insurance" class="block w-full py-3 rounded-xl bg-slate-50 border border-slate-200 text-center text-sm font-bold text-theme-accent hover:bg-theme-accent hover:text-white transition-all" data-i18n="btn_explore">Select Plan</a>
             </div>
         </section>
 
@@ -238,43 +251,39 @@
         </div>
     </div>
 
-    <!-- Mobile Dock (iOS Fluidic Style) -->
+    <!-- Mobile Dock (Updated to Match About Page) -->
     <div class="fixed bottom-2 inset-x-0 z-[100] md:hidden flex justify-center pointer-events-none safe-area-pb">
-        <div class="pointer-events-auto w-[96%] max-w-[420px] px-2 h-[72px] rounded-[32px] flex items-center justify-between relative shadow-[0_20px_60px_-10px_rgba(33,70,139,0.3)] border border-white/20 bg-white/20 backdrop-blur-2xl ring-1 ring-white/20 overflow-hidden">
-            <a href="index.html" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
-                <div class="flex flex-col items-center justify-center gap-1 text-center">
-                    <div class="text-xl text-slate-500 group-hover:text-theme-primary"><i class="fa-solid fa-house"></i></div>
-                    <span class="text-[9px] font-bold text-slate-500 tracking-wide" data-i18n="nav_home">Home</span>
-                </div>
+        <div class="pointer-events-auto w-[96%] max-w-[420px] px-2 h-[72px] rounded-[32px] flex items-center justify-between relative shadow-[0_20px_60px_-10px_rgba(33,70,139,0.3)] border border-white/20 bg-white/20 backdrop-blur-2xl overflow-hidden glass-dock-modern">
+            <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
+            <a href="index.html" class="dock-item group active:scale-95 transition-transform text-center">
+                <i class="fa-solid fa-house text-xl text-slate-500 group-hover:text-theme-primary"></i>
+                <span class="text-[9px] font-bold tracking-wide">Home</span>
             </a>
-            <button onclick="toggleMobileLanguage()" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
-                <div class="flex flex-col items-center justify-center gap-1 text-center">
-                    <div class="text-xl text-slate-500 group-hover:text-theme-primary"><i class="fa-solid fa-language"></i></div>
-                    <span class="text-[9px] font-bold text-slate-500 tracking-wide">Lang</span>
-                </div>
+            <button onclick="toggleMobileLanguage()" class="dock-item group active:scale-95 transition-transform text-center">
+                <i class="fa-solid fa-language text-xl text-slate-500 group-hover:text-theme-primary"></i>
+                <span class="text-[9px] font-bold tracking-wide">Lang</span>
             </button>
+            
+            <!-- Central Destinations Button (Updated) -->
             <div class="w-20 flex justify-center items-center z-20">
-                <button id="mobile-hamburger-btn" onclick="toggleMobileMenu()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#21468B] to-[#3B82F6] flex items-center justify-center text-white relative">
-                    <div class="absolute inset-0 rounded-full bg-blue-500 blur-md opacity-40 animate-pulse-slow"></div>
-                    <i class="fa-solid fa-earth-europe text-2xl relative z-10"></i>
+                <button onclick="toggleMobileDestinations()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-theme-primary to-brand-blue flex items-center justify-center text-white transform active:scale-90 group relative shadow-lg shadow-theme-primary/40">
+                    <div class="absolute inset-0 rounded-full bg-theme-primary blur-md opacity-40 animate-pulse-slow"></div>
+                    <i class="fa-solid fa-earth-europe text-2xl relative z-10 drop-shadow-md"></i>
                 </button>
             </div>
-            <button onclick="toggleMobileApply()" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
-                 <div class="flex flex-col items-center justify-center gap-1 text-center">
-                    <div class="text-xl text-slate-500 group-hover:text-theme-primary"><i class="fa-solid fa-paper-plane"></i></div>
-                    <span class="text-[9px] font-bold text-slate-500 tracking-wide" data-i18n="modal_apply">Apply</span>
-                </div>
+
+            <button onclick="toggleMobileApply()" class="dock-item group active:scale-95 transition-transform text-center">
+                <i class="fa-solid fa-paper-plane text-xl text-slate-500 group-hover:text-theme-primary"></i>
+                <span class="text-[9px] font-bold tracking-wide" data-i18n="modal_apply">Apply</span>
             </button>
-            <a href="https://wa.me/971503666382" target="_blank" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
-                 <div class="flex flex-col items-center justify-center gap-1 text-center">
-                    <div class="text-xl text-[#25D366] group-hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></div>
-                    <span class="text-[9px] font-bold text-slate-500 tracking-wide">Chat</span>
-                </div>
+            <a href="https://wa.me/971588670129" target="_blank" class="dock-item group active:scale-95 transition-transform text-center">
+                <i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i>
+                <span class="text-[9px] font-bold tracking-wide">Chat</span>
             </a>
         </div>
     </div>
 
-    <!-- Mobile Hamburger Menu (RESTORED TOP DOWN) -->
+    <!-- Mobile Hamburger Menu (Restored Top-Down) -->
     <div id="mobileMenu" class="flex flex-col overflow-hidden">
         <div class="p-3 grid grid-cols-2 gap-2 border-b border-white/20">
             <a href="index.html" class="flex flex-col items-center justify-center p-3 rounded-2xl glass-pad-btn group relative overflow-hidden text-center">
@@ -377,8 +386,31 @@
         </div>
     </div>
 
+    <!-- NEW Mobile Destinations Menu (Added to match About page) -->
+    <div id="mobile-destinations-menu" class="pointer-events-auto fixed bottom-28 left-1/2 -translate-x-1/2 w-[90%] max-w-[340px] p-4 rounded-[2rem] glass-creative-popup opacity-0 invisible transition-all duration-300 transform translate-y-8 scale-90 z-[130]">
+        <div class="flex justify-center items-center mb-4 pb-2 border-b border-white/20"><span class="text-xs font-black text-slate-800 uppercase tracking-widest text-center">Destinations</span></div>
+        <div class="grid grid-cols-4 gap-3 max-h-[45vh] overflow-y-auto p-2 custom-scrollbar">
+            <a href="croatia.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm border-2 border-theme-primary flex items-center justify-center text-lg">🇭🇷</div><span class="text-[9px] font-bold text-theme-primary">HR</span></a>
+            <a href="germany.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇩🇪</div><span class="text-[9px] font-bold text-slate-600">DE</span></a>
+            <a href="netherlands.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇳🇱</div><span class="text-[9px] font-bold text-slate-600">NL</span></a>
+            <a href="sweden.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇸🇪</div><span class="text-[9px] font-bold text-slate-600">SE</span></a>
+            <a href="finland.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇫🇮</div><span class="text-[9px] font-bold text-slate-600">FI</span></a>
+            <a href="italy.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇮🇹</div><span class="text-[9px] font-bold text-slate-600">IT</span></a>
+            <a href="france.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇫🇷</div><span class="text-[9px] font-bold text-slate-600">FR</span></a>
+            <a href="poland.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇵🇱</div><span class="text-[9px] font-bold text-slate-600">PL</span></a>
+            <a href="czech.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇨🇿</div><span class="text-[9px] font-bold text-slate-600">CZ</span></a>
+            <a href="latvia.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇱🇻</div><span class="text-[9px] font-bold text-slate-600">LV</span></a>
+            <a href="slovakia.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇸🇰</div><span class="text-[9px] font-bold text-slate-600">SK</span></a>
+            <a href="serbia.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇷🇸</div><span class="text-[9px] font-bold text-slate-600">RS</span></a>
+            <a href="montenegro.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇲🇪</div><span class="text-[9px] font-bold text-slate-600">ME</span></a>
+            <a href="macedonia.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇲🇰</div><span class="text-[9px] font-bold text-slate-600">MK</span></a>
+            <a href="albania.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇦🇱</div><span class="text-[9px] font-bold text-slate-600">AL</span></a>
+            <a href="belarus.html" class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg">🇧🇾</div><span class="text-[9px] font-bold text-slate-600">BY</span></a>
+        </div>
+    </div>
+
     <script>
-        const LOGO_URL = "https://raw.githubusercontent.com/thebettercall/app/9ca2db3d96700f0412c9f2f420422ed1ccfb52bb/Bettercall%20Logo%20SVG%2003.svg";
+        const LOGO_URL = "https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg";
         
         const translations = {
             en: {
@@ -396,7 +428,8 @@
                 country_germany: "Germany", country_finland: "Finland", country_sweden: "Sweden", country_italy: "Italy", country_france: "France", country_poland: "Poland", country_czech: "Czech Republic", country_latvia: "Latvia", country_croatia: "Croatia", country_slovakia: "Slovakia", country_netherlands: "Netherlands", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania", country_belarus: "Belarus",
                 serv_visa_appt: "Visa Appointment", serv_visa_doc: "Visa Documentation", serv_travel: "Travel Assistance", serv_insurance: "Insurance Assistance", serv_medical: "Medical Assistance", serv_corp: "Corporate B2B Solution",
                 sec_standard_desc: "Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.",
-                footer_story: "Our Story"
+                footer_story: "Our Story",
+                footer_privacy: "Privacy Policy", footer_terms: "Terms of Service"
             },
             ml: {
                 nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_assessment: "സൗജന്യ മൂല്യനിർണ്ണയം", nav_about: "ഞങ്ങളെ കുരിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
@@ -407,7 +440,8 @@
                 pkg_platinum: "പ്ലാറ്റിനം ട്രാവൽ", pkg_platinum_desc: "ഉയർന്ന മൂല്യമുള്ള യാത്രകൾക്കും കുടുംബങ്ങൾക്കും വേണ്ടിയുള്ള സുരക്ഷ.",
                 pkg_student: "സ്റ്റുഡന്റ് / എക്സ്പാറ്റ്", pkg_student_desc: "വിദേശപഠനത്തിനും ദീർഘകാല താമസത്തിനും വേണ്ടിയുള്ള പ്ലാനുകൾ.",
                 start_journey: "യാത്ര ആരംഭിക്കൂ", modal_apply: "അപേക്ഷിക്കൂ", footer_destinations: "രാജ്യങ്ങൾ",
-                footer_story: "ഞങ്ങളുടെ കഥ", footer_office: "ഓഫീസ്", status_label: "നില", verified_compliant: "അംഗീകരിക്കപ്പെട്ടത്"
+                footer_story: "ഞങ്ങളുടെ കഥ", footer_office: "ഓഫീസ്", status_label: "നില", verified_compliant: "അംഗീകരിക്കപ്പെട്ടത്",
+                footer_privacy: "സ്വകാര്യത നയം", footer_terms: "സേവന നിബന്ധനകൾ"
             },
             hi: {
                 nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_assessment: "निःशुल्क मूल्यांकन", nav_about: "हमारे बारे में", nav_book: "बुक करें",
@@ -417,7 +451,8 @@
                 pkg_schengen: "शेंगेन वीजा", pkg_schengen_desc: "पर्यटक और व्यावसायिक वीजा के लिए अनिवार्य।",
                 pkg_platinum: "प्लैटिनम यात्रा", pkg_platinum_desc: "उच्च मूल्य वाली यात्राओं और परिवारों के लिए सुरक्षा।",
                 pkg_student: "छात्र / प्रवासी", pkg_student_desc: "विदेश में पढ़ाई और लंबी अवधि के प्रवास के लिए कवरेज।",
-                start_journey: "यात्रा शुरू करें", modal_apply: "अभी आवेदन करें", status_label: "स्थिति", verified_compliant: "सत्यापित अनुपालन"
+                start_journey: "यात्रा शुरू करें", modal_apply: "अभी आवेदन करें", status_label: "स्थिति", verified_compliant: "सत्यापित अनुपालन",
+                footer_privacy: "गोपनीयता नीति", footer_terms: "सेवा की शर्तें"
             },
             ta: {
                 nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_assessment: "மதிப்பீடு", nav_about: "எங்களைப் பற்றி", nav_book: "பதிவு செய்க",
@@ -427,7 +462,8 @@
                 pkg_schengen: "ஷெங்கன் விசா", pkg_schengen_desc: "சுற்றுலா மற்றும் வணிக விசாக்களுக்கு கட்டாயமானது.",
                 pkg_platinum: "பிளாட்டினம் பயணம்", pkg_platinum_desc: "குடும்பங்களுக்கான விரிவான பாதுகாப்பு.",
                 pkg_student: "மாணவர் / புலம்பெயர்ந்தோர்", pkg_student_desc: "நீண்ட கால தங்குவதற்கான காப்பீடு.",
-                start_journey: "பயணத்தைத் தொடங்கவும்", modal_apply: "விண்ணப்பிக்கவும்"
+                start_journey: "பயணத்தைத் தொடங்கவும்", modal_apply: "விண்ணப்பிக்கவும்",
+                footer_privacy: "தனியுரிமைக் கொள்கை", footer_terms: "சேவை விதிமுறைகள்"
             },
             fil: {
                 nav_home: "Home", nav_programs: "Mga Programa", nav_services: "Serbisyo", nav_assessment: "Libreng Pagsusuri", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
@@ -437,7 +473,8 @@
                 pkg_schengen: "Schengen Visa", pkg_schengen_desc: "Mandatory para sa mga tourist at business visas.",
                 pkg_platinum: "Platinum Travel", pkg_platinum_desc: "Kumpletong proteksyon para sa mga pamilya at mamahaling biyahe.",
                 pkg_student: "Estudyante / Expat", pkg_student_desc: "Proteksyon para sa mahabang pananatili sa ibang bansa.",
-                start_journey: "Simulan ang Biyahe", modal_apply: "Mag-apply Ngayon"
+                start_journey: "Simulan ang Biyahe", modal_apply: "Mag-apply Ngayon",
+                footer_privacy: "Patakaran sa Privacy", footer_terms: "Mga Tuntunin ng Serbisyo"
             },
             si: {
                 nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_assessment: "නොමිලේ ඇගයීම", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
@@ -447,7 +484,8 @@
                 pkg_schengen: "ෂෙන්ගන් වීසා", pkg_schengen_desc: "සංචාරක සහ ව්‍යාපාරික වීසා සඳහා අනිවාර්ය වේ.",
                 pkg_platinum: "ප්ලැටිනම් සංචාරක", pkg_platinum_desc: "පවුල් සහ ඉහළ වටිනාකමකින් යුත් සංචාර සඳහා පූර්ණ ආරක්ෂාව.",
                 pkg_student: "ශිෂ්‍ය / විදේශික", pkg_student_desc: "දිගුකාලීන පදිංචිය සඳහා රක්ෂණ ආවරණ.",
-                start_journey: "ගමන ආරම්භ කරන්න", modal_apply: "අයදුම් කරන්න"
+                start_journey: "ගමන ආරම්භ කරන්න", modal_apply: "අයදුම් කරන්න",
+                footer_privacy: "රහස්‍යතා ප්‍රතිපත්තිය", footer_terms: "සේවා කොන්දේසි"
             },
             sw: {
                 nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
@@ -457,7 +495,8 @@
                 pkg_schengen: "Visa ya Schengen", pkg_schengen_desc: "Lazima kwa visa vya utalii na biashara.",
                 pkg_platinum: "Safari ya Platinum", pkg_platinum_desc: "Ulinzi kamili kwa familia na safari za thamani.",
                 pkg_student: "Mwanafunzi / Mgeni", pkg_student_desc: "Ulinzi kwa makazi ya muda mrefu.",
-                start_journey: "Anza Safari", modal_apply: "Tuma Ombi Sasa"
+                start_journey: "Anza Safari", modal_apply: "Tuma Ombi Sasa",
+                footer_privacy: "Sera ya Faragha", footer_terms: "Masharti ya Huduma"
             }
         };
 
@@ -469,8 +508,8 @@
                         <img src="${LOGO_URL}" alt="Logo" class="w-full h-full object-contain">
                     </div>
                     <div class="block leading-tight text-left"> 
-                        <h1 class="font-bold text-brand-black text-xs md:text-xl tracking-wide whitespace-nowrap">BETTER CALL</h1>
-                        <p class="text-[7px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em]">Immigration</p>
+                        <h1 class="font-bold text-brand-black text-xs md:text-xl tracking-wide whitespace-nowrap">BENEFITZ</h1>
+                        <p class="text-[7px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em]">INTERNATIONAL</p>
                     </div>
                 </a>
                 <div class="hidden lg:flex items-center gap-1 text-left">
@@ -540,15 +579,15 @@
                                 <img src="${LOGO_URL}" alt="Logo" class="w-full h-full object-contain">
                             </div>
                             <div class="text-left leading-none">
-                                <span class="block font-black text-xl text-slate-900 tracking-wide">BETTER CALL</span>
-                                <span class="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em]">Immigration</span>
+                                <span class="block font-black text-xl text-slate-900 tracking-wide">BENEFITZ</span>
+                                <span class="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em]">INTERNATIONAL</span>
                             </div>
                         </div>
                         <p class="text-sm text-slate-500 max-w-xs leading-relaxed mb-8 font-medium text-left" data-i18n="sec_standard_desc">Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.</p>
                         <div class="flex gap-4 text-left">
-                            <a href="https://wa.me/971503666382" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-green-500 hover:text-white flex items-center justify-center transition-all shadow-sm" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i></a>
-                            <a href="https://www.instagram.com/the_better_call" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#E1306C] hover:text-white flex items-center justify-center transition-all shadow-sm" target="_blank"><i class="fa-brands fa-instagram text-lg"></i></a>
-                            <a href="mailto:admin@thebettercall.com" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-theme-primary hover:text-white flex items-center justify-center transition-all shadow-sm"><i class="fa-solid fa-envelope text-lg"></i></a>
+                            <a href="https://wa.me/971588670129" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-green-500 hover:text-white flex items-center justify-center transition-all shadow-sm" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                            <a href="https://www.instagram.com/benefitz_int/" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#E1306C] hover:text-white flex items-center justify-center transition-all shadow-sm" target="_blank"><i class="fa-brands fa-instagram text-lg"></i></a>
+                            <a href="mailto:benefitzic@gmail.com" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-theme-primary hover:text-white flex items-center justify-center transition-all shadow-sm"><i class="fa-solid fa-envelope text-lg"></i></a>
                         </div>
                     </div>
                     
@@ -586,14 +625,14 @@
                     <div class="text-left">
                         <h4 class="font-bold text-brand-black text-xs mb-6 uppercase tracking-widest text-left" data-i18n="footer_office">Office</h4>
                         <ul class="space-y-4 text-sm text-slate-500 font-medium text-left">
-                            <li class="flex items-start gap-3 text-left"><i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i><span>R320-12th Floor<br>Dubai Healthcare City<br>UAE</span></li>
-                            <li class="flex items-center gap-3 text-left"><i class="fa-solid fa-phone text-brand-gold"></i><span>+971 50 366 6382</span></li>
-                            <li class="flex items-center gap-3 text-left"><i class="fa-solid fa-envelope text-brand-gold"></i><span>admin@thebettercall.com</span></li>
+                            <li class="flex items-start gap-3 text-left"><i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i><span>Bank Street Building<br>Bank Street Road, Burjuman<br>Dubai, UAE</span></li>
+                            <li class="flex items-center gap-3 text-left"><i class="fa-solid fa-phone text-brand-gold"></i><span>+971 58 867 0129</span></li>
+                            <li class="flex items-center gap-3 text-left"><i class="fa-solid fa-envelope text-brand-gold"></i><span>benefitzic@gmail.com</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="border-t border-slate-200/50 pt-8 flex flex-col md:flex-row justify-between text-xs text-slate-400 font-medium text-left">
-                    <p>&copy; 2025 Better Call Immigration. <span data-i18n="footer_rights">All rights reserved.</span></p>
+                    <p>&copy; 2025 BENEFITZ INTERNATIONAL. <span data-i18n="footer_rights">All rights reserved.</span></p>
                     <div class="flex gap-6 mt-4 md:mt-0 text-left"><a href="#" data-i18n="footer_privacy" class="hover:text-brand-black transition">Privacy Policy</a><a href="#" data-i18n="footer_terms" class="hover:text-brand-black transition">Terms of Service</a></div>
                 </div>
             </div>
@@ -605,6 +644,8 @@
             const enData = translations['en'];
             return (langData && langData[key]) ? langData[key] : (enData && enData[key]) ? enData[key] : key;
         }
+
+        let currentLang = 'en';
 
         function setLanguage(lang, element) {
             currentLang = lang;
@@ -656,9 +697,14 @@
         }
 
         function closeAllMobilePopups() {
-            ['mobile-language-menu', 'mobile-apply-menu', 'mobileMenu'].forEach(id => {
+            ['mobile-language-menu', 'mobile-apply-menu', 'mobileMenu', 'mobile-destinations-menu'].forEach(id => {
                 const el = document.getElementById(id);
-                if(el) el.classList.remove('visible');
+                if(el) {
+                    el.classList.add('invisible', 'opacity-0', 'translate-y-8', 'scale-90');
+                    el.classList.remove('visible');
+                    // Reset inline styles if any
+                    el.style.removeProperty('display');
+                }
             });
             if (window.lenis) window.lenis.start();
         }
@@ -666,9 +712,14 @@
         function toggleMobilePopup(id) {
             const target = document.getElementById(id);
             if(!target) return;
+            
             const isHidden = !target.classList.contains('visible');
             closeAllMobilePopups();
-            if (isHidden) { target.classList.add('visible'); }
+            
+            if (isHidden) { 
+                target.classList.remove('invisible', 'opacity-0', 'translate-y-8', 'scale-90');
+                target.classList.add('visible'); 
+            }
         }
 
         window.toggleMobileDestinations = () => toggleMobilePopup('mobile-destinations-menu');
@@ -676,14 +727,14 @@
         window.toggleMobileApply = () => toggleMobilePopup('mobile-apply-menu');
 
         document.addEventListener('click', (e) => {
-            const menuIds = ['mobile-language-menu', 'mobile-apply-menu', 'mobileMenu', 'language-dropdown'];
+            const menuIds = ['mobile-language-menu', 'mobile-apply-menu', 'mobileMenu', 'language-dropdown', 'mobile-destinations-menu'];
             let clickedInside = false;
             menuIds.forEach(id => {
                 const el = document.getElementById(id);
                 if (el && el.contains(e.target)) clickedInside = true;
             });
 
-            const isTrigger = e.target.closest('button') || e.target.closest('.lang-toggle-btn') || e.target.closest('a');
+            const isTrigger = e.target.closest('button') || e.target.closest('.lang-toggle-btn') || e.target.closest('.dock-item') || e.target.closest('a');
             if (!clickedInside && !isTrigger) {
                 closeAllMobilePopups();
                 const langBtn = document.getElementById('lang-toggle-btn');

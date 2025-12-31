@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>About Us | Better Call Immigration</title>
+    <title>About Us | Benefitz International</title>
     <meta name="description" content="Strategic partner for global migration. Orchestrating complex immigration solutions for individuals and enterprises.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,7 @@
                         'shimmer': 'shimmer 3s linear infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 8s linear infinite',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -138,20 +139,12 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* --- UNIFIED FLOATING BUTTONS CSS --- */
-        .float-btn-unified { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; }
-        .float-btn-unified:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); border-color: white; }
-        .float-lang:hover { background: white; color: #3B82F6; }
-        .float-wa:hover { background: #25D366; color: white; border-color: transparent; }
-        .float-apply { background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%); color: white; border: none; box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3); }
-        .float-apply:hover { box-shadow: 0 20px 50px rgba(139, 92, 246, 0.5); }
-        
-        /* Dropdown for Language */
-        .dropdown-menu { opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15); border-radius: 20px; }
-        
-        /* Dropdown Glass specific for the mega-menu to ensure readability */
+        /* Dropdown Menus */
+        .dropdown-menu { opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15); border-radius: 20px; }
         .dropdown-glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 20px 40px -5px rgba(139, 92, 246, 0.15); }
-        
+        nav .group .dropdown-menu { transform: translate(-50%, 20px); left: 50%; }
+        nav .group:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
         /* --- DESKTOP LANGUAGE FAB --- */
         .lang-fab-new { position: fixed; bottom: 2rem; left: 2rem; z-index: 50; }
         .lang-toggle-btn {
@@ -193,7 +186,6 @@
             background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 -15px 50px -10px rgba(0, 0, 0, 0.15); transform-origin: bottom center;
         }
-        /* Specific visibility class for popups only */
         .glass-creative-popup.visible { opacity: 1 !important; visibility: visible !important; transform: translate(-50%, 0) scale(1) !important; }
         
         .glass-pad-btn {
@@ -204,11 +196,6 @@
             background: rgba(255, 255, 255, 0.6); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-2px) scale(1.02);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-        
-        /* Dropdown Menus for Desktop Nav */
-        .dropdown-menu { opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15); border-radius: 20px; }
-        nav .group .dropdown-menu { transform: translate(-50%, 20px); left: 50%; }
-        nav .group:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col relative text-slate-700 selection:bg-creative-pink selection:text-white" id="page-body">
@@ -253,7 +240,7 @@
                         <h2 class="text-3xl md:text-5xl font-black text-brand-black mb-4 md:mb-6">Executive Summary</h2>
                         <div class="space-y-4 md:space-y-6 text-slate-600 text-base md:text-lg font-normal leading-relaxed">
                             <p>
-                                Better Call Immigration is a specialized global mobility consultancy serving as the premier strategic partner for comprehensive immigration, residency, and citizenship solutions. Headquartered in Dubai, UAE, our expertise spans key economic regions including Canada, Europe (Schengen), Australia, the UK, the USA, and New Zealand.
+                                <span class="font-bold text-creative-purple">Benefitz International</span> is a specialized global mobility consultancy serving as the premier strategic partner for comprehensive immigration, residency, and citizenship solutions. Headquartered in Dubai, UAE, our expertise spans key economic regions including Canada, Europe (Schengen), Australia, the UK, the USA, and New Zealand.
                             </p>
                             <p>
                                 We meticulously orchestrate complex processes—from initial needs assessment and employment authorization to high-net-worth investment migration. Our mission is to ensure a secure, seamless, and fully compliant long-term transition for every client.
@@ -276,7 +263,7 @@
                         <!-- Main Image Card -->
                         <div class="absolute top-0 right-0 w-5/6 h-4/5 rounded-[2.5rem] overflow-hidden glass-deep p-2 z-10 transform rotate-2 group-hover:rotate-0 transition-transform duration-700 shadow-2xl">
                              <div class="w-full h-full rounded-[2rem] overflow-hidden relative">
-                                 <img src="https://github.com/thebettercall/app/raw/a516c166fe6a321d0f982e11c774d19cc468652f/IMG_20251203_080834.jpg" alt="Better Call Office Main" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                                 <img src="https://github.com/thebettercall/app/raw/a516c166fe6a321d0f982e11c774d19cc468652f/IMG_20251203_080834.jpg" alt="Benefitz Office Main" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
                                  <div class="absolute inset-0 bg-gradient-to-t from-creative-purple/20 to-transparent mix-blend-overlay"></div>
                              </div>
                         </div>
@@ -284,7 +271,7 @@
                         <!-- Detail Image Card -->
                         <div class="absolute bottom-8 left-0 w-3/5 h-1/2 rounded-[2rem] overflow-hidden glass-deep p-2 z-20 transform -rotate-3 group-hover:rotate-0 transition-transform duration-700 shadow-xl animate-float" style="animation-delay: 1s;">
                              <div class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
-                                 <img src="https://github.com/thebettercall/app/raw/a516c166fe6a321d0f982e11c774d19cc468652f/IMG_20251203_080812.jpg" alt="Better Call Office Detail" class="w-full h-full object-cover">
+                                 <img src="https://github.com/thebettercall/app/raw/a516c166fe6a321d0f982e11c774d19cc468652f/IMG_20251203_080812.jpg" alt="Benefitz Office Detail" class="w-full h-full object-cover">
                                  <div class="absolute inset-0 bg-gradient-to-tr from-creative-blue/20 to-transparent mix-blend-overlay"></div>
                              </div>
                         </div>
@@ -407,7 +394,7 @@
             <div class="container mx-auto px-4 relative z-10">
                 <div class="text-center mb-10 md:mb-16 reveal-item">
                     <span class="text-creative-amber font-bold tracking-[0.2em] text-xs uppercase mb-3 md:mb-4 block">Our Unfair Edge</span>
-                    <h2 class="text-3xl md:text-5xl font-black text-brand-black mb-3 md:mb-4">The Better Call Advantage</h2>
+                    <h2 class="text-3xl md:text-5xl font-black text-brand-black mb-3 md:mb-4">The Benefitz Advantage</h2>
                     <p class="text-slate-500 text-base md:text-lg">Proactive Risk Mitigation. Uncompromising Compliance. Coordinated Execution.</p>
                 </div>
 
@@ -438,47 +425,61 @@
                     
                     <div class="reveal-item">
                         <span class="text-creative-teal font-bold tracking-[0.2em] text-xs uppercase mb-3 md:mb-4 block">Get in Touch</span>
-                        <h2 class="text-3xl md:text-5xl font-black text-brand-black mb-6 md:mb-8">Visit Our Headquarters</h2>
+                        <h2 class="text-3xl md:text-5xl font-black text-brand-black mb-6 md:mb-8">Global Presence</h2>
                         
-                        <div class="space-y-4 md:space-y-8">
-                            <div class="flex items-start gap-3 md:gap-5 glass-creative p-4 md:p-5 rounded-2xl">
-                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-creative-purple/10 flex items-center justify-center text-creative-purple shrink-0">
-                                    <i class="fa-solid fa-location-dot text-lg md:text-xl"></i>
+                        <div class="space-y-4 md:space-y-6">
+                            <!-- Dubai HQ -->
+                            <div class="glass-creative p-4 md:p-5 rounded-2xl border-l-4 border-creative-purple">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 rounded-lg bg-creative-purple/10 flex items-center justify-center text-creative-purple"><i class="fa-solid fa-building"></i></div>
+                                    <h5 class="font-bold text-brand-black text-lg">UAE Headquarters</h5>
                                 </div>
-                                <div>
-                                    <h5 class="font-bold text-brand-black text-lg md:text-xl">Address</h5>
-                                    <p class="text-slate-500 text-sm mt-1">R320-12th Floor, Office no.14<br>Sheikh Rashid Rd, Oud Metha<br>Dubai Healthcare City, Dubai - UAE</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-3 md:gap-5 glass-creative p-4 md:p-5 rounded-2xl">
-                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-creative-pink/10 flex items-center justify-center text-creative-pink shrink-0">
-                                    <i class="fa-solid fa-phone text-lg md:text-xl"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-brand-black text-lg md:text-xl">Phone & WhatsApp</h5>
-                                    <p class="text-slate-500 text-sm mt-1 space-y-1">
-                                        <a href="tel:+971503666382" class="hover:text-creative-purple block transition">+971 50 366 6382</a>
-                                        <a href="https://wa.me/971503666382" target="_blank" class="hover:text-creative-purple block transition text-green-600 font-semibold" rel="noopener noreferrer">
-                                            <i class="fa-brands fa-whatsapp text-sm mr-2"></i>
-                                            +971 50 366 6382
-                                        </a>
-                                    </p>
+                                <div class="pl-2 space-y-2">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-location-dot text-creative-purple mt-1 text-sm"></i>
+                                        <p class="text-slate-500 text-sm">Bank Street Building, Bank Street Road<br>Burjuman, Dubai, UAE</p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-phone text-creative-purple text-sm"></i>
+                                        <a href="tel:+971588670129" class="text-slate-600 font-bold text-sm hover:text-creative-purple transition">+971 58 867 0129</a>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-envelope text-creative-purple text-sm"></i>
+                                        <a href="mailto:benefitzic@gmail.com" class="text-slate-500 text-sm hover:text-creative-purple transition">benefitzic@gmail.com</a>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex items-start gap-3 md:gap-5 glass-creative p-4 md:p-5 rounded-2xl">
-                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-creative-blue/10 flex items-center justify-center text-creative-blue shrink-0">
-                                    <i class="fa-solid fa-envelope text-lg md:text-xl"></i>
+                            <!-- India Offices -->
+                            <div class="glass-creative p-4 md:p-5 rounded-2xl border-l-4 border-creative-amber">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 rounded-lg bg-creative-amber/10 flex items-center justify-center text-creative-amber"><i class="fa-solid fa-earth-asia"></i></div>
+                                    <h5 class="font-bold text-brand-black text-lg">India Operations</h5>
                                 </div>
-                                <div>
-                                    <h5 class="font-bold text-brand-black text-lg md:text-xl">Email</h5>
-                                    <a href="mailto:admin@thebettercall.com" class="text-slate-500 text-sm mt-1 hover:text-creative-blue transition">admin@thebettercall.com</a>
+                                
+                                <!-- Kerala -->
+                                <div class="pl-2 mb-4 pb-4 border-b border-slate-200/50">
+                                    <h6 class="font-bold text-slate-700 text-sm mb-2 uppercase tracking-wide">Kerala Office</h6>
+                                    <p class="text-slate-500 text-sm mb-1 font-semibold">Benefitz International Consultancy Pvt Ltd</p>
+                                    <div class="flex items-start gap-3 mb-1">
+                                        <i class="fa-solid fa-map-pin text-creative-amber mt-1 text-xs"></i>
+                                        <p class="text-slate-500 text-xs leading-relaxed">Genext Building, near Thekkinkadu Maidan,<br>Marar Road, Thrissur, Kerala 680001</p>
+                                    </div>
+                                </div>
+
+                                <!-- Delhi -->
+                                <div class="pl-2">
+                                    <h6 class="font-bold text-slate-700 text-sm mb-2 uppercase tracking-wide">Delhi Office</h6>
+                                    <p class="text-slate-500 text-sm mb-1 font-semibold">Benefitz International Consultancy Pvt Ltd</p>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-map-pin text-creative-amber mt-1 text-xs"></i>
+                                        <p class="text-slate-500 text-xs leading-relaxed">D205, Sector 10<br>Noida, 201301<br>Delhi, India</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="mt-8 md:mt-10">
+                        <div class="mt-8">
                             <a href="book.html" class="inline-flex items-center group relative px-8 py-4 md:px-10 md:py-5 rounded-full bg-gradient-to-r from-creative-purple to-creative-blue text-white font-bold text-base md:text-lg overflow-hidden transition-all hover:scale-105 shadow-[0_10px_30px_rgba(139,92,246,0.3)] hover:shadow-creative-purple/50">
                                 <span class="relative z-10 group-hover:text-white transition-colors">Schedule a Consultation</span>
                             </a>
@@ -488,13 +489,13 @@
                     <div class="reveal-item space-y-4" style="transition-delay: 200ms;">
                         <div class="glass-deep p-2 rounded-[2rem] hidden md:block">
                             <div class="rounded-[1.5rem] overflow-hidden h-[300px] relative">
-                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.483762767315!2d55.32157627605809!3d25.22741963073697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d36007a02f9%3A0x9c29299e00771e24!2sDubai%20Healthcare%20City!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" width="100%" height="100%" style="border:0; filter: grayscale(20%) contrast(1.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.823901768658!2d55.29792897538334!3d25.25129027767817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e511dde247bf!2sBurJuman!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" width="100%" height="100%" style="border:0; filter: grayscale(20%) contrast(1.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                         
                         <!-- Mobile Get Direction Button -->
                         <div class="md:hidden w-full px-2">
-                            <a href="https://maps.app.goo.gl/toUDbcdmp61JFT866" target="_blank" class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-white shadow-lg border border-slate-100 text-creative-purple font-bold text-lg hover:bg-slate-50 transition-colors">
+                            <a href="https://maps.google.com/?q=Bank+Street+Building,+Burjuman,+Dubai,+UAE" target="_blank" class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-white shadow-lg border border-slate-100 text-creative-purple font-bold text-lg hover:bg-slate-50 transition-colors">
                                 <i class="fa-solid fa-location-arrow text-xl"></i>
                                 <span>Get Directions</span>
                             </a>
@@ -542,7 +543,7 @@
                     <button onclick="setLanguage('si', this);" class="lang-option font-['Noto_Sans_Sinhala']"><span>සිංහල</span> <span class="text-xs text-slate-400">SI</span></button>
                 </div>
             </div>
-            <a href="https://wa.me/971503666382" target="_blank" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg border-2 border-white/50"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
+            <a href="https://wa.me/971588670129" target="_blank" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg border-2 border-white/50 hover:scale-110 transition-transform"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
         </div>
     </div>
 
@@ -554,7 +555,7 @@
             <button onclick="toggleMobileLanguage()" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-solid fa-language text-xl text-slate-500 group-hover:text-creative-purple"></i><span class="text-[9px] font-bold tracking-wide">Lang</span></button>
             <div class="w-20 flex justify-center items-center z-20"><button onclick="toggleMobileDestinations()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-creative-purple to-creative-pink flex items-center justify-center text-white transform active:scale-90 group relative shadow-lg shadow-creative-purple/40"><div class="absolute inset-0 rounded-full bg-creative-purple blur-md opacity-40 animate-pulse-slow"></div><i class="fa-solid fa-earth-europe text-2xl relative z-10 drop-shadow-md"></i></button></div>
             <button onclick="toggleMobileApply()" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-solid fa-paper-plane text-xl text-slate-500 group-hover:text-creative-purple"></i><span class="text-[9px] font-bold tracking-wide">Apply</span></button>
-            <a href="https://wa.me/971503666382" target="_blank" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i><span class="text-[9px] font-bold tracking-wide">Chat</span></a>
+            <a href="https://wa.me/971588670129" target="_blank" class="dock-item group active:scale-95 transition-transform text-center"><i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i><span class="text-[9px] font-bold tracking-wide">Chat</span></a>
         </div>
     </div>
 
@@ -603,19 +604,19 @@
     </div>
 
     <script>
-        const LOGO_URL = "https://raw.githubusercontent.com/thebettercall/app/9ca2db3d96700f0412c9f2f420422ed1ccfb52bb/Bettercall%20Logo%20SVG%2003.svg";
+        const LOGO_URL = "https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg";
         
         // --- GLOBAL HEADER & FOOTER INJECTION ---
         const GLOBAL_HEADER = `
         <nav class="fixed top-2 md:top-6 left-0 right-0 z-50 flex justify-center px-2 md:px-4" id="navbar-container">
             <div class="floating-nav w-full max-w-7xl px-3 py-1.5 md:px-4 md:py-3 flex justify-between items-center transition-all duration-300 shadow-lg" id="navbar">
-                <a href="index.html" class="flex items-center gap-1.5 md:gap-4 group px-2 md:px-4 text-left">
-                    <div class="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center glass-creative overflow-hidden p-1 flex-shrink-0 bg-white/90">
-                        <img src="${LOGO_URL}" alt="Better Call Logo" class="w-full h-full object-contain">
+                <a href="index.html" class="flex items-center gap-2 md:gap-4 group px-2 md:px-4 text-left">
+                    <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center glass-creative overflow-hidden p-1.5 flex-shrink-0 bg-white shadow-sm group-hover:scale-110 transition-transform duration-500">
+                        <img src="${LOGO_URL}" alt="Benefitz Logo" class="w-full h-full object-contain">
                     </div>
                     <div class="block leading-tight"> 
-                        <h1 class="font-black text-brand-black text-[11px] md:text-xl tracking-wide group-hover:text-creative-purple transition-colors">BETTER CALL</h1>
-                        <p class="text-[7px] md:text-[10px] font-bold text-creative-amber uppercase tracking-[0.2em]">Immigration</p>
+                        <h1 class="font-black text-brand-black text-[12px] md:text-xl tracking-wide group-hover:text-creative-purple transition-colors">BENEFITZ</h1>
+                        <p class="text-[8px] md:text-[10px] font-bold text-creative-amber uppercase tracking-[0.2em] leading-tight">International</p>
                     </div>
                 </a>
                 <div class="hidden lg:flex items-center gap-2">
@@ -740,17 +741,17 @@
                     <div class="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
                         <a href="index.html" class="flex items-center gap-5 group mb-4 md:mb-8 w-fit">
                             <div class="w-16 h-16 rounded-2xl flex items-center justify-center glass-deep p-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(233,30,99,0.2)] hover:scale-105 border border-white/60 bg-white/50 backdrop-blur-md">
-                                <img src="${LOGO_URL}" alt="Better Call Logo" class="w-full h-full object-contain drop-shadow-sm">
+                                <img src="${LOGO_URL}" alt="Benefitz Logo" class="w-full h-full object-contain drop-shadow-sm">
                             </div>
                             <div class="block text-left leading-tight">
-                                <h4 class="font-black text-brand-black text-xl tracking-wide">BETTER CALL</h4><p class="text-[10px] font-bold text-creative-pink uppercase tracking-[0.3em]">Immigration</p>
+                                <h4 class="font-black text-brand-black text-xl tracking-wide">BENEFITZ</h4><p class="text-[10px] font-bold text-creative-pink uppercase tracking-[0.3em]">International</p>
                             </div>
                         </a>
                         <p data-i18n="sec_standard_desc" class="text-base leading-relaxed max-w-sm mb-6 md:mb-10 font-medium text-slate-600">Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.</p>
                         <div class="flex gap-5">
-                            <a href="https://wa.me/971503666382" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-purple hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
-                            <a href="https://www.instagram.com/the_better_call" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-pink hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
-                            <a href="mailto:admin@thebettercall.com" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-amber hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60"><i class="fa-solid fa-envelope text-2xl"></i></a>
+                            <a href="https://wa.me/971588670129" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-purple hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+                            <a href="https://www.instagram.com/benefitz_int/" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-pink hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                            <a href="mailto:benefitzic@gmail.com" class="w-14 h-14 rounded-full glass-creative hover:bg-creative-amber hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-white/60"><i class="fa-solid fa-envelope text-2xl"></i></a>
                         </div>
                     </div>
                     <div class="hidden md:block">
@@ -784,14 +785,14 @@
                     <div class="hidden md:block">
                         <h4 data-i18n="footer_office" class="text-slate-800 font-bold mb-8 text-base uppercase tracking-widest">Office</h4>
                         <ul class="space-y-5 text-base font-medium text-slate-600">
-                            <li class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-creative-amber mt-1"></i><span>R320-12th Floor<br>Dubai Healthcare City<br>UAE</span></li>
-                            <li class="flex items-center gap-4"><i class="fa-solid fa-phone text-creative-amber"></i><span>+971 50 366 6382</span></li>
-                            <li class="flex items-center gap-4"><i class="fa-solid fa-envelope text-creative-amber"></i><span>admin@thebettercall.com</span></li>
+                            <li class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-creative-amber mt-1"></i><span>Bank Street Building<br>Burjuman, Dubai, UAE</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-phone text-creative-amber"></i><span>+971 58 867 0129</span></li>
+                            <li class="flex items-center gap-4"><i class="fa-solid fa-envelope text-creative-amber"></i><span>benefitzic@gmail.com</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="border-t border-slate-200/60 pt-10 text-center text-sm text-slate-500 font-medium flex flex-col md:flex-row justify-between items-center">
-                    <p>&copy; 2025 Better Call Immigration. <span data-i18n="footer_rights">All rights reserved.</span></p>
+                    <p>&copy; 2025 Benefitz International. <span data-i18n="footer_rights">All rights reserved.</span></p>
                     <div class="flex gap-8 mt-6 md:mt-0"><a href="#" data-i18n="footer_privacy" class="hover:text-creative-purple transition">Privacy Policy</a><a href="#" data-i18n="footer_terms" class="hover:text-creative-purple transition">Terms of Service</a></div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>All Work Programs | Better Call Immigration</title>
+    <title>All Work Programs | BENEFITZ INTERNATIONAL</title>
     <meta name="description" content="Explore 16 verified work permit programs across Europe and the Balkans. Categorized by premium tiers and entry levels.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,13 +45,18 @@
                         'vfs-teal': '#14B8A6',
                         
                         // --- DYNAMIC THEME COLORS (Global Hub) ---
-                        'theme-primary': '#2563EB',   // Global Blue
+                        'theme-primary': '#21468B',   // Global Blue (Updated)
                         'theme-secondary': '#F59E0B', // Global Gold
-                        'theme-accent': '#2563EB',    
+                        'theme-accent': '#AE1C28',    
                         
                         'theme-dark': '#181818', 
                         'theme-light': '#F8FAFC', 
                         'theme-silver': '#E2E8F0',
+                        
+                        // Netherlands Specific Colors (Kept for consistency if needed)
+                        'nether-primary': '#21468B', 
+                        'nether-secondary': '#FF6600', 
+                        'nether-red': '#AE1C28',
                     },
                     animation: {
                         'float': 'float 8s ease-in-out infinite',
@@ -84,7 +89,7 @@
             background-color: #F0F4F8; /* Light Background */
             /* Advanced Gradient Background - Light Mode */
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 40%), 
+                radial-gradient(circle at 10% 20%, rgba(33, 70, 139, 0.05) 0%, transparent 40%), 
                 radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
             background-attachment: fixed;
             color: #0F172A; /* Dark Text */
@@ -113,7 +118,7 @@
         .glass-frosted:hover {
             background: #FFFFFF;
             border-color: #E2E8F0; 
-            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.1); 
+            box-shadow: 0 10px 40px rgba(33, 70, 139, 0.1); 
             transform: translateY(-4px);
         }
         .dropdown-glass {
@@ -214,10 +219,10 @@
         }
         .dock-item:active {
             transform: scale(0.9);
-            color: #2563EB;
-            background: rgba(37, 99, 235, 0.05);
+            color: #21468B;
+            background: rgba(33, 70, 139, 0.05);
         }
-        .dock-item.active { color: #2563EB; font-weight: 600; text-shadow: none; }
+        .dock-item.active { color: #21468B; font-weight: 600; text-shadow: none; }
 
         .glass-creative-popup {
             background: rgba(255, 255, 255, 0.95);
@@ -257,12 +262,12 @@
             border: 1px solid #CBD5E1;
             color: #64748B; padding: 0.75rem 1.25rem;
             border-radius: 9999px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: flex; align-items: center; gap: 0.75rem;
             cursor: pointer; transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
-        .lang-toggle-btn:hover { background: #F8FAFC; box-shadow: 0 15px 40px -5px rgba(37, 99, 235, 0.15); color: #2563EB; border-color: #2563EB; }
+        .lang-toggle-btn:hover { background: #F8FAFC; box-shadow: 0 15px 40px -5px rgba(33, 70, 139, 0.15); color: #21468B; border-color: #21468B; }
         .lang-toggle-btn.active .fa-chevron-up { transform: rotate(180deg); }
         .language-dropdown {
             position: absolute; bottom: 100%; left: 0; margin-bottom: 1rem; width: 12rem;
@@ -281,8 +286,8 @@
             border-radius: 0.5rem; cursor: pointer; transition: background 0.2s;
             display: flex; align-items: center; gap: 0.5rem; text-align: left;
         }
-        .lang-option:hover { background: #F1F5F9; color: #2563EB; }
-        .lang-option.active { background: rgba(37, 99, 235, 0.1); color: #2563EB; font-weight: 600; }
+        .lang-option:hover { background: #F1F5F9; color: #21468B; }
+        .lang-option.active { background: rgba(33, 70, 139, 0.1); color: #21468B; font-weight: 600; }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col relative" id="page-body">
@@ -313,7 +318,7 @@
                         <i class="fa-solid fa-clipboard-check text-theme-secondary group-hover:scale-110 transition-transform"></i>
                         <span data-i18n="btn_assess">Free Assessment</span>
                     </a>
-                    <a href="#nordic" class="flex-1 bg-theme-primary text-white px-6 py-4 rounded-xl font-bold hover:bg-blue-600 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    <a href="#nordic" class="flex-1 bg-theme-primary text-white px-6 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
                         <span data-i18n="btn_view">View Programs</span>
                         <i class="fa-solid fa-arrow-down"></i>
                     </a>
@@ -402,11 +407,11 @@
     </div>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/971503666382" target="_blank" class="hidden md:flex fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 group shadow-lg border-2 border-white/50"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
+    <a href="https://wa.me/971588670129" target="_blank" class="hidden md:flex fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 group shadow-lg border-2 border-white/50"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
 
     <!-- REDESIGNED MOBILE DOCK STATION -->
     <div class="fixed bottom-2 inset-x-0 z-[100] md:hidden flex justify-center pointer-events-none safe-area-pb">
-        <div class="pointer-events-auto w-[96%] max-w-[420px] px-2 h-[72px] rounded-[32px] flex items-center justify-between relative shadow-[0_20px_60px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 ease-out border border-slate-200 bg-white/90 backdrop-blur-2xl ring-1 ring-slate-200/50 overflow-hidden">
+        <div class="pointer-events-auto w-[96%] max-w-[420px] px-2 h-[72px] rounded-[32px] flex items-center justify-between relative shadow-[0_20px_60px_-10px_rgba(33,70,139,0.2)] transition-all duration-300 ease-out border border-slate-200 bg-white/90 backdrop-blur-2xl ring-1 ring-slate-200/50 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
 
             <a href="index.html" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
@@ -424,8 +429,8 @@
             </button>
 
             <div class="w-20 flex justify-center items-center z-20">
-                <button onclick="toggleMobileDestinations()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#2563EB] to-[#3B82F6] flex items-center justify-center text-white transform transition-all active:scale-90 group relative border border-white/20 shadow-lg shadow-blue-500/30">
-                    <div class="absolute inset-0 rounded-full bg-blue-500 blur-md opacity-40 group-hover:opacity-70 animate-pulse-slow"></div>
+                <button onclick="toggleMobileDestinations()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#21468B] to-[#3B82F6] flex items-center justify-center text-white transform transition-all active:scale-90 group relative border border-white/20 shadow-lg shadow-blue-500/30">
+                    <div class="absolute inset-0 rounded-full bg-theme-primary blur-md opacity-40 group-hover:opacity-70 animate-pulse-slow"></div>
                     <div class="absolute inset-0 rounded-full border border-white/30"></div>
                     <i class="fa-solid fa-earth-europe text-2xl relative z-10 drop-shadow-md group-hover:rotate-12 transition-transform duration-500"></i>
                 </button>
@@ -438,7 +443,7 @@
                 </div>
             </button>
 
-            <a href="https://wa.me/971503666382" target="_blank" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
+            <a href="https://wa.me/971588670129" target="_blank" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
                  <div class="flex flex-col items-center justify-center gap-1">
                     <div class="text-xl text-[#25D366] group-hover:text-green-600 transition-colors drop-shadow-sm"><i class="fa-brands fa-whatsapp"></i></div>
                     <span class="text-[9px] font-bold text-slate-500 group-hover:text-green-600 tracking-wide">Chat</span>
@@ -472,11 +477,11 @@
         </div>
         <div class="grid grid-cols-2 gap-2 max-h-[40vh] overflow-y-auto pr-1 custom-scrollbar">
             <button onclick="setLanguage('en', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors">English</button>
-            <button onclick="setLanguage('ml', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors">മലയാളം</button>
+            <button onclick="setLanguage('ml', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors font-['Noto_Sans_Malayalam']">മലയാളം</button>
             <button onclick="setLanguage('hi', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors">हिंदी</button>
-            <button onclick="setLanguage('ta', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors">தமிழ்</button>
+            <button onclick="setLanguage('ta', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors font-['Noto_Sans_Tamil']">தமிழ்</button>
             <button onclick="setLanguage('fil', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors">Filipino</button>
-            <button onclick="setLanguage('si', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors">සිංහල</button>
+            <button onclick="setLanguage('si', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors font-['Noto_Sans_Sinhala']">සිංහල</button>
             <button onclick="setLanguage('sw', this)" class="text-left p-3 rounded-xl glass-pad-btn text-sm font-bold text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-colors">Swahili</button>
         </div>
     </div>
@@ -493,19 +498,19 @@
 
     <!-- Scripts -->
     <script>
-        const LOGO_URL = "https://raw.githubusercontent.com/thebettercall/app/9ca2db3d96700f0412c9f2f420422ed1ccfb52bb/Bettercall%20Logo%20SVG%2003.svg";
+        const LOGO_URL = "https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg";
         
         // --- MASTER TEMPLATE HEADER & FOOTER STRINGS (Light Mode) ---
         const GLOBAL_HEADER = `
         <nav class="fixed top-2 md:top-4 left-0 right-0 z-50 flex justify-center px-2 md:px-4" id="navbar-container">
             <div class="floating-nav w-full max-w-7xl px-3 py-1.5 md:px-4 md:py-2.5 flex justify-between items-center transition-all duration-300 shadow-lg shadow-slate-200/20" id="navbar">
                 <a href="index.html" class="flex items-center gap-1.5 md:gap-4 group px-2 md:px-4">
-                    <div class="w-7 h-7 md:w-11 md:h-11 rounded-full flex items-center justify-center glass-frosted overflow-hidden p-1 flex-shrink-0 transition-all duration-500 hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:scale-110 border border-slate-200 bg-white/70 backdrop-blur-md">
-                        <img src="${LOGO_URL}" alt="Better Call Logo" class="w-full h-full object-contain drop-shadow-sm">
+                    <div class="w-7 h-7 md:w-11 md:h-11 rounded-full flex items-center justify-center glass-frosted overflow-hidden p-1 flex-shrink-0 transition-all duration-500 hover:shadow-[0_0_30px_rgba(33,70,139,0.6)] hover:scale-110 border border-slate-200 bg-white/70 backdrop-blur-md">
+                        <img src="${LOGO_URL}" alt="BENEFITZ Logo" class="w-full h-full object-contain drop-shadow-sm">
                     </div>
                     <div class="block leading-tight"> 
-                        <h1 class="font-bold text-brand-black text-xs md:text-xl tracking-wide whitespace-nowrap">BETTER CALL</h1>
-                        <p class="text-[7px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] md:tracking-[0.2em]">Immigration</p>
+                        <h1 class="font-bold text-brand-black text-xs md:text-xl tracking-wide whitespace-nowrap">BENEFITZ</h1>
+                        <p class="text-[7px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] md:tracking-[0.2em]">INTERNATIONAL</p>
                     </div>
                 </a>
                 <div class="hidden lg:flex items-center gap-1">
@@ -655,18 +660,18 @@
                     <div class="lg:col-span-2">
                         <div class="flex items-center gap-4 mb-6">
                             <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center p-2 backdrop-blur-sm">
-                                <img src="${LOGO_URL}" alt="Better Call Logo" class="w-full h-full object-contain">
+                                <img src="${LOGO_URL}" alt="BENEFITZ Logo" class="w-full h-full object-contain">
                             </div>
                             <div class="block">
-                                <span class="block font-black text-xl text-brand-black tracking-wide leading-none">BETTER CALL</span>
-                                <span class="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em]">Immigration</span>
+                                <span class="block font-black text-xl text-brand-black tracking-wide leading-none">BENEFITZ</span>
+                                <span class="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em]">INTERNATIONAL</span>
                             </div>
                         </div>
                         <p class="text-sm text-slate-500 max-w-xs leading-relaxed mb-8 font-medium">Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.</p>
                         <div class="flex gap-4">
-                            <a href="https://wa.me/971503666382" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i></a>
-                            <a href="https://www.instagram.com/the_better_call" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#E1306C] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-instagram text-lg"></i></a>
-                            <a href="mailto:admin@thebettercall.com" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-brand-blue hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1"><i class="fa-solid fa-envelope text-lg"></i></a>
+                            <a href="https://wa.me/971588670129" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                            <a href="https://www.instagram.com/benefitz_int/" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#E1306C] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-instagram text-lg"></i></a>
+                            <a href="mailto:benefitzic@gmail.com" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-brand-blue hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1"><i class="fa-solid fa-envelope text-lg"></i></a>
                         </div>
                     </div>
                     
@@ -703,15 +708,15 @@
                     <div>
                         <h4 class="font-bold text-brand-black text-xs mb-6 uppercase tracking-widest">Office</h4>
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
-                            <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i><span>R320-12th Floor<br>Dubai Healthcare City<br>UAE</span></li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-brand-gold"></i><span>+971 50 366 6382</span></li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-brand-gold"></i><span>admin@thebettercall.com</span></li>
+                            <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i><span>Bank Street Building<br>Bank Street Road, Burjuman<br>Dubai, UAE</span></li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-brand-gold"></i><span>+971 58 867 0129</span></li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-brand-gold"></i><span>benefitzic@gmail.com</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between text-xs text-slate-400 font-medium">
-                    <p>&copy; 2025 Better Call Immigration. All rights reserved.</p>
-                    <div class="flex gap-6 mt-4 md:mt-0"><a href="https://bettercall.online/privacy_policy.html" class="hover:text-brand-black transition">Privacy Policy</a><a href="https://bettercall.online/terms" class="hover:text-brand-black transition">Terms of Service</a></div>
+                    <p>&copy; 2025 BENEFITZ INTERNATIONAL. All rights reserved.</p>
+                    <div class="flex gap-6 mt-4 md:mt-0"><a href="#" class="hover:text-brand-black transition">Privacy Policy</a><a href="#" class="hover:text-brand-black transition">Terms of Service</a></div>
                 </div>
             </div>
         </footer>
