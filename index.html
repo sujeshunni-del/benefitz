@@ -35,11 +35,13 @@
                     colors: {
                         'theme-primary': '#21468B',   
                         'theme-secondary': '#FF6600', 
-                        'theme-accent': '#AE1C28',    
+                        'theme-accent': '#AE1C28',
+                        'theme-green': '#10B981',
+                        'theme-purple': '#8B5CF6',
+                        'theme-teal': '#14B8A6',    
                         'brand-black': '#0F172A',
                         'brand-grey': '#64748B',
                         'brand-blue': '#2563EB',      
-                        'brand-purple': '#7C3AED',     
                         'brand-gold': '#F59E0B',
                         'brand-white': '#FFFFFF',
                         'vfs-teal': '#14B8A6',
@@ -51,6 +53,7 @@
                         'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                         'blob': 'blob 7s infinite',
                         'glow-shift': 'glowShift 3s linear infinite',
+                        'grid-move': 'gridMove 20s linear infinite',
                     },
                     keyframes: {
                         float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
@@ -64,9 +67,13 @@
                         },
                         glowShift: {
                             '0%': { boxShadow: '0 0 20px rgba(33, 70, 139, 0.6)' },
-                            '33%': { boxShadow: '0 0 20px rgba(124, 58, 237, 0.6)' },
-                            '66%': { boxShadow: '0 0 20px rgba(255, 102, 0, 0.6)' },
+                            '33%': { boxShadow: '0 0 20px rgba(245, 158, 11, 0.6)' },
+                            '66%': { boxShadow: '0 0 20px rgba(37, 99, 235, 0.6)' },
                             '100%': { boxShadow: '0 0 20px rgba(33, 70, 139, 0.6)' }
+                        },
+                        gridMove: {
+                            '0%': { transform: 'translateY(0)' },
+                            '100%': { transform: 'translateY(40px)' }
                         }
                     }
                 }
@@ -76,52 +83,82 @@
 
     <style>
         /* BASE STYLES */
-        body { background-color: #F0F4F8; color: #0F172A; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
+        body { background-color: #F8FAFC; color: #0F172A; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #F0F4F8; }
         ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
         a, button, input, select, textarea { touch-action: manipulation; }
 
+        /* HERO GRID BACKGROUND */
+        .hero-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0;
+            background-image: linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
         /* GLASS & CARD STYLES */
         .glass-frosted {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             border: 1px solid #E2E8F0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .glass-frosted:hover {
-            background: #FFFFFF; border-color: #21468B; 
-            box-shadow: 0 10px 25px rgba(33, 70, 139, 0.15); transform: translateY(-4px);
+            background: #FFFFFF; border-color: #2563EB; 
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15); transform: translateY(-4px);
         }
+        
+        /* SPOTLIGHT CARD EFFECT - COLORFUL BORDERS */
         .modern-card {
             background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 24px;
             overflow: hidden; transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             height: 100%;
+            position: relative;
         }
         .modern-card:hover {
-            transform: translateY(-5px); box-shadow: 0 15px 30px -8px rgba(0,0,0,0.1); border-color: #21468B;
+            transform: translateY(-5px); 
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); 
+            border-color: #2563EB; /* Default hover color */
         }
+        
+        /* Interactive Card Hover Colors */
+        .modern-card-wrapper:nth-child(1n) .modern-card:hover { border-color: #2563EB; } /* Blue */
+        .modern-card-wrapper:nth-child(2n) .modern-card:hover { border-color: #10B981; } /* Green */
+        .modern-card-wrapper:nth-child(3n) .modern-card:hover { border-color: #F59E0B; } /* Orange/Gold */
+        .modern-card-wrapper:nth-child(4n) .modern-card:hover { border-color: #8B5CF6; } /* Purple */
+
+        .spotlight-overlay {
+            pointer-events: none;
+            position: absolute; inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(37, 99, 235, 0.03), transparent 40%);
+            opacity: 0; transition: opacity 0.5s;
+            z-index: 2;
+        }
+        .modern-card:hover .spotlight-overlay { opacity: 1; }
+        .spotlight-border { display: none; }
 
         /* NAVIGATION */
         .floating-nav {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.5); 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #E2E8F0;
             border-radius: 9999px; 
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         .floating-nav.scrolled {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba(203, 213, 225, 0.6);
+            background: #FFFFFF;
+            border-color: #CBD5E1;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
         .dropdown-glass {
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(24px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); 
         }
         
@@ -138,8 +175,8 @@
 
         /* BACKGROUND BLOBS */
         .bg-blobs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; pointer-events: none; }
-        .blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(33, 70, 139, 0.15) 0%, rgba(255, 255, 255, 0) 70%); border-radius: 50%; filter: blur(40px); animation: blob 20s infinite alternate; }
-        .blob-2 { position: absolute; bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(255, 102, 0, 0.1) 0%, rgba(255, 255, 255, 0) 70%); border-radius: 50%; filter: blur(40px); animation: blob 25s infinite alternate-reverse; }
+        .blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(255, 255, 255, 0) 70%); border-radius: 50%; filter: blur(60px); animation: blob 20s infinite alternate; }
+        .blob-2 { position: absolute; bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, rgba(255, 255, 255, 0) 70%); border-radius: 50%; filter: blur(60px); animation: blob 25s infinite alternate-reverse; }
 
         /* SEARCH OVERLAY */
         #search-overlay { opacity: 0; visibility: hidden; transition: all 0.3s ease; }
@@ -149,71 +186,115 @@
         .text-highlight { color: #21468B; font-weight: 700; background: rgba(33, 70, 139, 0.1); border-radius: 2px; padding: 0 1px; }
 
         /* ANIMATION UTILS */
-        .reveal-item { opacity: 0; transform: translateY(40px); transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1), transform 1.0s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+        .reveal-item { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
         .reveal-item.active { opacity: 1 !important; transform: translateY(0) !important; }
         
-        .wave-text-container { display: inline-flex; flex-wrap: nowrap; justify-content: center; align-items: center; line-height: 1; min-height: 1.2em; font-size: clamp(3rem, 10vw, 8rem); width: 100%; padding: 0 5px; white-space: nowrap; }
-        .wave-char { display: inline-block; animation: waveAnim 2s ease-in-out forwards; transform-origin: bottom center; opacity: 0; animation-fill-mode: forwards; white-space: pre; }
-        @keyframes waveAnim {
-            0% { transform: translateY(40px) scale(0.5) rotateX(90deg); opacity: 0; filter: blur(10px); }
-            40% { transform: translateY(-20px) scale(1.1) rotateX(0deg); opacity: 1; filter: blur(0px); }
-            60% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
+        /* CLEAN HEADER STYLES (No 3D, Flat) */
+        /* Replaced .hero-main-text styles with SVG specific styles */
+        
+        .hero-svg-container {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
         }
 
-        /* JOB WARP */
-        #job-warp-layer { position: absolute; top: 45%; left: 0; width: 100%; height: 55%; pointer-events: none; perspective: 800px; overflow: hidden; z-index: 0; mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%); }
-        .job-warp-item { position: absolute; top: 0; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0; will-change: transform, opacity; animation: jobFly 7s linear infinite; font-size: 16px; text-shadow: 0 0 5px currentColor; }
-        @keyframes jobFly {
-            0% { transform: translateX(-50%) translateZ(-1500px) translateY(-100px) scale(0.1); opacity: 0; }
-            15% { opacity: 0.1; }
-            40% { opacity: 0.7; }
-            80% { opacity: 0.9; }
-            100% { transform: translateX(-50%) translateZ(600px) translateY(200px) scale(2); opacity: 0; }
+        .draw-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 130px; /* Large base size for SVG scaling */
+            text-anchor: middle;
+            dominant-baseline: middle;
+            /* Solid Fill Settings */
+            fill-opacity: 1;
+            stroke: none; /* No outline */
+            opacity: 0; /* Start hidden */
+            transform-origin: center;
         }
 
+        /* Active Animation Class - Solid Wipe In */
+        .draw-text.active {
+            opacity: 1;
+            animation: wipeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        
+        /* Exit Animation Class - Solid Wipe Out */
+        .draw-text.exit {
+            animation: wipeOut 0.6s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+        }
+
+        @keyframes wipeIn {
+            0% {
+                clip-path: inset(0 100% 0 0); /* Hidden from right */
+                transform: translateX(-20px) scale(0.95);
+                filter: blur(4px);
+            }
+            100% {
+                clip-path: inset(0 0 0 0); /* Fully visible */
+                transform: translateX(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes wipeOut {
+            0% {
+                clip-path: inset(0 0 0 0);
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                clip-path: inset(0 0 0 100%); /* Wipe away to left */
+                transform: translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        .gradient-line-animated {
+            height: 6px;
+            background: #2563EB; /* Default Solid Blue */
+            border-radius: 99px;
+            margin: 1.5rem auto 0;
+            width: 80px;
+            transition: background-color 0.6s ease;
+        }
+
+        /* GLOBAL FLIGHT NETWORK (2D, Creative, Curved) */
+        #migration-network-container {
+            position: absolute;
+            top: 45%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 80%;
+            z-index: 0;
+            opacity: 0.8; 
+            pointer-events: none;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+        
         /* PREMIUM GLASS MOBILE DOCK */
         .glass-dock-modern {
-            background: rgba(255, 255, 255, 0.4); 
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            border-top: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 15px 40px -10px rgba(33, 70, 139, 0.15), inset 0 1px 0 0 rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            border: 1px solid #E2E8F0; 
+            box-shadow: 0 15px 40px -10px rgba(33, 70, 139, 0.15);
         }
         .dock-item { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #64748B; transition: all 0.3s; }
         .dock-item:active { transform: scale(0.9); color: #21468B; }
 
         /* PREMIUM POPUPS & HAMBURGER MENU */
         .glass-creative-popup {
-            background: rgba(255, 255, 255, 0.65); 
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.5); 
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0; 
             box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
             transform-origin: bottom center;
         }
         
-        /* Specific Visibility Classes for JS Logic */
-        .popup-visible { 
-            opacity: 1 !important; 
-            visibility: visible !important; 
-            transform: translate(-50%, 0) scale(1) !important; 
-        }
-        .menu-visible { 
-            opacity: 1 !important; 
-            visibility: visible !important; 
-            transform: scale(1) !important; 
-        }
+        .popup-visible { opacity: 1 !important; visibility: visible !important; transform: translate(-50%, 0) scale(1) !important; }
+        .menu-visible { opacity: 1 !important; visibility: visible !important; transform: scale(1) !important; }
         
         /* PREMIUM MOBILE MENU PAD */
-        #mobileMenu {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.25);
-        }
+        #mobileMenu { background: #FFFFFF; border: 1px solid #E2E8F0; box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.25); }
 
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
@@ -222,135 +303,93 @@
         /* Language FAB - Premium Glass */
         .lang-fab-new { position: fixed; bottom: 2rem; left: 2rem; z-index: 50; }
         .lang-toggle-btn { 
-            background: rgba(255, 255, 255, 0.7); 
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.6); 
+            background: #FFFFFF; 
+            border: 1px solid #E2E8F0; 
             padding: 0.75rem 1.25rem; border-radius: 9999px; 
             display: flex; align-items: center; gap: 0.75rem; 
             cursor: pointer; transition: all 0.3s ease; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
         }
-        .lang-toggle-btn:hover { background: rgba(255,255,255,0.9); box-shadow: 0 10px 25px rgba(33,70,139,0.15); }
+        .lang-toggle-btn:hover { background: #F8FAFC; box-shadow: 0 10px 25px rgba(33,70,139,0.15); }
         
         .language-dropdown { 
             position: absolute; bottom: 100%; left: 0; margin-bottom: 1rem; width: 12rem; 
-            background: rgba(255, 255, 255, 0.9); 
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.6); 
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0; 
             padding: 0.5rem; border-radius: 1rem; display: flex; flex-direction: column; gap: 0.5rem; 
             opacity: 0; visibility: hidden; transform: scale(0.9); transform-origin: bottom left; 
             transition: all 0.3s; box-shadow: 0 15px 40px -10px rgba(0,0,0,0.15); 
         }
         .lang-toggle-btn.active + .language-dropdown { opacity: 1; visibility: visible; transform: scale(1); }
         .lang-option { padding: 0.5rem 1rem; color: #64748B; font-size: 0.875rem; border-radius: 0.5rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
-        .lang-option:hover, .lang-option.active { background: rgba(33,70,139,0.08); color: #21468B; font-weight: 600; }
+        .lang-option:hover, .lang-option.active { background: #F1F5F9; color: #21468B; font-weight: 600; }
         
         /* Book Now Glow Effect */
-        .book-glow:hover {
-            box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
-            animation: glowShift 3s linear infinite;
-        }
+        .book-glow:hover { box-shadow: 0 0 25px rgba(37, 99, 235, 0.4); }
 
         /* Mobile Sheet Pull Handle */
-        .pull-handle {
-            width: 36px;
-            height: 4px;
-            background-color: #CBD5E1;
-            border-radius: 9999px;
-            margin: 0 auto 1rem auto;
-        }
+        .pull-handle { width: 36px; height: 4px; background-color: #CBD5E1; border-radius: 9999px; margin: 0 auto 1rem auto; }
 
-        /* FESTIVE ANIMATION CANVAS */
-        #festive-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        /* FESTIVE MODAL STYLES & ANIMATIONS */
-        #festive-modal-overlay.active { opacity: 1; visibility: visible; }
-        #festive-modal-overlay.active #festive-modal-card { transform: scale(1); }
-        
-        @keyframes spin-slow-bg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes float-decor { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
-        @keyframes gradient-move { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        
-        .animate-spin-slow-bg { animation: spin-slow-bg 30s linear infinite; }
-        .animate-float-decor { animation: float-decor 4s ease-in-out infinite; }
-        .text-gradient-festive { 
-            background: linear-gradient(to right, #D42426, #FFD700, #165B33, #21468B, #D42426); 
-            background-size: 300% 100%; 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            animation: gradient-move 4s ease infinite; 
-        }
-        
-        /* Rainbow Border Effect */
-        .festive-border-gradient {
-            position: relative;
-            background: rgba(255, 255, 255, 0.95);
-            background-clip: padding-box;
-            border: 3px solid transparent;
-            border-radius: 2rem;
-        }
-        .festive-border-gradient::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            z-index: -1;
-            margin: -3px;
-            border-radius: inherit;
-            background: linear-gradient(45deg, #FF0000, #FFD700, #008000, #21468B);
-            background-size: 400% 400%;
-            animation: gradient-move 6s ease infinite;
-        }
+        /* FLAT TEXT UTILITY (Replaces Gradient) */
+        .text-gradient-primary { color: #21468B; }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col relative" id="page-body">
 
-    <!-- Festive Canvas Overlay -->
-    <canvas id="festive-canvas"></canvas>
-
-    <!-- Background Blobs -->
+    <!-- Background Blobs & Grid -->
     <div class="bg-blobs">
         <div class="blob-1"></div>
         <div class="blob-2"></div>
+        <div class="hero-grid opacity-30"></div>
     </div>
 
     <main class="flex-grow w-full max-w-7xl mx-auto relative z-10 pt-16 md:pt-24 pb-16 md:pb-0 px-4 md:px-6">
         
         <!-- Hero Section -->
-        <header class="relative min-h-[60vh] md:min-h-[70vh] flex flex-col items-center justify-center text-center space-y-4 md:space-y-6 mb-8 md:mb-16">
-             <!-- Job Warp 3D Animation Layer -->
-             <div id="job-warp-layer" class="hidden md:block opacity-30"></div>
+        <header id="hero-header" class="relative min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center text-center space-y-2 mb-8 md:mb-16">
              
-             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-frosted border border-theme-secondary/30 text-brand-black font-bold tracking-widest text-[10px] uppercase mb-2 md:mb-4 animate-fade-in-up shadow-sm relative z-20">
-                <span class="w-1.5 h-1.5 rounded-full bg-theme-accent animate-pulse"></span>
-                <span data-i18n="hero_badge">Premium Visa & Residency Strategy</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-theme-primary animate-pulse"></span>
-            </div>
-
-            <div class="relative w-full flex justify-center items-center min-h-[80px] md:min-h-[160px] z-20">
-                <h1 class="font-black tracking-tighter wave-text-container leading-none uppercase text-brand-black" id="country-wave-target" style="text-shadow: 0 4px 30px rgba(0,0,0,0.05);">
-                    <!-- Content generated by JavaScript -->
-                </h1>
-            </div>
-
-            <h2 data-i18n="hero_subtitle" class="text-xs md:text-xl font-medium text-theme-secondary tracking-[0.3em] uppercase opacity-100 border-t border-b border-slate-200 py-3 px-8 inline-block glass-frosted relative z-20 whitespace-nowrap rounded-lg animate-fade-in-up" style="animation-delay: 0.2s;">
-                Leap in to the Future
-            </h2>
+             <!-- SVG Global Network (2D, Curved, Flight Paths + Job Tokens) -->
+             <div id="migration-network-container">
+                <svg id="network-svg" width="100%" height="100%" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" style="overflow: visible;" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.1"/>
+                        </filter>
+                    </defs>
+                    <g id="network-lines"></g>
+                    <g id="network-nodes"></g>
+                    <g id="network-pulses"></g> <!-- Moving Job Tokens -->
+                </svg>
+             </div>
+             
+             <!-- Clean Interactive Content -->
+             <div class="relative z-20 w-full py-8">
+                 <p class="text-sm md:text-lg font-bold text-slate-500 tracking-[0.4em] uppercase mb-2 animate-fade-in-up flex items-center justify-center gap-3" style="animation-delay: 0.1s;">
+                     <span class="w-8 h-[2px] bg-slate-300"></span>
+                     Your Gateway To
+                     <span class="w-8 h-[2px] bg-slate-300"></span>
+                 </p>
+                 
+                 <!-- Dynamic Main Text with SVG Draw Effect -->
+                 <div class="relative flex justify-center items-center min-h-[120px] md:min-h-[180px] w-full px-4">
+                     <svg class="hero-svg-container" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
+                         <!-- ID for JS targeting -->
+                         <text id="hero-title-text" x="50%" y="55%" class="draw-text">
+                             GLOBAL
+                         </text>
+                     </svg>
+                 </div>
+                 
+                 <!-- Animated Line (Solid Color) -->
+                 <div id="hero-underline" class="gradient-line-animated"></div>
+             </div>
 
             <!-- Search Bar Trigger -->
             <div class="w-full sm:w-auto max-w-xs md:max-w-xl mx-auto mt-4 md:mt-8 reveal-item relative z-30" style="animation-delay: 0.25s;">
                 <div onclick="toggleSearch()" class="group relative cursor-text transform hover:-translate-y-1 transition-transform duration-300">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-theme-primary via-brand-purple to-theme-secondary rounded-full opacity-30 group-hover:opacity-60 blur transition duration-500"></div>
-                    <div class="relative flex items-center bg-white/90 border border-white/50 rounded-full px-6 py-4 shadow-xl justify-center md:justify-start backdrop-blur-md">
+                    <!-- Clean Solid Shadow for search -->
+                    <div class="absolute -inset-1 bg-blue-100 rounded-full opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative flex items-center bg-white border border-slate-200 rounded-full px-6 py-4 shadow-xl justify-center md:justify-start">
                         <div class="mr-4 text-theme-primary">
                             <i class="fa-solid fa-magnifying-glass text-xl"></i>
                         </div>
@@ -369,18 +408,18 @@
                 </div>
             </div>
 
-            <!-- Action Buttons -->
+            <!-- Action Buttons - SOLID COLORS -->
             <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center reveal-item relative z-30 pt-6 md:pt-8" style="animation-delay: 0.3s;">
-                <a href="assessment.html" class="w-full sm:w-auto relative group overflow-hidden rounded-full bg-theme-primary px-10 py-4 transition-all duration-300 text-white font-bold hover:scale-105 shadow-[0_0_30px_rgba(33,70,139,0.4)] border border-white/20">
+                <a href="assessment.html" class="w-full sm:w-auto relative group overflow-hidden rounded-full bg-[#FF6600] px-10 py-4 transition-all duration-300 text-white font-bold hover:scale-105 hover:bg-[#EA580C] shadow-[0_10px_20px_rgba(255,102,0,0.2)]">
                     <span class="relative z-10 flex items-center justify-center gap-3 tracking-wide uppercase text-sm">
                         <span data-i18n="btn_assessment">Start Assessment</span>
                         <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </span>
                 </a>
                 
-                <a href="book.html" class="w-full sm:w-auto glass-frosted px-10 py-4 rounded-full font-semibold text-brand-black hover:bg-white border-white/70 transition-all flex items-center justify-center gap-3 group tracking-wide uppercase text-sm">
+                <a href="book.html" class="w-full sm:w-auto bg-white px-10 py-4 rounded-full font-semibold text-brand-black hover:text-[#21468B] border border-slate-200 hover:border-[#21468B] transition-all flex items-center justify-center gap-3 group tracking-wide uppercase text-sm shadow-sm hover:shadow-md">
                     <span data-i18n="btn_consultation">Book Consultation</span>
-                    <i class="fa-solid fa-calendar-days text-brand-purple group-hover:scale-110 transition-transform"></i>
+                    <i class="fa-solid fa-calendar-days text-[#21468B] group-hover:scale-110 transition-transform"></i>
                 </a>
             </div>
         </header>
@@ -395,7 +434,7 @@
             <!-- SCHENGEN BLOCK -->
             <div class="mb-12 md:mb-20">
                 <div class="flex items-center gap-4 mb-6 md:mb-8 pl-2">
-                    <div class="w-1.5 h-8 bg-blue-500 rounded-full"></div>
+                    <div class="w-1.5 h-8 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
                     <h3 class="text-xl md:text-2xl font-black text-brand-black uppercase tracking-wider flex items-center gap-3">
                         Schengen Area 
                         <i class="fa-solid fa-passport text-blue-500 text-lg"></i>
@@ -403,157 +442,182 @@
                 </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                    <!-- Helper Class for Card Content Structure -->
+                    <!-- Note: The 'spotlight-card' class is handled by JS for the effect -->
+                    
                     <!-- 1. Finland -->
-                    <a href="finland.html" class="group block reveal-item">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-blue-400 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300">
-                            <div>
+                    <a href="finland.html" class="group block reveal-item modern-card-wrapper">
+                        <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                            <div class="spotlight-overlay"></div>
+                            <div class="spotlight-border"></div>
+                            <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇫🇮</div>
                                     <h3 data-i18n="country_finland" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Finland</h3>
                                 </div>
                                 <p data-i18n="desc_finland" class="text-slate-500 text-xs leading-relaxed mb-4">The happiest country in the world. Tech & Service roles.</p>
                             </div>
-                            <span class="inline-block bg-purple-50 text-purple-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-purple-100">High Income</span>
+                            <span class="relative z-10 inline-block bg-purple-50 text-purple-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-purple-100">High Income</span>
                         </div>
                     </a>
                     
                     <!-- 2. Sweden -->
-                    <a href="sweden.html" class="group block reveal-item" style="transition-delay: 50ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-blue-400 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300">
-                            <div>
+                    <a href="sweden.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                        <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇸🇪</div>
                                     <h3 data-i18n="country_sweden" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Sweden</h3>
                                 </div>
                                 <p data-i18n="desc_sweden" class="text-slate-500 text-xs leading-relaxed mb-4">Exclusive airport contracts. Engineering & Hospitality.</p>
                             </div>
-                            <span class="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Airport Jobs</span>
+                            <span class="relative z-10 inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Airport Jobs</span>
                         </div>
                     </a>
 
                     <!-- 3. Netherlands -->
-                    <a href="netherlands.html" class="group block reveal-item" style="transition-delay: 100ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-orange-400 hover:bg-orange-50 hover:shadow-xl hover:shadow-orange-200/50 transition-all duration-300">
-                            <div>
+                    <a href="netherlands.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                        <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇳🇱</div>
                                     <h3 data-i18n="country_netherlands" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Netherlands</h3>
                                 </div>
                                 <p class="text-slate-500 text-xs leading-relaxed mb-4">Top-tier opportunities for white-collar professionals.</p>
                             </div>
-                            <span class="inline-block bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-orange-100">High Skilled</span>
+                            <span class="relative z-10 inline-block bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-orange-100">High Skilled</span>
                         </div>
                     </a>
 
                     <!-- 4. Germany -->
-                    <a href="germany.html" class="group block reveal-item" style="transition-delay: 150ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-yellow-400 hover:bg-yellow-50 hover:shadow-xl hover:shadow-yellow-200/50 transition-all duration-300">
-                            <div>
+                    <a href="germany.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
+                        <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇩🇪</div>
                                     <h3 data-i18n="country_germany" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Germany</h3>
                                 </div>
                                 <p class="text-slate-500 text-xs leading-relaxed mb-4">Europe's largest economy. Fast-track visa.</p>
                             </div>
-                            <span class="inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Care Home</span>
+                            <span class="relative z-10 inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Care Home</span>
                         </div>
                     </a>
 
                     <!-- 5. Italy -->
-                    <a href="italy.html" class="group block reveal-item">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-green-400 hover:bg-green-50 hover:shadow-xl hover:shadow-green-200/50 transition-all duration-300">
-                            <div>
+                    <a href="italy.html" class="group block reveal-item modern-card-wrapper">
+                        <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇮🇹</div>
                                     <h3 data-i18n="country_italy" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Italy</h3>
                                 </div>
                                 <p data-i18n="desc_italy" class="text-slate-500 text-xs leading-relaxed mb-4">Seasonal labor entry via Decreto Flussi.</p>
                             </div>
-                            <span class="inline-block bg-green-50 text-green-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-green-100">Quota Visas</span>
+                            <span class="relative z-10 inline-block bg-green-50 text-green-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-green-100">Quota Visas</span>
                         </div>
                     </a>
 
                     <!-- 6. France -->
-                    <a href="france.html" class="group block reveal-item" style="transition-delay: 50ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-blue-400 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300">
-                            <div>
+                    <a href="france.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇫🇷</div>
                                     <h3 data-i18n="country_france" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">France</h3>
                                 </div>
                                 <p data-i18n="desc_france" class="text-slate-500 text-xs leading-relaxed mb-4">Attracting highly skilled workers and investors.</p>
                             </div>
-                            <span class="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Talent Passport</span>
+                            <span class="relative z-10 inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Talent Passport</span>
                         </div>
                     </a>
 
                     <!-- 7. Poland -->
-                    <a href="poland.html" class="group block reveal-item" style="transition-delay: 100ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-red-400 hover:bg-red-50 hover:shadow-xl hover:shadow-red-200/50 transition-all duration-300">
-                            <div>
+                    <a href="poland.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇵🇱</div>
                                     <h3 data-i18n="country_poland" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Poland</h3>
                                 </div>
                                 <p data-i18n="desc_poland" class="text-slate-500 text-xs leading-relaxed mb-4">Manufacturing & Logistics Hub.</p>
                             </div>
-                            <span class="inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">Schengen Hub</span>
+                            <span class="relative z-10 inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">Schengen Hub</span>
                         </div>
                     </a>
 
                     <!-- 8. Czech Republic -->
-                    <a href="czech.html" class="group block reveal-item" style="transition-delay: 150ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-blue-400 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300">
-                            <div>
+                    <a href="czech.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇨🇿</div>
                                     <h3 data-i18n="country_czech" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Czechia</h3>
                                 </div>
                                 <p data-i18n="desc_czech" class="text-slate-500 text-xs leading-relaxed mb-4">Automotive & Engineering heart.</p>
                             </div>
-                            <span class="inline-block bg-blue-50 text-blue-500 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Industry</span>
+                            <span class="relative z-10 inline-block bg-blue-50 text-blue-500 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Industry</span>
                         </div>
                     </a>
 
                     <!-- 9. Latvia -->
-                    <a href="latvia.html" class="group block reveal-item" style="transition-delay: 50ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-teal-400 hover:bg-teal-50 hover:shadow-xl hover:shadow-teal-200/50 transition-all duration-300">
-                            <div>
+                    <a href="latvia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇱🇻</div>
                                     <h3 data-i18n="country_latvia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Latvia</h3>
                                 </div>
                                 <p data-i18n="desc_latvia" class="text-slate-500 text-xs leading-relaxed mb-4">Growing demand in logistics, construction, and service.</p>
                             </div>
-                            <span class="inline-block bg-teal-50 text-teal-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-teal-100">Baltic Jobs</span>
+                            <span class="relative z-10 inline-block bg-teal-50 text-teal-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-teal-100">Baltic Jobs</span>
                         </div>
                     </a>
 
                     <!-- 10. Croatia -->
-                    <a href="croatia.html" class="group block reveal-item" style="transition-delay: 50ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-red-400 hover:bg-red-50 hover:shadow-xl hover:shadow-red-200/50 transition-all duration-300">
-                            <div>
+                    <a href="croatia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇭🇷</div>
                                     <h3 data-i18n="country_croatia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Croatia</h3>
                                 </div>
                                 <p data-i18n="desc_croatia" class="text-slate-500 text-xs leading-relaxed mb-4">Growing opportunities in construction.</p>
                             </div>
-                            <span class="inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">Construction</span>
+                            <span class="relative z-10 inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">Construction</span>
                         </div>
                     </a>
 
                     <!-- 11. Slovakia -->
-                    <a href="slovakia.html" class="group block reveal-item" style="transition-delay: 100ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-blue-400 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300">
-                            <div>
+                    <a href="slovakia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇸🇰</div>
                                     <h3 data-i18n="country_slovakia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Slovakia</h3>
                                 </div>
                                 <p data-i18n="desc_slovakia" class="text-slate-500 text-xs leading-relaxed mb-4">Industrial heart of Europe with low cost of living.</p>
                             </div>
-                            <span class="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Automotive</span>
+                            <span class="relative z-10 inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Automotive</span>
                         </div>
                     </a>
                 </div>
@@ -562,7 +626,7 @@
             <!-- NON-SCHENGEN BLOCK -->
             <div>
                 <div class="flex items-center gap-4 mb-6 md:mb-8 pl-2">
-                    <div class="w-1.5 h-8 bg-theme-secondary rounded-full"></div>
+                    <div class="w-1.5 h-8 bg-theme-secondary rounded-full shadow-[0_0_15px_rgba(255,102,0,0.5)]"></div>
                     <h3 class="text-xl md:text-2xl font-black text-brand-black uppercase tracking-wider flex items-center gap-3">
                         Non-EU Opportunities 
                         <i class="fa-solid fa-earth-americas text-theme-secondary text-lg"></i>
@@ -571,72 +635,82 @@
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                     <!-- 12. Macedonia -->
-                    <a href="macedonia.html" class="group block reveal-item">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-yellow-400 hover:bg-yellow-50 hover:shadow-xl hover:shadow-yellow-200/50 transition-all duration-300">
-                            <div>
+                    <a href="macedonia.html" class="group block reveal-item modern-card-wrapper">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇲🇰</div>
                                     <h3 data-i18n="country_macedonia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Macedonia</h3>
                                 </div>
                                 <p data-i18n="desc_macedonia" class="text-slate-500 text-xs leading-relaxed mb-4">Rapidly developing market with new opportunities.</p>
                             </div>
-                            <span class="inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Emerging Market</span>
+                            <span class="relative z-10 inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Emerging Market</span>
                         </div>
                     </a>
 
                     <!-- 13. Serbia -->
-                    <a href="serbia.html" class="group block reveal-item" style="transition-delay: 100ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-orange-400 hover:bg-orange-50 hover:shadow-xl hover:shadow-orange-200/50 transition-all duration-300">
-                            <div>
+                    <a href="serbia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇷🇸</div>
                                     <h3 data-i18n="country_serbia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Serbia</h3>
                                 </div>
                                 <p data-i18n="desc_serbia" class="text-slate-500 text-xs leading-relaxed mb-4">High demand for skilled trades.</p>
                             </div>
-                            <span class="inline-block bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-orange-100">Construction</span>
+                            <span class="relative z-10 inline-block bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-orange-100">Construction</span>
                         </div>
                     </a>
 
                     <!-- 14. Albania -->
-                    <a href="albania.html" class="group block reveal-item" style="transition-delay: 150ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-red-400 hover:bg-red-50 hover:shadow-xl hover:shadow-red-200/50 transition-all duration-300">
-                            <div>
+                    <a href="albania.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇦🇱</div>
                                     <h3 data-i18n="country_albania" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Albania</h3>
                                 </div>
                                 <p data-i18n="desc_albania" class="text-slate-500 text-xs leading-relaxed mb-4">Booming tourism sector offering seasonal roles.</p>
                             </div>
-                            <span class="inline-block bg-pink-50 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-pink-100">Hospitality</span>
+                            <span class="relative z-10 inline-block bg-pink-50 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-pink-100">Hospitality</span>
                         </div>
                     </a>
 
                     <!-- 15. Belarus -->
-                    <a href="belarus.html" class="group block reveal-item">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-green-600 hover:bg-green-50 hover:shadow-xl hover:shadow-green-200/50 ring-1 ring-green-100 transition-all duration-300">
-                            <div>
+                    <a href="belarus.html" class="group block reveal-item modern-card-wrapper">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-green-50 w-12 h-12 flex items-center justify-center md:hidden">🇧🇾</div>
                                     <h3 data-i18n="country_belarus" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Belarus</h3>
                                 </div>
                                 <p data-i18n="desc_belarus" class="text-slate-500 text-xs leading-relaxed mb-4">Strong industrial base offering stable employment.</p>
                             </div>
-                            <span class="inline-block bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-green-200">Manufacturing</span>
+                            <span class="relative z-10 inline-block bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-green-200">Manufacturing</span>
                         </div>
                     </a>
 
                     <!-- 16. Montenegro -->
-                    <a href="montenegro.html" class="group block reveal-item" style="transition-delay: 150ms;">
-                        <div class="modern-card bg-white h-full p-6 relative overflow-hidden flex flex-col justify-between hover:border-yellow-400 hover:bg-yellow-50 hover:shadow-xl hover:shadow-yellow-200/50 transition-all duration-300">
-                            <div>
+                    <a href="montenegro.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
                                 <div class="flex flex-col items-start gap-2 mb-3">
                                     <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇲🇪</div>
                                     <h3 data-i18n="country_montenegro" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Montenegro</h3>
                                 </div>
                                 <p data-i18n="desc_montenegro" class="text-slate-500 text-xs leading-relaxed mb-4">Beautiful coastlines and growing tourism sector.</p>
                             </div>
-                            <span class="inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Tourism</span>
+                            <span class="relative z-10 inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Tourism</span>
                         </div>
                     </a>
                 </div>
@@ -647,44 +721,74 @@
         <section id="core-services" class="py-8 md:py-12 relative z-20">
             <div class="text-center mb-10 md:mb-12 reveal-item">
                 <span data-i18n="sec_expertise" class="text-brand-purple font-bold tracking-[0.2em] text-xs uppercase mb-3 block">Our Expertise</span>
-                <h2 data-i18n="sec_service_suite" class="text-3xl md:text-5xl font-black text-brand-black">Comprehensive Service Suite</h2>
+                <h2 data-i18n="sec_service_suite" class="text-3xl md:text-5xl font-black text-brand-black text-gradient-primary">Comprehensive Service Suite</h2>
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                <a href="vfs.html" class="modern-card bg-white p-6 group block reveal-item flex flex-col hover:border-vfs-teal hover:bg-teal-50 hover:shadow-xl hover:shadow-teal-200/50">
-                    <div class="w-12 h-12 bg-vfs-teal/10 rounded-xl flex items-center justify-center text-vfs-teal mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-calendar-check text-2xl"></i></div>
-                    <h3 data-i18n="serv_visa_appt" class="text-lg font-bold text-brand-black mb-2 group-hover:text-vfs-teal transition-colors">Visa Appointment</h3>
-                    <p data-i18n="desc_visa_appt" class="text-slate-500 text-xs leading-relaxed mb-4">Securing VFS slots.</p>
-                    <div class="flex items-center text-vfs-teal text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_book_slot">Book Slot</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+                
+                <a href="vfs.html" class="modern-card p-6 group block reveal-item flex flex-col h-full bg-white modern-card-wrapper">
+                    <div class="spotlight-overlay"></div>
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-vfs-teal/10 rounded-xl flex items-center justify-center text-vfs-teal mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-calendar-check text-2xl"></i></div>
+                        <h3 data-i18n="serv_visa_appt" class="text-lg font-bold text-brand-black mb-2 group-hover:text-vfs-teal transition-colors">Visa Appointment</h3>
+                        <p data-i18n="desc_visa_appt" class="text-slate-500 text-xs leading-relaxed mb-4">Securing VFS slots.</p>
+                        <div class="flex items-center text-vfs-teal text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_book_slot">Book Slot</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+                    </div>
                 </a>
-                <a href="visa_documentation.html" class="modern-card bg-white p-6 group block reveal-item flex flex-col hover:border-brand-blue hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200/50">
-                    <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center text-brand-blue mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-file-contract text-2xl"></i></div>
-                    <h3 data-i18n="serv_visa_doc" class="text-lg font-bold text-brand-black mb-2 group-hover:text-brand-blue transition-colors">Visa Documentation</h3>
-                    <p data-i18n="desc_visa_doc" class="text-slate-500 text-xs leading-relaxed mb-4">Document preparation.</p>
-                    <div class="flex items-center text-brand-blue text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_review_docs">Review Docs</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+
+                <a href="visa_documentation.html" class="modern-card p-6 group block reveal-item flex flex-col h-full bg-white modern-card-wrapper">
+                    <div class="spotlight-overlay"></div>
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center text-brand-blue mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-file-contract text-2xl"></i></div>
+                        <h3 data-i18n="serv_visa_doc" class="text-lg font-bold text-brand-black mb-2 group-hover:text-brand-blue transition-colors">Visa Documentation</h3>
+                        <p data-i18n="desc_visa_doc" class="text-slate-500 text-xs leading-relaxed mb-4">Document preparation.</p>
+                        <div class="flex items-center text-brand-blue text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_review_docs">Review Docs</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+                    </div>
                 </a>
-                <a href="travel_assistance.html" class="modern-card bg-white p-6 group block reveal-item flex flex-col hover:border-brand-gold hover:bg-yellow-50 hover:shadow-xl hover:shadow-yellow-200/50">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-xl flex items-center justify-center text-brand-gold mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-plane-departure text-2xl"></i></div>
-                    <h3 data-i18n="serv_travel" class="text-lg font-bold text-brand-black mb-2 group-hover:text-brand-gold transition-colors">Travel Assistance</h3>
-                    <p data-i18n="desc_travel" class="text-slate-500 text-xs leading-relaxed mb-4">Itinerary planning.</p>
-                    <div class="flex items-center text-brand-gold text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_plan_trip">Plan Trip</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+
+                <a href="travel_assistance.html" class="modern-card p-6 group block reveal-item flex flex-col h-full bg-white modern-card-wrapper">
+                    <div class="spotlight-overlay"></div>
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-brand-gold/10 rounded-xl flex items-center justify-center text-brand-gold mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-plane-departure text-2xl"></i></div>
+                        <h3 data-i18n="serv_travel" class="text-lg font-bold text-brand-black mb-2 group-hover:text-brand-gold transition-colors">Travel Assistance</h3>
+                        <p data-i18n="desc_travel" class="text-slate-500 text-xs leading-relaxed mb-4">Itinerary planning.</p>
+                        <div class="flex items-center text-brand-gold text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_plan_trip">Plan Trip</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+                    </div>
                 </a>
-                <a href="insurance.html" class="modern-card bg-white p-6 group block reveal-item flex flex-col hover:border-red-500 hover:bg-red-50 hover:shadow-xl hover:shadow-red-200/50">
-                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600 mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-heart text-2xl"></i></div>
-                    <h3 data-i18n="serv_insurance" class="text-lg font-bold text-brand-black mb-2 group-hover:text-red-600 transition-colors">Insurance</h3>
-                    <p data-i18n="desc_insurance" class="text-slate-500 text-xs leading-relaxed mb-4">Mandatory insurance.</p>
-                    <div class="flex items-center text-red-600 text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_get_covered">Get Covered</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+
+                <a href="insurance.html" class="modern-card p-6 group block reveal-item flex flex-col h-full bg-white modern-card-wrapper">
+                    <div class="spotlight-overlay"></div>
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600 mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-heart text-2xl"></i></div>
+                        <h3 data-i18n="serv_insurance" class="text-lg font-bold text-brand-black mb-2 group-hover:text-red-600 transition-colors">Insurance</h3>
+                        <p data-i18n="desc_insurance" class="text-slate-500 text-xs leading-relaxed mb-4">Mandatory insurance.</p>
+                        <div class="flex items-center text-red-600 text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_get_covered">Get Covered</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+                    </div>
                 </a>
-                <a href="medical.html" class="modern-card bg-white p-6 group block reveal-item flex flex-col hover:border-green-500 hover:bg-green-50 hover:shadow-xl hover:shadow-green-200/50">
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-user-doctor text-2xl"></i></div>
-                    <h3 data-i18n="serv_medical" class="text-lg font-bold text-brand-black mb-2 group-hover:text-green-600 transition-colors">Medical Assistance</h3>
-                    <p data-i18n="desc_medical" class="text-slate-500 text-xs leading-relaxed mb-4">Medical exams.</p>
-                    <div class="flex items-center text-green-600 text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_view_req">View Requirements</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+
+                <a href="medical.html" class="modern-card p-6 group block reveal-item flex flex-col h-full bg-white modern-card-wrapper">
+                    <div class="spotlight-overlay"></div>
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-user-doctor text-2xl"></i></div>
+                        <h3 data-i18n="serv_medical" class="text-lg font-bold text-brand-black mb-2 group-hover:text-green-600 transition-colors">Medical Assistance</h3>
+                        <p data-i18n="desc_medical" class="text-slate-500 text-xs leading-relaxed mb-4">Medical exams.</p>
+                        <div class="flex items-center text-green-600 text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_view_req">View Requirements</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+                    </div>
                 </a>
-                <a href="corporate.html" class="modern-card bg-white p-6 group block reveal-item flex flex-col hover:border-brand-purple hover:bg-purple-50 hover:shadow-xl hover:shadow-purple-200/50">
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-brand-purple mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-building text-2xl"></i></div>
-                    <h3 data-i18n="serv_corp" class="text-lg font-bold text-brand-black mb-2 group-hover:text-brand-purple transition-colors">Corporate B2B</h3>
-                    <p data-i18n="desc_corp" class="text-slate-500 text-xs leading-relaxed mb-4">Business partnerships.</p>
-                    <div class="flex items-center text-brand-purple text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_partner">Partner With Us</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+
+                <a href="corporate.html" class="modern-card p-6 group block reveal-item flex flex-col h-full bg-white modern-card-wrapper">
+                    <div class="spotlight-overlay"></div>
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-brand-purple mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-building text-2xl"></i></div>
+                        <h3 data-i18n="serv_corp" class="text-lg font-bold text-brand-black mb-2 group-hover:text-brand-purple transition-colors">Corporate B2B</h3>
+                        <p data-i18n="desc_corp" class="text-slate-500 text-xs leading-relaxed mb-4">Business partnerships.</p>
+                        <div class="flex items-center text-brand-purple text-[10px] font-bold uppercase tracking-widest mt-auto"><span data-i18n="btn_partner">Partner With Us</span><i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></div>
+                    </div>
                 </a>
             </div>
         </section>
@@ -724,7 +828,7 @@
             <div class="modern-card bg-white p-0 overflow-hidden relative shadow-2xl reveal-item">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
                     <div class="hidden md:block relative h-[45vh] lg:h-auto min-h-[350px] lg:min-h-[400px] w-full bg-slate-100 group overflow-hidden order-1 lg:order-2">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.825206338576!2d55.2982888!3d25.2513414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e511dde247bf!2sBurJuman!5e0!3m2!1sen!2sae!4v1709228492000!5m2!1sen!2sae" width="100%" height="100%" style="border:0; filter: grayscale(0%) contrast(100%); opacity: 1; transition: all 0.5s ease;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="group-hover:scale-105 transition-all duration-700"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2633.2285863903962!2d55.302025145531566!3d25.255532756910895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43254acb00ad%3A0xdbc6ee1faaf3a3c6!2sBank%20Street%20Building%20-%20UBL%20Buidling%20Bur%20Dubai%2C%20Dubai%20-%20D79%20-%20Al%20Mankhool%20-%20Dubai!5e0!3m2!1sen!2sae!4v1767264087265!5m2!1sen!2sae" width="100%" height="100%" style="border:0; filter: grayscale(0%) contrast(100%); opacity: 1; transition: all 0.5s ease;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="group-hover:scale-105 transition-all duration-700"></iframe>
                     </div>
                     <div class="p-8 md:p-12 flex flex-col justify-center relative z-10 bg-white/80 backdrop-blur-3xl order-2 lg:order-1 border-t border-slate-200 lg:border-t-0 lg:border-r">
                         <span class="text-theme-primary font-bold tracking-[0.3em] text-[10px] uppercase mb-4 block flex items-center gap-2"><span class="w-8 h-[1px] bg-theme-primary inline-block"></span> Get in Touch</span>
@@ -732,7 +836,7 @@
                         <div class="space-y-6">
                             <div class="flex items-start gap-4 group">
                                 <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-brand-gold group-hover:shadow-md transition-all duration-500 flex-shrink-0"><i class="fa-solid fa-location-dot text-xl"></i></div>
-                                <div><h4 class="text-brand-black font-bold text-lg mb-1 uppercase tracking-wide">Visit Us</h4><p class="text-slate-500 font-light leading-relaxed text-sm mb-2">Bank Street Building, Bank Street Road<br>Burjuman, Dubai, UAE</p><a href="https://maps.app.goo.gl/toUDbcdmp61JFT866" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-theme-primary/10 text-theme-primary text-xs font-bold uppercase tracking-wider hover:bg-theme-primary hover:text-white transition-all"><i class="fa-solid fa-map-location-dot"></i> Get Directions</a></div>
+                                <div><h4 class="text-brand-black font-bold text-lg mb-1 uppercase tracking-wide">Visit Us</h4><p class="text-slate-500 font-light leading-relaxed text-sm mb-2">Bank Street Building, Bank Street Road<br>Burjuman, Dubai, UAE</p><a href="https://maps.app.goo.gl/m2uB5NQzSXVoGNxU8" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-theme-primary/10 text-theme-primary text-xs font-bold uppercase tracking-wider hover:bg-theme-primary hover:text-white transition-all"><i class="fa-solid fa-map-location-dot"></i> Get Directions</a></div>
                             </div>
                             <div class="flex items-start gap-4 group">
                                 <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-brand-blue group-hover:shadow-md transition-all duration-500 flex-shrink-0"><i class="fa-solid fa-phone-volume text-xl"></i></div>
@@ -943,7 +1047,7 @@
             },
             ta: {
                 nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_assessment: "இலவச மதிப்பீடு", nav_about: "எங்களைப் பற்றி", nav_book: "முன்பதிவு",
-                hero_badge: "பிரீமியம் விசா & குடியிருப்பு உத்தி", hero_subtitle: "எதிர்காலத்தை நோக்கி ஒரு பாய்ச்சல்",
+                hero_badge: "பிரீமியம் விസா & குடியிருப்பு உத்தி", hero_subtitle: "எதிர்காலத்தை நோக்கி ஒரு பாய்ச்சல்",
                 search_placeholder_text: "வேலைகள், நாடுகளைத் தேடுங்கள்", or_text: "அல்லது", btn_assessment: "மதிப்பீட்டைத் தொடங்கவும்", btn_consultation: "ஆலோசனை முன்பதிவு",
                 sec_dest_focus: "இலக்கு கவனம்", sec_dest_title: "எங்கள் பிரத்தியேக மொபிலிட்டி திட்டங்கள்",
                 country_netherlands: "நெதர்லாந்து", tag_high_skilled: "உயர் திறன்", desc_netherlands: "வெள்ளை காலர் நிபுணர்களுக்கான வாய்ப்புகள்.",
@@ -1391,7 +1495,7 @@
                 <div class="hidden lg:flex items-center gap-1">
                     <a href="index.html" data-i18n="nav_home" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70">Home</a>
                     <div class="relative group">
-                        <button data-i18n="nav_programs" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70 flex items-center gap-1">Programs <svg class="w-4 h-4 text-slate-400 group-hover:text-theme-primary transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                        <button data-i18n="nav_programs" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70 flex items-center gap-1">Programs <i class="fa-solid fa-chevron-down text-xs opacity-50"></i></button>
                         <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[800px] dropdown-glass rounded-3xl p-8 flex gap-8 shadow-2xl z-50 pt-4">
                              <div class="w-2/3 border-r border-slate-100 pr-6">
                                 <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2"><span class="w-1.5 h-4 rounded-full bg-blue-500"></span> Schengen Area</h3>
@@ -1422,7 +1526,7 @@
                         </div>
                     </div>
                     <div class="relative group">
-                        <button data-i18n="nav_services" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70 flex items-center gap-1">Services <svg class="w-4 h-4 text-slate-400 group-hover:text-theme-primary transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                        <button data-i18n="nav_services" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70 flex items-center gap-1">Services <i class="fa-solid fa-chevron-down text-xs opacity-50"></i></button>
                         <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 dropdown-glass rounded-3xl p-2 flex flex-col gap-1 shadow-2xl z-50 pt-4">
                             <a href="vfs.html" class="px-4 py-3 rounded-2xl text-sm font-semibold text-vfs-teal hover:bg-vfs-teal/10 transition-all">Visa Appointment</a>
                             <a href="visa_documentation.html" class="px-4 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:text-brand-blue hover:bg-blue-50 transition-all">Visa Documentation</a>
@@ -1439,82 +1543,9 @@
                     <button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:text-brand-blue hover:bg-white/70 transition" onclick="toggleSearch()">
                         <i class="fa-solid fa-magnifying-glass text-lg"></i>
                     </button>
-                    <button id="mobile-hamburger-btn" class="lg:hidden p-2 text-brand-black hover:text-theme-primary transition rounded-full hover:bg-white/70" onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
                     <a href="book.html" class="hidden sm:flex group relative px-8 py-3 rounded-full bg-brand-black text-white font-bold text-base overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(15,23,42,0.4)] book-glow">
                         <span data-i18n="nav_book" class="relative z-10">Book Now</span>
                     </a>
-                </div>
-            </div>
-            
-            <!-- Mobile Menu - Premium Glass Pad -->
-            <div id="mobileMenu" class="pointer-events-auto fixed top-16 left-3 right-3 max-h-[75vh] rounded-[2rem] shadow-2xl z-[150] transform origin-top transition-all duration-300 ease-out opacity-0 invisible scale-95 flex flex-col md:hidden overflow-hidden glass-dock-modern">
-                <div class="pt-4 pb-1 flex justify-center"><div class="pull-handle mb-0"></div></div>
-                <div class="p-3 grid grid-cols-2 gap-2 border-b border-white/20">
-                    <a href="index.html" class="flex flex-col items-center justify-center p-3 rounded-2xl glass-pad-btn group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <i class="fa-solid fa-house text-xl mb-1 text-brand-blue group-hover:scale-110 transition-transform relative z-10"></i>
-                        <span class="text-[9px] font-bold uppercase tracking-wider text-slate-800 relative z-10" data-i18n="nav_home">Home</span>
-                    </a>
-                    <a href="assessment.html" class="flex flex-col items-center justify-center p-3 rounded-2xl glass-pad-btn group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <i class="fa-solid fa-clipboard-check text-xl mb-1 text-theme-secondary group-hover:scale-110 transition-transform relative z-10"></i>
-                        <span class="text-[9px] font-bold uppercase tracking-wider text-slate-800 relative z-10" data-i18n="nav_assessment">Assess</span>
-                    </a>
-                </div>
-                <div class="py-2 overflow-y-auto custom-scrollbar flex-grow" data-lenis-prevent>
-                    <div class="flex items-center justify-between px-4 mb-2">
-                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest" data-i18n="footer_destinations">Destinations</span>
-                        <i class="fa-solid fa-arrow-right-long text-slate-300 text-[10px]"></i>
-                    </div>
-                    <div class="px-3 pb-1">
-                        <div class="text-[8px] font-bold text-blue-500/80 uppercase tracking-wider mb-2 pl-2 border-l-2 border-blue-500 flex items-center gap-2">Schengen Area <i class="fa-solid fa-passport text-[8px]"></i></div>
-                        <div class="grid grid-cols-4 gap-y-2 gap-x-2">
-                            <a href="slovakia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇰</div><span class="text-[9px] font-bold text-slate-500">SK</span></a>
-                            <a href="germany.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇩🇪</div><span class="text-[9px] font-bold text-slate-500">DE</span></a>
-                            <a href="finland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇮</div><span class="text-[9px] font-bold text-slate-500">FI</span></a>
-                            <a href="sweden.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇪</div><span class="text-[9px] font-bold text-slate-500">SE</span></a>
-                            <a href="netherlands.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇳🇱</div><span class="text-[9px] font-bold text-slate-500">NL</span></a>
-                            <a href="italy.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇮🇹</div><span class="text-[9px] font-bold text-slate-500">IT</span></a>
-                            <a href="france.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇷</div><span class="text-[9px] font-bold text-slate-500">FR</span></a>
-                            <a href="poland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇵🇱</div><span class="text-[9px] font-bold text-slate-500">PL</span></a>
-                            <a href="czech.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇨🇿</div><span class="text-[9px] font-bold text-slate-500">CZ</span></a>
-                            <a href="latvia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇱🇻</div><span class="text-[9px] font-bold text-slate-500">LV</span></a>
-                            <a href="croatia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇭🇷</div><span class="text-[9px] font-bold text-slate-500">HR</span></a>
-                        </div>
-                    </div>
-                    <div class="px-3 pb-1 mt-1">
-                        <div class="text-[8px] font-bold text-nether-secondary/80 uppercase tracking-wider mb-2 pl-2 border-l-2 border-theme-secondary flex items-center gap-2">Non-EU Opportunities <i class="fa-solid fa-star text-[8px]"></i></div>
-                        <div class="grid grid-cols-4 gap-y-2 gap-x-2">
-                            <a href="montenegro.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇪</div><span class="text-[9px] font-bold text-slate-500">ME</span></a>
-                            <a href="serbia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇷🇸</div><span class="text-[9px] font-bold text-slate-500">RS</span></a>
-                            <a href="macedonia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇰</div><span class="text-[9px] font-bold text-slate-500">MK</span></a>
-                            <a href="albania.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇦🇱</div><span class="text-[9px] font-bold text-slate-500">AL</span></a>
-                            <a href="belarus.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇧🇾</div><span class="text-[9px] font-bold text-slate-500">BY</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="px-3 pb-3 bg-white/10 pt-3 border-t border-white/20 backdrop-blur-sm">
-                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 block px-1" data-i18n="nav_services">Services</span>
-                    <div class="grid grid-cols-3 gap-2">
-                        <a href="vfs.html" class="p-2 rounded-xl glass-pad-btn text-center group hover:bg-white/60 transition-colors">
-                            <i class="fa-solid fa-calendar-check text-vfs-teal text-sm mb-0.5 block group-hover:scale-110 transition-transform"></i>
-                            <span class="text-[8px] font-bold text-slate-600 block">Visa Appt</span>
-                        </a>
-                        <a href="visa_documentation.html" class="p-2 rounded-xl glass-pad-btn text-center group hover:bg-white/60 transition-colors">
-                            <i class="fa-solid fa-file-contract text-brand-blue text-sm mb-0.5 block group-hover:scale-110 transition-transform"></i>
-                            <span class="text-[8px] font-bold text-slate-600 block">Docs</span>
-                        </a>
-                        <a href="travel_assistance.html" class="p-2 rounded-xl glass-pad-btn text-center group hover:bg-white/60 transition-colors">
-                            <i class="fa-solid fa-plane text-brand-purple text-sm mb-0.5 block group-hover:scale-110 transition-transform"></i>
-                            <span class="text-[8px] font-bold text-slate-600 block">Travel</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="p-3 bg-white/30 backdrop-blur-md border-t border-white/20 flex justify-between items-center">
-                    <a href="about.html" class="text-[10px] font-bold text-slate-600 hover:text-brand-black transition" data-i18n="nav_about">About Us</a>
-                    <a href="book.html" class="px-5 py-2 rounded-xl bg-brand-black text-white text-[10px] font-bold shadow-lg hover:bg-slate-800 transition uppercase tracking-wider" data-i18n="nav_book">Book Now</a>
                 </div>
             </div>
         </nav>
@@ -1615,45 +1646,239 @@
         let currentLang = 'en';
         let searchOverlay, searchInput, dynamicResults, noResults;
 
-        // --- Animations ---
-        class WaveWriter {
-            constructor(el, words, interval = 4000) {
-                this.el = el; this.words = words; this.interval = interval; this.loopNum = 0;
-                this.colors = ['#F59E0B', '#21468B', '#7C3AED'];
-                this.cycle();
+        // --- DRAW LETTER ANIMATION (SVG Stroke Effect) ---
+        // --- DRAW LETTER ANIMATION (Solid Fill Reveal) ---
+        class TextDrawLoop {
+            constructor(textEl, words, interval = 4000) {
+                this.textEl = textEl;
+                this.words = words;
+                this.currentIndex = 0;
+                this.interval = interval;
+                this.lineEl = document.getElementById('hero-underline');
+                
+                // Vibrant Color Palette
+                this.colors = [
+                    '#2563EB', // Blue (Germany)
+                    '#F59E0B', // Yellow (Netherlands)
+                    '#F97316', // Orange (Sweden)
+                    '#10B981', // Green (Finland)
+                    '#EF4444', // Red (Poland)
+                    '#3B82F6', // Light Blue (Czech)
+                    '#8B5CF6'  // Purple (Croatia)
+                ];
+
+                // Start the first animation immediately
+                this.update(this.currentIndex);
+                
+                // Start loop
+                setTimeout(() => this.next(), this.interval);
             }
-            cycle() {
-                const currentWord = this.words[this.loopNum % this.words.length];
-                const currentColor = this.colors[this.loopNum % this.colors.length];
-                let html = '';
-                currentWord.split('').forEach((char, index) => {
-                    html += `<span class="wave-char" style="animation-delay: ${index * 0.08}s; color: ${currentColor};">${char === ' ' ? '&nbsp;' : char}</span>`;
-                });
-                this.el.innerHTML = html;
-                this.loopNum++;
-                setTimeout(() => this.cycle(), this.interval);
+            
+            update(index) {
+                const word = this.words[index];
+                const color = this.colors[index % this.colors.length];
+                
+                // Reset State
+                this.textEl.classList.remove('active', 'exit');
+                
+                // Force Reflow to restart animation
+                void this.textEl.offsetWidth;
+                
+                // Set Content & Colors (Solid Fill)
+                this.textEl.textContent = word;
+                this.textEl.style.fill = color;
+                
+                if(this.lineEl) {
+                    this.lineEl.style.backgroundColor = color;
+                }
+                
+                // Trigger Solid Reveal Animation
+                this.textEl.classList.add('active');
+            }
+            
+            next() {
+                // 1. Exit Animation
+                this.textEl.classList.remove('active');
+                this.textEl.classList.add('exit');
+                
+                setTimeout(() => {
+                    // 2. Next Word Setup
+                    this.currentIndex = (this.currentIndex + 1) % this.words.length;
+                    this.update(this.currentIndex);
+                    
+                    // Schedule next cycle
+                    setTimeout(() => this.next(), this.interval);
+                    
+                }, 600); // Wait for exit animation
             }
         }
 
-        function initJobWarp() {
-            const container = document.getElementById('job-warp-layer');
-            if(!container) return;
-            const jobs = ["Electrician", "Plumber", "Welder", "Nurse", "Engineer", "Driver"];
-            const colors = ['rgba(245, 158, 11, 0.4)', 'rgba(33, 70, 139, 0.4)', 'rgba(124, 58, 237, 0.4)']; 
-            setInterval(() => {
-                if(document.hidden) return;
-                const job = jobs[Math.floor(Math.random() * jobs.length)];
-                const el = document.createElement('div');
-                el.textContent = job;
-                el.className = 'job-warp-item';
-                const startX = (Math.random() - 0.5) * 80;
-                el.style.color = colors[Math.floor(Math.random() * colors.length)];
-                el.style.fontSize = Math.floor(Math.random() * 10 + 12) + 'px';
-                el.style.animationDuration = (Math.random() * 4 + 6) + 's';
-                el.style.left = (50 + startX) + '%';
-                container.appendChild(el);
-                setTimeout(() => { if(el.parentNode) el.parentNode.removeChild(el); }, 10000);
-            }, 500);
+        // --- GLOBAL NETWORK ANIMATION (2D, Curved Flight Paths, Colorful Job Tokens) ---
+        class GlobalNetworkAnimation {
+            constructor() {
+                this.svg = document.getElementById('network-svg');
+                this.lineGroup = document.getElementById('network-lines');
+                this.nodeGroup = document.getElementById('network-nodes');
+                this.pulseGroup = document.getElementById('network-pulses');
+                
+                this.width = 1000;
+                this.height = 500;
+                this.colors = ['#FF6600', '#10B981', '#3B82F6', '#8B5CF6', '#EF4444', '#14B8A6'];
+                
+                // Job Icons categorized for "Different Jobs for Different Countries" feel
+                this.jobs = {
+                    tech: ['fa-laptop-code', 'fa-microchip', 'fa-server', 'fa-wifi'],
+                    medical: ['fa-user-nurse', 'fa-user-doctor', 'fa-stethoscope', 'fa-notes-medical'],
+                    construction: ['fa-helmet-safety', 'fa-trowel-bricks', 'fa-hammer', 'fa-truck-pickup'],
+                    hospitality: ['fa-utensils', 'fa-bell-concierge', 'fa-bed', 'fa-martini-glass'],
+                    logistics: ['fa-truck-fast', 'fa-plane-departure', 'fa-box-open', 'fa-dolly'],
+                    trade: ['fa-wrench', 'fa-bolt', 'fa-plug', 'fa-scissors']
+                };
+                
+                // Abstract Map Zones with "Industry Focus"
+                this.hubs = [
+                    { x: 500, y: 400, label: "DUBAI", color: "#21468B", type: "origin" },
+                    { x: 300, y: 150, label: "London", color: "#EF4444", industry: 'hospitality' },
+                    { x: 420, y: 120, label: "Berlin", color: "#F59E0B", industry: 'medical' },
+                    { x: 380, y: 200, label: "Paris", color: "#3B82F6", industry: 'logistics' },
+                    { x: 500, y: 80, label: "Helsinki", color: "#10B981", industry: 'tech' },
+                    { x: 650, y: 150, label: "Warsaw", color: "#EF4444", industry: 'construction' },
+                    { x: 450, y: 250, label: "Rome", color: "#10B981", industry: 'trade' },
+                    { x: 150, y: 250, label: "Toronto", color: "#8B5CF6", industry: 'tech' },
+                    { x: 850, y: 200, label: "Singapore", color: "#14B8A6", industry: 'medical' }
+                ];
+
+                this.init();
+            }
+
+            init() {
+                this.drawConnections();
+                this.drawNodes();
+            }
+
+            drawNodes() {
+                this.hubs.forEach((hub, i) => {
+                    const isOrigin = hub.type === 'origin';
+                    
+                    // Main Node Circle
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    circle.setAttribute("cx", hub.x);
+                    circle.setAttribute("cy", hub.y);
+                    circle.setAttribute("r", isOrigin ? 8 : 4);
+                    circle.setAttribute("fill", "white");
+                    circle.setAttribute("stroke", hub.color);
+                    circle.setAttribute("stroke-width", "2");
+                    
+                    // Pulse Effect for Destination Nodes (Slower Pulse)
+                    if (!isOrigin) {
+                        const pulse = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                        pulse.setAttribute("cx", hub.x);
+                        pulse.setAttribute("cy", hub.y);
+                        pulse.setAttribute("r", 4);
+                        pulse.setAttribute("fill", hub.color);
+                        pulse.setAttribute("opacity", "0.4");
+                        
+                        const animateScale = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+                        animateScale.setAttribute("attributeName", "r");
+                        animateScale.setAttribute("values", "4;12;4");
+                        animateScale.setAttribute("dur", "4s"); // Slower pulse
+                        animateScale.setAttribute("repeatCount", "indefinite");
+                        
+                        const animateOpacity = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+                        animateOpacity.setAttribute("attributeName", "opacity");
+                        animateOpacity.setAttribute("values", "0.6;0;0.6");
+                        animateOpacity.setAttribute("dur", "4s");
+                        animateOpacity.setAttribute("repeatCount", "indefinite");
+
+                        pulse.appendChild(animateScale);
+                        pulse.appendChild(animateOpacity);
+                        this.nodeGroup.appendChild(pulse);
+                    }
+                    
+                    this.nodeGroup.appendChild(circle);
+                });
+            }
+
+            drawConnections() {
+                const origin = this.hubs[0]; // Dubai
+                
+                // Connect Origin to all others
+                for (let i = 1; i < this.hubs.length; i++) {
+                    const dest = this.hubs[i];
+                    this.createMigrationPath(origin, dest, i);
+                }
+            }
+
+            createMigrationPath(start, end, index) {
+                // Calculate curve
+                const midX = (start.x + end.x) / 2;
+                const midY = (start.y + end.y) / 2;
+                const dist = Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
+                const archHeight = dist * 0.25;
+                const cX = midX;
+                const cY = midY - archHeight;
+
+                const pathData = `M${start.x},${start.y} Q${cX},${cY} ${end.x},${end.y}`;
+                
+                // 1. Static Path Line
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                line.setAttribute("d", pathData);
+                line.setAttribute("fill", "none");
+                line.setAttribute("stroke", end.color);
+                line.setAttribute("stroke-width", "1");
+                line.setAttribute("stroke-dasharray", "3, 5"); 
+                line.setAttribute("opacity", "0.15"); // Reduced opacity for subtlety
+                this.lineGroup.appendChild(line);
+
+                // 2. Create Job Tokens (Multiple per path)
+                const industryIcons = this.jobs[end.industry] || this.jobs.trade;
+                
+                // Create 1-2 particles per path (less clutter)
+                const particleCount = 1; 
+                
+                for(let p = 0; p < particleCount; p++) {
+                    const iconClass = industryIcons[Math.floor(Math.random() * industryIcons.length)];
+                    const delay = Math.random() * -10; 
+                    const duration = 12 + Math.random() * 8; // Much Slower Duration (12-20s) for smoothness
+                    
+                    // ForeignObject to hold HTML Icon
+                    const fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
+                    fo.setAttribute("width", "24");
+                    fo.setAttribute("height", "24");
+                    fo.setAttribute("x", "-12"); 
+                    fo.setAttribute("y", "-12");
+                    
+                    // Inner HTML: A circular badge with the icon
+                    const div = document.createElement('div');
+                    div.className = `flex items-center justify-center w-full h-full rounded-full bg-white shadow-sm border border-[${end.color}] text-[${end.color}]`;
+                    div.style.borderColor = end.color;
+                    div.style.color = end.color;
+                    div.innerHTML = `<i class="fa-solid ${iconClass} text-[10px]"></i>`;
+                    
+                    fo.appendChild(div);
+
+                    // Animate along path
+                    const animateMotion = document.createElementNS("http://www.w3.org/2000/svg", "animateMotion");
+                    animateMotion.setAttribute("dur", `${duration}s`);
+                    animateMotion.setAttribute("repeatCount", "indefinite");
+                    animateMotion.setAttribute("path", pathData);
+                    animateMotion.setAttribute("begin", `${delay}s`);
+
+                    // Fade In/Out at ends of path
+                    const animateOpacity = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+                    animateOpacity.setAttribute("attributeName", "opacity");
+                    animateOpacity.setAttribute("values", "0;1;1;0");
+                    animateOpacity.setAttribute("keyTimes", "0;0.1;0.9;1");
+                    animateOpacity.setAttribute("dur", `${duration}s`);
+                    animateOpacity.setAttribute("repeatCount", "indefinite");
+                    animateOpacity.setAttribute("begin", `${delay}s`);
+
+                    fo.appendChild(animateMotion);
+                    fo.appendChild(animateOpacity);
+                    
+                    this.pulseGroup.appendChild(fo);
+                }
+            }
         }
 
         // --- Search ---
@@ -1718,7 +1943,6 @@
         function closeAllMobilePopups() { 
             ['mobile-destinations-menu', 'mobile-language-menu', 'mobile-apply-menu'].forEach(id => { 
                 const el = document.getElementById(id); 
-                // FIXED: Removing 'popup-visible' instead of 'visible' to ensure it actually hides
                 if(el) { el.classList.add('invisible', 'opacity-0', 'translate-y-8', 'scale-90'); el.classList.remove('popup-visible'); } 
             }); 
         }
@@ -1726,25 +1950,11 @@
         function toggleMobilePopup(id) { 
             const t = document.getElementById(id); 
             if(!t) return; 
-            
-            // Check if it is currently hidden based on our visibility class
             const isHidden = !t.classList.contains('popup-visible');
-            
-            // Always close everything first (reset state)
             closeAllMobilePopups(); 
-            
-            // Close main hamburger menu if it's open to avoid overlap
             const m = document.getElementById('mobileMenu'); 
-            if(m && m.classList.contains('menu-visible')) { 
-                m.classList.remove('menu-visible'); 
-                m.classList.add('invisible','opacity-0','scale-95'); 
-            } 
-            
-            // If it was hidden, now show it (Toggle logic)
-            if(isHidden) { 
-                t.classList.remove('invisible','opacity-0','translate-y-8','scale-90'); 
-                t.classList.add('popup-visible'); 
-            }
+            if(m && m.classList.contains('menu-visible')) { m.classList.remove('menu-visible'); m.classList.add('invisible','opacity-0','scale-95'); } 
+            if(isHidden) { t.classList.remove('invisible','opacity-0','translate-y-8','scale-90'); t.classList.add('popup-visible'); }
         }
         
         window.toggleMobileDestinations = () => toggleMobilePopup('mobile-destinations-menu');
@@ -1753,135 +1963,60 @@
         
         function toggleMobileMenu() { 
             const m = document.getElementById('mobileMenu'); 
-            // Close any open dock popups when opening the main menu
             closeAllMobilePopups();
-
-            if(m.classList.contains('invisible')) { 
-                m.classList.remove('invisible','opacity-0','scale-95'); 
-                m.classList.add('menu-visible'); 
-                if(window.lenis) window.lenis.stop(); 
-            } else { 
-                m.classList.remove('menu-visible'); 
-                m.classList.add('invisible','opacity-0','scale-95'); 
-                if(window.lenis) window.lenis.start(); 
-            } 
+            if(m.classList.contains('invisible')) { m.classList.remove('invisible','opacity-0','scale-95'); m.classList.add('menu-visible'); if(window.lenis) window.lenis.stop(); } 
+            else { m.classList.remove('menu-visible'); m.classList.add('invisible','opacity-0','scale-95'); if(window.lenis) window.lenis.start(); } 
         }
 
-        // LOGIC FIX: Close Mobile Popups when clicking outside
-        // This makes it feel like a native app sheet
         document.addEventListener('click', (e) => {
-            // Logic for Bottom Sheets (Dock Popups)
             const isClickInsidePopup = e.target.closest('.mobile-popup-menu');
             const isClickOnDock = e.target.closest('.glass-dock-modern'); 
-            
-            if (!isClickInsidePopup && !isClickOnDock) {
-                closeAllMobilePopups();
-            }
-
-            // Logic for Main Hamburger Menu (Top Sheet)
+            if (!isClickInsidePopup && !isClickOnDock) { closeAllMobilePopups(); }
             const mobileMenu = document.getElementById('mobileMenu');
             const hamburgerBtn = document.getElementById('mobile-hamburger-btn');
-            
-            // Only proceed if the menu is actually open
             if (mobileMenu && mobileMenu.classList.contains('menu-visible')) {
                 const isClickInsideMenu = mobileMenu.contains(e.target);
-                // Also check if the click target is the hamburger button itself (to avoid toggle conflict)
                 const isClickOnHamburger = hamburgerBtn && hamburgerBtn.contains(e.target);
-                
-                if (!isClickInsideMenu && !isClickOnHamburger) {
-                    toggleMobileMenu(); // This will close it since it's open
-                }
+                if (!isClickInsideMenu && !isClickOnHamburger) { toggleMobileMenu(); }
             }
         });
 
-        // --- Festive Modal Logic ---
-        const FESTIVE_MODAL_HTML = `
-        <div id="festive-modal-overlay" class="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md opacity-0 invisible transition-all duration-500">
-            <div id="festive-modal-card" class="relative w-full max-w-sm sm:max-w-md festive-border-gradient p-1 shadow-[0_0_60px_rgba(255,215,0,0.4)] transform scale-90 transition-all duration-500">
-                <div class="relative w-full h-full bg-white/90 backdrop-blur-xl rounded-[1.8rem] p-8 text-center overflow-hidden">
-                    
-                    <!-- Decorative Background Layer -->
-                    <div class="absolute inset-0 pointer-events-none opacity-40">
-                        <div class="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(255,215,0,0.15)_0%,transparent_60%)] animate-spin-slow-bg"></div>
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
-                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1.5s"></div>
-                        <!-- Snow Overlay inside card -->
-                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/snow.png')] opacity-20"></div>
-                    </div>
-
-                    <!-- Floating Icons -->
-                    <div class="absolute -top-3 -left-3 text-4xl animate-float-decor" style="animation-delay: 0s">🎄</div>
-                    <div class="absolute top-10 -right-4 text-3xl animate-float-decor" style="animation-delay: 1s">❄️</div>
-                    <div class="absolute bottom-10 -left-2 text-3xl animate-float-decor" style="animation-delay: 2s">🎁</div>
-                    <div class="absolute -bottom-3 -right-3 text-4xl animate-float-decor" style="animation-delay: 0.5s">🎆</div>
-
-                    <!-- Content -->
-                    <div class="relative z-10 flex flex-col items-center">
-                        <div class="w-16 h-16 mb-4 rounded-2xl bg-white shadow-lg p-2 flex items-center justify-center border border-slate-100 transform hover:scale-110 transition-transform duration-500">
-                            <img src="${LOGO_URL}" alt="Benefitz Logo" class="w-full h-full object-contain">
-                        </div>
-                        
-                        <h2 class="text-brand-black font-black text-2xl uppercase tracking-wider mb-1 drop-shadow-sm">Season's Greetings</h2>
-                        <p class="text-theme-secondary text-[10px] font-bold uppercase tracking-[0.3em] mb-6">From Benefitz International</p>
-                        
-                        <div class="mb-8 space-y-1">
-                            <p class="text-slate-600 font-medium text-sm">Wishing you a joyous holiday and a prosperous</p>
-                            <div class="text-6xl font-black text-transparent bg-clip-text text-gradient-festive leading-tight py-2 filter drop-shadow-lg scale-110 transform">
-                                2026
-                            </div>
-                        </div>
-                        
-                        <button onclick="closeFestiveModal()" class="group relative px-8 py-3.5 rounded-full bg-brand-black text-white font-bold text-sm overflow-hidden transition-all hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-theme-primary/30">
-                            <span class="relative z-10 flex items-center gap-2">Start 2026 With Us <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
-                            <div class="absolute inset-0 bg-gradient-to-r from-theme-primary via-purple-600 to-theme-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        </button>
-                        
-                        <button onclick="closeFestiveModal()" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-brand-black transition-all">
-                            <i class="fa-solid fa-xmark text-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        `;
-
-        function checkFestiveModal() {
-            // Check localStorage
-            if (!localStorage.getItem('hasSeenFestiveModal2026')) {
-                // Show after delay
-                setTimeout(() => {
-                    const overlay = document.getElementById('festive-modal-overlay');
-                    if (overlay) overlay.classList.add('active');
-                }, 1500); // 1.5s delay after load
-            }
+        // --- Spotlight Effect Logic ---
+        function initSpotlight() {
+            const cards = document.querySelectorAll('.modern-card-wrapper');
+            cards.forEach(card => {
+                card.onmousemove = e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                }
+            });
         }
-
-        window.closeFestiveModal = function() {
-            const overlay = document.getElementById('festive-modal-overlay');
-            if (overlay) {
-                overlay.classList.remove('active');
-                // Set localStorage so it doesn't show again
-                localStorage.setItem('hasSeenFestiveModal2026', 'true');
-            }
-        };
 
         // --- Init ---
         window.onload = function() {
             document.body.insertAdjacentHTML('afterbegin', GLOBAL_HEADER);
             document.body.insertAdjacentHTML('beforeend', GLOBAL_FOOTER);
             document.body.insertAdjacentHTML('beforeend', SEARCH_MODAL);
-            document.body.insertAdjacentHTML('beforeend', FESTIVE_MODAL_HTML); // Insert Modal
             
-            var elements = document.getElementById('country-wave-target');
-            var countries = ["AUSTRIA", "GERMANY", "NETHERLANDS", "SWEDEN", "FINLAND", "ITALY", "FRANCE"];
-            if (elements) new WaveWriter(elements, countries, 4000);
+            // Initialize Clean Header (No 3D)
+            const heroTextEl = document.getElementById('hero-title-text'); // SVG Text Element
+            const countries = ["GERMANY", "NETHERLANDS", "SWEDEN", "FINLAND", "POLAND", "CZECH REPUBLIC", "CROATIA"];
             
-            initJobWarp();
+            if (heroTextEl) {
+                // Initialize Draw Loop
+                new TextDrawLoop(heroTextEl, countries, 4000);
+                
+                // Initialize Global Network Animation
+                new GlobalNetworkAnimation();
+            }
+            
             initSmoothScroll();
             initSearchElements();
-            initFestiveAnimation(); // Start Christmas Animation
+            initSpotlight(); 
             setLanguage('en', document.querySelector('.lang-option:first-child'));
-            checkFestiveModal(); // Check and Show Modal
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
@@ -1890,154 +2025,6 @@
             
             document.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); } if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) { toggleSearch(); } });
         };
-
-        // --- Festive Animation Logic (Enhanced) ---
-        function initFestiveAnimation() {
-            const canvas = document.getElementById('festive-canvas');
-            if(!canvas) return;
-            const ctx = canvas.getContext('2d');
-            
-            let width, height;
-            const particles = [];
-            
-            // Palette: Christmas Red, Pine Green, Gold, Silver, Ice Blue
-            const colors = ['#D42426', '#165B33', '#FFD700', '#E5E4E2', '#A5F2F3']; 
-
-            function resize() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            // --- Classes ---
-
-            class Snowflake {
-                constructor() {
-                    this.reset();
-                }
-                reset() {
-                    this.x = Math.random() * width;
-                    this.y = Math.random() * -height; // Start above
-                    this.vy = 1 + Math.random() * 2;
-                    this.vx = 0;
-                    this.r = 1 + Math.random() * 2;
-                    this.oscillationSpeed = Math.random() * 0.05;
-                    this.oscillationOffset = Math.random() * Math.PI * 2;
-                }
-                update() {
-                    this.y += this.vy;
-                    this.x += Math.sin(this.y * 0.01 + this.oscillationOffset) * 0.5; // Gentle sway
-                    
-                    if(this.y > height) {
-                        this.reset();
-                    }
-                }
-                draw() {
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            class Sparkle {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    const angle = Math.random() * Math.PI * 2;
-                    const speed = Math.random() * 2;
-                    this.vx = Math.cos(angle) * speed;
-                    this.vy = Math.sin(angle) * speed;
-                    this.life = 100;
-                    this.alpha = 1;
-                    this.color = colors[Math.floor(Math.random() * colors.length)];
-                    this.size = Math.random() * 3 + 1;
-                    this.decay = Math.random() * 0.02 + 0.01;
-                }
-                update() {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.vy += 0.02; // Gravity
-                    this.life -= 1;
-                    this.alpha -= this.decay;
-                    this.size *= 0.95;
-                }
-                draw() {
-                    ctx.save();
-                    ctx.globalAlpha = Math.max(0, this.alpha);
-                    ctx.fillStyle = this.color;
-                    ctx.shadowBlur = 10;
-                    ctx.shadowColor = this.color;
-                    
-                    // Draw diamond/star shape
-                    ctx.beginPath();
-                    ctx.moveTo(this.x, this.y - this.size);
-                    ctx.lineTo(this.x + this.size, this.y);
-                    ctx.lineTo(this.x, this.y + this.size);
-                    ctx.lineTo(this.x - this.size, this.y);
-                    ctx.closePath();
-                    ctx.fill();
-                    
-                    ctx.restore();
-                }
-            }
-
-            // --- Initialization ---
-            const snow = [];
-            for(let i=0; i<50; i++) { // Less snow, more ambient
-                snow.push(new Snowflake());
-            }
-
-            // --- Interaction ---
-            let mouseX = 0, mouseY = 0;
-            let isMoving = false;
-
-            function addSparkles(x, y, count) {
-                for(let i=0; i<count; i++) {
-                    particles.push(new Sparkle(x, y));
-                }
-            }
-
-            window.addEventListener('mousemove', e => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                isMoving = true;
-                addSparkles(mouseX, mouseY, 2); // Emit trail
-                clearTimeout(isMoving);
-                setTimeout(() => isMoving = false, 100);
-            });
-            
-            window.addEventListener('click', e => {
-                addSparkles(e.clientX, e.clientY, 20); // Burst
-            });
-
-            window.addEventListener('touchmove', e => {
-                const t = e.touches[0];
-                addSparkles(t.clientX, t.clientY, 2);
-            });
-
-            // --- Loop ---
-            function loop() {
-                ctx.clearRect(0, 0, width, height);
-
-                // Update Snow
-                snow.forEach(p => { p.update(); p.draw(); });
-
-                // Update Particles (Trail/Fireworks)
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    const p = particles[i];
-                    p.update();
-                    p.draw();
-                    if (p.alpha <= 0 || p.size < 0.1) {
-                        particles.splice(i, 1);
-                    }
-                }
-
-                requestAnimationFrame(loop);
-            }
-            loop();
-        }
     </script>
 </body>
 </html>
