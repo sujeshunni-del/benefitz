@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Global Hierarchy | Benefitz International</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        'creative-purple': '#8B5CF6',
+                        'creative-blue': '#3B82F6',
+                        'creative-pink': '#EC4899',
+                        'creative-amber': '#F59E0B',
+                        'creative-teal': '#14B8A6',
+                        'brand-black': '#1E293B',
+                    },
+                    animation: {
+                        'blob': 'blob 20s infinite alternate',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #F8FAFC; color: #1E293B; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+        
+        .glass-creative {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ambient-blob {
+            position: fixed; border-radius: 50%; filter: blur(100px); opacity: 0.2; z-index: -1; animation: blob 25s infinite alternate;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #8B5CF6; }
+        .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #3B82F6; animation-delay: 5s; }
+
+        .role-card { cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .role-card:active { transform: scale(0.96); }
+
+        .modal-active { display: flex !important; animation: fadeInUp 0.4s ease-out; }
+        
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+    </style>
+</head>
+<body class="p-4 md:p-8 lg:p-12 min-h-screen selection:bg-creative-purple selection:text-white">
+
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- COMPANY BRANDING HEADER -->
+        <header class="flex flex-col items-center text-center mb-12 md:mb-20 animate-fade-in-up">
+            <!-- Professional Logo Circle -->
+            <div class="w-20 h-20 md:w-28 md:h-28 rounded-full glass-creative p-3 flex items-center justify-center mb-6 shadow-xl bg-white/90">
+                <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg" alt="Benefitz Logo" class="w-full h-full object-contain">
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-black tracking-tight text-brand-black mb-2 uppercase">
+                BENEFITZ <span class="text-creative-purple">INTERNATIONAL</span>
+            </h1>
+            
+            <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full glass-creative shadow-sm">
+                <span class="text-[10px] md:text-xs font-black uppercase tracking-[0.5em] text-slate-500">Global Corporate Structure</span>
+            </div>
+        </header>
+
+        <!-- LEVEL 01: DIRECTORS -->
+        <section class="mb-12">
+            <div class="flex items-center justify-center gap-4 mb-8">
+                <span class="text-[10px] font-black text-creative-purple uppercase tracking-[0.3em] bg-purple-50 px-4 py-1 rounded-full border border-purple-100">Level 01</span>
+                <h2 class="text-xl md:text-2xl font-black text-brand-black">Top Level Directors</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-6">
+                <div onclick="openModal('fin')" class="role-card glass-creative p-5 md:p-8 rounded-[2rem] text-center border-b-4 border-creative-blue">
+                    <i class="fa-solid fa-wallet text-creative-blue mb-3 text-xl"></i>
+                    <h3 class="font-bold text-xs md:text-sm uppercase tracking-tight">Finance Global</h3>
+                </div>
+                <div onclick="openModal('leg')" class="role-card glass-creative p-5 md:p-8 rounded-[2rem] text-center border-b-4 border-slate-400">
+                    <i class="fa-solid fa-scale-balanced text-slate-500 mb-3 text-xl"></i>
+                    <h3 class="font-bold text-xs md:text-sm uppercase tracking-tight">Legal Global</h3>
+                </div>
+                <div onclick="openModal('mkt')" class="role-card glass-creative p-5 md:p-8 rounded-[2.5rem] text-center border-b-4 border-creative-amber bg-white/40">
+                    <i class="fa-solid fa-globe text-creative-amber mb-3 text-xl"></i>
+                    <h3 class="font-black text-xs md:text-sm uppercase tracking-tight">Market Director</h3>
+                    <p class="text-[8px] font-bold text-slate-400 mt-1 uppercase">Liaison to Employers</p>
+                </div>
+                <div onclick="openModal('it')" class="role-card glass-creative p-5 md:p-8 rounded-[2rem] text-center border-b-4 border-creative-purple">
+                    <i class="fa-solid fa-code text-creative-purple mb-3 text-xl"></i>
+                    <h3 class="font-bold text-xs md:text-sm uppercase tracking-tight">IT Global</h3>
+                </div>
+                <div onclick="openModal('con')" class="role-card glass-creative p-5 md:p-8 rounded-[2.5rem] text-center border-b-4 border-creative-pink bg-white/40">
+                    <i class="fa-solid fa-sitemap text-creative-pink mb-3 text-xl"></i>
+                    <h3 class="font-black text-xs md:text-sm uppercase tracking-tight">Branch Control</h3>
+                    <p class="text-[8px] font-bold text-slate-400 mt-1 uppercase">Liaison to Agencies</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEVEL 02: REGIONAL MANAGEMENT & NETWORK -->
+        <section class="mb-12">
+            <div class="flex items-center justify-center gap-4 mb-8">
+                <span class="text-[10px] font-black text-creative-blue uppercase tracking-[0.3em] bg-blue-50 px-4 py-1 rounded-full border border-blue-100">Level 02</span>
+                <h2 class="text-xl md:text-2xl font-black text-brand-black">Regional & Partners</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Generalized Regional Operations -->
+                <div class="lg:col-span-8">
+                    <div class="glass-creative p-8 rounded-[3rem] border border-white/60 shadow-lg">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">Regional Management Hub</h3>
+                            <div class="flex gap-2">
+                                <span class="bg-brand-black text-white text-[7px] px-2 py-1 rounded uppercase font-bold">Dubai</span>
+                                <span class="bg-creative-amber text-white text-[7px] px-2 py-1 rounded uppercase font-bold">India</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-4">
+                                <div onclick="openModal('bm')" class="role-card p-5 bg-brand-black text-white rounded-3xl text-center shadow-xl">
+                                    <div class="font-black text-sm uppercase tracking-wider">Branch Manager</div>
+                                </div>
+                                <div onclick="openModal('local_agent')" class="role-card p-4 bg-blue-50/80 rounded-2xl text-[10px] font-bold text-creative-blue text-center border border-blue-100 uppercase flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-user-group"></i> Local Agents & Freelancers
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div onclick="openModal('acc')" class="role-card bg-white/60 p-4 rounded-2xl text-[10px] font-bold text-center border border-slate-100 shadow-sm uppercase">Accountant</div>
+                                    <div onclick="openModal('hr')" class="role-card bg-white/60 p-4 rounded-2xl text-[10px] font-bold text-center border border-slate-100 shadow-sm uppercase">HR In Office</div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div onclick="openModal('branch_marketing')" class="role-card bg-purple-50/60 p-4 rounded-2xl text-[10px] font-black text-center border border-purple-100 shadow-sm uppercase text-creative-purple">Marketing</div>
+                                    <div onclick="openModal('branch_pro')" class="role-card bg-teal-50/60 p-4 rounded-2xl text-[10px] font-black text-center border border-teal-100 shadow-sm uppercase text-creative-teal">PRO</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Global Network (Partners) -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="p-5 border-2 border-dashed border-slate-200 rounded-3xl bg-white/40 text-center">
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Global Broker Network</span>
+                        <div class="text-[8px] text-creative-amber font-bold uppercase mt-1">Direct Director Communication</div>
+                    </div>
+
+                    <div onclick="openModal('ext_emp')" class="role-card p-7 bg-brand-black text-white rounded-[2.5rem] shadow-xl border-r-8 border-creative-amber">
+                        <span class="text-[8px] font-black text-creative-amber uppercase tracking-widest">Vacancies</span>
+                        <div class="font-black text-sm mt-1 uppercase leading-tight">Global Employers & Vendors</div>
+                    </div>
+
+                    <div onclick="openModal('ext_b2b')" class="role-card p-7 glass-creative rounded-[2.5rem] border-r-8 border-creative-blue">
+                        <span class="text-[8px] font-black text-creative-blue uppercase tracking-widest">Customers</span>
+                        <div class="font-black text-sm mt-1 uppercase leading-tight">SAARC B2B Companies</div>
+                    </div>
+
+                    <div onclick="openModal('b2b')" class="role-card p-4 bg-blue-600 text-white rounded-2xl text-center shadow-md">
+                        <div class="text-[9px] font-black uppercase opacity-60">HQ Liaison</div>
+                        <div class="text-[10px] font-bold uppercase tracking-tight">B2B Coordinator</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEVEL 03: OPERATIONAL STAFF -->
+        <section class="mb-20">
+            <div class="flex items-center justify-center gap-4 mb-8">
+                <span class="text-[10px] font-black text-creative-amber uppercase tracking-[0.3em] bg-amber-50 px-4 py-1 rounded-full border border-amber-100">Level 03</span>
+                <h2 class="text-xl md:text-2xl font-black text-brand-black">Operational Staff</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div onclick="openModal('sales')" class="role-card glass-creative p-8 rounded-[2.5rem] text-center group hover:bg-white">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-creative-blue mx-auto mb-4 group-hover:scale-110 transition-transform shadow-sm">
+                        <i class="fa-solid fa-comments-dollar text-xl"></i>
+                    </div>
+                    <div class="font-black text-xs md:text-sm uppercase tracking-tight text-slate-700">Sales Team</div>
+                </div>
+                <div onclick="openModal('docs')" class="role-card glass-creative p-8 rounded-[2.5rem] text-center group hover:bg-white">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-creative-purple mx-auto mb-4 group-hover:scale-110 transition-transform shadow-sm">
+                        <i class="fa-solid fa-file-circle-check text-xl"></i>
+                    </div>
+                    <div class="font-black text-xs md:text-sm uppercase tracking-tight text-slate-700">Documentation</div>
+                </div>
+                <div onclick="openModal('recep')" class="role-card glass-creative p-8 rounded-[2.5rem] text-center group hover:bg-white">
+                    <div class="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-creative-teal mx-auto mb-4 group-hover:scale-110 transition-transform shadow-sm">
+                        <i class="fa-solid fa-user-tie text-xl"></i>
+                    </div>
+                    <div class="font-black text-xs md:text-sm uppercase tracking-tight text-slate-700">Receptionist</div>
+                </div>
+                <div onclick="openModal('assist')" class="role-card glass-creative p-8 rounded-[2.5rem] text-center group hover:bg-white">
+                    <div class="w-12 h-12 rounded-2xl bg-pink-50 flex items-center justify-center text-creative-pink mx-auto mb-4 group-hover:scale-110 transition-transform shadow-sm">
+                        <i class="fa-solid fa-hand-holding-heart text-xl"></i>
+                    </div>
+                    <div class="font-black text-xs md:text-sm uppercase tracking-tight text-slate-700">Support Staff</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-10 opacity-30 text-[10px] font-black uppercase tracking-[0.5em] border-t border-slate-200">
+            Benefitz International &copy; 2025 Global Excellence
+        </footer>
+    </div>
+
+    <!-- MODAL -->
+    <div id="roleModal" class="hidden fixed inset-0 bg-brand-black/90 backdrop-blur-md z-[100] items-center justify-center p-4">
+        <div class="bg-white rounded-[2.5rem] md:rounded-[4rem] shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[85vh] animate-fade-in-up border border-white/20">
+            <div id="modalHeader" class="p-10 md:p-14 text-white relative">
+                <button onclick="closeModal()" class="absolute top-8 right-8 bg-black/10 hover:bg-black/20 rounded-full w-12 h-12 flex items-center justify-center transition-transform hover:rotate-90 shadow-sm border border-white/10">
+                    <i class="fa-solid fa-xmark text-xl text-white"></i>
+                </button>
+                <div id="modalLabel" class="text-[10px] font-black uppercase tracking-[0.5em] opacity-60 mb-3">Staff Role Profile</div>
+                <h2 id="modalTitle" class="text-3xl md:text-4xl font-black leading-tight">Entity Name</h2>
+            </div>
+            <div class="p-8 md:p-12 overflow-y-auto bg-slate-50 flex-grow custom-scroll">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="h-px flex-grow bg-slate-200"></div>
+                    <span id="modalListTitle" class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Job Responsibilities</span>
+                    <div class="h-px flex-grow bg-slate-200"></div>
+                </div>
+                <ul id="modalList" class="grid grid-cols-1 gap-4"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rolesData = {
+            fin: { title: "Finance Global", cat: "Top Level Director", color: "bg-creative-blue", points: ["Handle all company money and bank accounts", "Make sure bills and salaries are paid on time", "Report how much the company earns and spends", "Follow all tax laws in every country", "Stop any money mistakes or fraud", "Find ways to save costs and make more profit", "Check and approve commission payments", "Help decide if opening a new branch is a good idea", "Talk to the owners about the company's growth", "Manage any company loans or bank debts"] },
+            leg: { title: "Legal Global", cat: "Top Level Director", color: "bg-slate-700", points: ["Write and check all business contracts", "Follow the immigration laws of different countries", "Protect customer data and personal privacy", "Solve any legal problems or arguments", "Protect the company's name and brand logo", "Make the rules for how staff should behave", "Make sure all visa processes are legally correct", "Keep official records of company meetings", "Train managers on local labor laws", "Check all partners for illegal activities"] },
+            mkt: { title: "Global Market", cat: "Top Level Director", color: "bg-creative-amber", points: ["Find new countries to do business in", "Talk to big companies who need foreign workers", "Manage how the brand looks to the world", "Train staff to follow the company brand style", "Study what customers and markets want", "Manage the advertising and marketing budget", "Check the partners in other countries", "Go to world business events and exhibitions", "Watch what other recruitment companies are doing", "Create new visa or job package offers"] },
+            it: { title: "IT Global", cat: "Top Level Director", color: "bg-indigo-600", points: ["Keep office computers and internet working", "Manage the software where we store customer data", "Automate boring tasks using technology", "Help staff when they have tech problems", "Create easy data reports for the directors", "Buy the right computers and software", "Protect the company from hackers and viruses", "Have a backup plan if systems crash", "Teach staff how to use company software", "Research new technology like AI"] },
+            con: { title: "Branch Control", cat: "Top Level Director", color: "bg-creative-pink", points: ["Make sure every office follows the same rules", "Check the quality of work in Noida, Kerala, and Dubai", "Set the rules for working with external agencies", "Manage the team that talks to B2B partners", "Make sure branches reach their money targets", "Ensure customers get great service in all offices", "Help solve problems between different branches", "Check document accuracy to avoid visa rejections", "Approve buying new equipment for regional offices", "Find better ways for offices to work together"] },
+            bm: { title: "Branch Manager", cat: "Regional Management", color: "bg-brand-black", points: ["Reach the office's profit and sales goals", "Make sure staff follow company rules daily", "Lead and help the local office team", "Manage the office building and local supplies", "Talk to other local business people for PR", "Coach and motivate the sales team every day", "Report office results to the owners in Dubai", "Double-check customer files before final sending", "Plan local events to find more customers", "Keep the office staff happy and working well"] },
+            b2b: { title: "B2B Coordinator", cat: "Regional Management", color: "bg-blue-600", points: ["Check if new partner companies are honest", "Be the main person talking to big agencies", "Report which partners are doing a good job", "Check and approve agent payment lists", "Teach partners how to use our CRM system", "Check if the customers from partners are qualified", "Handle partner contract renewals or endings", "Listen to what partners need in their countries", "Plan bonus rewards for the best-performing partners", "Solve any arguments or disputes with partners"] },
+            local_agent: { title: "Local Agents", cat: "External Connection", color: "bg-creative-blue", points: ["Find new customers in their local town or city", "Report directly to the local Branch Manager", "Give potential customer leads to the office", "Get paid only when a customer signs up", "Help the office reach sourcing targets", "Stay connected with the branch team daily", "Help the sales team talk to the customers they find", "Know the local job market sentiment very well", "Not a fixed staff member (independent)", "Promote the company name in their local area"] },
+            acc: { title: "Branch Accountant", cat: "Management Staff", color: "bg-slate-400", points: ["Track all daily money and bank logs", "Pay salaries and partner commissions", "Handle local taxes like GST (India) or VAT (UAE)", "Track how much the office is spending daily", "Follow up with customers who owe money", "List and track all office computers and furniture", "Get papers ready for annual money audits", "Check and verify all office bill receipts", "Guess how much the office will earn next month", "Keep all bill and money papers very safe"] },
+            hr: { title: "Human Resources", cat: "Management Staff", color: "bg-slate-400", points: ["Find and hire new people for the branch", "Track staff attendance and leave days", "Measure how well staff are doing their work", "Follow local work and labor laws strictly", "Arrange training for the office staff", "Help solve arguments between team members", "Handle the process when staff leave the company", "Keep employee files and details up to date", "Keep the office a safe and healthy place", "Handle staff health insurance and benefits"] },
+            branch_marketing: { title: "Marketing", cat: "Branch Management", color: "bg-creative-purple", points: ["Find new ways to attract customers locally", "Create posts for social media like Facebook and Instagram", "Print and hand out flyers or brochures", "Put up posters and banners in the local area", "Set up the office for special events or job fairs", "Send messages and emails to potential leads", "Make sure the company logo is used correctly everywhere", "Help local partners with branded materials", "Look at what local competitors are doing", "Report which ads are working best for the branch"] },
+            branch_pro: { title: "PRO (Public Relations)", cat: "Branch Management", color: "bg-creative-teal", points: ["Visit government offices for company work", "Renew the office trade license and permits", "Handle all visa-related work on government portals", "Get customer documents checked by local embassies", "Liaise with local labor departments", "Take care of office utility bills and registrations", "Manage the company vehicle and transport papers", "Solve any legal paperwork issues locally", "Handle office insurance and health cards", "Represent the company in local government meetings"] },
+            sales: { title: "Sales Consultants", cat: "Operational Staff", color: "bg-creative-blue", points: ["Talk to leads and make them customers", "Give expert advice on jobs and visas", "Reach the monthly sign-up and revenue targets", "Call and message potential customers daily", "Check if a customer is eligible for a visa", "Update customer details in our CRM software", "Collect processing fees from the customers", "Get good reviews from successful customers", "Listen to why customers are worried and help them", "Collect the first set of papers from customers"] },
+            docs: { title: "Documentation", cat: "Operational Staff", color: "bg-creative-purple", points: ["Check if customer papers are real and valid", "Submit visa forms to the embassy websites", "Enter data into our system very accurately", "Check the latest visa rules for each country", "Send passports safely by courier services", "Help customers book their medical tests", "Tell the sales team about any visa updates", "Fix any errors or mistakes in the paperwork", "Safe-keep the files of finished customers", "Follow the official step-by-step visa checklist"] },
+            recep: { title: "Receptionist", cat: "Operational Staff", color: "bg-creative-teal", points: ["Greet everyone who comes to the office", "Answer the phones and transfer calls", "Keep the front desk looking very professional", "Send visitors to the right sales person", "Log all incoming mail and couriers", "Manage the office meeting room schedule", "Buy and track office pens and stationery", "Answer basic questions about our services", "Make sure the lobby area is kept clean", "Keep a security log of who visits the office"] },
+            assist: { title: "Support Staff", cat: "Operational Staff", color: "bg-creative-pink", points: ["Help with filing and sorting physical papers", "Check if office supplies like paper are running out", "Go to banks or embassies for the office work", "Scan physical papers into the CRM computer", "Help customers fill out their forms correctly", "Make tea or coffee for office visitors", "Report if office printers or AC are broken", "Hand out mail to the right departments", "Count how many brochures are left in stock", "Set up rooms for meetings and interviews"] },
+            ext_emp: { title: "Global Employers", cat: "External Partners", color: "bg-brand-black", points: ["Gives job openings for our candidates", "Sets the rules for who they want to hire", "Does the final interview with our candidates", "Provides housing and help in the new country", "Talks to our Market Director in Dubai", "Pays the company for finding skilled workers", "Follows the work laws of the new country", "Helps workers settle in after they arrive", "Gives feedback on the quality of candidates", "Gives us new job openings on a regular basis"] },
+            ext_b2b: { title: "SAARC Agencies", cat: "External Partners", color: "bg-creative-blue", points: ["Provides customer leads from their countries", "Handles their own office in Nepal or Pakistan", "Acts as a big agency partner to our company", "Checks the candidates locally first", "Talks to our Branch Control Director in Dubai", "Sends customer details through our system", "Has their own staff and office space", "Promotes our brand name in their region", "Collects commission for their successful leads", "Reports on what local customers are looking for"] }
+        };
+
+        function openModal(key) {
+            const data = rolesData[key];
+            if (!data) return;
+            const list = document.getElementById('modalList');
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalLabel').innerText = data.cat;
+            document.getElementById('modalHeader').className = `p-10 md:p-14 text-white ${data.color} relative border-b-8 border-black/10`;
+            list.innerHTML = '';
+            data.points.forEach((p, i) => {
+                const li = document.createElement('li');
+                li.className = "flex gap-4 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm items-center hover:bg-white/80 transition-colors";
+                li.innerHTML = `<span class="flex-shrink-0 text-[10px] font-black w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100">${i+1}</span><span class="text-xs md:text-sm font-bold text-slate-700 leading-tight">${p}</span>`;
+                list.appendChild(li);
+            });
+            document.getElementById('roleModal').classList.add('modal-active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('roleModal').classList.remove('modal-active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = e => { if(e.target == document.getElementById('roleModal')) closeModal(); }
+    </script>
+</body>
+</html>
