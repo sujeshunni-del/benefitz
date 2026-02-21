@@ -16,9 +16,18 @@
     <!-- PWA / Add to Home Screen Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sujesh Kumar">
     <meta name="theme-color" content="#020617">
     <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- iOS Icon -->
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg">
+    
+    <!-- Standard Favicon & Android Icons -->
+    <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg">
+    
+    <!-- Inline Web App Manifest for Android Home Screen Installation -->
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiU3VqZXNoIEt1bWFyIiwic2hvcnRfbmFtZSI6IlN1amVzaCIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMDIwNjE3IiwidGhlbWVfY29sb3IiOiIjMDIwNjE3IiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9zdWplc2h1bm5pLWRlbC9iZW5lZml0ei8wMzY5MDVmZjQ4MTJhMDRiMWEwZGQyMmJmYmQ4ZmQ1ZTFjMGI2NmJmL3N1amVzaCUyMHBvdHJhdCUyMGNvcHkxMS5qcGciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvanBlZyJ9LHsic3JjIjoiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3N1amVzaHVubmktZGVsL2JlbmVmaXR6LzAzNjkwNWZmNDgxMmEwNGIxYTBkZDIyYmZiZDhmZDVlMWMwYjY2YmYvc3VqZXNoJTIwcG90cmF0JTIwY29weTExLmpwZyIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9qcGVnIn1dfQ==">
     
     <title>Sujesh Kumar | Benefitz International</title>
     
@@ -248,12 +257,12 @@
                     <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10 mt-1">Chat</span>
                 </a>
 
-                <!-- Email -->
-                <a href="mailto:mail@benefitz.international" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-red group relative overflow-hidden h-24">
+                <!-- Email (Now Opens Contact Form) -->
+                <button onclick="openContactModal()" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-red group relative overflow-hidden h-24 w-full">
                     <div class="absolute inset-0 bg-vibrant-red/0 group-hover:bg-vibrant-red/10 transition-colors"></div>
                     <i class="fa-solid fa-envelope text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
                     <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10">Email</span>
-                </a>
+                </button>
 
                 <!-- Web -->
                 <a href="https://www.benefitz.international" target="_blank" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-purple group relative overflow-hidden h-24">
@@ -389,6 +398,30 @@
         </div>
     </div>
 
+    <!-- Contact Form Modal (Hidden by Default) -->
+    <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity" onclick="closeContactModal()"></div>
+        <div class="relative bg-brand-dark/40 border border-theme-accent/30 border-t-theme-accent/60 border-l-theme-accent/40 p-8 rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.8)] max-w-[320px] w-full flex flex-col items-center animate-modal-enter backdrop-blur-[40px] saturate-[150%]">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full border border-theme-accent/30 bg-theme-primary/20 flex items-center justify-center text-theme-accent hover:bg-theme-primary/50 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-black text-white mb-2">Send Message</h3>
+            <p class="text-xs text-slate-400 mb-6 text-center">Get in touch directly via email.</p>
+            
+            <form id="contactForm" onsubmit="submitContactForm(event)" class="w-full space-y-4">
+                <div>
+                    <input type="text" id="contactName" required placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-theme-accent focus:bg-white/10 transition-colors">
+                </div>
+                <div>
+                    <textarea id="contactMessage" required placeholder="Your Message" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-theme-accent focus:bg-white/10 transition-colors resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-theme-primary/40 border border-theme-primary/60 text-white font-bold text-xs uppercase tracking-widest hover:bg-theme-primary/60 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Send
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Initialization Scripts -->
     <script>
         // Store VCard Data
@@ -425,21 +458,27 @@
 
         // Native Share API functionality
         function shareProfile() {
+            // Clean the URL by removing any long tracking parameters or hashes
+            const cleanUrl = window.location.origin + window.location.pathname;
+            const shareTitle = 'Sujesh Kumar | HR Director, Benefitz International';
+            const shareText = 'Please find the digital business card for Sujesh Kumar, HR Director at Benefitz International. Tap the link below to view and save contact details:';
+
             if (navigator.share) {
                 navigator.share({
-                    title: 'Sujesh Kumar | Benefitz International',
-                    text: 'Connect with Sujesh Kumar, HR Director at Benefitz International.',
-                    url: window.location.href,
+                    title: shareTitle,
+                    text: shareText,
+                    url: cleanUrl,
                 }).catch((error) => console.log('Error sharing:', error));
             } else {
                 // Fallback for browsers that don't support native sharing
-                const dummy = document.createElement('input');
+                const dummy = document.createElement('textarea');
                 document.body.appendChild(dummy);
-                dummy.value = window.location.href;
+                // Copy both the professional text and the clean URL
+                dummy.value = `${shareText}\n\n${cleanUrl}`;
                 dummy.select();
                 document.execCommand('copy');
                 document.body.removeChild(dummy);
-                alert('Profile link copied to clipboard!');
+                alert('Professional profile message and link copied to clipboard!');
             }
         }
 
@@ -482,6 +521,76 @@
         function closePwaModal() {
             pwaModal.classList.add('hidden');
             pwaModal.classList.remove('flex');
+        }
+
+        // Contact Form Modal Logic
+        const contactModal = document.getElementById('contactModal');
+        
+        function openContactModal() {
+            contactModal.classList.remove('hidden');
+            contactModal.classList.add('flex');
+        }
+
+        function closeContactModal() {
+            contactModal.classList.add('hidden');
+            contactModal.classList.remove('flex');
+        }
+
+        function submitContactForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const message = document.getElementById('contactMessage').value;
+            const targetEmail = 'mail@benefitz.international';
+            
+            // Construct pre-formatted mailto link
+            const subject = encodeURIComponent(`New Contact from ${name} via Digital Card`);
+            const body = encodeURIComponent(`Hello Sujesh,\n\nYou have received a new message via your Digital Business Card.\n\nName: ${name}\n\nMessage:\n${message}`);
+            const mailtoLink = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+            
+            // Open user's email client
+            window.location.href = mailtoLink;
+            
+            // Close modal and reset
+            closeContactModal();
+            document.getElementById('contactForm').reset();
+        }
+
+        // True Offline Support (Advanced PWA Service Worker via Blob)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    const CACHE_NAME = 'benefitz-card-v1';
+                    const urlsToCache = [
+                        location.href,
+                        'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap',
+                        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+                        'https://cdn.tailwindcss.com',
+                        'https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg'
+                    ];
+
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+                        );
+                    });
+
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request).then(response => {
+                                return response || fetch(event.request);
+                            }).catch(() => caches.match(location.href))
+                        );
+                    });
+                `;
+                
+                // Embed service worker directly so it works within this single file setup
+                const blob = new Blob([swCode], { type: 'text/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => console.log('Offline Support (Service Worker) registered successfully.'))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
         }
     </script>
 </body>
