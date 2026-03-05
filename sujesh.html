@@ -50,7 +50,7 @@
                         sans: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        'theme-primary': '#00296b',   
+                        'theme-primary': '#040056',   
                         'theme-accent': '#d4ac36', 
                         'brand-dark': '#020617',
                         'vibrant-blue': '#3b82f6',
@@ -97,76 +97,41 @@
             -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile for native app feel */
         }
         
-        /* High-End Solid Glossy Material with Hard Glare (No Gradients) */
+        /* Modern Frosted Glass Material (VisionOS Style) */
         .bento-card, .bento-item, .bento-action-btn, .glass-modal {
             position: relative;
-            background-color: rgba(2, 10, 30, 0.65); /* Solid translucent dark blue base */
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1.5px solid rgba(255, 255, 255, 0.65); /* Glossy bright edge top */
-            border-left: 1.5px solid rgba(255, 255, 255, 0.3); /* Glossy bright edge left */
-            border-right: 1px solid rgba(0, 0, 0, 0.5); /* Shadowed edge right */
-            border-bottom: 1px solid rgba(0, 0, 0, 0.8); /* Shadowed edge bottom */
-            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.9), 
-                        inset 0 2px 4px rgba(255, 255, 255, 0.4), /* Inner edge highlight */
-                        inset 0 -5px 20px rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
             overflow: hidden;
         }
 
-        /* Stronger Gold/Glossy Edge for the Main Outer Card */
+        /* Outer Main Card Subtlety */
         .bento-card {
-            border-top: 2px solid rgba(255, 255, 255, 0.8);
-            border-left: 2px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 1), 
-                        inset 0 3px 6px rgba(255, 255, 255, 0.5), 
-                        inset 0 -10px 30px rgba(0, 0, 0, 0.9),
-                        0 0 0 1px rgba(212, 172, 54, 0.3); /* Subtle gold rim */
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.4) 0%, rgba(4, 0, 86, 0.2) 100%);
+            box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
-        /* Dark Blue Profile Header without Glare */
+        /* Frosted Profile Header */
         .profile-header {
-            background-color: rgba(0, 41, 107, 0.6) !important;
-            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), inset 0 -10px 30px rgba(0,0,0,0.6) !important;
-        }
-        .profile-header::before {
-            display: none !important; /* Removes the hard glare overlay */
+            background: linear-gradient(135deg, rgba(4, 0, 86, 0.3) 0%, rgba(4, 0, 86, 0.1) 100%) !important;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15), 0 10px 30px -5px rgba(0,0,0,0.5) !important;
         }
 
-        /* The Hard Glossy Glare Reflection */
-        .bento-card::before, .bento-item::before, .bento-action-btn::before, .glass-modal::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 45%;
-            background-color: rgba(255, 255, 255, 0.12); /* Solid white wash */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            border-top-left-radius: inherit;
-            border-top-right-radius: inherit;
-            border-bottom-left-radius: 50% 12px; /* Curve to simulate 3D dome */
-            border-bottom-right-radius: 50% 12px;
-            pointer-events: none; /* Let clicks pass through */
-            z-index: 0;
-        }
-
-        /* Hover States */
+        /* Smooth Hover States */
         .bento-item:hover, .bento-action-btn:hover {
-            background-color: rgba(10, 25, 60, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-top: 1.5px solid rgba(255, 255, 255, 0.8);
-            border-left: 1.5px solid rgba(255, 255, 255, 0.5);
-            border-right: 1px solid rgba(0, 0, 0, 0.6);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            border-left: 1px solid rgba(255, 255, 255, 0.25);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
-            box-shadow: 0 35px 60px -10px rgba(0, 0, 0, 0.9), 
-                        inset 0 2px 5px rgba(255, 255, 255, 0.6),
-                        inset 0 -5px 20px rgba(0, 0, 0, 0.8);
-        }
-
-        .bento-item:hover::before, .bento-action-btn:hover::before {
-            background-color: rgba(255, 255, 255, 0.18);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.2);
         }
 
         /* Animated Profile Ring Layers */
@@ -187,8 +152,37 @@
         }
         .ring-2 { 
             inset: -12px;
-            border: 1px dashed rgba(0, 41, 107, 0.6);
+            border: 1px dashed rgba(4, 0, 86, 0.6);
             animation: reverse-spin 10s linear infinite;
+        }
+
+        /* Toast Notification Styling */
+        #toast {
+            visibility: hidden;
+            background: rgba(4, 0, 86, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            text-align: center;
+            border-radius: 999px;
+            padding: 12px 24px;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         /* Custom Scrollbar for Modal */
@@ -200,7 +194,7 @@
 <body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
 
     <!-- Deep Blue and Black Gradient Background -->
-    <div class="fixed inset-0 z-0 bg-gradient-to-br from-black via-[#020617] to-[#00296b] pointer-events-none"></div>
+    <div class="fixed inset-0 z-0 bg-gradient-to-br from-black via-[#020617] to-[#040056] pointer-events-none"></div>
 
     <!-- Main Container -->
     <main class="w-full max-w-[420px] relative z-10 my-4">
@@ -250,7 +244,7 @@
                     <div class="absolute inset-0 rounded-full bg-theme-primary/50 animate-pulse-glow blur-xl"></div>
                     
                     <div class="relative w-full h-full rounded-full bg-[#0a0f1d] p-1.5 z-10 shadow-xl">
-                        <div class="w-full h-full rounded-full overflow-hidden border border-white/20">
+                        <div class="w-full h-full rounded-full overflow-hidden border border-white/20 relative">
                             <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg" 
                                  alt="Mr. Sujeshkumar" 
                                  class="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-700 hover:scale-110">
@@ -264,48 +258,7 @@
                 </div>
             </div>
 
-            <!-- Quick Contacts Grid (4 Squares) -->
-            <div class="grid grid-cols-4 gap-3 w-full">
-                <!-- Phone -->
-                <a href="tel:+971588670129" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-blue group relative overflow-hidden h-24">
-                    <div class="absolute inset-0 bg-vibrant-blue/0 group-hover:bg-vibrant-blue/10 transition-colors"></div>
-                    <i class="fa-solid fa-phone text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10">Call</span>
-                </a>
-
-                <!-- WhatsApp -->
-                <a href="https://wa.me/971588670129" target="_blank" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-green group relative overflow-hidden h-24">
-                    <div class="absolute inset-0 bg-vibrant-green/0 group-hover:bg-vibrant-green/10 transition-colors"></div>
-                    <i class="fa-brands fa-whatsapp text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10 mt-1">Chat</span>
-                </a>
-
-                <!-- Email (Now Opens Contact Form) -->
-                <button onclick="openContactModal()" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-red group relative overflow-hidden h-24 w-full">
-                    <div class="absolute inset-0 bg-vibrant-red/0 group-hover:bg-vibrant-red/10 transition-colors"></div>
-                    <i class="fa-solid fa-envelope text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10">Email</span>
-                </button>
-
-                <!-- Web -->
-                <a href="https://www.benefitz.international" target="_blank" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-purple group relative overflow-hidden h-24">
-                    <div class="absolute inset-0 bg-vibrant-purple/0 group-hover:bg-vibrant-purple/10 transition-colors"></div>
-                    <i class="fa-solid fa-globe text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10">Web</span>
-                </a>
-            </div>
-
-            <!-- Social Media Row -->
-            <div class="flex gap-3 w-full">
-                <a href="https://www.facebook.com/benefitzic" target="_blank" class="flex-1 bento-item rounded-2xl p-3 flex items-center justify-center text-[#1877F2] hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 group h-14">
-                    <i class="fa-brands fa-facebook-f text-xl group-hover:scale-110 transition-transform"></i>
-                </a>
-                <a href="https://www.instagram.com/benefitz.international" target="_blank" class="flex-1 bento-item rounded-2xl p-3 flex items-center justify-center text-[#E1306C] hover:text-white hover:bg-gradient-to-tr hover:from-[#F56040] hover:via-[#E1306C] hover:to-[#833AB4] hover:border-[#E1306C] transition-all duration-300 group h-14">
-                    <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
-                </a>
-            </div>
-
-            <!-- Primary Actions (Save Contact, Share & QR) styled like Reference Image -->
+            <!-- Primary Actions (Save Contact, Share & QR) - HIGHEST PRIORITY -->
             <div class="flex gap-3 w-full">
                 <!-- Save Contact -->
                 <button onclick="downloadVCard()" class="flex-1 rounded-[2rem] p-4 bento-action-btn text-white flex items-center justify-center gap-3 overflow-hidden relative group">
@@ -324,6 +277,61 @@
                 </button>
             </div>
 
+            <!-- Quick Contacts Grid (4 Squares) with Copy Icons -->
+            <div class="grid grid-cols-4 gap-3 w-full">
+                <!-- Phone -->
+                <a href="tel:+971588670129" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-blue group relative overflow-hidden h-24">
+                    <button onclick="copyInfo('+971588670129', 'Phone Number', event)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-white/5 rounded-full border border-white/10 text-white/40 hover:text-white hover:bg-white/20 transition-all z-20" title="Copy Number">
+                        <i class="fa-regular fa-copy text-[10px]"></i>
+                    </button>
+                    <div class="absolute inset-0 bg-vibrant-blue/0 group-hover:bg-vibrant-blue/10 transition-colors"></div>
+                    <i class="fa-solid fa-phone text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10">Call</span>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/971588670129" target="_blank" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-green group relative overflow-hidden h-24">
+                    <button onclick="copyInfo('+971588670129', 'WhatsApp Number', event)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-white/5 rounded-full border border-white/10 text-white/40 hover:text-white hover:bg-white/20 transition-all z-20" title="Copy WhatsApp Number">
+                        <i class="fa-regular fa-copy text-[10px]"></i>
+                    </button>
+                    <div class="absolute inset-0 bg-vibrant-green/0 group-hover:bg-vibrant-green/10 transition-colors"></div>
+                    <i class="fa-brands fa-whatsapp text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10 mt-1">Chat</span>
+                </a>
+
+                <!-- Email -->
+                <button onclick="openContactModal()" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-red group relative overflow-hidden h-24 w-full">
+                    <div onclick="copyInfo('mail@benefitz.international', 'Email Address', event)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-white/5 rounded-full border border-white/10 text-white/40 hover:text-white hover:bg-white/20 transition-all z-20" title="Copy Email">
+                        <i class="fa-regular fa-copy text-[10px]"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-vibrant-red/0 group-hover:bg-vibrant-red/10 transition-colors"></div>
+                    <i class="fa-solid fa-envelope text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10">Email</span>
+                </button>
+
+                <!-- Web -->
+                <a href="https://www.benefitz.international" target="_blank" class="bento-item rounded-2xl p-4 flex flex-col items-center justify-center text-vibrant-purple group relative overflow-hidden h-24">
+                    <button onclick="copyInfo('https://www.benefitz.international', 'Website Link', event)" class="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-white/5 rounded-full border border-white/10 text-white/40 hover:text-white hover:bg-white/20 transition-all z-20" title="Copy Website Link">
+                        <i class="fa-regular fa-copy text-[10px]"></i>
+                    </button>
+                    <div class="absolute inset-0 bg-vibrant-purple/0 group-hover:bg-vibrant-purple/10 transition-colors"></div>
+                    <i class="fa-solid fa-globe text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-[9px] font-bold text-slate-300 uppercase tracking-wider relative z-10">Web</span>
+                </a>
+            </div>
+
+            <!-- Booking Link -->
+            <a href="https://app.benefitz.online/#/booking" target="_blank" class="bento-item rounded-2xl p-4 flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-xl bg-theme-primary/30 flex items-center justify-center text-theme-accent border border-theme-primary/50 group-hover:bg-theme-accent group-hover:text-brand-dark transition-colors duration-300">
+                    <i class="fa-regular fa-calendar-check text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Schedule Meeting</p>
+                    <p class="text-xs font-semibold text-white">Book an Appointment</p>
+                </div>
+                <i class="fa-solid fa-arrow-right text-white/20 group-hover:text-white/50 transition-colors -translate-x-2 group-hover:translate-x-0"></i>
+            </a>
+
             <!-- Visa Services -->
             <a href="https://wa.me/+919037293424" target="_blank" class="bento-item rounded-2xl p-4 flex items-center gap-4 group">
                 <div class="w-12 h-12 rounded-xl bg-theme-primary/30 flex items-center justify-center text-vibrant-blue border border-theme-primary/50 group-hover:bg-vibrant-blue group-hover:text-white transition-colors duration-300">
@@ -335,6 +343,16 @@
                 </div>
                 <i class="fa-solid fa-arrow-right text-white/20 group-hover:text-white/50 transition-colors -translate-x-2 group-hover:translate-x-0"></i>
             </a>
+
+            <!-- Social Media Row -->
+            <div class="flex gap-3 w-full">
+                <a href="https://www.facebook.com/benefitzic" target="_blank" class="flex-1 bento-item rounded-2xl p-3 flex items-center justify-center text-[#1877F2] hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 group h-14">
+                    <i class="fa-brands fa-facebook-f text-xl group-hover:scale-110 transition-transform"></i>
+                </a>
+                <a href="https://www.instagram.com/benefitz.international" target="_blank" class="flex-1 bento-item rounded-2xl p-3 flex items-center justify-center text-[#E1306C] hover:text-white hover:bg-gradient-to-tr hover:from-[#F56040] hover:via-[#E1306C] hover:to-[#833AB4] hover:border-[#E1306C] transition-all duration-300 group h-14">
+                    <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
+                </a>
+            </div>
 
             <!-- Location -->
             <a href="https://maps.app.goo.gl/qygH2fbjRUoau1zK9" target="_blank" class="bento-item rounded-2xl p-4 flex items-center gap-4 group">
@@ -357,6 +375,9 @@
         </div>
 
     </main>
+
+    <!-- Global Toast Notification -->
+    <div id="toast">Copied to clipboard!</div>
 
     <!-- QR Code Modal (Hidden by Default) -->
     <div id="qrModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
@@ -465,6 +486,35 @@
             'END:VCARD'
         ].join('\n');
 
+        // Show Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Copy to Clipboard Function
+        function copyInfo(text, type, event) {
+            if (event) {
+                event.preventDefault(); 
+                event.stopPropagation();
+            }
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(type + " copied!");
+            }).catch(err => {
+                const dummy = document.createElement('textarea');
+                document.body.appendChild(dummy);
+                dummy.value = text;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                showToast(type + " copied!");
+            });
+        }
+
         // Function to download VCard
         function downloadVCard() {
             const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
@@ -481,7 +531,6 @@
 
         // Native Share API functionality
         function shareProfile() {
-            // Clean the URL by removing any long tracking parameters or hashes
             const cleanUrl = window.location.origin + window.location.pathname;
             const shareTitle = 'Mr. Sujeshkumar | HR Director, Benefitz International';
             const shareText = 'Please find the digital business card for Mr. Sujeshkumar, HR Director at Benefitz International. Tap the link below to view and save contact details:';
@@ -493,15 +542,8 @@
                     url: cleanUrl,
                 }).catch((error) => console.log('Error sharing:', error));
             } else {
-                // Fallback for browsers that don't support native sharing
-                const dummy = document.createElement('textarea');
-                document.body.appendChild(dummy);
-                // Copy both the professional text and the clean URL
-                dummy.value = `${shareText}\n\n${cleanUrl}`;
-                dummy.select();
-                document.execCommand('copy');
-                document.body.removeChild(dummy);
-                alert('Professional profile message and link copied to clipboard!');
+                const textToCopy = `${shareText}\n\n${cleanUrl}`;
+                copyInfo(textToCopy, 'Profile Link');
             }
         }
 
@@ -537,29 +579,18 @@
         let deferredPrompt;
         const pwaModal = document.getElementById('pwaModal');
         
-        // Listen for the native install prompt event
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
             e.preventDefault();
-            // Stash the event so it can be triggered later.
             deferredPrompt = e;
         });
 
         function openPwaModal() {
             if (deferredPrompt) {
-                // Show the native prompt
                 deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
                 deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the A2HS prompt');
-                    } else {
-                        console.log('User dismissed the A2HS prompt');
-                    }
                     deferredPrompt = null;
                 });
             } else {
-                // Fallback: Show manual instructions modal (e.g. for iOS or Safari)
                 pwaModal.classList.remove('hidden');
                 pwaModal.classList.add('flex');
             }
@@ -569,11 +600,6 @@
             pwaModal.classList.add('hidden');
             pwaModal.classList.remove('flex');
         }
-
-        // Optionally, track successful installation
-        window.addEventListener('appinstalled', (evt) => {
-            console.log('App was successfully installed');
-        });
 
         // Contact Form Modal Logic
         const contactModal = document.getElementById('contactModal');
@@ -594,15 +620,11 @@
             const message = document.getElementById('contactMessage').value;
             const targetEmail = 'mail@benefitz.international';
             
-            // Construct pre-formatted mailto link
             const subject = encodeURIComponent(`New Contact from ${name} via Digital Card`);
             const body = encodeURIComponent(`Hello Mr. Sujeshkumar,\n\nYou have received a new message via your Digital Business Card.\n\nName: ${name}\n\nMessage:\n${message}`);
             const mailtoLink = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
             
-            // Open user's email client
             window.location.href = mailtoLink;
-            
-            // Close modal and reset
             closeContactModal();
             document.getElementById('contactForm').reset();
         }
@@ -632,19 +654,17 @@
                             caches.match(event.request).then(response => {
                                 return response || fetch(event.request);
                             }).catch(() => {
-                                // Fallback to returning the app shell if offline
                                 return caches.match(location.href);
                             })
                         );
                     });
                 `;
                 
-                // Embed service worker directly so it works within this single file setup
                 const blob = new Blob([swCode], { type: 'text/javascript' });
                 const swUrl = URL.createObjectURL(blob);
                 
                 navigator.serviceWorker.register(swUrl)
-                    .then(registration => console.log('Offline Support (Service Worker) registered successfully.'))
+                    .then(registration => console.log('Offline Support registered.'))
                     .catch(err => console.log('Service Worker registration failed:', err));
             });
         }
