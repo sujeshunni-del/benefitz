@@ -16,7 +16,7 @@
     <!-- PWA / Add to Home Screen Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Sujesh Kumar">
+    <meta name="apple-mobile-web-app-title" content="Benefitz Card">
     <meta name="theme-color" content="#020617">
     <meta name="mobile-web-app-capable" content="yes">
     
@@ -27,9 +27,9 @@
     <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg">
     
     <!-- Inline Web App Manifest for Android Home Screen Installation -->
-    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiU3VqZXNoIEt1bWFyIiwic2hvcnRfbmFtZSI6IlN1amVzaCIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMDIwNjE3IiwidGhlbWVfY29sb3IiOiIjMDIwNjE3IiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9zdWplc2h1bm5pLWRlbC9iZW5lZml0ei8wMzY5MDVmZjQ4MTJhMDRiMWEwZGQyMmJmYmQ4ZmQ1ZTFjMGI2NmJmL3N1amVzaCUyMHBvdHJhdCUyMGNvcHkxMS5qcGciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvanBlZyJ9LHsic3JjIjoiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3N1amVzaHVubmktZGVsL2JlbmVmaXR6LzAzNjkwNWZmNDgxMmEwNGIxYTBkZDIyYmZiZDhmZDVlMWMwYjY2YmYvc3VqZXNoJTIwcG90cmF0JTIwY29weTExLmpwZyIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9qcGVnIn1dfQ==">
+    <link rel="manifest" href='data:application/manifest+json,{"id":"benefitz-sujeshkumar-v1","name":"Mr. Sujeshkumar | Benefitz","short_name":"Sujeshkumar","description":"Digital Business Card for Mr. Sujeshkumar, HR Director at Benefitz International","start_url":".","display":"standalone","orientation":"portrait","background_color":"#020617","theme_color":"#020617","icons":[{"src":"https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg","sizes":"192x192","type":"image/jpeg","purpose":"any maskable"},{"src":"https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg","sizes":"512x512","type":"image/jpeg","purpose":"any maskable"}]}'>
     
-    <title>Sujesh Kumar | Benefitz International</title>
+    <title>Mr. Sujeshkumar | Benefitz International</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,38 +94,79 @@
             color: #F8FAFC; 
             font-family: 'Outfit', sans-serif; 
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile for native app feel */
         }
         
-        /* High-End Frosted Glassmorphism (Reference Image 1 Style) */
+        /* High-End Solid Glossy Material with Hard Glare (No Gradients) */
+        .bento-card, .bento-item, .bento-action-btn, .glass-modal {
+            position: relative;
+            background-color: rgba(2, 10, 30, 0.65); /* Solid translucent dark blue base */
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.65); /* Glossy bright edge top */
+            border-left: 1.5px solid rgba(255, 255, 255, 0.3); /* Glossy bright edge left */
+            border-right: 1px solid rgba(0, 0, 0, 0.5); /* Shadowed edge right */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.8); /* Shadowed edge bottom */
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.9), 
+                        inset 0 2px 4px rgba(255, 255, 255, 0.4), /* Inner edge highlight */
+                        inset 0 -5px 20px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+        }
+
+        /* Stronger Gold/Glossy Edge for the Main Outer Card */
         .bento-card {
-            background: linear-gradient(135deg, rgba(0, 41, 107, 0.25) 0%, rgba(2, 6, 23, 0.5) 100%);
-            backdrop-filter: blur(40px) saturate(200%);
-            -webkit-backdrop-filter: blur(40px) saturate(200%);
-            border: 1px solid rgba(212, 172, 54, 0.2);
-            border-top: 1px solid rgba(212, 172, 54, 0.5);
-            border-left: 1px solid rgba(212, 172, 54, 0.4);
-            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 41, 107, 0.4);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border-top: 2px solid rgba(255, 255, 255, 0.8);
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 1), 
+                        inset 0 3px 6px rgba(255, 255, 255, 0.5), 
+                        inset 0 -10px 30px rgba(0, 0, 0, 0.9),
+                        0 0 0 1px rgba(212, 172, 54, 0.3); /* Subtle gold rim */
         }
 
-        .bento-item {
-            background: linear-gradient(135deg, rgba(0, 41, 107, 0.15), rgba(2, 6, 23, 0.3));
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(212, 172, 54, 0.15);
-            border-top: 1px solid rgba(212, 172, 54, 0.35);
-            border-left: 1px solid rgba(212, 172, 54, 0.25);
-            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 15px rgba(0, 41, 107, 0.2);
-            transition: all 0.3s ease;
+        /* Dark Blue Profile Header without Glare */
+        .profile-header {
+            background-color: rgba(0, 41, 107, 0.6) !important;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), inset 0 -10px 30px rgba(0,0,0,0.6) !important;
+        }
+        .profile-header::before {
+            display: none !important; /* Removes the hard glare overlay */
         }
 
-        .bento-item:hover {
-            background: linear-gradient(135deg, rgba(0, 41, 107, 0.3), rgba(2, 6, 23, 0.5));
-            border-color: rgba(212, 172, 54, 0.3);
-            border-top: 1px solid rgba(212, 172, 54, 0.6);
-            border-left: 1px solid rgba(212, 172, 54, 0.4);
+        /* The Hard Glossy Glare Reflection */
+        .bento-card::before, .bento-item::before, .bento-action-btn::before, .glass-modal::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 45%;
+            background-color: rgba(255, 255, 255, 0.12); /* Solid white wash */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+            border-bottom-left-radius: 50% 12px; /* Curve to simulate 3D dome */
+            border-bottom-right-radius: 50% 12px;
+            pointer-events: none; /* Let clicks pass through */
+            z-index: 0;
+        }
+
+        /* Hover States */
+        .bento-item:hover, .bento-action-btn:hover {
+            background-color: rgba(10, 25, 60, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+            border-left: 1.5px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.9);
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 172, 54, 0.2);
+            box-shadow: 0 35px 60px -10px rgba(0, 0, 0, 0.9), 
+                        inset 0 2px 5px rgba(255, 255, 255, 0.6),
+                        inset 0 -5px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .bento-item:hover::before, .bento-action-btn:hover::before {
+            background-color: rgba(255, 255, 255, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         /* Animated Profile Ring Layers */
@@ -158,25 +199,8 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
 
-    <!-- Ambient Dark Vibrant Background (Reference Image 3 Style) -->
-    <div class="fixed inset-0 z-0 bg-[#020617] pointer-events-none">
-        <svg viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-            <defs>
-                <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#003b99" />
-                    <stop offset="100%" stop-color="#000d26" />
-                </linearGradient>
-            </defs>
-            
-            <!-- Left Wavy Ribbon -->
-            <path d="M0,0 C400,300 350,700 150,1000 C-50,1300 200,1700 0,1920 L0,0 Z" fill="url(#wave1)" stroke="#d4ac36" stroke-width="8" filter="drop-shadow(0 0 20px rgba(0,41,107,0.8))"/>
-            <path d="M0,0 C480,350 430,750 200,1050 C-20,1350 250,1750 0,1920" fill="none" stroke="rgba(212,172,54,0.3)" stroke-width="3" />
-
-            <!-- Right Wavy Ribbon -->
-            <path d="M1080,1920 C680,1620 730,1220 930,920 C1130,620 880,220 1080,0 L1080,1920 Z" fill="url(#wave1)" stroke="#d4ac36" stroke-width="8" filter="drop-shadow(0 0 20px rgba(0,41,107,0.8))"/>
-            <path d="M1080,1920 C600,1570 650,1170 880,870 C1100,570 830,170 1080,0" fill="none" stroke="rgba(212,172,54,0.3)" stroke-width="3" />
-        </svg>
-    </div>
+    <!-- Deep Blue and Black Gradient Background -->
+    <div class="fixed inset-0 z-0 bg-gradient-to-br from-black via-[#020617] to-[#00296b] pointer-events-none"></div>
 
     <!-- Main Container -->
     <main class="w-full max-w-[420px] relative z-10 my-4">
@@ -184,36 +208,35 @@
         <!-- Outer Glass Wrapper -->
         <div class="bento-card rounded-[2.5rem] p-4 sm:p-5 flex flex-col gap-4 relative overflow-hidden">
             
+            <!-- Abstract Stylish Dotted Texture Overlay -->
+            <div class="absolute inset-0 pointer-events-none mix-blend-overlay z-0" style="opacity: 0.15; background-image: url('data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'2\' cy=\'2\' r=\'1.5\' fill=\'%23d4ac36\'/%3E%3C/svg%3E');"></div>
+
             <!-- Shimmer Highlight -->
             <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-theme-accent/50 to-transparent"></div>
 
             <!-- Header Bento (Company & Profile) -->
-            <div class="bento-item rounded-[2rem] p-6 flex flex-col items-center relative overflow-hidden group">
+            <div class="bento-item profile-header rounded-[2rem] p-6 flex flex-col items-center relative overflow-hidden group">
                 <!-- Abstract corner gradient -->
                 <div class="absolute -top-20 -right-20 w-40 h-40 bg-theme-primary/40 rounded-full blur-3xl group-hover:bg-theme-primary/50 transition-all duration-700"></div>
 
                 <!-- Company Info Section -->
                 <div class="flex flex-col items-center mb-6 w-full pb-6 border-b border-white/5 relative z-10">
                     <!-- Company Logo -->
-                    <div class="w-12 h-12 mb-4 drop-shadow-[0_0_10px_rgba(6,182,212,0.3)] animate-float">
-                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560.26 560.36">
-                          <defs>
-                            <style>.cls-1 { fill: #d4ac36; } .cls-2 { fill: #00296b; }</style>
-                          </defs>
-                          <path class="cls-1" d="M294.81,560.35h-28.98l-23.84-2.49C120.65,541.48,23.02,446.01,3.6,325.19l-3.46-28.67c.32-9.95-.43-20.02,0-29.96C5.82,134.82,107.23,23.09,237.17,3.31c184.76-28.14,343.92,127.33,320.86,312.73-16.54,132.98-129.39,237.57-263.21,244.32h0ZM374.89,25.56C307.86.89,232.02,3.44,167.11,33.25,53.2,85.56-9.92,208.45,13.81,332.37c1.46,7.6,3.59,15.05,5.17,22.62.65-.26.83-2.52.9-3.2.6-5.44,1.01-10.23,2.23-15.65,18.8-83.47,133.56-118.19,207.73-126.1,54.51-5.82,149.94-7.74,192.51-44.69,23.56-20.46,26.58-53.96,25.14-83.62-.16-3.19-1.23-14.87-2.69-17.12-.78-1.2-5.8-4.62-7.32-5.72-4.82-3.49-10.02-6.7-15.12-9.75-.39.52,1.82,10.93,1.95,12.79,1.9,27.02-2.09,47.83-22.72,66.22-37.83,33.72-122.84,43.83-171.75,41.79-3.39-.14-22.49-.51-23.86-2.46-.27-.39-.03-1.41.2-1.88,1.48-3,22.64-9.85,26.91-11.25,44.81-14.72,115.69-28.49,136.53-76.53,5.8-13.36,6.23-29.17,5.87-43.42-.07-2.95.38-6.01-.6-8.83h0ZM383.09,285.53c1.47,1.57.27,4.94-.63,6.61-2.95,5.45-17.82,12.63-23.71,15.43-42.78,20.36-90.32,31.38-133,50.58-49.52,22.28-72.52,63.51-66.14,117.82,2.32,19.78,10.35,36.94,17.85,55.1,24.99,10.71,53.18,17.56,80.39,19.61,175.4,13.22,316.36-137.29,290.48-311.82-7.18-48.41-28.36-94.83-59.58-132.23-.85,5.97-1.6,11.98-2.89,17.88-19.36,88.5-116.61,111.21-193.39,124.99-66.77,11.98-141.4,16.36-195.96,61.05-31.71,25.97-51.02,66-50.27,107.28,17.3,29.08,39.84,54.99,66.44,75.84-12.55-29.65-17.49-62.88-8.55-94.32,23.95-84.24,124.29-82.15,194.15-97.17,24.07-5.17,53.51-16.26,77.45-17.72,1.84-.11,6.08-.28,7.35,1.08h.01Z"/>
-                          <path class="cls-2" d="M383.09,285.53c-1.28-1.36-5.52-1.2-7.35-1.08-23.94,1.46-53.37,12.55-77.45,17.72-69.86,15.02-170.21,12.93-194.15,97.17-8.94,31.45-3.99,64.67,8.55,94.32-26.6-20.84-49.14-46.76-66.44-75.84-.75-41.28,18.56-81.31,50.27-107.28,54.56-44.69,129.2-49.07,195.96-61.05,76.78-13.78,174.02-36.49,193.39-124.99,1.29-5.9,2.04-11.91,2.89-17.88,31.22,37.41,52.41,83.82,59.58,132.23,25.87,174.53-115.09,325.03-290.48,311.82-27.22-2.05-55.4-8.9-80.39-19.61-7.5-18.16-15.53-35.32-17.85-55.1-6.38-54.31,16.62-95.54,66.14-117.82,42.68-19.2,90.22-30.22,133-50.58,5.88-2.8,20.75-9.97,23.71-15.43.9-1.67,2.1-5.04.63-6.61h-.01Z"/>
-                          <path class="cls-2" d="M374.89,25.56c.97,2.82.52,5.88.6,8.83.36,14.25-.07,30.06-5.87,43.42-20.84,48.04-91.72,61.8-136.53,76.53-4.28,1.41-25.44,8.25-26.91,11.25-.23.47-.47,1.49-.2,1.88,1.37,1.96,20.47,2.32,23.86,2.46,48.91,2.03,133.92-8.07,171.75-41.79,20.63-18.39,24.62-39.21,22.72-66.22-.13-1.85-2.33-12.27-1.95-12.79,5.1,3.06,10.3,6.26,15.12,9.75,1.52,1.1,6.54,4.52,7.32,5.72,1.46,2.24,2.54,13.92,2.69,17.12,1.44,29.67-1.57,63.16-25.14,83.62-42.57,36.96-137.99,38.88-192.51,44.69-74.17,7.91-188.93,42.64-207.73,126.1-1.22,5.42-1.63,10.21-2.23,15.65-.07.68-.26,2.94-.9,3.2-1.58-7.57-3.71-15.01-5.17-22.62C-9.92,208.45,53.2,85.56,167.11,33.25,232.02,3.44,307.86.89,374.89,25.56Z"/>
-                        </svg>
+                    <div class="w-20 h-20 mb-3 rounded-full relative animate-float group">
+                        <!-- Glossy behind-glow matching the logo -->
+                        <div class="absolute inset-0 bg-theme-accent/30 rounded-full blur-xl group-hover:bg-theme-accent/50 transition-all duration-500"></div>
+                        <div class="absolute inset-0 bg-theme-primary/50 rounded-full blur-md"></div>
+                        <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/ededff037b9cae05588fa7f8d53e15d44b787c46/logo1.png" alt="Benefitz Logo" class="w-full h-full object-cover rounded-full relative z-10 border border-theme-accent/30 shadow-[0_10px_20px_rgba(0,0,0,0.5),inset_0_2px_5px_rgba(255,255,255,0.3)]">
                     </div>
-                    <h2 class="text-2xl font-black text-white tracking-[0.2em] leading-none mb-1">BENEFITZ</h2>
+                    <h2 class="text-2xl font-black text-white tracking-[0.2em] leading-none mb-1 drop-shadow-lg">BENEFITZ</h2>
                     <p class="text-[10px] text-theme-accent font-bold uppercase tracking-[0.4em]">International</p>
                     
                     <!-- Location Tags -->
                     <div class="flex gap-2 mt-4">
-                        <span class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-[9px] font-bold text-slate-300 tracking-widest uppercase shadow-inner">
+                        <span class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-[9px] font-bold text-slate-300 tracking-widest uppercase shadow-inner relative z-10">
                             <i class="fa-solid fa-location-dot text-theme-accent"></i> UAE
                         </span>
-                        <span class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-[9px] font-bold text-slate-300 tracking-widest uppercase shadow-inner">
+                        <span class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-[9px] font-bold text-slate-300 tracking-widest uppercase shadow-inner relative z-10">
                             <i class="fa-solid fa-location-dot text-blue-400"></i> INDIA
                         </span>
                     </div>
@@ -229,13 +252,13 @@
                     <div class="relative w-full h-full rounded-full bg-[#0a0f1d] p-1.5 z-10 shadow-xl">
                         <div class="w-full h-full rounded-full overflow-hidden border border-white/20">
                             <img src="https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg" 
-                                 alt="Sujesh Kumar" 
+                                 alt="Mr. Sujeshkumar" 
                                  class="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-700 hover:scale-110">
                         </div>
                     </div>
                 </div>
 
-                <h1 class="text-3xl font-black text-white tracking-tight mb-2 relative z-10">SUJESH KUMAR</h1>
+                <h1 class="text-3xl font-black text-white tracking-tight mb-2 relative z-10">Mr. SUJESHKUMAR</h1>
                 <div class="flex items-center gap-2 relative z-10">
                     <span class="text-theme-accent font-bold text-xs uppercase tracking-[0.2em] bg-theme-accent/10 px-4 py-1.5 rounded-full border border-theme-accent/20">HR Director</span>
                 </div>
@@ -285,24 +308,24 @@
             <!-- Primary Actions (Save Contact, Share & QR) styled like Reference Image -->
             <div class="flex gap-3 w-full">
                 <!-- Save Contact -->
-                <button onclick="downloadVCard()" class="flex-1 rounded-[2rem] p-4 border border-theme-accent/30 border-t-theme-accent/60 border-l-theme-accent/40 bg-theme-primary/20 hover:bg-theme-primary/40 text-white transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(212,172,54,0.15)] group backdrop-blur-[20px] saturate-[150%]">
+                <button onclick="downloadVCard()" class="flex-1 rounded-[2rem] p-4 bento-action-btn text-white flex items-center justify-center gap-3 overflow-hidden relative group">
                     <i class="fa-solid fa-address-card text-xl relative z-10 group-hover:scale-110 transition-transform"></i>
                     <span class="font-medium text-[15px] tracking-wide relative z-10">Save Contact</span>
                 </button>
 
                 <!-- Share Button -->
-                <button onclick="shareProfile()" class="rounded-[2rem] w-[60px] flex items-center justify-center border border-theme-accent/30 border-t-theme-accent/60 border-l-theme-accent/40 bg-theme-primary/20 hover:bg-theme-primary/40 text-white transition-all duration-300 relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(212,172,54,0.15)] group backdrop-blur-[20px] saturate-[150%]" title="Share Profile">
+                <button onclick="shareProfile()" class="rounded-[2rem] w-[60px] flex items-center justify-center bento-action-btn text-white relative overflow-hidden group" title="Share Profile">
                     <i class="fa-solid fa-share-nodes text-lg group-hover:scale-110 transition-transform relative z-10"></i>
                 </button>
 
                 <!-- Show QR Button -->
-                <button onclick="openQRModal()" class="rounded-[2rem] w-[60px] flex items-center justify-center border border-theme-accent/30 border-t-theme-accent/60 border-l-theme-accent/40 bg-theme-primary/20 hover:bg-theme-primary/40 text-white transition-all duration-300 relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(212,172,54,0.15)] group backdrop-blur-[20px] saturate-[150%]" title="Show QR Code">
+                <button onclick="openQRModal()" class="rounded-[2rem] w-[60px] flex items-center justify-center bento-action-btn text-white relative overflow-hidden group" title="Show QR Code">
                     <i class="fa-solid fa-qrcode text-xl group-hover:scale-110 transition-transform relative z-10"></i>
                 </button>
             </div>
 
             <!-- Visa Services -->
-            <a href="https://www.benefitz.international/programs" target="_blank" class="bento-item rounded-2xl p-4 flex items-center gap-4 group">
+            <a href="https://wa.me/+919037293424" target="_blank" class="bento-item rounded-2xl p-4 flex items-center gap-4 group">
                 <div class="w-12 h-12 rounded-xl bg-theme-primary/30 flex items-center justify-center text-vibrant-blue border border-theme-primary/50 group-hover:bg-vibrant-blue group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-passport text-xl"></i>
                 </div>
@@ -341,7 +364,7 @@
         <div class="absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity" onclick="closeQRModal()"></div>
         
         <!-- Modal Content - Enhanced Glass Style -->
-        <div class="relative bg-brand-dark/40 border border-theme-accent/30 border-t-theme-accent/60 border-l-theme-accent/40 p-8 rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.8)] max-w-[320px] w-full flex flex-col items-center animate-modal-enter backdrop-blur-[40px] saturate-[150%]">
+        <div class="relative glass-modal p-8 rounded-[2.5rem] max-w-[320px] w-full flex flex-col items-center animate-modal-enter">
             <!-- Close Button -->
             <button onclick="closeQRModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full border border-theme-accent/30 bg-theme-primary/20 flex items-center justify-center text-theme-accent hover:bg-theme-primary/50 hover:text-white transition-colors">
                 <i class="fa-solid fa-xmark"></i>
@@ -370,7 +393,7 @@
     <!-- PWA Instructions Modal (Hidden by Default) -->
     <div id="pwaModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity" onclick="closePwaModal()"></div>
-        <div class="relative bg-brand-dark/40 border border-theme-accent/30 border-t-theme-accent/60 border-l-theme-accent/40 p-8 rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.8)] max-w-[320px] w-full flex flex-col items-center animate-modal-enter backdrop-blur-[40px] saturate-[150%]">
+        <div class="relative glass-modal p-8 rounded-[2.5rem] max-w-[320px] w-full flex flex-col items-center animate-modal-enter">
             <button onclick="closePwaModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full border border-theme-accent/30 bg-theme-primary/20 flex items-center justify-center text-theme-accent hover:bg-theme-primary/50 hover:text-white transition-colors">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -401,7 +424,7 @@
     <!-- Contact Form Modal (Hidden by Default) -->
     <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity" onclick="closeContactModal()"></div>
-        <div class="relative bg-brand-dark/40 border border-theme-accent/30 border-t-theme-accent/60 border-l-theme-accent/40 p-8 rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.8)] max-w-[320px] w-full flex flex-col items-center animate-modal-enter backdrop-blur-[40px] saturate-[150%]">
+        <div class="relative glass-modal p-8 rounded-[2.5rem] max-w-[320px] w-full flex flex-col items-center animate-modal-enter">
             <button onclick="closeContactModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full border border-theme-accent/30 bg-theme-primary/20 flex items-center justify-center text-theme-accent hover:bg-theme-primary/50 hover:text-white transition-colors">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -428,8 +451,8 @@
         const vcardData = [
             'BEGIN:VCARD',
             'VERSION:3.0',
-            'FN:SUJESH KUMAR',
-            'N:KUMAR;SUJESH;;;',
+            'FN:Mr. SUJESHKUMAR',
+            'N:SUJESHKUMAR;;;Mr.;',
             'ORG:Benefitz International',
             'TITLE:HR Director',
             'TEL;TYPE=CELL,VOICE:+971588670129',
@@ -449,7 +472,7 @@
             const link = document.createElement('a');
             
             link.href = url;
-            link.setAttribute('download', 'SujeshKumar_Benefitz.vcf');
+            link.setAttribute('download', 'Mr_Sujeshkumar_Benefitz.vcf');
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -460,8 +483,8 @@
         function shareProfile() {
             // Clean the URL by removing any long tracking parameters or hashes
             const cleanUrl = window.location.origin + window.location.pathname;
-            const shareTitle = 'Sujesh Kumar | HR Director, Benefitz International';
-            const shareText = 'Please find the digital business card for Sujesh Kumar, HR Director at Benefitz International. Tap the link below to view and save contact details:';
+            const shareTitle = 'Mr. Sujeshkumar | HR Director, Benefitz International';
+            const shareText = 'Please find the digital business card for Mr. Sujeshkumar, HR Director at Benefitz International. Tap the link below to view and save contact details:';
 
             if (navigator.share) {
                 navigator.share({
@@ -510,18 +533,47 @@
             qrModal.classList.remove('flex');
         }
 
-        // PWA Modal Logic
+        // PWA Native Install Prompt Logic
+        let deferredPrompt;
         const pwaModal = document.getElementById('pwaModal');
         
+        // Listen for the native install prompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+        });
+
         function openPwaModal() {
-            pwaModal.classList.remove('hidden');
-            pwaModal.classList.add('flex');
+            if (deferredPrompt) {
+                // Show the native prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Fallback: Show manual instructions modal (e.g. for iOS or Safari)
+                pwaModal.classList.remove('hidden');
+                pwaModal.classList.add('flex');
+            }
         }
 
         function closePwaModal() {
             pwaModal.classList.add('hidden');
             pwaModal.classList.remove('flex');
         }
+
+        // Optionally, track successful installation
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('App was successfully installed');
+        });
 
         // Contact Form Modal Logic
         const contactModal = document.getElementById('contactModal');
@@ -544,7 +596,7 @@
             
             // Construct pre-formatted mailto link
             const subject = encodeURIComponent(`New Contact from ${name} via Digital Card`);
-            const body = encodeURIComponent(`Hello Sujesh,\n\nYou have received a new message via your Digital Business Card.\n\nName: ${name}\n\nMessage:\n${message}`);
+            const body = encodeURIComponent(`Hello Mr. Sujeshkumar,\n\nYou have received a new message via your Digital Business Card.\n\nName: ${name}\n\nMessage:\n${message}`);
             const mailtoLink = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
             
             // Open user's email client
@@ -565,7 +617,8 @@
                         'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap',
                         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
                         'https://cdn.tailwindcss.com',
-                        'https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg'
+                        'https://raw.githubusercontent.com/sujeshunni-del/benefitz/036905ff4812a04b1a0dd22bfbd8fd5e1c0b66bf/sujesh%20potrat%20copy11.jpg',
+                        'https://raw.githubusercontent.com/sujeshunni-del/benefitz/ededff037b9cae05588fa7f8d53e15d44b787c46/logo1.png'
                     ];
 
                     self.addEventListener('install', event => {
@@ -578,7 +631,10 @@
                         event.respondWith(
                             caches.match(event.request).then(response => {
                                 return response || fetch(event.request);
-                            }).catch(() => caches.match(location.href))
+                            }).catch(() => {
+                                // Fallback to returning the app shell if offline
+                                return caches.match(location.href);
+                            })
                         );
                     });
                 `;
