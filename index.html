@@ -192,7 +192,6 @@
         .reveal-item.active { opacity: 1 !important; transform: translateY(0) !important; }
         
         /* CLEAN HEADER STYLES (No 3D, Flat) */
-        /* Replaced .hero-main-text styles with SVG specific styles */
         
         .hero-svg-container {
             width: 100%;
@@ -433,8 +432,165 @@
                 <h2 data-i18n="sec_dest_title" class="text-3xl md:text-5xl font-black text-brand-black">Our Exclusive Mobility Programs</h2>
             </div>
 
-            <!-- SCHENGEN BLOCK -->
+            <!-- NON-EU & GLOBAL BLOCK (New Additions) -->
             <div class="mb-12 md:mb-20">
+                <div class="flex items-center gap-4 mb-6 md:mb-8 pl-2">
+                    <div class="w-1.5 h-8 bg-theme-secondary rounded-full shadow-[0_0_15px_rgba(255,102,0,0.5)]"></div>
+                    <h3 class="text-xl md:text-2xl font-black text-brand-black uppercase tracking-wider flex items-center gap-3">
+                        Non-EU & Global Opportunities 
+                        <i class="fa-solid fa-earth-americas text-theme-secondary text-lg"></i>
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                    <!-- 1. Canada -->
+                    <a href="canada.html" class="group block reveal-item modern-card-wrapper">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇨🇦</div>
+                                    <h3 data-i18n="country_canada" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Canada</h3>
+                                </div>
+                                <p data-i18n="desc_canada" class="text-slate-500 text-xs leading-relaxed mb-4">LMIA Work Permits with clear pathways to permanent residency.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">LMIA Approved</span>
+                        </div>
+                    </a>
+
+                    <!-- 2. New Zealand -->
+                    <a href="newzealand.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇳🇿</div>
+                                    <h3 data-i18n="country_newzealand" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">New Zealand</h3>
+                                </div>
+                                <p data-i18n="desc_newzealand" class="text-slate-500 text-xs leading-relaxed mb-4">Accredited Employer Work Visa (AEWV) opportunities across sectors.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">AEWV Visa</span>
+                        </div>
+                    </a>
+
+                    <!-- 3. Singapore -->
+                    <a href="singapore.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇸🇬</div>
+                                    <h3 data-i18n="country_singapore" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Singapore</h3>
+                                </div>
+                                <p data-i18n="desc_singapore" class="text-slate-500 text-xs leading-relaxed mb-4">S Pass opportunities for mid-level professionals.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">S Pass</span>
+                        </div>
+                    </a>
+
+                    <!-- 4. South Korea -->
+                    <a href="southkorea.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇰🇷</div>
+                                    <h3 data-i18n="country_southkorea" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">South Korea</h3>
+                                </div>
+                                <p data-i18n="desc_southkorea" class="text-slate-500 text-xs leading-relaxed mb-4">E-Visa opportunities in the vibrant hospitality sector.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">E-Visa</span>
+                        </div>
+                    </a>
+
+                    <!-- 5. Macedonia -->
+                    <a href="macedonia.html" class="group block reveal-item modern-card-wrapper">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇲🇰</div>
+                                    <h3 data-i18n="country_macedonia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Macedonia</h3>
+                                </div>
+                                <p data-i18n="desc_macedonia" class="text-slate-500 text-xs leading-relaxed mb-4">Rapidly developing market with new opportunities.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Emerging Market</span>
+                        </div>
+                    </a>
+
+                    <!-- 6. Serbia -->
+                    <a href="serbia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇷🇸</div>
+                                    <h3 data-i18n="country_serbia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Serbia</h3>
+                                </div>
+                                <p data-i18n="desc_serbia" class="text-slate-500 text-xs leading-relaxed mb-4">High demand for skilled trades.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-orange-100">Construction</span>
+                        </div>
+                    </a>
+
+                    <!-- 7. Albania -->
+                    <a href="albania.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇦🇱</div>
+                                    <h3 data-i18n="country_albania" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Albania</h3>
+                                </div>
+                                <p data-i18n="desc_albania" class="text-slate-500 text-xs leading-relaxed mb-4">Booming tourism sector offering seasonal roles.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-pink-50 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-pink-100">Hospitality</span>
+                        </div>
+                    </a>
+
+                    <!-- 8. Belarus -->
+                    <a href="belarus.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-green-50 w-12 h-12 flex items-center justify-center md:hidden">🇧🇾</div>
+                                    <h3 data-i18n="country_belarus" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Belarus</h3>
+                                </div>
+                                <p data-i18n="desc_belarus" class="text-slate-500 text-xs leading-relaxed mb-4">Strong industrial base offering stable employment.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-green-200">Manufacturing</span>
+                        </div>
+                    </a>
+
+                    <!-- 9. Montenegro -->
+                    <a href="montenegro.html" class="group block reveal-item modern-card-wrapper">
+                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇲🇪</div>
+                                    <h3 data-i18n="country_montenegro" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Montenegro</h3>
+                                </div>
+                                <p data-i18n="desc_montenegro" class="text-slate-500 text-xs leading-relaxed mb-4">Beautiful coastlines and growing tourism sector.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Tourism</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SCHENGEN BLOCK -->
+            <div>
                 <div class="flex items-center gap-4 mb-6 md:mb-8 pl-2">
                     <div class="w-1.5 h-8 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
                     <h3 class="text-xl md:text-2xl font-black text-brand-black uppercase tracking-wider flex items-center gap-3">
@@ -444,8 +600,6 @@
                 </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                    <!-- Helper Class for Card Content Structure -->
-                    <!-- Note: The 'spotlight-card' class is handled by JS for the effect -->
                     
                     <!-- 1. Finland -->
                     <a href="finland.html" class="group block reveal-item modern-card-wrapper">
@@ -511,8 +665,40 @@
                         </div>
                     </a>
 
-                    <!-- 5. Italy -->
-                    <a href="italy.html" class="group block reveal-item modern-card-wrapper">
+                    <!-- 5. Austria -->
+                    <a href="austria.html" class="group block reveal-item modern-card-wrapper">
+                        <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇦🇹</div>
+                                    <h3 data-i18n="country_austria" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Austria</h3>
+                                </div>
+                                <p data-i18n="desc_austria" class="text-slate-500 text-xs leading-relaxed mb-4">High quality of life with competitive salaries in multiple sectors.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">Work Permit</span>
+                        </div>
+                    </a>
+
+                    <!-- 6. Denmark -->
+                    <a href="denmark.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                        <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
+                             <div class="spotlight-overlay"></div>
+                             <div class="spotlight-border"></div>
+                             <div class="relative z-10">
+                                <div class="flex flex-col items-start gap-2 mb-3">
+                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇩🇰</div>
+                                    <h3 data-i18n="country_denmark" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Denmark</h3>
+                                </div>
+                                <p data-i18n="desc_denmark" class="text-slate-500 text-xs leading-relaxed mb-4">Strong economy offering opportunities in hospitality and healthcare.</p>
+                            </div>
+                            <span class="relative z-10 inline-block bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-red-100">Work Visa</span>
+                        </div>
+                    </a>
+
+                    <!-- 7. Italy -->
+                    <a href="italy.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
                              <div class="spotlight-overlay"></div>
                              <div class="spotlight-border"></div>
@@ -527,8 +713,8 @@
                         </div>
                     </a>
 
-                    <!-- 6. France -->
-                    <a href="france.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                    <!-- 8. France -->
+                    <a href="france.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
                          <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
                              <div class="spotlight-overlay"></div>
                              <div class="spotlight-border"></div>
@@ -543,8 +729,8 @@
                         </div>
                     </a>
 
-                    <!-- 7. Poland -->
-                    <a href="poland.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                    <!-- 9. Poland -->
+                    <a href="poland.html" class="group block reveal-item modern-card-wrapper">
                          <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
                              <div class="spotlight-overlay"></div>
                              <div class="spotlight-border"></div>
@@ -559,8 +745,8 @@
                         </div>
                     </a>
 
-                    <!-- 8. Czech Republic -->
-                    <a href="czech.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
+                    <!-- 10. Czech Republic -->
+                    <a href="czech.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
                          <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
                              <div class="spotlight-overlay"></div>
                              <div class="spotlight-border"></div>
@@ -575,8 +761,8 @@
                         </div>
                     </a>
 
-                    <!-- 9. Latvia -->
-                    <a href="latvia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                    <!-- 11. Latvia -->
+                    <a href="latvia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
                          <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
                              <div class="spotlight-overlay"></div>
                              <div class="spotlight-border"></div>
@@ -591,8 +777,8 @@
                         </div>
                     </a>
 
-                    <!-- 10. Croatia -->
-                    <a href="croatia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 50ms;">
+                    <!-- 12. Croatia -->
+                    <a href="croatia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
                          <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
                              <div class="spotlight-overlay"></div>
                              <div class="spotlight-border"></div>
@@ -607,8 +793,8 @@
                         </div>
                     </a>
 
-                    <!-- 11. Slovakia -->
-                    <a href="slovakia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
+                    <!-- 13. Slovakia -->
+                    <a href="slovakia.html" class="group block reveal-item modern-card-wrapper">
                          <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
                              <div class="spotlight-overlay"></div>
                              <div class="spotlight-border"></div>
@@ -620,99 +806,6 @@
                                 <p data-i18n="desc_slovakia" class="text-slate-500 text-xs leading-relaxed mb-4">Industrial heart of Europe with low cost of living.</p>
                             </div>
                             <span class="relative z-10 inline-block bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-blue-100">Automotive</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- NON-SCHENGEN BLOCK -->
-            <div>
-                <div class="flex items-center gap-4 mb-6 md:mb-8 pl-2">
-                    <div class="w-1.5 h-8 bg-theme-secondary rounded-full shadow-[0_0_15px_rgba(255,102,0,0.5)]"></div>
-                    <h3 class="text-xl md:text-2xl font-black text-brand-black uppercase tracking-wider flex items-center gap-3">
-                        Non-EU Opportunities 
-                        <i class="fa-solid fa-earth-americas text-theme-secondary text-lg"></i>
-                    </h3>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                    <!-- 12. Macedonia -->
-                    <a href="macedonia.html" class="group block reveal-item modern-card-wrapper">
-                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
-                             <div class="spotlight-overlay"></div>
-                             <div class="spotlight-border"></div>
-                             <div class="relative z-10">
-                                <div class="flex flex-col items-start gap-2 mb-3">
-                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇲🇰</div>
-                                    <h3 data-i18n="country_macedonia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Macedonia</h3>
-                                </div>
-                                <p data-i18n="desc_macedonia" class="text-slate-500 text-xs leading-relaxed mb-4">Rapidly developing market with new opportunities.</p>
-                            </div>
-                            <span class="relative z-10 inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Emerging Market</span>
-                        </div>
-                    </a>
-
-                    <!-- 13. Serbia -->
-                    <a href="serbia.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 100ms;">
-                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
-                             <div class="spotlight-overlay"></div>
-                             <div class="spotlight-border"></div>
-                             <div class="relative z-10">
-                                <div class="flex flex-col items-start gap-2 mb-3">
-                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇷🇸</div>
-                                    <h3 data-i18n="country_serbia" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Serbia</h3>
-                                </div>
-                                <p data-i18n="desc_serbia" class="text-slate-500 text-xs leading-relaxed mb-4">High demand for skilled trades.</p>
-                            </div>
-                            <span class="relative z-10 inline-block bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-orange-100">Construction</span>
-                        </div>
-                    </a>
-
-                    <!-- 14. Albania -->
-                    <a href="albania.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
-                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
-                             <div class="spotlight-overlay"></div>
-                             <div class="spotlight-border"></div>
-                             <div class="relative z-10">
-                                <div class="flex flex-col items-start gap-2 mb-3">
-                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇦🇱</div>
-                                    <h3 data-i18n="country_albania" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Albania</h3>
-                                </div>
-                                <p data-i18n="desc_albania" class="text-slate-500 text-xs leading-relaxed mb-4">Booming tourism sector offering seasonal roles.</p>
-                            </div>
-                            <span class="relative z-10 inline-block bg-pink-50 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-pink-100">Hospitality</span>
-                        </div>
-                    </a>
-
-                    <!-- 15. Belarus -->
-                    <a href="belarus.html" class="group block reveal-item modern-card-wrapper">
-                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
-                             <div class="spotlight-overlay"></div>
-                             <div class="spotlight-border"></div>
-                             <div class="relative z-10">
-                                <div class="flex flex-col items-start gap-2 mb-3">
-                                    <div class="text-4xl block shadow-sm rounded-full bg-green-50 w-12 h-12 flex items-center justify-center md:hidden">🇧🇾</div>
-                                    <h3 data-i18n="country_belarus" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Belarus</h3>
-                                </div>
-                                <p data-i18n="desc_belarus" class="text-slate-500 text-xs leading-relaxed mb-4">Strong industrial base offering stable employment.</p>
-                            </div>
-                            <span class="relative z-10 inline-block bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-green-200">Manufacturing</span>
-                        </div>
-                    </a>
-
-                    <!-- 16. Montenegro -->
-                    <a href="montenegro.html" class="group block reveal-item modern-card-wrapper" style="transition-delay: 150ms;">
-                         <div class="modern-card p-6 flex flex-col justify-between h-full bg-white relative">
-                             <div class="spotlight-overlay"></div>
-                             <div class="spotlight-border"></div>
-                             <div class="relative z-10">
-                                <div class="flex flex-col items-start gap-2 mb-3">
-                                    <div class="text-4xl block shadow-sm rounded-full bg-slate-50 w-12 h-12 flex items-center justify-center md:hidden">🇲🇪</div>
-                                    <h3 data-i18n="country_montenegro" class="text-xl md:text-2xl font-bold text-brand-black leading-tight uppercase group-hover:text-theme-primary transition-colors">Montenegro</h3>
-                                </div>
-                                <p data-i18n="desc_montenegro" class="text-slate-500 text-xs leading-relaxed mb-4">Beautiful coastlines and growing tourism sector.</p>
-                            </div>
-                            <span class="relative z-10 inline-block bg-yellow-50 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg uppercase mt-4 w-fit border border-yellow-100">Tourism</span>
                         </div>
                     </a>
                 </div>
@@ -935,6 +1028,12 @@
             <a href="italy.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇮🇹</div><span class="text-[9px] font-bold text-slate-600">IT</span></a>
             <a href="france.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇫🇷</div><span class="text-[9px] font-bold text-slate-600">FR</span></a>
             <a href="poland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇵🇱</div><span class="text-[9px] font-bold text-slate-600">PL</span></a>
+            <a href="austria.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇦🇹</div><span class="text-[9px] font-bold text-slate-600">AT</span></a>
+            <a href="denmark.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇩🇰</div><span class="text-[9px] font-bold text-slate-600">DK</span></a>
+            <a href="canada.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇨🇦</div><span class="text-[9px] font-bold text-slate-600">CA</span></a>
+            <a href="newzealand.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇳🇿</div><span class="text-[9px] font-bold text-slate-600">NZ</span></a>
+            <a href="singapore.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇸🇬</div><span class="text-[9px] font-bold text-slate-600">SG</span></a>
+            <a href="southkorea.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇰🇷</div><span class="text-[9px] font-bold text-slate-600">KR</span></a>
             <a href="czech.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇨🇿</div><span class="text-[9px] font-bold text-slate-600">CZ</span></a>
             <a href="latvia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇱🇻</div><span class="text-[9px] font-bold text-slate-600">LV</span></a>
             <a href="croatia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg">🇭🇷</div><span class="text-[9px] font-bold text-slate-600">HR</span></a>
@@ -973,6 +1072,12 @@
                 country_serbia: "Serbia", tag_construction: "Construction", desc_serbia: "High demand for skilled trades.",
                 country_albania: "Albania", tag_hospitality: "Hospitality", desc_albania: "Booming tourism sector offering seasonal roles.",
                 desc_croatia: "Growing opportunities in construction.", country_slovakia: "Slovakia", country_montenegro: "Montenegro",
+                country_canada: "Canada", desc_canada: "LMIA Work Permits with clear pathways to permanent residency.",
+                country_newzealand: "New Zealand", desc_newzealand: "Accredited Employer Work Visa (AEWV) opportunities across sectors.",
+                country_singapore: "Singapore", desc_singapore: "S Pass opportunities for mid-level professionals.",
+                country_southkorea: "South Korea", desc_southkorea: "E-Visa opportunities in the vibrant hospitality sector.",
+                country_austria: "Austria", desc_austria: "High quality of life with competitive salaries in multiple sectors.",
+                country_denmark: "Denmark", desc_denmark: "Strong economy offering opportunities in hospitality and healthcare.",
                 sec_expertise: "Our Expertise", sec_service_suite: "Comprehensive Service Suite",
                 serv_visa_appt: "Visa Appointment", desc_visa_appt: "Securing VFS and embassy slots efficiently.", btn_book_slot: "Book Slot",
                 serv_visa_doc: "Visa Documentation", desc_visa_doc: "Review, preparation, and legalization of documents.", btn_review_docs: "Review Docs",
@@ -1002,6 +1107,12 @@
                 country_serbia: "സെർബിയ", tag_construction: "നിർമ്മാണം", desc_serbia: "സ്കിൽഡ് ട്രേഡുകൾക്ക് ഡിമാൻഡ്.",
                 country_albania: "അൽബാനിയ", tag_hospitality: "ഹോസ്പിറ്റാലിറ്റി", desc_albania: "ടൂറിസം മേഖല.",
                 desc_croatia: "നിർമ്മാണ മേഖലയിലെ അവസരങ്ങൾ.", country_slovakia: "സ്ലോവാക്യ", country_montenegro: "മോണ്ടിനെഗ്രോ",
+                country_canada: "കാനഡ", desc_canada: "പെർമനൻ്റ് റെസിഡൻസിയിലേക്കുള്ള വ്യക്തമായ പാതയുള്ള LMIA വർക്ക് പെർമിറ്റുകൾ.",
+                country_newzealand: "ന്യൂസിലൻഡ്", desc_newzealand: "വിവിധ മേഖലകളിൽ അംഗീകൃത എംപ്ലോയർ വർക്ക് വിസ (AEWV) അവസരങ്ങൾ.",
+                country_singapore: "സിംഗപ്പൂർ", desc_singapore: "മിഡ്-ലെവൽ പ്രൊഫഷണലുകൾക്ക് എസ് പാസ് (S Pass) അവസരങ്ങൾ.",
+                country_southkorea: "ദക്ഷിണ കൊറിയ", desc_southkorea: "ഹോസ്പിറ്റാലിറ്റി മേഖലയിലെ ഈ-വിസ (E-Visa) അവസരങ്ങൾ.",
+                country_austria: "ഓസ്ട്രിയ", desc_austria: "മികച്ച ശമ്പളത്തോടെ ഉയർന്ന ജീവിത നിലവാരം.",
+                country_denmark: "ഡെൻമാർക്ക്", desc_denmark: "ഹോസ്പിറ്റാലിറ്റി, ഹെൽത്ത്കെയർ മേഖലകളിൽ അവസരങ്ങൾ.",
                 sec_expertise: "ഞങ്ങളുടെ വൈദഗ്ധ്യം", sec_service_suite: "സമഗ്ര സേവന സ്യൂട്ട്",
                 serv_visa_appt: "വിസ അപ്പോയിന്റ്മെന്റ്", desc_visa_appt: "വിഎഫ്എസ്, എംബസി സ്ലോട്ടുകൾ.", btn_book_slot: "ബുക്ക് ചെയ്യുക",
                 serv_visa_doc: "വിസ ഡോക്യുമെന്റേഷൻ", desc_visa_doc: "രേഖകളുടെ പരിശോധന.", btn_review_docs: "പരിശോധിക്കുക",
@@ -1034,6 +1145,12 @@
                 country_serbia: "सर्बिया", tag_construction: "निर्माण", desc_serbia: "कुशल ट्रेडों की मांग।",
                 country_albania: "अल्बानिया", tag_hospitality: "आतिथ्य", desc_albania: "पर्यटन क्षेत्र।",
                 desc_croatia: "निर्माण के अवसर।", country_slovakia: "स्लोवाकिया", country_montenegro: "मोंटेनेग्रो",
+                country_canada: "कनाडा", desc_canada: "पीआर (स्थायी निवास) के स्पष्ट मार्ग के साथ LMIA वर्क परमिट।",
+                country_newzealand: "न्यूज़ीलैंड", desc_newzealand: "विभिन्न क्षेत्रों में मान्यता प्राप्त नियोक्ता वर्क वीज़ा (AEWV) अवसर।",
+                country_singapore: "सिंगापुर", desc_singapore: "मिड-लेवल पेशेवरों के लिए एस पास (S Pass) अवसर।",
+                country_southkorea: "दक्षिण कोरिया", desc_southkorea: "हॉस्पिटैलिटी क्षेत्र में ई-वीज़ा (E-Visa) अवसर।",
+                country_austria: "ऑस्ट्रिया", desc_austria: "प्रतिस्पर्धी वेतन के साथ उच्च जीवन स्तर।",
+                country_denmark: "डेनमार्क", desc_denmark: "हॉस्पिटैलिटी और हेल्थकेयर में अवसरों वाली मजबूत अर्थव्यवस्था।",
                 sec_expertise: "हमारी विशेषज्ञता", sec_service_suite: "व्यापक सेवा सुइट",
                 serv_visa_appt: "वीज़ा नियुक्ति", desc_visa_appt: "VFS और दूतावास स्लॉट।", btn_book_slot: "स्लॉट बुक करें",
                 serv_visa_doc: "वीज़ा दस्तावेज़ीकरण", desc_visa_doc: "दस्तावेज़ समीक्षा।", btn_review_docs: "समीक्षा करें",
@@ -1066,6 +1183,12 @@
                 country_serbia: "செர்பியா", tag_construction: "கட்டுமானம்", desc_serbia: "திறமையான வர்த்தகர்களுக்கான தேவை.",
                 country_albania: "அல்பேனியா", tag_hospitality: "விருந்தோம்பல்", desc_albania: "சுற்றுலாத் துறை.",
                 desc_croatia: "கட்டுமான வாய்ப்புகள்.", country_slovakia: "ஸ்லோவாக்கியா", country_montenegro: "மான்டிநீக்ரோ",
+                country_canada: "கனடா", desc_canada: "நிரந்தர குடியுரிமைக்கான தெளிவான பாதையுடன் LMIA பணி அனுமதி.",
+                country_newzealand: "நியூசிலாந்து", desc_newzealand: "பல்வேறு துறைகளில் AEWV விசா வாய்ப்புகள்.",
+                country_singapore: "சிங்கப்பூர்", desc_singapore: "நடுத்தர நிலை நிபுணர்களுக்கான S Pass வாய்ப்புகள்.",
+                country_southkorea: "தென் கொரியா", desc_southkorea: "விருந்தோம்பல் துறையில் E-Visa வாய்ப்புகள்.",
+                country_austria: "ஆஸ்திரியா", desc_austria: "சிறந்த சம்பளத்துடன் உயர் வாழ்க்கை தரம்.",
+                country_denmark: "டென்மார்க்", desc_denmark: "விருந்தோம்பல் மற்றும் சுகாதாரத்துறையில் சிறந்த பொருளாதாரம்.",
                 sec_expertise: "எங்கள் நிபுணத்துவம்", sec_service_suite: "விரிவான சேவை தொகுப்பு",
                 serv_visa_appt: "விசா நியமனம்", desc_visa_appt: "VFS மற்றும் தூதரக இடங்கள்.", btn_book_slot: "முன்பதிவு செய்",
                 serv_visa_doc: "விசா ஆவணப்படுத்தல்", desc_visa_doc: "ஆவண ஆய்வு.", btn_review_docs: "ஆய்வு செய்",
@@ -1098,6 +1221,12 @@
                 country_serbia: "Serbia", tag_construction: "Konstruksyon", desc_serbia: "Demand para sa mga bihasang manggagawa.",
                 country_albania: "Albania", tag_hospitality: "Hospitality", desc_albania: "Sektor ng turismo.",
                 desc_croatia: "Oportunidad sa konstruksyon.", country_slovakia: "Slovakia", country_montenegro: "Montenegro",
+                country_canada: "Canada", desc_canada: "LMIA Work Permits na may malinaw na landas tungo sa PR.",
+                country_newzealand: "New Zealand", desc_newzealand: "Mga oportunidad sa AEWV sa iba't ibang sektor.",
+                country_singapore: "Singapore", desc_singapore: "Mga oportunidad sa S Pass para sa mga propesyonal.",
+                country_southkorea: "South Korea", desc_southkorea: "Mga oportunidad sa E-Visa sa sektor ng hospitality.",
+                country_austria: "Austria", desc_austria: "Mataas na kalidad ng buhay at mapagkumpitensyang suweldo.",
+                country_denmark: "Denmark", desc_denmark: "Matatag na ekonomiya sa hospitality at healthcare.",
                 sec_expertise: "Ang Aming Ekspertise", sec_service_suite: "Komprehensibong Serbisyo",
                 serv_visa_appt: "Appointment sa Visa", desc_visa_appt: "VFS at mga slot sa embahada.", btn_book_slot: "Mag-book",
                 serv_visa_doc: "Dokumentasyon ng Visa", desc_visa_doc: "Pagsusuri ng dokumento.", btn_review_docs: "Suriin",
@@ -1130,6 +1259,12 @@
                 country_serbia: "සර්බියාව", tag_construction: "ඉදිකිරීම්", desc_serbia: "පුහුණු ශ්‍රමික ඉල්ලුම.",
                 country_albania: "ඇල්බේනියාව", tag_hospitality: "ආගන්තුක සත්කාර", desc_albania: "සංචාරක අංශය.",
                 desc_croatia: "ඉදිකිරීම් අවස්ථා.", country_slovakia: "ස්ලොවැකියාව", country_montenegro: "මොන්ටිනිග්‍රෝ",
+                country_canada: "කැනඩාව", desc_canada: "PR සඳහා පැහැදිලි මාර්ග සහිත LMIA වැඩ බලපත්‍ර.",
+                country_newzealand: "නවසීලන්තය", desc_newzealand: "විවිධ අංශ හරහා AEWV වීසා අවස්ථා.",
+                country_singapore: "සිංගප්පූරුව", desc_singapore: "මධ්‍යම මට්ටමේ වෘත්තිකයන් සඳහා S Pass අවස්ථා.",
+                country_southkorea: "දකුණු කොරියාව", desc_southkorea: "සත්කාරක අංශයේ E-Visa අවස්ථා.",
+                country_austria: "ඔස්ට්‍රියාව", desc_austria: "තරඟකාරී වැටුප් සහිත උසස් ජීවන තත්ත්වය.",
+                country_denmark: "ඩෙන්මාර්කය", desc_denmark: "සෞඛ්‍ය සහ සත්කාරක අංශයේ අවස්ථා.",
                 sec_expertise: "අපගේ විශේෂඥතාව", sec_service_suite: "පූර්ණ සේවා",
                 serv_visa_appt: "වීසා පත්කිරීම", desc_visa_appt: "VFS සහ තානාපති කාර්යාල ස්ලොට්.", btn_book_slot: "වෙන්කරවා ගන්න",
                 serv_visa_doc: "වීසා ලේඛන", desc_visa_doc: "ලේඛන පරීක්ෂාව.", btn_review_docs: "පරීක්ෂා කරන්න",
@@ -1162,6 +1297,12 @@
                 country_serbia: "Serbia", tag_construction: "Ujenzi", desc_serbia: "Mahitaji ya biashara za ujuzi.",
                 country_albania: "Albania", tag_hospitality: "Ukarimu", desc_albania: "Sekta ya utalii.",
                 desc_croatia: "Fursa za ujenzi.", country_slovakia: "Slovakia", country_montenegro: "Montenegro",
+                country_canada: "Canada", desc_canada: "Vibali vya Kazi vya LMIA vilivyo na njia wazi ya ukazi.",
+                country_newzealand: "New Zealand", desc_newzealand: "Fursa za Visa ya AEWV katika sekta mbalimbali.",
+                country_singapore: "Singapore", desc_singapore: "Fursa za S Pass kwa wataalamu wa kiwango cha kati.",
+                country_southkorea: "Korea Kusini", desc_southkorea: "Fursa za E-Visa katika sekta ya ukarimu.",
+                country_austria: "Austria", desc_austria: "Mishahara shindani na ubora wa maisha.",
+                country_denmark: "Denmark", desc_denmark: "Uchumi imara na fursa katika ukarimu na afya.",
                 sec_expertise: "Utaalam Wetu", sec_service_suite: "Huduma Kamili",
                 serv_visa_appt: "Uteuzi wa Visa", desc_visa_appt: "Slots za VFS na ubalozi.", btn_book_slot: "Weka Nafasi",
                 serv_visa_doc: "Nyaraka za Visa", desc_visa_doc: "Mapitio ya nyaraka.", btn_review_docs: "Kagua",
@@ -1179,6 +1320,12 @@
 
         const searchData = [
             // --- CORE NAVIGATION & COUNTRIES ---
+            { title: "Canada", type: "Country", url: "canada.html", icon: "🇨🇦", keywords: "canada, lmia, agriculture, pr, express entry" },
+            { title: "New Zealand", type: "Country", url: "newzealand.html", icon: "🇳🇿", keywords: "new zealand, aewv, work visa, nz" },
+            { title: "Singapore", type: "Country", url: "singapore.html", icon: "🇸🇬", keywords: "singapore, s pass, asia, professional" },
+            { title: "South Korea", type: "Country", url: "southkorea.html", icon: "🇰🇷", keywords: "south korea, evisa, seoul, hospitality" },
+            { title: "Austria", type: "Country", url: "austria.html", icon: "🇦🇹", keywords: "austria, vienna, europe, work permit" },
+            { title: "Denmark", type: "Country", url: "denmark.html", icon: "🇩🇰", keywords: "denmark, copenhagen, scandinavia, work permit" },
             { title: "Germany", type: "Country", url: "germany.html", icon: "🇩🇪", keywords: "deutschland, berlin, visa, opportunity, eu" },
             { title: "Netherlands", type: "Country", url: "netherlands.html", icon: "🇳🇱", keywords: "holland, amsterdam, visa, work permit" },
             { title: "Sweden", type: "Country", url: "sweden.html", icon: "🇸🇪", keywords: "sverige, stockholm, scandinavia, nordics" },
@@ -1205,6 +1352,14 @@
             { title: "Corporate B2B", type: "Service", url: "corporate.html", icon: "🏢", keywords: "business, partnership, hr, recruitment" },
             { title: "Free Assessment", type: "Tool", url: "assessment.html", icon: "📝", keywords: "eligibility, check, points" },
             { title: "Book Consultation", type: "Tool", url: "https://app.benefitz.online/#/booking", icon: "📞", keywords: "call, meeting, talk, expert" },
+            
+            // --- NEW COUNTRIES JOBS ---
+            { title: "Farm Worker", type: "Job", url: "canada.html", icon: "🚜", keywords: "canada, agriculture, farm, harvesting" },
+            { title: "Supermarket Assistant", type: "Job", url: "newzealand.html", icon: "🛒", keywords: "new zealand, retail, sales, supermarket" },
+            { title: "CNC Machine Operator", type: "Job", url: "singapore.html", icon: "🤖", keywords: "singapore, manufacturing, engineering" },
+            { title: "Waiter / Waitress", type: "Job", url: "southkorea.html", icon: "🍽️", keywords: "south korea, hospitality, food, beverage" },
+            { title: "Storekeeper", type: "Job", url: "austria.html", icon: "📦", keywords: "austria, logistics, warehouse" },
+            { title: "Dental Assistant", type: "Job", url: "denmark.html", icon: "🦷", keywords: "denmark, healthcare, medical" },
 
             // --- SWEDEN (Complete List ~109 Roles) ---
             { title: "Civil Engineer", type: "Job", url: "sweden.html", icon: "👷", keywords: "sweden, civil, construction, planning" },
@@ -1509,6 +1664,8 @@
                                     <a href="italy.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">Italy</a>
                                     <a href="france.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">France</a>
                                     <a href="poland.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">Poland</a>
+                                    <a href="austria.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">Austria</a>
+                                    <a href="denmark.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">Denmark</a>
                                     <a href="latvia.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">Latvia</a>
                                     <a href="croatia.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">Croatia</a>
                                     <a href="czech.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all">Czech Republic</a>
@@ -1516,8 +1673,12 @@
                                 </div>
                             </div>
                             <div class="w-1/3">
-                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2"><span class="w-1.5 h-4 rounded-full bg-theme-secondary"></span> Non-EU</h3>
+                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2"><span class="w-1.5 h-4 rounded-full bg-theme-secondary"></span> Non-EU & Global</h3>
                                 <div class="flex flex-col gap-1">
+                                    <a href="canada.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Canada</a>
+                                    <a href="newzealand.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">New Zealand</a>
+                                    <a href="singapore.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Singapore</a>
+                                    <a href="southkorea.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">South Korea</a>
                                     <a href="serbia.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Serbia</a>
                                     <a href="macedonia.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Macedonia</a>
                                     <a href="albania.html" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Albania</a>
@@ -1578,12 +1739,12 @@
                     <div>
                         <h4 class="font-bold text-brand-black text-xs mb-6 uppercase tracking-widest" data-i18n="footer_destinations">Destinations</h4>
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                            <li><a href="canada.html" data-i18n="country_canada" class="hover:text-theme-primary transition">Canada</a></li>
+                            <li><a href="newzealand.html" data-i18n="country_newzealand" class="hover:text-theme-primary transition">New Zealand</a></li>
                             <li><a href="germany.html" data-i18n="country_germany" class="hover:text-theme-primary transition">Germany</a></li>
                             <li><a href="sweden.html" data-i18n="country_sweden" class="hover:text-theme-primary transition">Sweden</a></li>
-                            <li><a href="finland.html" data-i18n="country_finland" class="hover:text-theme-primary transition">Finland</a></li>
-                            <li><a href="italy.html" data-i18n="country_italy" class="hover:text-theme-primary transition">Italy</a></li>
-                            <li><a href="france.html" data-i18n="country_france" class="hover:text-theme-primary transition">France</a></li>
-                            <li><a href="poland.html" data-i18n="country_poland" class="hover:text-theme-primary transition">Poland</a></li>
+                            <li><a href="singapore.html" data-i18n="country_singapore" class="hover:text-theme-primary transition">Singapore</a></li>
+                            <li><a href="denmark.html" data-i18n="country_denmark" class="hover:text-theme-primary transition">Denmark</a></li>
                         </ul>
                     </div>
 
@@ -1660,12 +1821,13 @@
                 
                 // Vibrant Color Palette
                 this.colors = [
+                    '#D80621', // Red (Canada)
+                    '#00247D', // Blue (New Zealand)
+                    '#EF4444', // Red (Singapore)
                     '#2563EB', // Blue (Germany)
                     '#F59E0B', // Yellow (Netherlands)
                     '#F97316', // Orange (Sweden)
                     '#10B981', // Green (Finland)
-                    '#EF4444', // Red (Poland)
-                    '#3B82F6', // Light Blue (Czech)
                     '#8B5CF6'  // Purple (Croatia)
                 ];
 
@@ -2005,7 +2167,7 @@
             
             // Initialize Clean Header (No 3D)
             const heroTextEl = document.getElementById('hero-title-text'); // SVG Text Element
-            const countries = ["GERMANY", "NETHERLANDS", "SWEDEN", "FINLAND", "POLAND", "CZECH REPUBLIC", "CROATIA"];
+            const countries = ["CANADA", "NEW ZEALAND", "SINGAPORE", "GERMANY", "NETHERLANDS", "SWEDEN", "FINLAND", "POLAND", "SOUTH KOREA", "DENMARK", "AUSTRIA", "CZECH REPUBLIC", "CROATIA"];
             
             if (heroTextEl) {
                 // Initialize Draw Loop
