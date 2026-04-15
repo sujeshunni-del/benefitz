@@ -12,7 +12,7 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sweden Airport Program | Benefitz International</title>
+    <title>Sweden Airport Program | BENEFITZ INTERNATIONAL</title>
     <meta name="description" content="Secure a 2-year renewable contract at Stockholm Arlanda Airport. 109 positions available in Engineering, Catering, Maintenance, and Healthcare.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,7 +100,7 @@
 
         /* OPTIMIZATION FOR MOBILE SPEED */
         a, button, input, select, textarea {
-            touch-action: manipulation; /* Removes 300ms tap delay on mobile */
+            touch-action: manipulation;
         }
 
         /* GLASS & CARD STYLES */
@@ -162,8 +162,7 @@
         .job-card-grid {
             background: #FFFFFF;
             border: 1px solid #E2E8F0; 
-            border-top: 4px solid #006AA7; /* theme-primary */
-            border-top-color: #006AA7;
+            border-top: 4px solid #006AA7; 
             border-radius: 16px; 
             padding: 12px; 
             display: flex;
@@ -180,14 +179,14 @@
         }
         .job-card-grid:hover {
             border-color: #CBD5E1; 
-            border-top-color: #FECC00; /* theme-secondary */
+            border-top-color: #FECC00; 
             background: #F8FAFC;
             transform: translateY(-6px);
             box-shadow: 0 15px 35px -10px rgba(0, 106, 167, 0.15); 
         }
         
         /* THEME ACCENTS */
-        .text-hero-accent { color: #FECC00; } /* theme-secondary */
+        .text-hero-accent { color: #FECC00; }
         .text-theme-primary { color: #006AA7; } 
         .bg-theme-primary { background-color: #006AA7; }
         .border-theme-primary { border-color: #006AA7; }
@@ -195,7 +194,7 @@
         .bg-theme-secondary { background-color: #FECC00; }
         .border-theme-secondary { border-color: #FECC00; }
         .modal-header-theme {
-            background-color: #006AA7; /* theme-primary */
+            background-color: #006AA7;
             color: #FFFFFF;
         }
         .text-highlight { color: #006AA7; font-weight: 700; background: rgba(0, 106, 167, 0.15); border-radius: 2px; padding: 0 1px; }
@@ -240,7 +239,7 @@
             box-shadow: 0 15px 40px -10px rgba(0, 106, 167, 0.2), 
                         0 4px 10px -2px rgba(0, 0, 0, 0.05),
                         inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
-            transform: translateZ(0); /* Hardware acceleration */
+            transform: translateZ(0); 
         }
         
         .dock-item {
@@ -285,11 +284,9 @@
             transform-origin: bottom center;
         }
 
-        /* FIX: Center horizontal while preserving toggle transition */
         .visible { opacity: 1 !important; visibility: visible !important; transform: translate(-50%, 0) scale(1) !important; }
         #mobileMenu.visible { transform: scale(1) !important; left: 0.75rem !important; right: 0.75rem !important; }
 
-        /* HAMBURGER MENU PADS - FROSTED GLASS EFFECT */
         .glass-pad-btn {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(20px) saturate(160%);
@@ -342,14 +339,13 @@
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col relative" id="page-body">
-    <!-- Adjusted padding-bottom: pb-32 for mobile to clear dock, md:pb-12 for desktop -->
     <main class="flex-grow w-full max-w-7xl mx-auto relative z-10 space-y-3 md:space-y-6 pt-16 md:pt-24 pb-32 md:pb-12 px-3 sm:px-6">
         
         <!-- Hero Section -->
         <header class="text-center space-y-3 md:space-y-4 animate-fade-in-up">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-frosted border border-theme-secondary/30 text-brand-black font-bold tracking-widest text-[9px] md:text-[10px] uppercase mb-2 md:mb-6 animate-fade-in-up shadow-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-theme-primary animate-pulse"></span>
-                <span data-i18n="hiring_now" class="text-slate-700">Recruiting: Sweden</span>
+                <span data-i18n="hiring_now" class="text-slate-700">Recruiting: Sweden 🇸🇪</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-theme-secondary animate-pulse"></span>
             </div>
 
@@ -369,9 +365,9 @@
                         <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                     </span>
                 </a>
-                <a href="https://wa.me/971588670129" target="_blank" class="w-full sm:w-auto glass-frosted px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-brand-black hover:bg-white/90 border-white/70 transition-all flex items-center justify-center gap-3 group">
-                    <span data-i18n="check_eligibility">Check Eligibility</span>
-                    <i class="fa-solid fa-clipboard-check text-theme-primary group-hover:scale-110 transition-transform"></i>
+                <a href="https://app.benefitz.online/#/booking" class="w-full sm:w-auto glass-frosted px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-brand-black hover:bg-white/90 border-white/70 transition-all flex items-center justify-center gap-3 group">
+                    <span data-i18n="nav_book">Book Consultation</span>
+                    <i class="fa-solid fa-calendar-days text-theme-primary group-hover:scale-110 transition-transform"></i>
                 </a>
             </div>
         </header>
@@ -390,7 +386,6 @@
                             autocomplete="off"
                             onkeyup="handleSearch(this.value)">
                     </div>
-                    <!-- Centered and Wrapped Filter Buttons -->
                     <div class="mt-2 md:mt-3 flex flex-wrap justify-center gap-2 pb-1" id="categoryButtons"></div>
                 </div>
                 <div class="text-center mt-2"><p id="jobCount" class="text-[9px] font-bold text-slate-500 uppercase tracking-widest inline-block px-2 py-0.5 rounded-full bg-slate-100">Loading...</p></div>
@@ -528,7 +523,7 @@
                 </div>
             </div>
             <div class="p-4 md:p-5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row gap-2.5">
-                 <a href="https://wa.me/971588670129" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-theme-primary text-white py-2.5 md:py-3.5 rounded-xl font-bold shadow-lg hover:shadow-nether-primary/40 hover:-translate-y-0.5 transition-all text-xs md:text-base">
+                 <a href="https://wa.me/971588670129" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-theme-primary text-white py-2.5 md:py-3.5 rounded-xl font-bold shadow-lg hover:shadow-theme-primary/40 hover:-translate-y-0.5 transition-all text-xs md:text-base">
                     <span data-i18n="modal_apply">Apply Now</span> <i class="fa-solid fa-paper-plane text-[10px]"></i>
                 </a>
                 <button onclick="closeModal()" class="flex items-center justify-center gap-2 px-4 py-2.5 md:py-3.5 rounded-xl border border-slate-300 text-slate-600 font-bold hover:bg-slate-100 transition-all text-[10px] md:text-sm">
@@ -566,14 +561,11 @@
 
     <a href="https://wa.me/971588670129" target="_blank" class="hidden md:flex fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 group shadow-lg border-2 border-white/50"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
 
-    <!-- REDESIGNED MOBILE DOCK STATION (iOS Fluidic Style) -->
+    <!-- REDESIGNED MOBILE DOCK STATION -->
     <div class="fixed bottom-2 inset-x-0 z-[100] md:hidden flex justify-center pointer-events-none safe-area-pb">
         <div class="pointer-events-auto w-[96%] max-w-[420px] px-2 h-[72px] rounded-[32px] flex items-center justify-between relative shadow-[0_20px_60px_-10px_rgba(0,106,167,0.3)] transition-all duration-300 ease-out border border-white/40 bg-white/60 backdrop-blur-2xl ring-1 ring-white/30 overflow-hidden">
-            
-            <!-- Fluid Glass Background Layer -->
             <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
 
-            <!-- Tab 1: Home -->
             <a href="index.html" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
                 <div class="flex flex-col items-center justify-center gap-1">
                     <div class="text-xl text-slate-500 group-hover:text-theme-primary transition-colors">
@@ -583,7 +575,6 @@
                 </div>
             </a>
 
-            <!-- Tab 2: Language -->
             <button onclick="toggleMobileLanguage()" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
                 <div class="flex flex-col items-center justify-center gap-1">
                     <div class="text-xl text-slate-500 group-hover:text-theme-primary transition-colors">
@@ -593,18 +584,14 @@
                 </div>
             </button>
 
-            <!-- CENTER FAB: Destinations (Glow & Integrated) -->
             <div class="w-20 flex justify-center items-center z-20">
                 <button onclick="toggleMobileDestinations()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#006AA7] to-[#3B82F6] flex items-center justify-center text-white transform transition-all active:scale-90 group relative">
-                    <!-- Creative Glow Effect -->
                     <div class="absolute inset-0 rounded-full bg-blue-500 blur-md opacity-40 group-hover:opacity-70 animate-pulse-slow"></div>
                     <div class="absolute inset-0 rounded-full border border-white/30"></div>
-                    
                     <i class="fa-solid fa-earth-europe text-2xl relative z-10 drop-shadow-md group-hover:rotate-12 transition-transform duration-500"></i>
                 </button>
             </div>
 
-            <!-- Tab 3: Apply -->
             <button onclick="toggleMobileApply()" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
                  <div class="flex flex-col items-center justify-center gap-1">
                     <div class="text-xl text-slate-500 group-hover:text-theme-primary transition-colors">
@@ -614,7 +601,6 @@
                 </div>
             </button>
 
-            <!-- Tab 4: Whatsapp -->
             <a href="https://wa.me/971588670129" target="_blank" class="dock-item group w-16 flex-shrink-0 z-10 active:scale-95 transition-transform">
                  <div class="flex flex-col items-center justify-center gap-1">
                     <div class="text-xl text-[#25D366] group-hover:text-green-600 transition-colors drop-shadow-sm">
@@ -623,7 +609,6 @@
                     <span class="text-[9px] font-bold text-slate-500 group-hover:text-green-600 tracking-wide">Chat</span>
                 </div>
             </a>
-
         </div>
     </div>
 
@@ -633,12 +618,8 @@
             <span class="text-xs font-black text-slate-800 uppercase tracking-widest pl-2 drop-shadow-sm">Start Journey</span>
             <button onclick="toggleMobileApply()" class="w-8 h-8 rounded-full bg-white/40 flex items-center justify-center text-slate-700 hover:bg-white/60"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="grid grid-cols-2 gap-3">
-            <a href="https://wa.me/971588670129" target="_blank" class="flex flex-col items-center justify-center p-4 rounded-2xl glass-pad-btn text-center aspect-square">
-                <div class="w-12 h-12 rounded-full bg-white/80 shadow-sm flex items-center justify-center text-theme-primary mb-2 text-xl"><i class="fa-solid fa-clipboard-list"></i></div>
-                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Assessment</span>
-            </a>
-            <a href="https://wa.me/971588670129" target="_blank" class="flex flex-col items-center justify-center p-4 rounded-2xl glass-pad-btn text-center aspect-square">
+        <div class="grid grid-cols-1 gap-3">
+            <a href="book.html" class="flex flex-col items-center justify-center p-4 rounded-2xl glass-pad-btn text-center aspect-square">
                 <div class="w-12 h-12 rounded-full bg-white/80 shadow-sm flex items-center justify-center text-theme-secondary mb-2 text-xl"><i class="fa-solid fa-calendar-check"></i></div>
                 <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Book Now</span>
             </a>
@@ -667,82 +648,39 @@
             <button onclick="toggleMobileDestinations()" class="w-8 h-8 rounded-full bg-white/40 flex items-center justify-center text-slate-700 hover:bg-white/60"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="grid grid-cols-4 gap-3 max-h-[50vh] overflow-y-auto p-2 custom-scrollbar">
-            <a href="montenegro.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇲🇪</div>
-                <span class="text-[9px] font-bold text-slate-600">ME</span>
-            </a>
-            <a href="slovakia.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇸🇰</div>
-                <span class="text-[9px] font-bold text-slate-600">SK</span>
-            </a>
-            <a href="germany.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇩🇪</div>
-                <span class="text-[9px] font-bold text-slate-600">DE</span>
-            </a>
-            <a href="finland.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇫🇮</div>
-                <span class="text-[9px] font-bold text-slate-600">FI</span>
-            </a>
-            <a href="sweden.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border-2 border-theme-primary group-hover:scale-110 transition-transform">🇸🇪</div>
-                <span class="text-[9px] font-bold text-theme-primary">SE</span>
-            </a>
-            <a href="netherlands.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇳🇱</div>
-                <span class="text-[9px] font-bold text-slate-600">NL</span>
-            </a>
-            <a href="italy.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇮🇹</div>
-                <span class="text-[9px] font-bold text-slate-600">IT</span>
-            </a>
-            <a href="france.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇫🇷</div>
-                <span class="text-[9px] font-bold text-slate-600">FR</span>
-            </a>
-            <a href="poland.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇵🇱</div>
-                <span class="text-[9px] font-bold text-slate-600">PL</span>
-            </a>
-            <a href="czech.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇨🇿</div>
-                <span class="text-[9px] font-bold text-slate-600">CZ</span>
-            </a>
-            <a href="latvia.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇱🇻</div>
-                <span class="text-[9px] font-bold text-slate-600">LV</span>
-            </a>
-            <a href="croatia.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇭🇷</div>
-                <span class="text-[9px] font-bold text-slate-600">HR</span>
-            </a>
-            <a href="serbia.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇷🇸</div>
-                <span class="text-[9px] font-bold text-slate-600">RS</span>
-            </a>
-            <a href="macedonia.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇲🇰</div>
-                <span class="text-[9px] font-bold text-slate-600">MK</span>
-            </a>
-            <a href="albania.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇦🇱</div>
-                <span class="text-[9px] font-bold text-slate-600">AL</span>
-            </a>
-            <a href="belarus.html" class="flex flex-col items-center gap-1 group">
-                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-lg border border-white/60 group-hover:scale-110 transition-transform">🇧🇾</div>
-                <span class="text-[9px] font-bold text-slate-600">BY</span>
-            </a>
+            <div class="col-span-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2 mb-1 border-b border-black/5 pb-1">Schengen Area</div>
+            <a href="austria.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇦🇹</div><span class="text-[9px] font-bold text-slate-600">AT</span></a>
+            <a href="croatia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇭🇷</div><span class="text-[9px] font-bold text-slate-600">HR</span></a>
+            <a href="czech.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇨🇿</div><span class="text-[9px] font-bold text-slate-600">CZ</span></a>
+            <a href="denmark.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇩🇰</div><span class="text-[9px] font-bold text-slate-600">DK</span></a>
+            <a href="finland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇮</div><span class="text-[9px] font-bold text-slate-600">FI</span></a>
+            <a href="france.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇷</div><span class="text-[9px] font-bold text-slate-600">FR</span></a>
+            <a href="germany.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇩🇪</div><span class="text-[9px] font-bold text-slate-600">DE</span></a>
+            <a href="latvia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇱🇻</div><span class="text-[9px] font-bold text-slate-600">LV</span></a>
+            <a href="netherlands.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇳🇱</div><span class="text-[9px] font-bold text-slate-600">NL</span></a>
+            <a href="poland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇵🇱</div><span class="text-[9px] font-bold text-slate-600">PL</span></a>
+            <a href="slovakia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇰</div><span class="text-[9px] font-bold text-slate-600">SK</span></a>
+            <a href="sweden.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border-2 border-theme-primary flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇪</div><span class="text-[9px] font-bold text-theme-primary">SE</span></a>
+            
+            <div class="col-span-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-3 mb-1 border-b border-black/5 pb-1">Non-EU & Global</div>
+            <a href="albania.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇦🇱</div><span class="text-[9px] font-bold text-slate-600">AL</span></a>
+            <a href="belarus.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇧🇾</div><span class="text-[9px] font-bold text-slate-600">BY</span></a>
+            <a href="canada.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇨🇦</div><span class="text-[9px] font-bold text-slate-600">CA</span></a>
+            <a href="georgia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇬🇪</div><span class="text-[9px] font-bold text-slate-600">GE</span></a>
+            <a href="kazakhstan.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇰🇿</div><span class="text-[9px] font-bold text-slate-600">KZ</span></a>
+            <a href="macedonia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇰</div><span class="text-[9px] font-bold text-slate-600">MK</span></a>
+            <a href="montenegro.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇪</div><span class="text-[9px] font-bold text-slate-600">ME</span></a>
+            <a href="newzealand.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇳🇿</div><span class="text-[9px] font-bold text-slate-600">NZ</span></a>
+            <a href="russia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇷🇺</div><span class="text-[9px] font-bold text-slate-600">RU</span></a>
+            <a href="serbia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇷🇸</div><span class="text-[9px] font-bold text-slate-600">RS</span></a>
+            <a href="singapore.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇬</div><span class="text-[9px] font-bold text-slate-600">SG</span></a>
+            <a href="southkorea.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇰🇷</div><span class="text-[9px] font-bold text-slate-600">KR</span></a>
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        const LOGO_URL = "https://raw.githubusercontent.com/sujeshunni-del/benefitz/6a6a41799761a3308bd861615c1534c76c037859/benefits.svg";
-        const WHATSAPP_URL = "https://wa.me/971588670129";
-        const INSTAGRAM_URL = "https://www.instagram.com/benefitz_int/";
-        const EMAIL_ADDRESS = "benefitzic@gmail.com";
-        const PHONE_DISPLAY = "+971 58 867 0129";
-        const ADDRESS_LINE_1 = "Burjuman Business Tower Building, Urban Sky Business center ";
-        const ADDRESS_LINE_2 = "Burjuman, Dubai, UAE";
+        const LOGO_URL = "https://raw.githubusercontent.com/sujeshunni-del/benefitz/5d7d082261f97f7aaa7b31ff578bbd3d7ec75922/logo1-01.png";
         
         // --- MASTER PAGE CONFIGURATION FOR SWEDEN ---
         const PAGE_CONFIG = {
@@ -756,11 +694,11 @@
             <div class="floating-nav w-full max-w-7xl px-3 py-1.5 md:px-4 md:py-2.5 flex justify-between items-center transition-all duration-300 shadow-lg shadow-slate-200/20" id="navbar">
                 <a href="index.html" class="flex items-center gap-1.5 md:gap-4 group px-2 md:px-4">
                     <div class="w-7 h-7 md:w-11 md:h-11 rounded-full flex items-center justify-center glass-frosted overflow-hidden p-1 flex-shrink-0 transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,106,167,0.6)] hover:scale-110 border border-white/50 bg-white/70 backdrop-blur-md">
-                        <img src="${LOGO_URL}" alt="Benefitz International Logo" class="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+                        <img src="${LOGO_URL}" alt="BENEFITZ Logo" class="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(0,0,0,0.1)]">
                     </div>
                     <div class="block leading-tight"> 
                         <h1 class="font-bold text-brand-black text-xs md:text-xl tracking-wide whitespace-nowrap">BENEFITZ</h1>
-                        <p class="text-[7px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] md:tracking-[0.2em]">International</p>
+                        <p class="text-[7px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] md:tracking-[0.2em]">INTERNATIONAL</p>
                     </div>
                 </a>
                 <div class="hidden lg:flex items-center gap-1">
@@ -769,30 +707,38 @@
                         <button data-i18n="nav_programs" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70 flex items-center gap-1">Programs <svg class="w-4 h-4 text-slate-400 group-hover:text-theme-primary transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
                         <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[800px] dropdown-glass rounded-3xl p-8 flex gap-8 shadow-2xl z-50">
                             <!-- Desktop Dropdown content ... -->
-                            <div class="w-2/3 border-r border-slate-100 pr-6">
+                            <div class="w-1/2 border-r border-slate-100 pr-6">
                                 <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2"><span class="w-1.5 h-4 rounded-full bg-blue-500"></span> Schengen Area</h3>
                                 <div class="grid grid-cols-2 gap-y-1 gap-x-4">
-                                    <a href="slovakia.html" data-i18n="country_slovakia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Slovakia <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="germany.html" data-i18n="country_germany" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Germany <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="finland.html" data-i18n="country_finland" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Finland <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="sweden.html" data-i18n="country_sweden" class="px-4 py-2.5 rounded-xl text-sm font-bold text-theme-primary bg-theme-primary/5 transition-all flex items-center justify-between group/item">Sweden <i class="fa-solid fa-star text-[10px]"></i></a>
-                                    <a href="netherlands.html" data-i18n="country_netherlands" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Netherlands <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="italy.html" data-i18n="country_italy" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Italy <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="france.html" data-i18n="country_france" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">France <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="poland.html" data-i18n="country_poland" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Poland <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="czech.html" data-i18n="country_czech" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Czech <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
-                                    <a href="latvia.html" data-i18n="country_latvia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Latvia <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="austria.html" data-i18n="country_austria" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Austria <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
                                     <a href="croatia.html" data-i18n="country_croatia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Croatia <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="czech.html" data-i18n="country_czech" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Czech Republic <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="denmark.html" data-i18n="country_denmark" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Denmark <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="finland.html" data-i18n="country_finland" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Finland <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="france.html" data-i18n="country_france" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">France <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="germany.html" data-i18n="country_germany" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Germany <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="latvia.html" data-i18n="country_latvia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Latvia <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="netherlands.html" data-i18n="country_netherlands" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Netherlands <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="poland.html" data-i18n="country_poland" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Poland <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="slovakia.html" data-i18n="country_slovakia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-primary hover:bg-blue-50 transition-all flex items-center justify-between group/item">Slovakia <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-2 group-hover/item:translate-x-0"></i></a>
+                                    <a href="sweden.html" data-i18n="country_sweden" class="px-4 py-2.5 rounded-xl text-sm font-bold text-theme-primary bg-theme-primary/5 transition-all flex items-center justify-between group/item">Sweden <i class="fa-solid fa-star text-[10px]"></i></a>
                                 </div>
                             </div>
-                            <div class="w-1/3">
-                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2"><span class="w-1.5 h-4 rounded-full bg-theme-secondary"></span> Non-EU</h3>
-                                <div class="flex flex-col gap-1">
-                                    <a href="montenegro.html" data-i18n="country_montenegro" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Montenegro</a>
-                                    <a href="serbia.html" data-i18n="country_serbia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Serbia</a>
-                                    <a href="macedonia.html" data-i18n="country_macedonia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Macedonia</a>
-                                    <a href="albania.html" data-i18n="country_albania" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Albania</a>
-                                    <a href="belarus.html" data-i18n="country_belarus" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all">Belarus</a>
+                            <div class="w-1/2 pl-2">
+                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2"><span class="w-1.5 h-4 rounded-full bg-theme-secondary"></span> Non-EU & Global</h3>
+                                <div class="grid grid-cols-2 gap-y-1 gap-x-4">
+                                    <a href="albania.html" data-i18n="country_albania" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Albania</a>
+                                    <a href="belarus.html" data-i18n="country_belarus" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Belarus</a>
+                                    <a href="canada.html" data-i18n="country_canada" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Canada</a>
+                                    <a href="georgia.html" data-i18n="country_georgia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Georgia</a>
+                                    <a href="kazakhstan.html" data-i18n="country_kazakhstan" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Kazakhstan</a>
+                                    <a href="macedonia.html" data-i18n="country_macedonia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Macedonia</a>
+                                    <a href="montenegro.html" data-i18n="country_montenegro" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Montenegro</a>
+                                    <a href="newzealand.html" data-i18n="country_newzealand" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">New Zealand</a>
+                                    <a href="russia.html" data-i18n="country_russia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Russia</a>
+                                    <a href="serbia.html" data-i18n="country_serbia" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Serbia</a>
+                                    <a href="singapore.html" data-i18n="country_singapore" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">Singapore</a>
+                                    <a href="southkorea.html" data-i18n="country_southkorea" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-theme-secondary hover:bg-theme-secondary/5 transition-all flex items-center justify-between group/item">South Korea</a>
                                 </div>
                             </div>
                         </div>
@@ -808,7 +754,6 @@
                             <a href="corporate_b2b.html" data-i18n="serv_corp" class="px-4 py-3 rounded-2xl text-sm font-bold text-brand-purple hover:bg-brand-purple/10 transition-all flex items-center justify-between">Corporate B2B Solution <i class="fa-solid fa-briefcase text-brand-purple/50"></i></a>
                         </div>
                     </div>
-                    <a href="assessment.html" data-i18n="nav_assessment" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70">Free Assessment</a>
                     <a href="about.html" data-i18n="nav_about" class="px-4 py-2 text-base text-brand-black hover:text-theme-primary font-medium transition rounded-full hover:bg-white/70">About Us</a>
                 </div>
                 <div class="flex items-center gap-4 sm:gap-3 px-2">
@@ -823,59 +768,57 @@
             </div>
             
             <div id="mobileMenu" class="pointer-events-auto fixed top-16 left-3 right-3 max-h-[75vh] bg-white/70 backdrop-blur-3xl rounded-[2rem] border border-white/40 shadow-2xl z-[120] transform origin-top transition-all duration-300 ease-out opacity-0 invisible scale-95 flex flex-col md:hidden overflow-hidden">
-                <!-- Quick Actions Grid - COMPACTED -->
-                <div class="p-3 grid grid-cols-2 gap-2 border-b border-white/20">
+                <div class="p-3 grid grid-cols-1 gap-2 border-b border-white/20">
                     <a href="index.html" class="flex flex-col items-center justify-center p-3 rounded-2xl glass-pad-btn group relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <i class="fa-solid fa-house text-xl mb-1 text-theme-primary group-hover:scale-110 transition-transform relative z-10"></i>
                         <span class="text-[9px] font-bold uppercase tracking-wider text-slate-800 relative z-10" data-i18n="nav_home">Home</span>
                     </a>
-                    <a href="assessment.html" class="flex flex-col items-center justify-center p-3 rounded-2xl glass-pad-btn group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <i class="fa-solid fa-clipboard-check text-xl mb-1 text-theme-secondary group-hover:scale-110 transition-transform relative z-10"></i>
-                        <span class="text-[9px] font-bold uppercase tracking-wider text-slate-800 relative z-10" data-i18n="nav_assessment">Assess</span>
-                    </a>
                 </div>
 
-                <!-- Destinations List Categorized - COMPACTED -->
                 <div class="py-2 overflow-y-auto custom-scrollbar flex-grow" data-lenis-prevent>
                     <div class="flex items-center justify-between px-4 mb-2">
                         <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest" data-i18n="footer_destinations">Destinations</span>
                         <i class="fa-solid fa-arrow-right-long text-slate-300 text-[10px]"></i>
                     </div>
 
-                    <!-- Schengen Section -->
                     <div class="px-3 pb-1">
                         <div class="text-[8px] font-bold text-blue-500/80 uppercase tracking-wider mb-2 pl-2 border-l-2 border-blue-500 flex items-center gap-2">Schengen Area <i class="fa-solid fa-passport text-[8px]"></i></div>
                         <div class="grid grid-cols-4 gap-y-2 gap-x-2">
-                            <a href="slovakia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇰</div><span class="text-[9px] font-bold text-slate-500">SK</span></a>
-                            <a href="germany.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇩🇪</div><span class="text-[9px] font-bold text-slate-500">DE</span></a>
-                            <a href="finland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇮</div><span class="text-[9px] font-bold text-slate-500">FI</span></a>
-                            <a href="sweden.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/80 shadow-md border-2 border-theme-primary flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇪</div><span class="text-[9px] font-bold text-theme-primary">SE</span></a>
-                            <a href="netherlands.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇳🇱</div><span class="text-[9px] font-bold text-slate-500">NL</span></a>
-                            <a href="italy.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇮🇹</div><span class="text-[9px] font-bold text-slate-500">IT</span></a>
-                            <a href="france.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇷</div><span class="text-[9px] font-bold text-slate-500">FR</span></a>
-                            <a href="poland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇵🇱</div><span class="text-[9px] font-bold text-slate-500">PL</span></a>
-                            <a href="czech.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇨🇿</div><span class="text-[9px] font-bold text-slate-500">CZ</span></a>
-                            <a href="latvia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇱🇻</div><span class="text-[9px] font-bold text-slate-500">LV</span></a>
+                            <a href="austria.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇦🇹</div><span class="text-[9px] font-bold text-slate-500">AT</span></a>
                             <a href="croatia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇭🇷</div><span class="text-[9px] font-bold text-slate-500">HR</span></a>
+                            <a href="czech.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇨🇿</div><span class="text-[9px] font-bold text-slate-500">CZ</span></a>
+                            <a href="denmark.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇩🇰</div><span class="text-[9px] font-bold text-slate-500">DK</span></a>
+                            <a href="finland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇮</div><span class="text-[9px] font-bold text-slate-500">FI</span></a>
+                            <a href="france.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇫🇷</div><span class="text-[9px] font-bold text-slate-500">FR</span></a>
+                            <a href="germany.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-theme-primary/20 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇩🇪</div><span class="text-[9px] font-bold text-slate-500">DE</span></a>
+                            <a href="latvia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇱🇻</div><span class="text-[9px] font-bold text-slate-500">LV</span></a>
+                            <a href="netherlands.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇳🇱</div><span class="text-[9px] font-bold text-slate-500">NL</span></a>
+                            <a href="poland.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇵🇱</div><span class="text-[9px] font-bold text-slate-500">PL</span></a>
+                            <a href="slovakia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇰</div><span class="text-[9px] font-bold text-slate-500">SK</span></a>
+                            <a href="sweden.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-sm border-2 border-theme-primary flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇪</div><span class="text-[9px] font-bold text-theme-primary">SE</span></a>
                         </div>
                     </div>
 
-                    <!-- Non-EU Section -->
                     <div class="px-3 pb-1 mt-1">
-                        <div class="text-[8px] font-bold text-theme-secondary/80 uppercase tracking-wider mb-2 pl-2 border-l-2 border-theme-secondary flex items-center gap-2">Non-EU Opportunities <i class="fa-solid fa-star text-[8px]"></i></div>
+                        <div class="text-[8px] font-bold text-theme-secondary/80 uppercase tracking-wider mb-2 pl-2 border-l-2 border-theme-secondary flex items-center gap-2">Non-EU & Global <i class="fa-solid fa-star text-[8px]"></i></div>
                         <div class="grid grid-cols-4 gap-y-2 gap-x-2">
-                            <a href="montenegro.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇪</div><span class="text-[9px] font-bold text-slate-500">ME</span></a>
-                            <a href="serbia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇷🇸</div><span class="text-[9px] font-bold text-slate-500">RS</span></a>
-                            <a href="macedonia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇰</div><span class="text-[9px] font-bold text-slate-500">MK</span></a>
                             <a href="albania.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇦🇱</div><span class="text-[9px] font-bold text-slate-500">AL</span></a>
                             <a href="belarus.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇧🇾</div><span class="text-[9px] font-bold text-slate-500">BY</span></a>
+                            <a href="canada.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇨🇦</div><span class="text-[9px] font-bold text-slate-500">CA</span></a>
+                            <a href="georgia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇬🇪</div><span class="text-[9px] font-bold text-slate-500">GE</span></a>
+                            <a href="kazakhstan.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇰🇿</div><span class="text-[9px] font-bold text-slate-500">KZ</span></a>
+                            <a href="macedonia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇰</div><span class="text-[9px] font-bold text-slate-500">MK</span></a>
+                            <a href="montenegro.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇲🇪</div><span class="text-[9px] font-bold text-slate-500">ME</span></a>
+                            <a href="newzealand.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇳🇿</div><span class="text-[9px] font-bold text-slate-500">NZ</span></a>
+                            <a href="russia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇷🇺</div><span class="text-[9px] font-bold text-slate-500">RU</span></a>
+                            <a href="serbia.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇷🇸</div><span class="text-[9px] font-bold text-slate-500">RS</span></a>
+                            <a href="singapore.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇸🇬</div><span class="text-[9px] font-bold text-slate-500">SG</span></a>
+                            <a href="southkorea.html" class="flex flex-col items-center gap-1 group"><div class="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md shadow-sm border border-white/60 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">🇰🇷</div><span class="text-[9px] font-bold text-slate-500">KR</span></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Compact Services - COMPACTED -->
                 <div class="px-3 pb-3 bg-white/10 pt-3 border-t border-white/20 backdrop-blur-sm">
                     <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 block px-1" data-i18n="nav_services">Services</span>
                     <div class="grid grid-cols-3 gap-2">
@@ -894,7 +837,6 @@
                     </div>
                 </div>
 
-                <!-- Bottom Footer Actions - COMPACTED -->
                 <div class="p-3 bg-white/30 backdrop-blur-md border-t border-white/20 flex justify-between items-center">
                     <a href="about.html" class="text-[10px] font-bold text-slate-600 hover:text-brand-black transition" data-i18n="nav_about">About Us</a>
                     <a href="book.html" class="px-5 py-2 rounded-xl bg-brand-black text-white text-[10px] font-bold shadow-lg hover:bg-slate-800 transition uppercase tracking-wider" data-i18n="nav_book">Book Now</a>
@@ -906,35 +848,47 @@
         const GLOBAL_FOOTER = `
         <footer class="hidden md:block bg-white/60 backdrop-blur-md border-t border-slate-200/50 pt-20 pb-10">
             <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-20">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-12 mb-20">
                     <div class="lg:col-span-2">
                         <div class="flex items-center gap-4 mb-6">
                             <div class="w-12 h-12 rounded-2xl bg-white/50 border border-white/60 shadow-sm flex items-center justify-center p-2 backdrop-blur-sm">
-                                <img src="${LOGO_URL}" alt="Benefitz Logo" class="w-full h-full object-contain">
+                                <img src="${LOGO_URL}" alt="BENEFITZ Logo" class="w-full h-full object-contain">
                             </div>
                             <div class="block">
                                 <span class="block font-black text-xl text-slate-900 tracking-wide leading-none">BENEFITZ</span>
-                                <span class="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em]">International</span>
+                                <span class="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em]">INTERNATIONAL</span>
                             </div>
                         </div>
                         <p class="text-sm text-slate-500 max-w-xs leading-relaxed mb-8 font-medium" data-i18n="sec_standard_desc">Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration.</p>
                         <div class="flex gap-4">
-                            <a href="${WHATSAPP_URL}" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i></a>
-                            <a href="${INSTAGRAM_URL}" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#E1306C] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-instagram text-lg"></i></a>
-                            <a href="mailto:${EMAIL_ADDRESS}" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-brand-blue hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1"><i class="fa-solid fa-envelope text-lg"></i></a>
+                            <a href="https://wa.me/971588670129" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                            <a href="https://www.instagram.com/benefitz.international/" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-[#E1306C] hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1" target="_blank"><i class="fa-brands fa-instagram text-lg"></i></a>
+                            <a href="mailto:benefitzic@gmail.com" class="w-10 h-10 rounded-full bg-slate-50 hover:bg-brand-blue hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1"><i class="fa-solid fa-envelope text-lg"></i></a>
                         </div>
                     </div>
                     
-                    <div>
-                        <h4 class="font-bold text-brand-black text-xs mb-6 uppercase tracking-widest" data-i18n="footer_destinations">Destinations</h4>
-                        <ul class="space-y-4 text-sm text-slate-500 font-medium">
-                            <li><a href="sweden.html" data-i18n="country_sweden" class="text-theme-primary font-bold">Sweden</a></li>
-                            <li><a href="germany.html" data-i18n="country_germany" class="hover:text-theme-primary transition">Germany</a></li>
-                            <li><a href="finland.html" data-i18n="country_finland" class="hover:text-theme-primary transition">Finland</a></li>
-                            <li><a href="italy.html" data-i18n="country_italy" class="hover:text-theme-primary transition">Italy</a></li>
-                            <li><a href="france.html" data-i18n="country_france" class="hover:text-theme-primary transition">France</a></li>
-                            <li><a href="poland.html" data-i18n="country_poland" class="hover:text-theme-primary transition">Poland</a></li>
-                        </ul>
+                    <div class="lg:col-span-2">
+                        <h4 class="font-bold text-brand-black text-xs mb-6 uppercase tracking-widest" data-i18n="footer_destinations">Top Destinations</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                                <li><a href="canada.html" data-i18n="country_canada" class="hover:text-theme-primary transition">Canada</a></li>
+                                <li><a href="georgia.html" data-i18n="country_georgia" class="hover:text-theme-primary transition">Georgia</a></li>
+                                <li><a href="kazakhstan.html" data-i18n="country_kazakhstan" class="hover:text-theme-primary transition">Kazakhstan</a></li>
+                                <li><a href="newzealand.html" data-i18n="country_newzealand" class="hover:text-theme-primary transition">New Zealand</a></li>
+                                <li><a href="russia.html" data-i18n="country_russia" class="hover:text-theme-primary transition">Russia</a></li>
+                                <li><a href="singapore.html" data-i18n="country_singapore" class="hover:text-theme-primary transition">Singapore</a></li>
+                                <li><a href="southkorea.html" data-i18n="country_southkorea" class="hover:text-theme-primary transition">South Korea</a></li>
+                            </ul>
+                            <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                                <li><a href="austria.html" data-i18n="country_austria" class="hover:text-theme-primary transition">Austria</a></li>
+                                <li><a href="denmark.html" data-i18n="country_denmark" class="hover:text-theme-primary transition">Denmark</a></li>
+                                <li><a href="finland.html" data-i18n="country_finland" class="hover:text-theme-primary transition">Finland</a></li>
+                                <li><a href="germany.html" data-i18n="country_germany" class="hover:text-theme-primary transition">Germany</a></li>
+                                <li><a href="netherlands.html" data-i18n="country_netherlands" class="hover:text-theme-primary transition">Netherlands</a></li>
+                                <li><a href="poland.html" data-i18n="country_poland" class="hover:text-theme-primary transition">Poland</a></li>
+                                <li><a href="sweden.html" data-i18n="country_sweden" class="hover:text-theme-primary transition">Sweden</a></li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div>
@@ -952,21 +906,20 @@
                         <h4 class="font-bold text-brand-black text-xs mb-6 uppercase tracking-widest" data-i18n="footer_company">Company</h4>
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
                             <li><a href="about.html" data-i18n="footer_story" class="hover:text-theme-primary transition">Our Story</a></li>
-                            <li><a href="assessment.html" data-i18n="nav_assessment" class="hover:text-theme-primary transition">Free Assessment</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 class="font-bold text-brand-black text-xs mb-6 uppercase tracking-widest" data-i18n="footer_office">Office</h4>
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
-                            <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i><span>${ADDRESS_LINE_1}<br>${ADDRESS_LINE_2}</span></li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-brand-gold"></i><span>${PHONE_DISPLAY}</span></li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-brand-gold"></i><span>${EMAIL_ADDRESS}</span></li>
+                            <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i><span>Burjuman Business Tower Building<br>Urban Sky Business center , Burjuman<br>Dubai, UAE</span></li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-brand-gold"></i><span>+971 58 867 0129</span></li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-brand-gold"></i><span>benefitzic@gmail.com</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="border-t border-slate-200/50 pt-8 flex flex-col md:flex-row justify-between text-xs text-slate-400 font-medium">
-                    <p>&copy; 2025 Benefitz International. <span data-i18n="footer_rights">All rights reserved.</span></p>
+                    <p>&copy; 2025 BENEFITZ INTERNATIONAL. <span data-i18n="footer_rights">All rights reserved.</span></p>
                     <div class="flex gap-6 mt-4 md:mt-0"><a href="https://benefitz.international/privacy_policy.html" data-i18n="footer_privacy" class="hover:text-brand-black transition">Privacy Policy</a><a href="https://benefitz.international/terms.html" data-i18n="footer_terms" class="hover:text-brand-black transition">Terms of Service</a></div>
                 </div>
             </div>
@@ -1440,15 +1393,13 @@
                 package_title: "Sweden Airport Package", package_subtitle: "All-Inclusive Relocation",
                 total_inv: "Total Investment", price_note: "Milestone-based payments.", start_process: "Start Process Now",
                 modal_salary: "Monthly Salary Range", modal_process: "Process Time", modal_apply: "Apply Now",
-                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_assessment: "Free Assessment", nav_about: "About Us", nav_book: "Book Now",
+                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
                 benefit_acc: "Accommodation Provided", inc_consult: "Expert Consultation", inc_doc: "Documentation & Legalization", inc_flight: "Flight Ticket Included",
                 step_1: "Submission", step_2: "Registration", step_3: "Conditional Offer", step_4: "Original Offer", step_5: "Visa Filing", step_6: "Travel",
                 "Civil Construction": "Civil Construction", "Airport Workshop": "Airport Workshop", "Catering & Restaurant": "Catering & Restaurant", "Maintenance": "Maintenance", "Cargo Division": "Cargo Division", "Emergency Hospital": "Emergency Hospital",
-                // Countries
-                country_finland: "Finland", country_croatia: "Croatia", country_slovakia: "Slovakia", country_germany: "Germany", country_sweden: "Sweden", 
-                country_netherlands: "Netherlands", country_italy: "Italy", country_france: "France", country_poland: "Poland", country_czech: "Czech", 
-                country_latvia: "Latvia", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania", 
-                country_belarus: "Belarus"
+                country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_france: "France", country_poland: "Poland", country_southkorea: "South Korea", country_singapore: "Singapore", country_canada: "Canada", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_russia: "Russia", country_slovakia: "Slovakia", country_czech: "Czech Republic", country_latvia: "Latvia", country_croatia: "Croatia", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania", country_belarus: "Belarus",
+                serv_visa_appt: "Visa Appointment", serv_visa_doc: "Visa Documentation", serv_travel: "Travel Assistance", serv_insurance: "Insurance", serv_medical: "Medical Assistance", serv_corp: "Corporate B2B Solution",
+                sec_standard_desc: "Defining the industry benchmark for professionalism, absolute transparency, and sustained client success in global migration."
             },
             ml: {
                 hiring_now: `റിക്രൂട്ടിംഗ്: ${PAGE_CONFIG.countryName} ${PAGE_CONFIG.flagEmoji}`,
@@ -1460,9 +1411,12 @@
                 package_title: "സ്വീഡൻ എയർപോർട്ട് പാക്കേജ്", package_subtitle: "എല്ലാം ഉൾപ്പെടുന്ന പുനരധിവാസം",
                 total_inv: "ആകെ ചെലവ്", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_process: "പ്രോസസ്സിംഗ് സമയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
-                nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_assessment: "സൗജന്യ മൂല്യനിർണ്ണയം", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
+                nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
                 step_1: "സമർപ്പണം", step_2: "രജിസ്ട്രേഷൻ", step_3: "ഓഫർ ലെറ്റർ", step_4: "ഒറിജിനൽ ഓഫർ", step_5: "വിസ ഫയലിംഗ്", step_6: "യാത്ര",
-                "Civil Construction": "സിവിൽ കൺസ്ട്രക്ഷൻ", "Airport Workshop": "എയർപോർട്ട് വർക്ക്ഷോപ്പ്", "Catering & Restaurant": "കാറ്ററിംഗ് & റെസ്റ്റോറന്റ്", "Maintenance": "മെയിന്റനൻസ്", "Cargo Division": "കാർഗോ ഡിവിഷൻ", "Emergency Hospital": "എമർജൻസി ഹോസ്പിറ്റൽ"
+                "Civil Construction": "സിവിൽ കൺസ്ട്രക്ഷൻ", "Airport Workshop": "എയർപോർട്ട് വർക്ക്ഷോപ്പ്", "Catering & Restaurant": "കാറ്ററിംഗ് & റെസ്റ്റോറന്റ്", "Maintenance": "മെയിന്റനൻസ്", "Cargo Division": "കാർഗോ ഡിവിഷൻ", "Emergency Hospital": "എമർജൻസി ഹോസ്പിറ്റൽ",
+                country_newzealand: "ന്യൂസിലൻഡ്", country_denmark: "ഡെൻമാർക്ക്", country_austria: "ഓസ്ട്രിയ", country_germany: "ജർമ്മനി", country_sweden: "സ്വീഡൻ", country_finland: "ഫിൻലാൻഡ്", country_france: "ഫ്രാൻസ്", country_poland: "പോളണ്ട്", country_southkorea: "ദക്ഷിണ കൊറിയ", country_singapore: "സിംഗപ്പൂർ", country_canada: "കാനഡ", country_georgia: "ജോർജ്ജിയ", country_kazakhstan: "കസാക്കിസ്ഥാൻ", country_russia: "റഷ്യ", country_slovakia: "സ്ലോവാക്യ", country_czech: "ചെക്ക് റിപ്പബ്ലിക്", country_latvia: "ലാത്വിയ", country_croatia: "ക്രൊയേഷ്യ", country_montenegro: "മോണ്ടിനെഗ്രോ", country_serbia: "സെർബിയ", country_macedonia: "മാസിഡോണിയ", country_albania: "അൽബാനിയ", country_belarus: "ബെലാറസ്",
+                serv_visa_appt: "വിസ അപ്പോയിന്റ്മെന്റ്", serv_visa_doc: "വിസ ഡോക്യുമെന്റേഷൻ", serv_travel: "യാത്രാ സഹായം", serv_insurance: "ഇൻഷുറൻസ്", serv_medical: "മെഡിക്കൽ സഹായം", serv_corp: "കോർപ്പറേറ്റ് സൊല്യൂഷൻ",
+                sec_standard_desc: "ആഗോള കുടിയേറ്റത്തിൽ പ്രൊഫഷണലിസം, സുതാര്യത, വിജയകരമായ ക്ലയന്റ് സേവനം എന്നിവയിൽ വ്യവസായ നിലവാരം നിർവചിക്കുന്നു."
             },
             hi: {
                 hiring_now: `भर्ती: ${PAGE_CONFIG.countryName} ${PAGE_CONFIG.flagEmoji}`,
@@ -1474,9 +1428,12 @@
                 package_title: "स्वीडन एयरपोर्ट पैकेज", package_subtitle: "सभी समावेशी पुनर्वास",
                 total_inv: "कुल निवेश", price_note: "माइलस्टोन-आधारित भुगतान।", start_process: "प्रक्रिया शुरू करें",
                 modal_salary: "मासिक वेतन सीमा", modal_process: "प्रक्रिया समय", modal_apply: "अभी आवेदन करें",
-                nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_assessment: "निःशुल्क मूल्यांकन", nav_about: "हमारे बारे में", nav_book: "बुक करें",
+                nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "बुक करें",
                 step_1: "सबमिशन", step_2: "पंजीकरण", step_3: "ऑफर लेटर", step_4: "मूल ऑफर", step_5: "वीजा फाइलिंग", step_6: "यात्रा",
-                "Civil Construction": "सिविल निर्माण", "Airport Workshop": "एयरपोर्ट वर्कशॉप", "Catering & Restaurant": "खानपान और रेस्तरां", "Maintenance": "रखरखाव", "Cargo Division": "कार्गो विभाग", "Emergency Hospital": "आपातकालीन अस्पताल"
+                "Civil Construction": "सिविल निर्माण", "Airport Workshop": "एयरपोर्ट वर्कशॉप", "Catering & Restaurant": "खानपान और रेस्तरां", "Maintenance": "रखरखाव", "Cargo Division": "कार्गो विभाग", "Emergency Hospital": "आपातकालीन अस्पताल",
+                country_newzealand: "न्यूज़ीलैंड", country_denmark: "डेनमार्क", country_austria: "ऑस्ट्रिया", country_germany: "जर्मनी", country_sweden: "स्वीडन", country_finland: "फिनलैंड", country_france: "फ्रांस", country_poland: "पोलैंड", country_southkorea: "दक्षिण कोरिया", country_singapore: "सिंगापुर", country_canada: "कनाडा", country_georgia: "जॉर्जिया", country_kazakhstan: "कजाकिस्तान", country_russia: "रूस", country_slovakia: "स्लोवाकिया", country_czech: "चेक गणराज्य", country_latvia: "लातविया", country_croatia: "क्रोएशिया", country_montenegro: "मोंटेनेग्रो", country_serbia: "सर्बिया", country_macedonia: "मैसिडोनिया", country_albania: "अल्बानिया", country_belarus: "बेलारूस",
+                serv_visa_appt: "वीज़ा नियुक्ति", serv_visa_doc: "वीज़ा दस्तावेज़ीकरण", serv_travel: "यात्रा सहायता", serv_insurance: "बीमा", serv_medical: "चिकित्सा सहायता", serv_corp: "कॉर्पोरेट समाधान",
+                sec_standard_desc: "वैश्विक प्रवासन में व्यावसायिकता, पूर्ण पारदर्शिता और निरंतर ग्राहक सफलता के लिए उद्योग बेंचमार्क को परिभाषित करना।"
             },
             ta: {
                 hiring_now: `வேலைவாய்ப்பு: ${PAGE_CONFIG.countryName} ${PAGE_CONFIG.flagEmoji}`,
@@ -1488,9 +1445,12 @@
                 package_title: "ஸ்வீடன் விமான நிலையத் தொகுப்பு", package_subtitle: "அனைத்தையும் உள்ளடக்கிய இடமாற்றம்",
                 total_inv: "மொத்த முதலீடு", price_note: "கட்டண முறை.", start_process: "இப்போதே தொடங்குங்கள்",
                 modal_salary: "மாத சம்பளம்", modal_process: "செயல்முறை நேரம்", modal_apply: "விண்ணப்பிக்கவும்",
-                nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_assessment: "இலவச மதிப்பீடு", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
+                nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 step_1: "சமர்ப்பித்தல்", step_2: "பதிவு", step_3: "சலுகை கடிதம்", step_4: "அசல் சலுகை", step_5: "விசா தாக்கல்", step_6: "பயணம்",
-                "Civil Construction": "கட்டுமானத் துறை", "Airport Workshop": "விமான நிலைய பட்டறை", "Catering & Restaurant": "உணவுத் துறை", "Maintenance": "பராமரிப்பு", "Cargo Division": "சரக்கு பிரிவு", "Emergency Hospital": "மருத்துவமனை"
+                "Civil Construction": "கட்டுமானத் துறை", "Airport Workshop": "விமான நிலைய பட்டறை", "Catering & Restaurant": "உணவுத் துறை", "Maintenance": "பராமரிப்பு", "Cargo Division": "சரக்கு பிரிவு", "Emergency Hospital": "மருத்துவமனை",
+                country_newzealand: "நியூசிலாந்து", country_denmark: "டென்மார்க்", country_austria: "ஆஸ்திரியா", country_germany: "ஜெர்மனி", country_sweden: "ஸ்வீடன்", country_finland: "பின்லாந்து", country_france: "பிரான்ஸ்", country_poland: "போலந்து", country_southkorea: "தென் கொரியா", country_singapore: "சிங்கப்பூர்", country_canada: "கனடா", country_georgia: "ஜார்ஜியா", country_kazakhstan: "கஜகஸ்தான்", country_russia: "ரஷ்யா", country_slovakia: "ஸ்லோவாக்கியா", country_czech: "செக் குடியரசு", country_latvia: "லாட்வியா", country_croatia: "குரோஷியா", country_montenegro: "மான்டிநீக்ரோ", country_serbia: "செர்பியா", country_macedonia: "மாசிடோனியா", country_albania: "அல்பேனியா", country_belarus: "பெலாரஸ்",
+                serv_visa_appt: "விசா நியமனம்", serv_visa_doc: "விசா ஆவணங்கள்", serv_travel: "பயண உதவி", serv_insurance: "காப்பீடு", serv_medical: "மருத்துவ உதவி", serv_corp: "கார்ப்பரேட் தீர்வு",
+                sec_standard_desc: "உலகளாவிய குடியேற்றத்தில் தொழில்முறை, முழுமையான வெளிப்படைத்தன்மை மற்றும் வாடிக்கையாளர் வெற்றி ஆகியவற்றிற்கான துறை தரநிலையை வரையறுத்தல்."
             },
             fil: {
                 hiring_now: `Hiring Ngayon: ${PAGE_CONFIG.countryName} ${PAGE_CONFIG.flagEmoji}`,
@@ -1502,9 +1462,12 @@
                 package_title: "Sweden Airport Package", package_subtitle: "Lahat-kasama na Relokasyon",
                 total_inv: "Kabuuang Investment", price_note: "Milestone-based na bayad.", start_process: "Simulan ang Proseso",
                 modal_salary: "Sahod Buwan-buwan", modal_process: "Oras ng Proseso", modal_apply: "Mag-apply Ngayon",
-                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_assessment: "Libreng Assessment", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
+                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 step_1: "Pagsusumite", step_2: "Pagpaparehistro", step_3: "Offer Letter", step_4: "Orihinal na Alok", step_5: "Pag-file ng Visa", step_6: "Paglalakbay",
-                "Civil Construction": "Konstruksyon", "Airport Workshop": "Airport Workshop", "Catering & Restaurant": "Catering", "Maintenance": "Maintenance", "Cargo Division": "Cargo", "Emergency Hospital": "Ospital"
+                "Civil Construction": "Konstruksyon", "Airport Workshop": "Airport Workshop", "Catering & Restaurant": "Catering", "Maintenance": "Maintenance", "Cargo Division": "Cargo", "Emergency Hospital": "Ospital",
+                country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_france: "France", country_poland: "Poland", country_southkorea: "South Korea", country_singapore: "Singapore", country_canada: "Canada", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_russia: "Russia", country_slovakia: "Slovakia", country_czech: "Czechia", country_latvia: "Latvia", country_croatia: "Croatia", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania", country_belarus: "Belarus",
+                serv_visa_appt: "Appointment sa Visa", serv_visa_doc: "Dokumentasyon sa Visa", serv_travel: "Tulong sa Paglalakbay", serv_insurance: "Insurance", serv_medical: "Tulong Medikal", serv_corp: "Solusyon sa Corporate",
+                sec_standard_desc: "Pagtatakda ng pamantayan sa industriya para sa propesyonalismo, ganap na transparency, at tagumpay ng kliyente sa global migration."
             },
             si: {
                 hiring_now: `බඳවා ගැනීම්: ${PAGE_CONFIG.countryName} ${PAGE_CONFIG.flagEmoji}`,
@@ -1516,9 +1479,12 @@
                 package_title: "ස්වීඩන් ගුවන් තොටුපල පැකේජය", package_subtitle: "සියල්ල ඇතුළත්",
                 total_inv: "මුළු ආයෝජනය", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "ක්‍රියාවලිය අරඹන්න",
                 modal_salary: "මාසික වැටුප", modal_process: "කාලසීමාව", modal_apply: "දැන් අයදුම් කරන්න",
-                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_assessment: "නොමිලේ ඇගයීම", nav_about: "අප ගැන", nav_book: "වෙන්කරවා ගන්න",
+                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_about: "අප ගැන", nav_book: "වෙන්කරවා ගන්න",
                 step_1: "ඉදිරිපත් කිරීම", step_2: "ලියාපදිංචිය", step_3: "පිරිනැුම් ලිපිය", step_4: "මුල් පිරිනැුම", step_5: "වීසා ගොනු කිරීම", step_6: "සංචාරය",
-                "Civil Construction": "සිවිල් ඉදිකිරීම්", "Airport Workshop": "ගුවන් තොටුපල වැඩමුළුව", "Catering & Restaurant": "ආපනශාලා", "Maintenance": "නඩත්තු", "Cargo Division": "භාණ්ඩ", "Emergency Hospital": "රෝහල"
+                "Civil Construction": "සිවිල් ඉදිකිරීම්", "Airport Workshop": "ගුවන් තොටුපල වැඩමුළුව", "Catering & Restaurant": "ආපනශාලා", "Maintenance": "නඩත්තු", "Cargo Division": "භාණ්ඩ", "Emergency Hospital": "රෝහල",
+                country_newzealand: "නවසීලන්තය", country_denmark: "ඩෙන්මාර්කය", country_austria: "ඔස්ට්‍රියාව", country_germany: "ජර්මනිය", country_sweden: "ස්වීඩනය", country_finland: "ෆින්ලන්තය", country_france: "ප්‍රංශය", country_poland: "පෝලන්තය", country_southkorea: "දකුණු කොරියාව", country_singapore: "සිංගප්පූරුව", country_canada: "කැනඩාව", country_georgia: "ජෝර්ජියාව", country_kazakhstan: "කසකස්තානය", country_russia: "රුසියාව", country_slovakia: "ස්ලොවැකියාව", country_czech: "චෙක් ජනරජය", country_latvia: "ලැට්වියාව", country_croatia: "ක්‍රොඒෂියාව", country_montenegro: "මොන්ටිනිග්‍රෝ", country_serbia: "සර්බියාව", country_macedonia: "මැසිඩෝනියාව", country_albania: "ඇල්බේනියාව", country_belarus: "බෙලරුස්",
+                serv_visa_appt: "වීසා හමුවීම", serv_visa_doc: "වීසා ලියකියවිලි", serv_travel: "සංචාරක සහාය", serv_insurance: "රක්ෂණය", serv_medical: "වෛද්‍ය සහාය", serv_corp: "ආයතනික විසඳුම",
+                sec_standard_desc: "ගෝලීය සංක්‍රමණයේදී වෘත්තීයභාවය, පූර්ණ විනිවිදභාවය සහ සේවාදායක සාර්ථකත්වය සඳහා කර්මාන්ත මිණුම් ලකුණ නිර්වචනය කිරීම."
             },
             sw: {
                 hiring_now: `Ajira Sasa: ${PAGE_CONFIG.countryName} ${PAGE_CONFIG.flagEmoji}`,
@@ -1530,9 +1496,13 @@
                 package_title: "Kifurushi cha Uwanja wa Ndege", package_subtitle: "Uhamisho wa Kila Kitu",
                 total_inv: "Jumla ya Uwekezaji", price_note: "Malipo ya hatua kwa hatua.", start_process: "Anza Mchakato Sasa",
                 modal_salary: "Kiwango cha Mshahara", modal_process: "Muda wa Mchakato", modal_apply: "Tuma Ombi Sasa",
-                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini ya Bure", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
+                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 step_1: "Uwasilishaji", step_2: "Usajili", step_3: "Barua ya Ofa", step_4: "Ofa Halisi", step_5: "Kufungua Visa", step_6: "Kusafiri",
-                "Civil Construction": "Ujenzi", "Airport Workshop": "Karakana", "Catering & Restaurant": "Upishi", "Maintenance": "Ukarabati", "Cargo Division": "Mizigo", "Emergency Hospital": "Hospitali"
+                "Civil Construction": "Ujenzi", "Airport Workshop": "Karakana", "Catering & Restaurant": "Upishi", "Maintenance": "Ukarabati", "Cargo Division": "Mizigo", "Emergency Hospital": "Hospitali",
+                country_netherlands: "Uholanzi", country_germany: "Ujerumani", country_sweden: "Uswidi", country_finland: "Ufini", country_france: "Ufaransa", country_poland: "Poland", country_belarus: "Belarusi", country_croatia: "Kroatia", country_czech: "Czechia", country_macedonia: "Masedonia", country_latvia: "Latvia", country_serbia: "Serbia", country_albania: "Albania", country_slovakia: "Slovakia", country_montenegro: "Montenegro", country_canada: "Canada", country_newzealand: "New Zealand", country_singapore: "Singapore", country_southkorea: "Korea Kusini", country_austria: "Austria", country_denmark: "Denmark", country_kazakhstan: "Kazakhstan", country_georgia: "Georgia", country_russia: "Urusi",
+                serv_visa_appt: "Uteuzi wa Visa", serv_visa_doc: "Nyaraka za Visa", serv_travel: "Msaada wa Kusafiri", serv_insurance: "Bima", serv_medical: "Msaada wa Matibabu", serv_corp: "B2B ya Kampuni",
+                sec_standard_desc: "Kufafanua kiwango cha tasnia kwa taaluma, uwazi kamili, na mafanikio endelevu ya wateja katika uhamiaji wa kimataifa.",
+                footer_destinations: "Vito", footer_services: "Huduma", footer_company: "Kampuni", footer_office: "Ofisi", footer_story: "Hadithi Yetu", footer_privacy: "Sera ya Faragha", footer_terms: "Masharti", footer_rights: "Haki zote zimehifadhiwa."
             }
         };
 
