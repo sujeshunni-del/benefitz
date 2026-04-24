@@ -466,6 +466,13 @@
                                                 <span class="text-[10px] md:text-xs text-slate-600">€3,000 payable after arrival in easy installments.</span>
                                             </div>
                                         </div>
+                                        <div class="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl bg-green-50 border border-green-200">
+                                            <div class="mt-0.5 text-green-600 animate-pulse text-sm"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                                            <div>
+                                                <span class="block text-brand-black font-bold text-sm md:text-base">€6,000 Loan Support Available</span>
+                                                <span class="text-[10px] md:text-xs text-slate-600">EMI payments start only after reaching Canada and joining.</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -952,12 +959,12 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1", title: "Assessment", desc: "Document verification & Vietnam Visa processing.", fee: "€1,000", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Vietnam Transit", desc: "Travel to Vietnam for Biometrics at VAC (7-10 days).", fee: "€3,000", icon: "fa-plane" },
-            { step: "03", key: "step_3", title: "PPR Request", desc: "Passport Request from Canadian Embassy.", fee: "€3,000", icon: "fa-envelope-open-text" },
-            { step: "04", key: "step_4", title: "Visa Stamping", desc: "Passport stamped with Canada Work Visa.", fee: "€3,000", icon: "fa-passport" },
-            { step: "05", key: "step_5", title: "Travel to Canada", desc: "Flight ticket issuance & travel prep.", fee: "€3,000", icon: "fa-plane-departure" },
-            { step: "06", key: "step_6", title: "Arrival", desc: "Join company in Canada (Installment facility available).", fee: "€3,000", icon: "fa-handshake" }
+            { step: "01", key: "step_1", title: "Document Verification", desc: "Immediate process upon application.", fee: "€1,000", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "VFS Submission", desc: "Processing time: 7 - 10 days.", fee: "€3,000", icon: "fa-calendar-check" },
+            { step: "03", key: "step_3", title: "PPR Request", desc: "Passport Request (PPR) from Embassy (7 days).", fee: "€3,000", icon: "fa-envelope-open-text" },
+            { step: "04", key: "step_4", title: "Visa Stamping", desc: "Visa Stamping in Passport (5 - 10 days).", fee: "€3,000", icon: "fa-passport" },
+            { step: "05", key: "step_5", title: "Ticket Issuance", desc: "Ticket Issuance to Canada (After stamping).", fee: "€3,000", icon: "fa-plane-departure" },
+            { step: "06", key: "step_6", title: "After Joining", desc: "Payment after reaching Canada & joining.", fee: "€3,000 (EMI)", icon: "fa-handshake" }
         ];
 
         let currentCategory = 'All';
@@ -1282,7 +1289,7 @@
                 modal_salary: "Monthly Salary Range", modal_process: "Process Time", modal_apply: "Apply Now",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Departments", cat_wh: "Warehouse & Logistics", cat_mfg: "Manufacturing", cat_const: "Construction", cat_agri: "Agriculture", cat_hosp: "Hospitality", cat_food: "Food Processing",
-                step_1: "Assessment", step_2: "Vietnam Transit", step_3: "PPR Request", step_4: "Visa Stamping", step_5: "Travel to Canada", step_6: "Arrival",
+                step_1: "Document Verification", step_2: "VFS Submission", step_3: "PPR Request", step_4: "Visa Stamping", step_5: "Ticket Issuance", step_6: "After Joining",
                 footer_destinations: "Destinations", footer_services: "Services", footer_company: "Company", footer_office: "Office", footer_story: "Our Story", footer_privacy: "Privacy Policy", footer_terms: "Terms of Service", footer_rights: "All rights reserved.",
                 country_russia: "Russia", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_canada: "Canada", country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_france: "France", country_poland: "Poland", country_southkorea: "South Korea", country_singapore: "Singapore", country_croatia: "Croatia", country_czech: "Czech Republic", country_latvia: "Latvia", country_slovakia: "Slovakia", country_netherlands: "Netherlands", country_albania: "Albania", country_belarus: "Belarus", country_macedonia: "Macedonia", country_montenegro: "Montenegro", country_serbia: "Serbia",
                 serv_visa_appt: "Visa Appointment", serv_visa_doc: "Visa Documentation", serv_travel: "Travel Assistance", serv_insurance: "Insurance", serv_medical: "Medical Assistance", serv_corp: "Corporate B2B Solution",
@@ -1300,7 +1307,7 @@
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_process: "പ്രോസസ്സിംഗ് സമയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
                 nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
                 cat_all: "എല്ലാ വിഭാഗങ്ങളും", cat_wh: "ലോജിസ്റ്റിക്സ് & വെയർഹൗസ്", cat_mfg: "മാനുഫാക്ചറിംഗ്", cat_const: "നിർമ്മാണം", cat_agri: "കൃഷി", cat_hosp: "ഹോസ്പിറ്റാലിറ്റി", cat_food: "ഫുഡ് പ്രോസസ്സിംഗ്",
-                step_1: "മൂല്യനിർണ്ണയം", step_2: "വിയറ്റ്നാം ട്രാൻസിറ്റ്", step_3: "PPR അഭ്യർത്ഥന", step_4: "വിസ സ്റ്റാമ്പിംഗ്", step_5: "കാനഡ യാത്ര", step_6: "യാത്ര & എത്തിച്ചേരൽ",
+                step_1: "രേഖാ പരിശോധന", step_2: "VFS സമർപ്പണം", step_3: "PPR അഭ്യർത്ഥന", step_4: "വിസ സ്റ്റാമ്പിംഗ്", step_5: "ടിക്കറ്റ് വിതരണം", step_6: "ജോലിയിൽ പ്രവേശിച്ച ശേഷം",
                 footer_destinations: "ലക്ഷ്യസ്ഥാനങ്ങൾ", footer_services: "സേവനങ്ങൾ", footer_company: "കമ്പനി", footer_office: "ഓഫീസ്", footer_story: "ഞങ്ങളുടെ കഥ", footer_privacy: "സ്വകാര്യത നയം", footer_terms: "സേവന നിബന്ധനകൾ", footer_rights: "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
                 country_russia: "റഷ്യ", country_georgia: "ജോർജ്ജിയ", country_kazakhstan: "കസാക്കിസ്ഥാൻ", country_canada: "കാനഡ", country_newzealand: "ന്യൂസിലൻഡ്", country_denmark: "ഡെൻമാർക്ക്", country_austria: "ഓസ്ട്രിയ", country_germany: "ജർമ്മനി", country_sweden: "സ്വീഡൻ", country_finland: "ഫിൻലാൻഡ്", country_france: "ഫ്രാൻസ്", country_poland: "പോളണ്ട്", country_southkorea: "ദക്ഷിണ കൊറിയ", country_singapore: "സിംഗപ്പൂർ", country_croatia: "ക്രൊയേഷ്യ", country_czech: "ചെക്ക് റിപ്പബ്ലിക്", country_latvia: "ലാത്വിയ", country_slovakia: "സ്ലൊവാക്യ", country_netherlands: "നെതർലാൻഡ്സ്", country_albania: "അൽബേനിയ", country_belarus: "ബെലാറസ്", country_macedonia: "മാസിഡോണിയ", country_montenegro: "മോണ്ടെനെഗ്രോ", country_serbia: "സെർബിയ",
                 serv_visa_appt: "വിസ അപ്പോയിന്റ്മെന്റ്", serv_visa_doc: "വിസ ഡോക്യുമെന്റേഷൻ", serv_travel: "യാത്രാ സഹായം", serv_insurance: "ഇൻഷുറൻസ്", serv_medical: "മെഡിക്കൽ സഹായം", serv_corp: "കോർപ്പറേറ്റ് സൊല്യൂഷൻ",
@@ -1318,7 +1325,7 @@
                 modal_salary: "मासिक वेतन सीमा", modal_process: "प्रक्रिया समय", modal_apply: "अभी आवेदन करें",
                 nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "बुक करें",
                 cat_all: "सभी विभाग", cat_wh: "लॉजिस्टिक्स और वेयरहाउस", cat_mfg: "विनिर्माण", cat_const: "निर्माण", cat_agri: "कृषि", cat_hosp: "हॉस्पिटैलिटी", cat_food: "खाद्य प्रसंस्करण",
-                step_1: "मूल्यांकन", step_2: "वियतनाम पारगमन", step_3: "PPR अनुरोध", step_4: "वीज़ा स्टैंपिंग", step_5: "कनाडा यात्रा", step_6: "आगमन",
+                step_1: "दस्तावेज़ सत्यापन", step_2: "VFS सबमिशन", step_3: "PPR अनुरोध", step_4: "वीज़ा स्टैंपिंग", step_5: "टिकट जारी करना", step_6: "ज्वाइन करने के बाद",
                 footer_destinations: "गंतव्य", footer_services: "सेवाएं", footer_company: "कंपनी", footer_office: "कार्यालय", footer_story: "हमारी कहानी", footer_privacy: "गोपनीयता नीति", footer_terms: "सेवा की शर्तें", footer_rights: "सर्वाधिकार सुरक्षित।",
                 country_russia: "रूस", country_georgia: "जॉर्जिया", country_kazakhstan: "कजाकिस्तान", country_canada: "कनाडा", country_newzealand: "न्यूज़ीलैंड", country_denmark: "डेनमार्क", country_austria: "ऑस्ट्रिया", country_germany: "जर्मनी", country_sweden: "स्वीडन", country_finland: "फिनलैंड", country_france: "फ्रांस", country_poland: "पोलैंड", country_southkorea: "दक्षिण कोरिया", country_singapore: "सिंगापुर", country_croatia: "क्रोएशिया", country_czech: "चेक गणराज्य", country_latvia: "लातविया", country_slovakia: "स्लोवाकिया", country_netherlands: "नीदरलैंड", country_albania: "अल्बानिया", country_belarus: "बेलारूस", country_macedonia: "मैसेडोनिया", country_montenegro: "मोंटेनेग्रो", country_serbia: "सर्बिया",
                 serv_visa_appt: "वीज़ा नियुक्ति", serv_visa_doc: "वीज़ा दस्तावेज़ीकरण", serv_travel: "यात्रा सहायता", serv_insurance: "बीमा", serv_medical: "चिकित्सा सहायता", serv_corp: "कॉर्पोरेट समाधान",
@@ -1336,10 +1343,10 @@
                 modal_salary: "மாத சம்பளம்", modal_process: "செயல்முறை நேரம்", modal_apply: "விண்ணப்பிக்கவும்",
                 nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 cat_all: "அனைத்து துறைகளும்", cat_wh: "லாஜிஸ்டிக்ஸ் & கிடங்கு", cat_mfg: "உற்பத்தி", cat_const: "கட்டுமானம்", cat_agri: "விவசாயம்", cat_hosp: "விருந்தோம்பல்", cat_food: "உணவு பதப்படுத்துதல்",
-                step_1: "மதிப்பீடு", step_2: "வியட்நாம் போக்குவரத்து", step_3: "PPR கோரிக்கை", step_4: "விசா ஸ்டாம்பிங்", step_5: "கனடா பயணம்", step_6: "வருகை",
+                step_1: "ஆவண சரிபார்ப்பு", step_2: "VFS சமர்ப்பிப்பு", step_3: "PPR கோரிக்கை", step_4: "விசா ஸ்டாம்பிங்", step_5: "டிக்கெட் வழங்குதல்", step_6: "பணியில் சேர்ந்த பிறகு",
                 footer_destinations: "இலக்குகள்", footer_services: "சேவைகள்", footer_company: "நிறுவனம்", footer_office: "அலுவலகம்", footer_story: "எங்கள் கதை", footer_privacy: "தனியுரிமைக் கொள்கை", footer_terms: "சேவை விதிமுறைகள்", footer_rights: "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
                 country_russia: "ரஷ்யா", country_georgia: "ஜார்ஜியா", country_kazakhstan: "கஜகஸ்தான்", country_canada: "கனடா", country_newzealand: "நியூசிலாந்து", country_denmark: "டென்மார்க்", country_austria: "ஆஸ்திரியா", country_germany: "ஜெர்மனி", country_sweden: "ஸ்வீடன்", country_finland: "பின்லாந்து", country_france: "பிரான்ஸ்", country_poland: "போலந்து", country_southkorea: "தென் கொரியா", country_singapore: "சிங்கப்பூர்", country_croatia: "குரோஷியா", country_czech: "செக் குடியரசு", country_latvia: "லாட்வியா", country_slovakia: "ஸ்லோவாக்கியா", country_netherlands: "நெதர்லாந்து", country_albania: "அல்பேனியா", country_belarus: "பெலாரஸ்", country_macedonia: "மாசிடோனியா", country_montenegro: "மாண்டினீக்ரோ", country_serbia: "செர்பியா",
-                serv_visa_appt: "விசா நியமனம்", serv_visa_doc: "விசா ஆவணங்கள்", serv_travel: "பயண உதவி", serv_insurance: "காப்பீடு", serv_medical: "மருத்துவ உதவி", serv_corp: "கார்ப்பரேட் தீர்வு",
+                serv_visa_appt: "விசா நியமனம்", serv_visa_doc: "விசா ஆவணங்கள்", serv_travel: "பயண உதவி", serv_insurance: "காப்பீடு", மருத்துவ_உதவி: "மருத்துவ உதவி", serv_corp: "கார்ப்பரேட் தீர்வு",
                 sec_standard_desc: "உலகளாவிய குடியேற்றத்தில் தொழில்முறை, முழுமையான வெளிப்படைத்தன்மை மற்றும் வாடிக்கையாளர் வெற்றி ஆகியவற்றிற்கான துறை தரநிலையை வரையறுத்தல்."
             },
             fil: {
@@ -1354,7 +1361,7 @@
                 modal_salary: "Buwanang Sahod", modal_process: "Oras ng Proseso", modal_apply: "Mag-apply Ngayon",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 cat_all: "Lahat ng Departamento", cat_wh: "Logistics at Warehouse", cat_mfg: "Paggawa", cat_const: "Konstruksyon", cat_agri: "Agrikultura", cat_hosp: "Hospitality", cat_food: "Food Processing",
-                step_1: "Pagsusuri", step_2: "Vietnam Transit", step_3: "PPR Request", step_4: "Visa Stamping", step_5: "Paglalakbay", step_6: "Pagdating",
+                step_1: "Verification ng Dokumento", step_2: "VFS Submission", step_3: "PPR Request", step_4: "Visa Stamping", step_5: "Pag-issue ng Ticket", step_6: "Pagkatapos Mag-join",
                 footer_destinations: "Mga Destinasyon", footer_services: "Mga Serbisyo", footer_company: "Kumpanya", footer_office: "Opisina", footer_story: "Aming Kwento", footer_privacy: "Patakaran sa Privacy", footer_terms: "Mga Tuntunin ng Serbisyo", footer_rights: "Nakalaan ang lahat ng karapatan.",
                 country_russia: "Russia", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_canada: "Canada", country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_france: "France", country_poland: "Poland", country_southkorea: "South Korea", country_singapore: "Singapore", country_croatia: "Croatia", country_czech: "Czech Republic", country_latvia: "Latvia", country_slovakia: "Slovakia", country_netherlands: "Netherlands", country_albania: "Albania", country_belarus: "Belarus", country_macedonia: "Macedonia", country_montenegro: "Montenegro", country_serbia: "Serbia",
                 serv_visa_appt: "Appointment sa Visa", serv_visa_doc: "Dokumentasyon sa Visa", serv_travel: "Tulong sa Paglalakbay", serv_insurance: "Insurance", serv_medical: "Tulong Medikal", serv_corp: "Solusyon sa Corporate",
@@ -1372,9 +1379,9 @@
                 modal_salary: "මාසික වැටුප", modal_process: "කාලසීමාව", modal_apply: "දැන් අයදුම් කරන්න",
                 nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
                 cat_all: "සියලුම දෙපාර්තමේන්තු", cat_wh: "ප්‍රවාහන සහ ගබඩා", cat_mfg: "නිෂ්පාදන", cat_const: "ඉදිකිරීම්", cat_agri: "කෘෂිකර්ම", cat_hosp: "සත්කාරක", cat_food: "ආහාර සැකසුම්",
-                step_1: "ඇගයීම", step_2: "වියට්නාම සංක්‍රමණය", step_3: "PPR ඉල්ලීම", step_4: "වීසා මුද්‍රාව", step_5: "ගමන් සූදානම", step_6: "පැමිණීම",
+                step_1: "ලේඛන තහවුරු කිරීම", step_2: "VFS ඉදිරිපත් කිරීම", step_3: "PPR ඉල්ලීම", step_4: "වීසා මුද්‍රාව", step_5: "ටිකට් නිකුත් කිරීම", step_6: "සේවයට බැඳුණු පසු",
                 footer_destinations: "ගමනාන්ත", footer_services: "සේවාවන්", footer_company: "සමාගම", footer_office: "කාර්යාලය", footer_story: "අපේ කතාව", footer_privacy: "රහස්‍යතා ප්‍රතිපත්තිය", footer_terms: "සේවා කොන්දේසි", footer_rights: "සියලුම හිමිකම් ඇවිරිණි.",
-                country_russia: "රුසියාව", country_georgia: "ජෝර්ජියාව", country_kazakhstan: "කසකස්තානය", country_canada: "කැනඩාව", country_newzealand: "නවසීලන්තය", country_denmark: "ඩෙන්මාර්කය", country_austria: "ඔස්ට්‍රියාව", country_germany: "ජර්මනිය", country_sweden: "ස්වීඩනය", country_finland: "ෆින්ලන්තය", country_france: "ප්‍රංශය", country_poland: "පෝලන්තය", country_southkorea: "දකුණු කොරියාව", country_සිංගප්පූරුව: "සිංගප්පූරුව", country_croatia: "ක්රොඒෂියාව", country_czech: "චෙක් ජනරජය", country_latvia: "ලැට්වියාව", country_slovakia: "ස්ලෝවැකියාව", country_netherlands: "නෙදර්ලන්තය", country_albania: "ඇල්බේනියාව", country_belarus: "බෙලරුස්", country_macedonia: "මැසිඩෝනියාව", country_montenegro: "මොන්ටිනිග්රෝ", country_serbia: "සර්බියාව",
+                country_russia: "රුසියාව", country_georgia: "ජෝර්ජියාව", country_kazakhstan: "කසකස්තානය", country_canada: "කැනඩාව", country_newzealand: "නවසීලන්තය", country_denmark: "ඩෙන්මාර්කය", country_austria: "ඔස්ට්‍රියාව", country_germany: "ජර්මනිය", country_sweden: "ස්වීඩනය", country_finland: "ෆින්ලන්තය", country_france: "ප්‍රංශය", country_poland: "පෝලන්තය", country_southkorea: "දකුණු කොරියාව", country_singapore: "සිංගප්පූරුව", country_croatia: "ක්රොඒෂියාව", country_czech: "චෙක් ජනරජය", country_latvia: "ලැට්වියාව", country_slovakia: "ස්ලෝවැකියාව", country_netherlands: "නෙදර්ලන්තය", country_albania: "ඇල්බේනියාව", country_belarus: "බෙලරුස්", country_macedonia: "මැසිඩෝනියාව", country_montenegro: "මොන්ටිනිග්රෝ", country_serbia: "සර්බියාව",
                 serv_visa_appt: "වීසා හමුවීම", serv_visa_doc: "වීසා ලියකියවිලි", serv_travel: "සංචාරක සහාය", serv_insurance: "රක්ෂණය", serv_medical: "වෛද්‍ය සහාය", serv_corp: "ආයතනික විසඳුම",
                 sec_standard_desc: "ගෝලීය සංක්‍රමණයේදී වෘත්තීයභාවය, පූර්ණ විනිවිදභාවය සහ සේවාදායක සාර්ථකත්වය සඳහා කර්මාන්ත මිණුම් ලකුණ නිර්වචනය කිරීම."
             },
@@ -1390,7 +1397,7 @@
                 modal_salary: "Kiwango cha Mshahara", modal_process: "Muda wa Mchakato", modal_apply: "Tuma Ombi Sasa",
                 nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 cat_all: "Idara Zote", cat_wh: "Usafirishaji na Ghala", cat_mfg: "Utengenezaji", cat_const: "Ujenzi", cat_agri: "Kilimo", cat_hosp: "Ukarimu", cat_food: "Usindikaji wa Chakula",
-                step_1: "Tathmini", step_2: "Safari ya Vietnam", step_3: "Ombi la PPR", step_4: "Kugonga Visa", step_5: "Kusafiri Canada", step_6: "Kuwasili",
+                step_1: "Uthibitishaji wa Nyaraka", step_2: "Uwasilishaji wa VFS", step_3: "Ombi la PPR", step_4: "Kugonga Visa", step_5: "Utoaji wa Tiketi", step_6: "Baada ya Kujiunga",
                 footer_destinations: "Vituo", footer_services: "Huduma", footer_company: "Kampuni", footer_office: "Ofisi", footer_story: "Hadithi Yetu", footer_privacy: "Sera ya Faragha", footer_terms: "Masharti ya Huduma", footer_rights: "Haki zote zimehifadhiwa.",
                 country_russia: "Urusi", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_canada: "Canada", country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Ujerumani", country_sweden: "Sweden", country_finland: "Finland", country_france: "Ufaransa", country_poland: "Poland", country_southkorea: "Korea Kusini", country_singapore: "Singapore", country_croatia: "Croatia", country_czech: "Czech Republic", country_latvia: "Latvia", country_slovakia: "Slovakia", country_netherlands: "Netherlands", country_albania: "Albania", country_belarus: "Belarus", country_macedonia: "Macedonia", country_montenegro: "Montenegro", country_serbia: "Serbia",
                 serv_visa_appt: "Uteuzi wa Visa", serv_visa_doc: "Nyaraka za Visa", serv_travel: "Msaada wa Kusafiri", serv_insurance: "Bima", serv_medical: "Msaada wa Matibabu", serv_corp: "Suluhisho la B2B",
