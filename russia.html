@@ -463,16 +463,16 @@
                                             <div class="mt-0.5 text-ru-secondary animate-pulse text-sm"><i class="fa-solid fa-shield-halved"></i></div>
                                             <div>
                                                 <span class="block text-brand-black font-bold text-sm md:text-base" data-i18n="inc_flight">Refundable Advance</span>
-                                                <span class="text-[10px] md:text-xs text-slate-600">The initial €500 fee is fully refundable if visa is rejected.</span>
+                                                <span class="text-[10px] md:text-xs text-slate-600">The initial processing advance is fully refundable if visa is rejected.</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="p-6 md:p-12 lg:w-2/5 flex flex-col justify-center items-center text-center relative bg-slate-50/50 md:bg-transparent">
-                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Total Investment</div>
-                                    <div class="text-5xl md:text-6xl font-black text-ru-primary mb-2 tracking-tight">€4,500</div>
-                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent pricing with milestone-based payments.</div>
+                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Engagement Model</div>
+                                    <div class="text-4xl md:text-5xl font-black text-ru-primary mb-2 tracking-tight">Value Assured</div>
+                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent milestone progression.</div>
                                     
                                     <a href="https://wa.me/971588670129" target="_blank" class="w-full relative group overflow-hidden rounded-xl bg-ru-secondary px-6 py-3 md:px-8 md:py-5 transition-all duration-300 text-white font-bold text-sm md:text-lg shadow-lg hover:-translate-y-1">
                                         <span class="relative z-10 flex items-center justify-center gap-2">
@@ -940,12 +940,12 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1", title: "Advance Fee", desc: "Submit docs & pay fully refundable advance.", fee: "€500", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Job Offer", desc: "Job offer & employment agreement.", fee: "N/A", icon: "fa-handshake" },
-            { step: "03", key: "step_3", title: "Work Permit", desc: "Work Permit processing initiated (4-6 weeks).", fee: "€1,000", icon: "fa-file-contract" },
-            { step: "04", key: "step_4", title: "Visa Sub.", desc: "Visa application submitted to embassy.", fee: "N/A", icon: "fa-building-flag" },
-            { step: "05", key: "step_5", title: "Visa Grant", desc: "Visa stamped & balance payment due.", fee: "€3,000", icon: "fa-passport" },
-            { step: "06", key: "step_6", title: "Travel", desc: "Travel to Russia & employer joining.", fee: "N/A", icon: "fa-plane-departure" }
+            { step: "01", key: "step_1", title: "Advance Fee", desc: "Submit docs & pay fully refundable advance.", fee: "Initiation", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "Job Offer", desc: "Job offer & employment agreement.", fee: "Secured", icon: "fa-handshake" },
+            { step: "03", key: "step_3", title: "Work Permit", desc: "Work Permit processing initiated (4-6 weeks).", fee: "In Progress", icon: "fa-file-contract" },
+            { step: "04", key: "step_4", title: "Visa Sub.", desc: "Visa application submitted to embassy.", fee: "Submitted", icon: "fa-building-flag" },
+            { step: "05", key: "step_5", title: "Visa Grant", desc: "Visa stamped & balance payment due.", fee: "Approved", icon: "fa-passport" },
+            { step: "06", key: "step_6", title: "Travel", desc: "Travel to Russia & employer joining.", fee: "Departure", icon: "fa-plane-departure" }
         ];
 
         let currentCategory = 'All';
@@ -1217,7 +1217,7 @@
                             </div>
                             <p class="text-[10px] md:text-sm text-slate-600 leading-relaxed mb-3">${item.desc}</p>
                             <div class="flex items-center justify-between border-t border-slate-100 pt-3">
-                                <span class="text-[8px] font-bold text-slate-400 uppercase">Processing Fee</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase">Milestone Status</span>
                                 <span class="text-xs md:text-sm font-black">${item.fee}</span>
                             </div>
                         </div>
@@ -1266,7 +1266,7 @@
                 select_department: "Select Job Department", process_kicker: "Structured Visa Route",
                 process_title: "Application Process", process_subtitle: `A transparent and structured path to your employment in Russia.`,
                 package_title: "Russia Work Permit Package", package_subtitle: "Comprehensive Visa Solution",
-                total_inv: "Total Investment", price_note: "Milestone-based payments.", start_process: "Start Process Now",
+                total_inv: "Engagement Model", price_note: "Transparent milestone progression.", start_process: "Start Process Now",
                 modal_salary: "Monthly Salary Range", modal_process: "Process Time", modal_apply: "Apply Now",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Departments", cat_log: "Logistics / Supply Chain", cat_const: "Construction / Infrastructure", cat_trans: "Transport / Logistics", cat_gen: "General Labour", cat_mfg: "Manufacturing / Production",
@@ -1284,7 +1284,7 @@
                 select_department: "ഡിപ്പാർട്ട്‌മെന്റ് തിരഞ്ഞെടുക്കുക", process_kicker: "ഘട്ടം ഘട്ടമായുള്ള പ്രോസസ്സിംഗ്",
                 process_title: "അപേക്ഷാ പ്രക്രിയ", process_subtitle: `റഷ്യയിൽ ജോലി നേടാനുള്ള സുതാര്യമായ വഴി.`,
                 package_title: "റഷ്യ വർക്ക് പെർമിറ്റ് പാക്കേജ്", package_subtitle: "സമ്പൂർണ്ണ വിസ സൊല്യൂഷൻ",
-                total_inv: "ആകെ ചെലവ്", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
+                total_inv: "എൻഗേജ്മെന്റ് മോഡൽ", price_note: "സുതാര്യമായ ഘട്ടം ഘട്ടമായുള്ള പ്രക്രിയ.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_process: "പ്രോസസ്സിംഗ് സമയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
                 nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
                 cat_all: "എല്ലാ വിഭാഗങ്ങളും", cat_log: "ലോജിസ്റ്റിക്സ്", cat_const: "നിർമ്മാണം", cat_trans: "ട്രാൻസ്പോർട്ട്", cat_gen: "ജനറൽ ലേബർ", cat_mfg: "മാനുഫാക്ചറിംഗ്",
@@ -1302,7 +1302,7 @@
                 select_department: "विभाग चुनें", process_kicker: "व्यवस्थित वीज़ा मार्ग",
                 process_title: "आवेदन प्रक्रिया", process_subtitle: `रूस में रोजगार के लिए एक पारदर्शी और संरक्षित रास्ता।`,
                 package_title: "रूस वर्क परमिट पैकेज", package_subtitle: "व्यापक वीज़ा समाधान",
-                total_inv: "कुल निवेश", price_note: "माइलस्टोन-आधारित भुगतान।", start_process: "प्रक्रिया शुरू करें",
+                total_inv: "एंगेजमेंट मॉडल", price_note: "पारदर्शी और माइलस्टोन-आधारित प्रगति।", start_process: "प्रक्रिया शुरू करें",
                 modal_salary: "मासिक वेतन सीमा", modal_process: "प्रक्रिया समय", modal_apply: "अभी आवेदन करें",
                 nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "बुक करें",
                 cat_all: "सभी विभाग", cat_log: "लॉजिस्टिक्स", cat_const: "निर्माण", cat_trans: "परिवहन", cat_gen: "सामान्य श्रम", cat_mfg: "विनिर्माण",
@@ -1320,7 +1320,7 @@
                 select_department: "துறையைத் தேர்ந்தெடுக்கவும்", process_kicker: "முறையான விசா பாதை",
                 process_title: "விண்ணப்ப செயல்முறை", process_subtitle: `ரஷ்யாவில் வேலைவாய்ப்பிற்கான வெளிப்படையான வழிமுறை.`,
                 package_title: "ரஷ்யா பணி அனுமதி தொகுப்பு", package_subtitle: "விரிவான விசா தீர்வு",
-                total_inv: "மொத்த முதலீடு", price_note: "கட்டண முறை.", start_process: "இப்போதே தொடங்குங்கள்",
+                total_inv: "ஈடுபாட்டு மாதிரி", price_note: "வெளிப்படையான மற்றும் மைல்ஸ்டோன் அடிப்படையிலான முன்னேற்றம்.", start_process: "இப்போதே தொடங்குங்கள்",
                 modal_salary: "மாத சம்பளம்", modal_process: "செயல்முறை நேரம்", modal_apply: "விண்ணப்பிக்கவும்",
                 nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 cat_all: "அனைத்து துறைகளும்", cat_log: "லாஜிஸ்டிக்ஸ்", cat_const: "கட்டுமானம்", cat_trans: "போக்குவரத்து", cat_gen: "பொது தொழிலாளர்", cat_mfg: "உற்பத்தி",
@@ -1338,7 +1338,7 @@
                 select_department: "Piliin ang Departamento", process_kicker: "Structured Visa Route",
                 process_title: "Proseso ng Aplikasyon", process_subtitle: `Isang malinaw na daan patungo sa iyong trabaho sa Russia.`,
                 package_title: "Russia Work Permit Package", package_subtitle: "Comprehensive Visa Solution",
-                total_inv: "Kabuuang Investment", price_note: "Milestone-based na bayad.", start_process: "Simulan ang Proseso",
+                total_inv: "Modelo ng Pakikipag-ugnayan", price_note: "Malinaw at milestone-based na pag-usad.", start_process: "Simulan ang Proseso",
                 modal_salary: "Buwanang Sahod", modal_process: "Oras ng Proseso", modal_apply: "Mag-apply Ngayon",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 cat_all: "Lahat ng Departamento", cat_log: "Logistics", cat_const: "Konstruksyon", cat_trans: "Transportasyon", cat_gen: "General Labour", cat_mfg: "Paggawa",
@@ -1356,7 +1356,7 @@
                 select_department: "දෙපාර්තමේන්තුව තෝරන්න", process_kicker: "ක්‍රමානුකූල වීසා මාර්ගය",
                 process_title: "අයදුම් කිරීමේ ක්‍රියාවලිය", process_subtitle: `රුසියාවේ රැකියා සඳහා විනිවිද පෙනෙන මාර්ගයක්.`,
                 package_title: "රුසියාව වැඩ බලපත්‍ර පැකේජය", package_subtitle: "සම්පූර්ණ වීසා විසඳුම",
-                total_inv: "මුළු ආයෝජනය", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "ක්‍රියාවලිය අරඹන්න",
+                total_inv: "සම්බන්ධ වීමේ ආකෘතිය", price_note: "විනිවිද පෙනෙන සහ අදියර මත පදනම් වූ ප්‍රගතිය.", start_process: "ක්‍රියාවලිය අරඹන්න",
                 modal_salary: "මාසික වැටුප", modal_process: "කාලසීමාව", modal_apply: "දැන් අයදුම් කරන්න",
                 nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
                 cat_all: "සියලුම දෙපාර්තමේන්තු", cat_log: "ප්‍රවාහන සහ ගබඩා", cat_const: "ඉදිකිරීම්", cat_trans: "ප්‍රවාහන", cat_gen: "සාමාන්‍ය ශ්‍රමය", cat_mfg: "නිෂ්පාදන",
@@ -1374,7 +1374,7 @@
                 select_department: "Chagua Idara", process_kicker: "Njia ya Visa Imepangwa",
                 process_title: "Mchakato wa Maombi", process_subtitle: `Njia wazi na iliyopangwa ya ajira yako Urusi.`,
                 package_title: "Kifurushi cha Urusi", package_subtitle: "Suluhisho Kamili la Visa",
-                total_inv: "Jumla ya Uwekezaji", price_note: "Malipo ya hatua kwa hatua.", start_process: "Anza Mchakato Sasa",
+                total_inv: "Mfumo wa Ushiriki", price_note: "Maendeleo ya wazi na ya hatua kwa hatua.", start_process: "Anza Mchakato Sasa",
                 modal_salary: "Kiwango cha Mshahara", modal_process: "Muda wa Mchakato", modal_apply: "Tuma Ombi Sasa",
                 nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 cat_all: "Idara Zote", cat_log: "Usafirishaji na Ghala", cat_const: "Ujenzi", cat_trans: "Usafiri", cat_gen: "Kazi za Jumla", cat_mfg: "Utengenezaji",

@@ -462,17 +462,17 @@
                                         <div class="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl bg-nz-secondary/10 border border-nz-secondary/30">
                                             <div class="mt-0.5 text-nz-secondary animate-pulse text-sm"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                                             <div>
-                                                <span class="block text-brand-black font-bold text-sm md:text-base" data-i18n="inc_flight">Installment Facility Available</span>
-                                                <span class="text-[10px] md:text-xs text-slate-600">€3,000 payable after arrival in easy installments.</span>
+                                                <span class="block text-brand-black font-bold text-sm md:text-base" data-i18n="inc_flight">Flexible Installment Plans</span>
+                                                <span class="text-[10px] md:text-xs text-slate-600">Payable after arrival through easy, manageable milestones.</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="p-6 md:p-12 lg:w-2/5 flex flex-col justify-center items-center text-center relative bg-slate-50/50 md:bg-transparent">
-                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Total Investment</div>
-                                    <div class="text-5xl md:text-6xl font-black text-nz-primary mb-2 tracking-tight">€14,000</div>
-                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent pricing with milestone-based payments.</div>
+                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Investment Strategy</div>
+                                    <div class="text-3xl md:text-4xl font-black text-nz-primary mb-2 tracking-tight">Tailored Quote</div>
+                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent, milestone-based journey tailored for you.</div>
                                     
                                     <a href="https://wa.me/971588670129" target="_blank" class="w-full relative group overflow-hidden rounded-xl bg-nz-secondary px-6 py-3 md:px-8 md:py-5 transition-all duration-300 text-white font-bold text-sm md:text-lg shadow-lg hover:-translate-y-1">
                                         <span class="relative z-10 flex items-center justify-center gap-2">
@@ -951,12 +951,12 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1", title: "Assessment", desc: "Document verification and eligibility check.", fee: "€1,000", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Job Offer", desc: "Work Contract from INZ Accredited Employer (7-10 days).", fee: "N/A", icon: "fa-handshake" },
-            { step: "03", key: "step_3", title: "Embassy Sub.", desc: "Online submission & Master Copy generation.", fee: "€3,000", icon: "fa-building-flag" },
-            { step: "04", key: "step_4", title: "Visa Approval", desc: "INZ reviews and approves AEWV Visa (17-20 days).", fee: "€3,000", icon: "fa-passport" },
-            { step: "05", key: "step_5", title: "Travel Prep", desc: "Pre-departure coordination & Ticket Issuance.", fee: "€4,000", icon: "fa-plane-departure" },
-            { step: "06", key: "step_6", title: "Arrival", desc: "Join company in NZ (Installment facility available).", fee: "€3,000", icon: "fa-plane-arrival" }
+            { step: "01", key: "step_1", title: "Assessment", desc: "Document verification and eligibility check.", fee: "Initial Phase", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "Job Offer", desc: "Work Contract from INZ Accredited Employer (7-10 days).", fee: "Secured", icon: "fa-handshake" },
+            { step: "03", key: "step_3", title: "Embassy Sub.", desc: "Online submission & Master Copy generation.", fee: "Milestone 1", icon: "fa-building-flag" },
+            { step: "04", key: "step_4", title: "Visa Approval", desc: "INZ reviews and approves AEWV Visa (17-20 days).", fee: "Milestone 2", icon: "fa-passport" },
+            { step: "05", key: "step_5", title: "Travel Prep", desc: "Pre-departure coordination & Ticket Issuance.", fee: "Milestone 3", icon: "fa-plane-departure" },
+            { step: "06", key: "step_6", title: "Arrival", desc: "Join company in NZ (Installment facility available).", fee: "Flexible Terms", icon: "fa-plane-arrival" }
         ];
 
         let currentCategory = 'All';
@@ -1228,8 +1228,8 @@
                             </div>
                             <p class="text-[10px] md:text-sm text-slate-600 leading-relaxed mb-3">${item.desc}</p>
                             <div class="flex items-center justify-between border-t border-slate-100 pt-3">
-                                <span class="text-[8px] font-bold text-slate-400 uppercase">Processing Fee</span>
-                                <span class="text-xs md:text-sm font-black">${item.fee}</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase">Payment Structure</span>
+                                <span class="text-xs md:text-sm font-black text-nz-primary">${item.fee}</span>
                             </div>
                         </div>
                     </div>
@@ -1277,7 +1277,7 @@
                 select_department: "Select Job Department", process_kicker: "Your Roadmap",
                 process_title: "Application Process", process_subtitle: `A transparent and structured path to your career in New Zealand.`,
                 package_title: "AEWV Visa Package", package_subtitle: "Complete Work Permit Solution",
-                total_inv: "Total Investment", price_note: "Milestone-based payments.", start_process: "Start Process Now",
+                total_inv: "Investment Strategy", price_note: "Transparent, milestone-based journey tailored for you.", start_process: "Start Process Now",
                 modal_salary: "Monthly Salary Range", modal_process: "Process Time", modal_apply: "Apply Now",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Departments", cat_sm: "Supermarket Roles", cat_wh: "Logistics & Warehouse", cat_const: "Construction & Mfg", cat_agri: "Agriculture", cat_hosp: "Hospitality & Services",
@@ -1295,7 +1295,7 @@
                 select_department: "ഡിപ്പാർട്ട്‌മെന്റ് തിരഞ്ഞെടുക്കുക", process_kicker: "നിങ്ങളുടെ റോഡ്‌മാപ്പ്",
                 process_title: "അപേക്ഷാ പ്രക്രിയ", process_subtitle: `ന്യൂസിലൻഡിലെ നിങ്ങളുടെ കരിയറിലേക്ക് സുതാര്യമായ വഴി.`,
                 package_title: "AEWV വിസ പാക്കേജ്", package_subtitle: "സമ്പൂർണ്ണ വർക്ക് പെർമിറ്റ്",
-                total_inv: "ആകെ ചെലവ്", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
+                total_inv: "നിക്ഷേപ പദ്ധതി", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_process: "പ്രോസസ്സിംഗ് സമയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
                 nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
                 cat_all: "എല്ലാ വിഭാഗങ്ങളും", cat_sm: "സൂപ്പർമാർക്കറ്റ്", cat_wh: "ലോജിസ്റ്റിക്സ് & വെയർഹൗസ്", cat_const: "നിർമ്മാണം & മാനുഫാക്ചറിംഗ്", cat_agri: "കൃഷി", cat_hosp: "ഹോസ്പിറ്റാലിറ്റി & സർവീസസ്",
@@ -1313,7 +1313,7 @@
                 select_department: "विभाग चुनें", process_kicker: "आपका रोडमैप",
                 process_title: "आवेदन प्रक्रिया", process_subtitle: `न्यूजीलैंड में आपके करियर के लिए एक पारदर्शी और संरक्षित रास्ता।`,
                 package_title: "AEWV वीज़ा पैकेज", package_subtitle: "संपूर्ण वर्क परमिट समाधान",
-                total_inv: "कुल निवेश", price_note: "माइलस्टोन-आधारित भुगतान।", start_process: "प्रक्रिया शुरू करें",
+                total_inv: "निवेश योजना", price_note: "माइलस्टोन-आधारित भुगतान।", start_process: "प्रक्रिया शुरू करें",
                 modal_salary: "मासिक वेतन सीमा", modal_process: "प्रक्रिया समय", modal_apply: "अभी आवेदन करें",
                 nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "बुक करें",
                 cat_all: "सभी विभाग", cat_sm: "सुपरमार्केट", cat_wh: "लॉजिस्टिक्स और वेयरहाउस", cat_const: "निर्माण और विनिर्माण", cat_agri: "कृषि", cat_hosp: "हॉस्पिटैलिटी और सेवाएं",
@@ -1331,7 +1331,7 @@
                 select_department: "துறையைத் தேர்ந்தெடுக்கவும்", process_kicker: "உங்கள் பாதை",
                 process_title: "விண்ணப்ப செயல்முறை", process_subtitle: `நியூசிலாந்தில் உங்கள் தொழிலுக்கான வெளிப்படையான வழிமுறை.`,
                 package_title: "AEWV விசா தொகுப்பு", package_subtitle: "முழுமையான பணி அனுமதி",
-                total_inv: "மொத்த முதலீடு", price_note: "கட்டண முறை.", start_process: "இப்போதே தொடங்குங்கள்",
+                total_inv: "முதலீட்டுத் திட்டம்", price_note: "கட்டண முறை.", start_process: "இப்போதே தொடங்குங்கள்",
                 modal_salary: "மாத சம்பளம்", modal_process: "செயல்முறை நேரம்", modal_apply: "விண்ணப்பிக்கவும்",
                 nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 cat_all: "அனைத்து துறைகளும்", cat_sm: "பல்பொருள் அங்காடி", cat_wh: "லாஜிஸ்டிக்ஸ் & கிடங்கு", cat_const: "கட்டுமானம் & உற்பத்தி", cat_agri: "விவசாயம்", cat_hosp: "விருந்தோம்பல் & சேவைகள்",
@@ -1349,7 +1349,7 @@
                 select_department: "Piliin ang Departamento", process_kicker: "Ang Iyong Roadmap",
                 process_title: "Proseso ng Aplikasyon", process_subtitle: `Isang malinaw at structured na daan patungo sa iyong career sa New Zealand.`,
                 package_title: "AEWV Visa Package", package_subtitle: "Complete Work Permit Solution",
-                total_inv: "Kabuuang Investment", price_note: "Milestone-based na bayad.", start_process: "Simulan ang Proseso",
+                total_inv: "Plano ng Pamumuhunan", price_note: "Milestone-based na bayad.", start_process: "Simulan ang Proseso",
                 modal_salary: "Buwanang Sahod", modal_process: "Oras ng Proseso", modal_apply: "Mag-apply Ngayon",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 cat_all: "Lahat ng Departamento", cat_sm: "Supermarket Roles", cat_wh: "Logistics at Warehouse", cat_const: "Konstruksyon at Paggawa", cat_agri: "Agrikultura", cat_hosp: "Hospitality at Serbisyo",
@@ -1367,7 +1367,7 @@
                 select_department: "දෙපාර්තමේන්තුව තෝරන්න", process_kicker: "ඔබේ මාර්ගය",
                 process_title: "අයදුම් කිරීමේ ක්‍රියාවලිය", process_subtitle: `නවසීලන්තයේ ඔබේ වෘත්තීය සඳහා විනිවිද පෙනෙන මාර්ගයක්.`,
                 package_title: "AEWV වීසා පැකේජය", package_subtitle: "සම්පූර්ණ වැඩ බලපත්‍රය",
-                total_inv: "මුළු ආයෝජනය", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "ක්‍රියාවලිය අරඹන්න",
+                total_inv: "ආයෝජන සැලසුම", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "ක්‍රියාවලිය අරඹන්න",
                 modal_salary: "මාසික වැටුප", modal_process: "කාලසීමාව", modal_apply: "දැන් අයදුම් කරන්න",
                 nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
                 cat_all: "සියලුම දෙපාර්තමේන්තු", cat_sm: "සුපිරි වෙළඳසැල්", cat_wh: "ප්‍රවාහන සහ ගබඩා", cat_const: "ඉදිකිරීම් සහ නිෂ්පාදන", cat_agri: "කෘෂිකර්ම", cat_hosp: "සත්කාරක සහ සේවා",

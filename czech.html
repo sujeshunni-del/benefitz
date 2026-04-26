@@ -437,8 +437,8 @@
                                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-theme-secondary/10 text-theme-secondary text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 border border-theme-secondary/20">
                                      <i class="fa-solid fa-hand-holding-dollar"></i> <span data-i18n="badge_later">Pay Later Offer</span>
                                  </div>
-                                 <h4 class="text-3xl md:text-5xl font-black text-brand-black mb-1">€5,500</h4>
-                                 <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest" data-i18n="inc_vat">Total inc. VAT</p>
+                                 <h4 class="text-3xl md:text-5xl font-black text-brand-black mb-1" data-i18n="pricing_total_val">Accessible</h4>
+                                 <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest" data-i18n="inc_vat">Transparent Value</p>
                             </div>
                             <div class="text-left md:text-right">
                                  <p class="text-xs text-slate-500 max-w-xs leading-relaxed" data-i18n="price_note">Minimal commitment fee. Pay the rest only after visa approval.</p>
@@ -448,11 +448,11 @@
                         <div class="grid grid-cols-2 gap-4 mb-8 relative z-10">
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
                                 <span class="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest block mb-1" data-i18n="at_signup">Sign-up</span>
-                                <span class="text-xl md:text-2xl font-bold text-brand-black">€500</span>
+                                <span class="text-xl md:text-2xl font-bold text-brand-black" data-i18n="pricing_signup_val">Nominal</span>
                             </div>
                             <div class="p-4 rounded-xl bg-green-50/50 border border-green-100">
                                 <span class="text-[9px] md:text-[10px] text-theme-primary font-bold uppercase tracking-widest block mb-1" data-i18n="after_visa">After Visa</span>
-                                <span class="text-xl md:text-2xl font-bold text-theme-primary">€5,000</span>
+                                <span class="text-xl md:text-2xl font-bold text-theme-primary" data-i18n="pricing_after_val">Success Based</span>
                             </div>
                         </div>
 
@@ -498,7 +498,7 @@
                 </div>
             </div>
             <div class="p-4 md:p-5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row gap-2.5">
-                 <a href="https://wa.me/971588670129" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-theme-primary text-white py-2.5 md:py-3.5 rounded-xl font-bold shadow-lg hover:shadow-nether-primary/40 hover:-translate-y-0.5 transition-all text-xs md:text-base">
+                 <a href="https://wa.me/971588670129" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-theme-primary text-white py-2.5 md:py-3.5 rounded-xl font-bold shadow-lg hover:shadow-theme-primary/40 hover:-translate-y-0.5 transition-all text-xs md:text-base">
                     <span data-i18n="modal_apply">Apply Now</span> <i class="fa-solid fa-paper-plane text-[10px]"></i>
                 </a>
                 <button onclick="closeModal()" class="flex items-center justify-center gap-2 px-4 py-2.5 md:py-3.5 rounded-xl border border-slate-300 text-slate-600 font-bold hover:bg-slate-100 transition-all text-[10px] md:text-sm">
@@ -696,12 +696,12 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1", title: "Assessment", desc: "Submit Passport & CV for evaluation.", fee: "Free", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Registration", desc: "System entry & initial deposit.", fee: "Deposit", icon: "fa-user-check" },
-            { step: "03", key: "step_3", title: "Job Offer", desc: "Employment offer matched to skills.", fee: "Job Offer", icon: "fa-handshake" },
-            { step: "04", key: "step_4", title: "Work Permit", desc: "Ministry approval process.", fee: "Permit Fee", icon: "fa-id-card" },
-            { step: "05", key: "step_5", title: "Visa Filing", desc: "Embassy submission & interview.", fee: "Visa Fee", icon: "fa-passport" },
-            { step: "06", key: "step_6", title: "Departure", desc: "Travel preparation & post-arrival.", fee: "Travel", icon: "fa-plane-departure" }
+            { step: "01", key: "step_1", title: "Assessment", desc: "Submit Passport & CV for evaluation.", fee: "Complimentary", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "Registration", desc: "System entry & initial deposit.", fee: "Commitment", icon: "fa-user-check" },
+            { step: "03", key: "step_3", title: "Job Offer", desc: "Employment offer matched to skills.", fee: "Secured", icon: "fa-handshake" },
+            { step: "04", key: "step_4", title: "Work Permit", desc: "Ministry approval process.", fee: "Processing", icon: "fa-id-card" },
+            { step: "05", key: "step_5", title: "Visa Filing", desc: "Embassy submission & interview.", fee: "Approval", icon: "fa-passport" },
+            { step: "06", key: "step_6", title: "Departure", desc: "Travel preparation & post-arrival.", fee: "Journey", icon: "fa-plane-departure" }
         ];
 
         // =====================================================================
@@ -1273,7 +1273,7 @@
                             </div>
                             <p class="text-[10px] md:text-sm text-slate-600 leading-relaxed mb-3">${item.desc}</p>
                             <div class="flex items-center justify-between border-t border-slate-100 pt-3">
-                                <span class="text-[8px] font-bold text-slate-400 uppercase">Fee Type</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase">Status</span>
                                 <span class="text-xs md:text-sm font-black">${item.fee}</span>
                             </div>
                         </div>
@@ -1325,7 +1325,10 @@
                 pricing_title: "Visa Success Model", 
                 plan_later_title: "After Visa",
                 badge_later: "Pay Later",
-                inc_vat: "Total inc. VAT", full_payment: "Full Payment",
+                pricing_total_val: "Accessible",
+                pricing_signup_val: "Nominal",
+                pricing_after_val: "Success Based",
+                inc_vat: "Transparent Value", full_payment: "Full Payment",
                 at_signup: "At Sign-up", work_permit: "Work Permit", submission: "Visa Filing", visa_approval: "Visa Approval", step_visa: "Visa Filing", after_visa: "After Visa",
                 modal_salary: "Monthly Salary Range", modal_experience: "Experience", modal_apply: "Apply Now",
                 
@@ -1356,7 +1359,10 @@
                 pricing_title: "വിസ സക്സസ് മോഡൽ",
                 plan_later_title: "വിസയ്ക്ക് ശേഷം",
                 badge_later: "പിന്നീട് നൽകാം",
-                inc_vat: "ആകെ (VAT ഉൾപ്പെടെ)", full_payment: "പൂർണ്ണ പേയ്മെന്റ്",
+                pricing_total_val: "ആക്സസ് ചെയ്യാവുന്നത്",
+                pricing_signup_val: "നാമമാത്രം",
+                pricing_after_val: "വിജയാധിഷ്ഠിതം",
+                inc_vat: "സുതാര്യമായ മൂല്യം", full_payment: "പൂർണ്ണ പേയ്മെന്റ്",
                 at_signup: "സൈൻ-അപ്പിൽ", work_permit: "വർക്ക് പെർമിറ്റ്", submission: "വിസ ഫയലിംഗ്", visa_approval: "വിസ അംഗീകാരം", step_visa: "വിസ ഫയലിംഗ്", after_visa: "വിസയ്ക്ക് ശേഷം",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_experience: "പരിചയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
                 
@@ -1385,7 +1391,10 @@
                 pricing_title: "वीज़ा सफलता मॉडल",
                 plan_later_title: "वीज़ा के बाद",
                 badge_later: "बाद में भुगतान करें",
-                inc_vat: "कुल (वैट सहित)", full_payment: "पूर्ण भुगतान",
+                pricing_total_val: "सुलभ",
+                pricing_signup_val: "नाममात्र",
+                pricing_after_val: "सफलता आधारित",
+                inc_vat: "पारदर्शी मूल्य", full_payment: "पूर्ण भुगतान",
                 at_signup: "साइन-अप पर", work_permit: "वर्क परमिट", submission: "वीज़ा फाइलिंग", visa_approval: "वीज़ा स्वीकृति", step_visa: "वीज़ा फाइलिंग", after_visa: "वीज़ा के बाद",
                 modal_salary: "मासिक वेतन", modal_experience: "अनुभव", modal_apply: "अभी आवेदन करें",
                 
@@ -1414,7 +1423,10 @@
                 pricing_title: "விசா வெற்றி மாதிரி",
                 plan_later_title: "விசாவிற்குப் பிறகு",
                 badge_later: "பிறகு செலுத்துங்கள்",
-                inc_vat: "மொத்தம் (வரியுடன்)", full_payment: "முழு கட்டணம்",
+                pricing_total_val: "அணுகக்கூடியது",
+                pricing_signup_val: "பெயரளவு",
+                pricing_after_val: "வெற்றியின் அடிப்படையில்",
+                inc_vat: "வெளிப்படையான மதிப்பு", full_payment: "முழு கட்டணம்",
                 at_signup: "பதிவின் போது", work_permit: "வேலை அனுமதி", submission: "விசா தாக்கல்", visa_approval: "விசா ஒப்புதல்", step_visa: "விசா தாக்கல்", after_visa: "விசாவிற்குப் பிறகு",
                 modal_salary: "மாத சம்பளம்", modal_experience: "அனுபவம்", modal_apply: "விண்ணப்பிக்கவும்",
                 
@@ -1443,7 +1455,10 @@
                 pricing_title: "Modelo ng Tagumpay",
                 plan_later_title: "Pagkatapos ng Visa",
                 badge_later: "Magbayad Mamaya",
-                inc_vat: "Kabuuan (may VAT)", full_payment: "Buong Bayad",
+                pricing_total_val: "Abot-kaya",
+                pricing_signup_val: "Nominal",
+                pricing_after_val: "Batay sa Tagumpay",
+                inc_vat: "Transparent na Halaga", full_payment: "Buong Bayad",
                 at_signup: "Sa Pag-sign up", work_permit: "Work Permit", submission: "Visa Filing", visa_approval: "Visa Approval", step_visa: "Visa Filing", after_visa: "Pagkatapos ng Visa",
                 modal_salary: "Buwanang Sahod", modal_experience: "Karanasan", modal_apply: "Mag-apply Ngayon",
                 
@@ -1472,7 +1487,10 @@
                 pricing_title: "වීසා සාර්ථකත්ව ආකෘතිය",
                 plan_later_title: "වීසා බලපත්‍රයෙන් පසු",
                 badge_later: "පසුව ගෙවන්න",
-                inc_vat: "මුළු (VAT ඇතුළත්ව)", full_payment: "සම්පූර්ණ ගෙවීම",
+                pricing_total_val: "ප්‍රවේශ විය හැකි",
+                pricing_signup_val: "සුළු",
+                pricing_after_val: "සාර්ථකත්වය මත",
+                inc_vat: "විනිවිද පෙනෙන වටිනාකම", full_payment: "සම්පූර්ණ ගෙවීම",
                 at_signup: "ලියාපදිංචියේදී", work_permit: "වැඩ බලපත්‍රය", submission: "වීසා ගොනු කිරීම", visa_approval: "වීසා අනුමැතිය", step_visa: "වීසා ගොනු කිරීම", after_visa: "වීසා බලපත්‍රයෙන් පසු",
                 modal_salary: "මාසික වැටුප", modal_experience: "පළපුරුද්ද", modal_apply: "දැන් අයදුම් කරන්න",
                 
@@ -1501,7 +1519,10 @@
                 pricing_title: "Mfano wa Mafanikio",
                 plan_later_title: "Baada ya Visa",
                 badge_later: "Lipa Baadaye",
-                inc_vat: "Jumla (pamoja na VAT)", full_payment: "Malipo Kamili",
+                pricing_total_val: "Inafikika",
+                pricing_signup_val: "Kidogo",
+                pricing_after_val: "Kulingana na Mafanikio",
+                inc_vat: "Thamani ya Uwazi", full_payment: "Malipo Kamili",
                 at_signup: "Kujiandikisha", work_permit: "Kibali cha Kazi", submission: "Uwasilishaji Visa", visa_approval: "Idhini ya Visa", step_visa: "Uwasilishaji Visa", after_visa: "Baada ya Visa",
                 modal_salary: "Mshahara wa Mwezi", modal_experience: "Uzoefu", modal_apply: "Tuma Ombi",
                 

@@ -435,8 +435,8 @@
                                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-theme-accent/10 text-theme-accent text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 border border-theme-accent/20">
                                      <i class="fa-solid fa-hand-holding-dollar"></i> <span data-i18n="badge_later">Pay Later Offer</span>
                                  </div>
-                                 <h4 class="text-3xl md:text-5xl font-black text-brand-black mb-1">€5,500</h4>
-                                 <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest" data-i18n="inc_vat">Total inc. VAT</p>
+                                 <h4 class="text-2xl md:text-4xl font-black text-brand-black mb-1" data-i18n="pricing_main_title">Success-Based Pricing</h4>
+                                 <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest" data-i18n="pricing_sub_title">Transparent & Fair</p>
                             </div>
                             <div class="text-left md:text-right">
                                  <p class="text-xs text-slate-500 max-w-xs leading-relaxed" data-i18n="price_note">Minimal commitment fee. Pay the rest only after visa approval.</p>
@@ -444,13 +444,13 @@
                         </div>
                         
                         <div class="grid grid-cols-2 gap-4 mb-8 relative z-10">
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                                <span class="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest block mb-1" data-i18n="at_signup">Sign-up</span>
-                                <span class="text-xl md:text-2xl font-bold text-brand-black">€500</span>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex flex-col justify-center">
+                                <span class="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest block mb-1" data-i18n="at_signup">Initial Step</span>
+                                <span class="text-lg md:text-xl font-bold text-brand-black leading-tight" data-i18n="pricing_minimal">Nominal Fee</span>
                             </div>
-                            <div class="p-4 rounded-xl bg-green-50/50 border border-green-100">
-                                <span class="text-[9px] md:text-[10px] text-theme-primary font-bold uppercase tracking-widest block mb-1" data-i18n="after_visa">After Visa</span>
-                                <span class="text-xl md:text-2xl font-bold text-theme-primary">€5,000</span>
+                            <div class="p-4 rounded-xl bg-green-50/50 border border-green-100 flex flex-col justify-center">
+                                <span class="text-[9px] md:text-[10px] text-theme-primary font-bold uppercase tracking-widest block mb-1" data-i18n="after_visa">Visa Approval</span>
+                                <span class="text-lg md:text-xl font-bold text-theme-primary leading-tight" data-i18n="pricing_balance">Pay on Success</span>
                             </div>
                         </div>
 
@@ -1223,9 +1223,10 @@
                 process_title: "Application Process", process_subtitle: "A structured path to your legal residency and career in Poland.",
                 pricing_title: "Visa Success Model", 
                 plan_later_title: "After Visa",
-                badge_later: "Pay Later",
-                inc_vat: "Total inc. VAT", full_payment: "Full Payment", fastest_proc: "Fastest processing",
-                at_signup: "Sign-up", work_permit: "Work Permit", submission: "Submission", after_visa: "After Visa", step_visa: "Visa Filing",
+                badge_later: "Pay Later Offer",
+                pricing_main_title: "Success-Based Pricing", pricing_sub_title: "Transparent & Fair", pricing_minimal: "Nominal Fee", pricing_balance: "Pay on Success",
+                full_payment: "Full Payment", fastest_proc: "Fastest processing",
+                at_signup: "Initial Step", work_permit: "Work Permit", submission: "Submission", after_visa: "Visa Approval", step_visa: "Visa Filing",
                 modal_salary: "Monthly Gross Salary", modal_process: "Benefit", modal_apply: "Apply Now",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Sectors", cat_manu: "Manufacturing", cat_logi: "Logistics", cat_cons: "Construction", cat_agri: "Agriculture",
@@ -1235,7 +1236,7 @@
                 step_4_title: "Work Permit", step_4_desc: "Official Polish Work Permit issued.",
                 step_5_title: "Visa Filing", step_5_desc: "Embassy appointment.",
                 step_6_title: "Travel", step_6_desc: "Receive tickets and travel.",
-                btn_select: "Select",
+                btn_select: "Select Plan",
                 footer_destinations: "Destinations", footer_services: "Services", footer_company: "Company", footer_office: "Office",
                 footer_story: "Our Story", footer_privacy: "Privacy Policy", footer_terms: "Terms of Service", footer_rights: "All rights reserved.",
                 serv_visa_appt: "Visa Appointment", serv_visa_doc: "Visa Documentation", serv_travel: "Travel Assistance", serv_insurance: "Insurance Assistance", serv_medical: "Medical Assistance", serv_corp: "Corporate B2B Solution",
@@ -1253,8 +1254,9 @@
                 pricing_title: "വിസ സക്സസ് മോഡൽ",
                 plan_later_title: "വിസയ്ക്ക് ശേഷം",
                 badge_later: "പേ ലേറ്റർ",
-                inc_vat: "ആകെ (VAT ഉൾപ്പെടെ)", full_payment: "പൂർണ്ണ പേയ്മെന്റ്", fastest_proc: "വേഗത്തിലുള്ള നടപടി",
-                at_signup: "രജിസ്ട്രേഷൻ", work_permit: "വർക്ക് പെർമിറ്റ്", submission: "സമർപ്പണം", after_visa: "വിസയ്ക്ക് ശേഷം", step_visa: "വിസ ഫയലിംഗ്",
+                pricing_main_title: "വിജയാധിഷ്ഠിത മോഡൽ", pricing_sub_title: "സുതാര്യവും ന്യായവുമായ", pricing_minimal: "നാമമാത്രമായ ഫീസ്", pricing_balance: "വിജയത്തിന് ശേഷം",
+                full_payment: "പൂർണ്ണ പേയ്മെന്റ്", fastest_proc: "വേഗത്തിലുള്ള നടപടി",
+                at_signup: "ആദ്യ ഘട്ടം", work_permit: "വർക്ക് പെർമിറ്റ്", submission: "സമർപ്പണം", after_visa: "വിസ അംഗീകാരം", step_visa: "വിസ ഫയലിംഗ്",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_process: "നേട്ടം", modal_apply: "അപേക്ഷിക്കുക",
                 nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് നൗ",
                 cat_all: "എല്ലാ മേഖലകളും", cat_manu: "മാനുഫാക്ചറിംഗ്", cat_logi: "ലോജിസ്റ്റിക്സ്", cat_cons: "നിർമ്മാണം", cat_agri: "അഗ്രികൾച്ചർ",
@@ -1282,8 +1284,9 @@
                 pricing_title: "वीज़ा सफलता मॉडल",
                 plan_later_title: "वीज़ा के बाद",
                 badge_later: "बाद में भुगतान",
-                inc_vat: "कुल (वैट सहित)", full_payment: "पूर्ण भुगतान", fastest_proc: "सबसे तेज प्रक्रिया",
-                at_signup: "साइन-अप पर", work_permit: "वर्क परमिट", submission: "जमा करना", after_visa: "वीज़ा के बाद", step_visa: "वीजा फाइलिंग",
+                pricing_main_title: "सफलता-आधारित मॉडल", pricing_sub_title: "पारदर्शी और निष्पक्ष", pricing_minimal: "नाममात्र शुल्क", pricing_balance: "सफलता पर भुगतान",
+                full_payment: "पूर्ण भुगतान", fastest_proc: "सबसे तेज प्रक्रिया",
+                at_signup: "प्रारंभिक चरण", work_permit: "वर्क परमिट", submission: "जमा करना", after_visa: "वीज़ा स्वीकृति", step_visa: "वीजा फाइलिंग",
                 modal_salary: "मासिक वेतन", modal_process: "लाभ", modal_apply: "अभी आवेदन करें",
                 nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "अभी बुक करें",
                 cat_all: "सभी क्षेत्र", cat_manu: "विनिर्माण", cat_logi: "लॉजिस्टिक्स", cat_cons: "निर्माण", cat_agri: "कृषि",
@@ -1311,8 +1314,9 @@
                 pricing_title: "விசா வெற்றி மாதிரி",
                 plan_later_title: "விசாவிற்குப் பிறகு",
                 badge_later: "Pay Later",
-                inc_vat: "மொத்தம் (வரியுடன்)", full_payment: "முழு கட்டணம்", fastest_proc: "வேகமான செயல்முறை",
-                at_signup: "பதிவின் போது", work_permit: "வேலை அனுமதி", submission: "சமர்ப்பித்தல்", after_visa: "விசாவுக்குப் பிறகு", step_visa: "விசா தாக்கல்",
+                pricing_main_title: "வெற்றி அடிப்படையிலான மாதிரி", pricing_sub_title: "வெளிப்படையான மற்றும் நியாயமான", pricing_minimal: "பெயரளவு கட்டணம்", pricing_balance: "வெற்றிக்கு பின் கட்டணம்",
+                full_payment: "முழு கட்டணம்", fastest_proc: "வேகமான செயல்முறை",
+                at_signup: "ஆரம்ப கட்டம்", work_permit: "வேலை அனுமதி", submission: "சமர்ப்பித்தல்", after_visa: "விசா ஒப்புதல்", step_visa: "விசா தாக்கல்",
                 modal_salary: "மாத சம்பளம்", modal_process: "நன்மை", modal_apply: "விண்ணப்பிக்க",
                 nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 cat_all: "அனைத்து துறைகளும்", cat_manu: "உற்பத்தி", cat_logi: "தளவாடங்கள்", cat_cons: "கட்டுமானம்", cat_agri: "விவசாயம்",
@@ -1340,10 +1344,11 @@
                 pricing_title: "Modelo ng Tagumpay",
                 plan_later_title: "Pagkatapos ng Visa",
                 badge_later: "Pay Later",
-                inc_vat: "Kabuuan (may VAT)", full_payment: "Buong Bayad", fastest_proc: "Mabilis na proseso",
-                at_signup: "Sa Pag-sign up", work_permit: "Work Permit", submission: "Pagsusumite", after_visa: "Pagkatapos ng Visa", step_visa: "Pag-file ng Visa",
+                pricing_main_title: "Success-Based Model", pricing_sub_title: "Transparent & Fair", pricing_minimal: "Maliit na Bayad", pricing_balance: "Pay on Success",
+                full_payment: "Buong Bayad", fastest_proc: "Mabilis na proseso",
+                at_signup: "Unang Hakbang", work_permit: "Work Permit", submission: "Pagsusumite", after_visa: "Visa Approval", step_visa: "Pag-file ng Visa",
                 modal_salary: "Buwanang Sahod", modal_process: "Benepisyo", modal_apply: "Mag-apply Ngayon",
-                nav_home: "Home", nav_programs: "Mga Programa", nav_services: "Mga Serbisyo", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
+                nav_home: "Home", nav_programs: "Mga Programa", nav_services: "Mga Serbisyo", nav_assessment: "Libreng Pagtatasa", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 cat_all: "Lahat ng Sektor", cat_manu: "Paggawa", cat_logi: "Logistics", cat_cons: "Konstruksyon", cat_agri: "Agrikultura",
                 step_1_title: "Pagsusumite", step_1_desc: "Ipasa ang mga dokumento.",
                 step_2_title: "Pagpaparehistro", step_2_desc: "Opisyal na enrollment.",
@@ -1369,10 +1374,11 @@
                 pricing_title: "වීසා සාර්ථකත්ව ආකෘතිය",
                 plan_later_title: "වීසා පසු",
                 badge_later: "Pay Later",
-                inc_vat: "මුළු (VAT ඇතුළත්ව)", full_payment: "සම්පූර්ණ ගෙවීම", fastest_proc: "වේගවත්ම",
-                at_signup: "ලියාපදිංචියේදී", work_permit: "වැඩ බලපත්‍රය", submission: "ඉදිරිපත් කිරීම", after_visa: "වීසා පසු", step_visa: "වීසා ගොනු කිරීම",
+                pricing_main_title: "සාර්ථකත්වය මත පදනම් වූ", pricing_sub_title: "විනිවිද පෙනෙන සහ සාධාරණ", pricing_minimal: "සුළු ගාස්තුවක්", pricing_balance: "සාර්ථක වූ පසු",
+                full_payment: "සම්පූර්ණ ගෙවීම", fastest_proc: "වේගවත්ම",
+                at_signup: "මූලික පියවර", work_permit: "වැඩ බලපත්‍රය", submission: "ඉදිරිපත් කිරීම", after_visa: "වීසා අනුමැතිය", step_visa: "වීසා ගොනු කිරීම",
                 modal_salary: "මාසික වැටුප", modal_process: "ප්‍රතිලාභ", modal_apply: "දැන් අයදුම් කරන්න",
-                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවාවන්", nav_about: "අප ගැන", nav_book: "වෙන් කරවා ගන්න",
+                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවාවන්", nav_assessment: "නොමිලේ ඇගයීම", nav_about: "අප ගැන", nav_book: "වෙන් කරවා ගන්න",
                 cat_all: "සියලුම අංශ", cat_manu: "නිෂ්පාදන", cat_logි: "ලොජිස්ටික්ස්", cat_cons: "ඉදිකිරීම්", cat_agri: "කෘෂිකර්ම",
                 step_1_title: "ඉදිරිපත් කිරීම", step_1_desc: "ලියකියවිලි ඉදිරිපත් කරන්න.",
                 step_2_title: "ලියාපදිංචිය", step_2_desc: "ලියාපදිංචි වීම.",
@@ -1398,10 +1404,11 @@
                 pricing_title: "Mfano wa Mafanikio",
                 plan_later_title: "Baada ya Visa",
                 badge_later: "Lipa Baadaye",
-                inc_vat: "Jumla (pamoja na VAT)", full_payment: "Malipo Kamili", fastest_proc: "Usindikaji wa haraka",
-                at_signup: "Kujiandikisha", work_permit: "Kibali cha Kazi", submission: "Uwasilishaji", after_visa: "Baada ya Visa", step_visa: "Kufungua Visa",
+                pricing_main_title: "Mfano wa Mafanikio", pricing_sub_title: "Wazi na Haki", pricing_minimal: "Ada Ndogo", pricing_balance: "Lipa kwa Mafanikio",
+                full_payment: "Malipo Kamili", fastest_proc: "Usindikaji wa haraka",
+                at_signup: "Hatua ya Awali", work_permit: "Kibali cha Kazi", submission: "Uwasilishaji", after_visa: "Idhini ya Visa", step_visa: "Kufungua Visa",
                 modal_salary: "Mshahara wa Mwezi", modal_process: "Faida", modal_apply: "Tuma Ombi Sasa",
-                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
+                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini ya Bure", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 cat_all: "Sekta Zote", cat_manu: "Uzalishaji", cat_logi: "Usafirishaji", cat_cons: "Ujenzi", cat_agri: "Kilimo",
                 step_1_title: "Uwasilishaji", step_1_desc: "Wasilisha nyaraka.",
                 step_2_title: "Usajili", step_2_desc: "Kujiandikisha rasmi.",

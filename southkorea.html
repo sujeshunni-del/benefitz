@@ -464,8 +464,8 @@
                                 </div>
 
                                 <div class="p-6 md:p-12 lg:w-2/5 flex flex-col justify-center items-center text-center relative bg-slate-50/50 md:bg-transparent">
-                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Total Investment</div>
-                                    <div class="text-5xl md:text-6xl font-black text-sk-primary mb-2 tracking-tight">€6,500</div>
+                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Investment Structure</div>
+                                    <div class="text-3xl md:text-4xl font-black text-sk-primary mb-2 tracking-tight">Tailored Plans</div>
                                     <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent pricing with milestone-based payments.</div>
                                     
                                     <a href="https://wa.me/971588670129" target="_blank" class="w-full relative group overflow-hidden rounded-xl bg-sk-secondary px-6 py-3 md:px-8 md:py-5 transition-all duration-300 text-white font-bold text-sm md:text-lg shadow-lg hover:-translate-y-1">
@@ -937,12 +937,12 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1", title: "Assessment", desc: "Document submission and initial review (2-3 days).", fee: "N/A", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Job Offer", desc: "Job offer & employment agreement from South Korean employer.", fee: "N/A", icon: "fa-handshake" },
-            { step: "03", key: "step_3", title: "Work Permit App.", desc: "Work permit application initiated.", fee: "€1,000", icon: "fa-file-contract" },
-            { step: "04", key: "step_4", title: "Processing", desc: "Processing with Korean immigration (10-15 days).", fee: "€3,000", icon: "fa-gears" },
-            { step: "05", key: "step_5", title: "eVisa Issuance", desc: "Electronic Visa issued & confirmed via email.", fee: "€2,500", icon: "fa-passport" },
-            { step: "06", key: "step_6", title: "Travel", desc: "Travel to South Korea with eVisa (Free Air Ticket).", fee: "N/A", icon: "fa-plane-departure" }
+            { step: "01", key: "step_1", title: "Assessment", desc: "Document submission and initial review (2-3 days).", fee: "Complimentary", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "Job Offer", desc: "Job offer & employment agreement from South Korean employer.", fee: "Included", icon: "fa-handshake" },
+            { step: "03", key: "step_3", title: "Work Permit App.", desc: "Work permit application initiated.", fee: "Initial Phase", icon: "fa-file-contract" },
+            { step: "04", key: "step_4", title: "Processing", desc: "Processing with Korean immigration (10-15 days).", fee: "Second Phase", icon: "fa-gears" },
+            { step: "05", key: "step_5", title: "eVisa Issuance", desc: "Electronic Visa issued & confirmed via email.", fee: "Final Settlement", icon: "fa-passport" },
+            { step: "06", key: "step_6", title: "Travel", desc: "Travel to South Korea with eVisa (Free Air Ticket).", fee: "Employer Covered", icon: "fa-plane-departure" }
         ];
 
         let currentCategory = 'All';
@@ -1263,7 +1263,7 @@
                 select_department: "Select Job Department", process_kicker: "Your Roadmap",
                 process_title: "Application Process", process_subtitle: `A transparent and structured path to your legal residency and career in ${PAGE_CONFIG.countryName}.`,
                 package_title: "Premium Package", package_subtitle: "All-Inclusive Relocation",
-                total_inv: "Total Investment", price_note: "Milestone-based payments.", start_process: "Start Process Now",
+                total_inv: "Investment Structure", price_note: "Transparent pricing with milestone-based payments.", start_process: "Start Process Now",
                 modal_salary: "Monthly Salary Range", modal_process: "Process Time", modal_apply: "Apply Now",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Departments", cat_fb: "Food & Beverage", cat_hk: "Housekeeping", cat_gs: "Guest Services", cat_ks: "Kitchen Support",
@@ -1281,7 +1281,7 @@
                 select_department: "ഡിപ്പാർട്ട്‌മെന്റ് തിരഞ്ഞെടുക്കുക", process_kicker: "നിങ്ങളുടെ റോഡ്‌മാപ്പ്",
                 process_title: "അപേക്ഷാ പ്രക്രിയ", process_subtitle: `${PAGE_CONFIG.countryName} നിങ്ങളുടെ താമസത്തിനും ജോലിക്കും സുതാര്യമായ വഴി.`,
                 package_title: "പ്രീമിയം പാക്കേജ്", package_subtitle: "സമ്പൂർണ്ണ റീലൊക്കേഷൻ",
-                total_inv: "ആകെ ചെലവ്", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
+                total_inv: "നിക്ഷേപ ഘടന", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_process: "പ്രോസസ്സിംഗ് സമയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
                 nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
                 cat_all: "എല്ലാ വിഭാഗങ്ങളും", cat_fb: "ഫുഡ് & ബിവറേജ്", cat_hk: "ഹൗസ്കീപ്പിംഗ്", cat_gs: "ഗസ്റ്റ് സർവീസസ്", cat_ks: "കിച്ചൻ സപ്പോർട്ട്",
@@ -1299,7 +1299,7 @@
                 select_department: "विभाग चुनें", process_kicker: "आपका रोडमैप",
                 process_title: "आवेदन प्रक्रिया", process_subtitle: `${PAGE_CONFIG.countryName} में आपके निवास और करियर के लिए एक पारदर्शी और संरक्षित रास्ता।`,
                 package_title: "प्रीमियम पैकेज", package_subtitle: "सभी समावेशी रिलोकेशन",
-                total_inv: "कुल निवेश", price_note: "माइलस्टोन-आधारित भुगतान।", start_process: "प्रक्रिया शुरू करें",
+                total_inv: "निवेश संरचना", price_note: "माइलस्टोन-आधारित भुगतान।", start_process: "प्रक्रिया शुरू करें",
                 modal_salary: "मासिक वेतन सीमा", modal_process: "प्रक्रिया समय", modal_apply: "अभी आवेदन करें",
                 nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "बुक करें",
                 cat_all: "सभी विभाग", cat_fb: "खाद्य और पेय", cat_hk: "हाउसकीपिंग", cat_gs: "अतिथि सेवाएं", cat_ks: "रसोई सहायता",
@@ -1317,7 +1317,7 @@
                 select_department: "துறையைத் தேர்ந்தெடுக்கவும்", process_kicker: "உங்கள் பாதை",
                 process_title: "விண்ணப்ப செயல்முறை", process_subtitle: `${PAGE_CONFIG.countryName} உங்கள் குடியேற்றத்திற்கான வெளிப்படையான வழிமுறை.`,
                 package_title: "பிரீமியம் தொகுப்பு", package_subtitle: "முழுமையான இடமாற்றம்",
-                total_inv: "மொத்த முதலீடு", price_note: "கட்டண முறை.", start_process: "இப்போதே தொடங்குங்கள்",
+                total_inv: "முதலீட்டு அமைப்பு", price_note: "கட்டண முறை.", start_process: "இப்போதே தொடங்குங்கள்",
                 modal_salary: "மாத சம்பளம்", modal_process: "செயல்முறை நேரம்", modal_apply: "விண்ணப்பிக்கவும்",
                 nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 cat_all: "அனைத்து துறைகளும்", cat_fb: "உணவு & பானங்கள்", cat_hk: "வீட்டு பராமரிப்பு", cat_gs: "விருந்தினர் சேவைகள்", cat_ks: "சமையலறை ஆதரவு",
@@ -1335,7 +1335,7 @@
                 select_department: "Piliin ang Departamento", process_kicker: "Ang Iyong Roadmap",
                 process_title: "Proseso ng Aplikasyon", process_subtitle: `Isang malinaw at structured na daan patungo sa iyong residency sa ${PAGE_CONFIG.countryName}.`,
                 package_title: "Premium Package", package_subtitle: "All-Inclusive Relocation",
-                total_inv: "Kabuuang Investment", price_note: "Milestone-based na bayad.", start_process: "Simulan ang Proseso",
+                total_inv: "Istruktura ng Pamumuhunan", price_note: "Milestone-based na bayad.", start_process: "Simulan ang Proseso",
                 modal_salary: "Buwanang Sahod", modal_process: "Oras ng Proseso", modal_apply: "Mag-apply Ngayon",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 cat_all: "Lahat ng Departamento", cat_fb: "Food & Beverage", cat_hk: "Housekeeping", cat_gs: "Guest Services", cat_ks: "Kitchen Support",
@@ -1353,7 +1353,7 @@
                 select_department: "දෙපාර්තමේන්තුව තෝරන්න", process_kicker: "ඔබේ මාර්ගය",
                 process_title: "අයදුම් කිරීමේ ක්‍රියාවලිය", process_subtitle: `${PAGE_CONFIG.countryName} ඔබේ පදිංචියට විනිවිද පෙනෙන සහ ක්‍රමවත් මාර්ගයක්.`,
                 package_title: "වාරික පැකේජය", package_subtitle: "සියල්ල ඇතුළත් සංක්‍රමණය",
-                total_inv: "මුළු ආයෝජනය", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "ක්‍රියාවලිය අරඹන්න",
+                total_inv: "ආයෝජන ව්‍යුහය", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "ක්‍රියාවලිය අරඹන්න",
                 modal_salary: "මාසික වැටුප", modal_process: "කාලසීමාව", modal_apply: "දැන් අයදුම් කරන්න",
                 nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
                 cat_all: "සියලුම දෙපාර්තමේන්තු", cat_fb: "ආහාර සහ පාන", cat_hk: "ගෘහ පාලනය", cat_gs: "අමුත්තන්ගේ සේවා", cat_ks: "මුළුතැන්ගෙයි සහාය",
@@ -1371,7 +1371,7 @@
                 select_department: "Chagua Idara", process_kicker: "Ramani Yako",
                 process_title: "Mchakato wa Maombi", process_subtitle: `Njia wazi na iliyopangwa ya makazi yako nchini ${PAGE_CONFIG.countryName}.`,
                 package_title: "Kifurushi cha Premium", package_subtitle: "Uhamisho wa Kila Kitu",
-                total_inv: "Jumla ya Uwekezaji", price_note: "Malipo ya hatua kwa hatua.", start_process: "Anza Mchakato Sasa",
+                total_inv: "Muundo wa Uwekezaji", price_note: "Malipo ya hatua kwa hatua.", start_process: "Anza Mchakato Sasa",
                 modal_salary: "Kiwango cha Mshahara", modal_process: "Muda wa Mchakato", modal_apply: "Tuma Ombi Sasa",
                 nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 cat_all: "Idara Zote", cat_fb: "Chakula na Vinywaji", cat_hk: "Usafi wa Hoteli", cat_gs: "Huduma za Wageni", cat_ks: "Msaada wa Jikoni",

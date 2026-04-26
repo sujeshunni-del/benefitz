@@ -439,22 +439,22 @@
                                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 border border-brand-gold/20">
                                      <i class="fa-solid fa-hand-holding-dollar"></i> <span data-i18n="badge_later">Pay Later Offer</span>
                                  </div>
-                                 <h4 class="text-3xl md:text-5xl font-black text-brand-black mb-1">€5,500</h4>
-                                 <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest" data-i18n="inc_vat">Total inc. VAT</p>
+                                 <h4 class="text-3xl md:text-5xl font-black text-brand-black mb-1" data-i18n="price_main">Success Based</h4>
+                                 <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest" data-i18n="price_sub">Transparent Pricing</p>
                             </div>
                             <div class="text-left md:text-right">
-                                 <p class="text-xs text-slate-500 max-w-xs leading-relaxed" data-i18n="process_subtitle">Minimal commitment fee. Pay the rest only after visa approval.</p>
+                                 <p class="text-xs text-slate-500 max-w-xs leading-relaxed" data-i18n="price_note">Minimal commitment fee. Pay the rest only after visa approval.</p>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-2 gap-4 mb-8 relative z-10">
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
                                 <span class="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest block mb-1" data-i18n="at_signup">Sign-up</span>
-                                <span class="text-xl md:text-2xl font-bold text-brand-black">€500</span>
+                                <span class="text-xl md:text-2xl font-bold text-brand-black" data-i18n="price_init">Minimal Fee</span>
                             </div>
                             <div class="p-4 rounded-xl bg-brand-gold/10 border border-brand-gold/20">
                                 <span class="text-[9px] md:text-[10px] text-brand-gold font-bold uppercase tracking-widest block mb-1" data-i18n="after_visa">After Visa</span>
-                                <span class="text-xl md:text-2xl font-bold text-brand-gold">€5,000</span>
+                                <span class="text-xl md:text-2xl font-bold text-brand-gold" data-i18n="price_final">On Approval</span>
                             </div>
                         </div>
 
@@ -694,10 +694,10 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1_title", descKey: "step_1_desc", fee: "N/A", icon: "fa-file-shield" },
-            { step: "02", key: "step_2_title", descKey: "step_2_desc", fee: "€1,000", icon: "fa-file-contract" },
-            { step: "03", key: "step_3_title", descKey: "step_3_desc", fee: "Varies", icon: "fa-passport" },
-            { step: "04", key: "step_4_title", descKey: "step_4_desc", fee: "Included", icon: "fa-plane-departure" }
+            { step: "01", key: "step_1_title", descKey: "step_1_desc", feeKey: "fee_free", icon: "fa-file-shield" },
+            { step: "02", key: "step_2_title", descKey: "step_2_desc", feeKey: "fee_init", icon: "fa-file-contract" },
+            { step: "03", key: "step_3_title", descKey: "step_3_desc", feeKey: "fee_varies", icon: "fa-passport" },
+            { step: "04", key: "step_4_title", descKey: "step_4_desc", feeKey: "fee_included", icon: "fa-plane-departure" }
         ];
 
         // =====================================================================
@@ -714,7 +714,11 @@
                 pricing_title: "Visa Success Model",
                 plan_later_title: "After Visa",
                 badge_later: "Pay Later",
-                inc_vat: "Total inc. VAT", full_payment: "Full Payment", fastest_proc: "Fastest processing",
+                
+                // Pricing and Fees replacements
+                fee_free: "Free Review", fee_init: "Initiation", fee_varies: "As Applicable", fee_included: "Covered",
+                price_main: "Success Based", price_sub: "Transparent Pricing", price_init: "Minimal Fee", price_final: "On Approval",
+
                 at_signup: "Sign-up", work_permit: "Work Permit", submission: "Submission", after_visa: "After Visa",
                 modal_salary: "Salary / Rate", modal_benefit: "Benefits", modal_apply: "Apply Now",
                 modal_critical: "Requirement", modal_gulf_exp: "Must have Gulf Experience",
@@ -741,7 +745,6 @@
                 footer_story: "Our Story", footer_privacy: "Privacy Policy", footer_terms: "Terms of Service", footer_rights: "All rights reserved.",
                 serv_visa_appt: "Visa Appointment", serv_visa_doc: "Visa Documentation", serv_travel: "Travel Assistance", serv_insurance: "Insurance Assistance", serv_medical: "Medical Assistance", serv_corp: "Corporate B2B Solution",
                 
-                // Added Country Keys
                 country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_france: "France", country_poland: "Poland", country_southkorea: "South Korea", country_singapore: "Singapore", country_canada: "Canada", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_russia: "Russia", country_slovakia: "Slovakia", country_czech: "Czech Republic", country_latvia: "Latvia", country_croatia: "Croatia", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania", country_belarus: "Belarus", country_italy: "Italy", country_netherlands: "Netherlands",
                 
                 package_title: "Pay Later Offer", price_note: "Minimal commitment fee. Pay the rest only after visa approval.",
@@ -757,7 +760,10 @@
                 pricing_title: "വിസ സക്സസ് മോഡൽ",
                 plan_later_title: "വിസയ്ക്ക് ശേഷം",
                 badge_later: "പിന്നീട് നൽകാം",
-                inc_vat: "ആകെ (VAT ഉൾപ്പെടെ)", full_payment: "പൂർണ്ണ പേയ്മെന്റ്", fastest_proc: "വേഗത്തിലുള്ള നടപടി",
+                
+                fee_free: "സൗജന്യ പരിശോധന", fee_init: "തുടക്കത്തിൽ", fee_varies: "ബാധകമായത്", fee_included: "ഉൾപ്പെടുത്തിയിട്ടുണ്ട്",
+                price_main: "വിജയാധിഷ്ഠിതം", price_sub: "സുതാര്യമായ നിരക്കുകൾ", price_init: "ചെറിയ തുക", price_final: "അംഗീകാരത്തിന് ശേഷം",
+
                 at_signup: "സൈൻ-അപ്പിൽ", work_permit: "വർക്ക് പെർമിറ്റ്", submission: "സമർപ്പണം", after_visa: "വിസയ്ക്ക് ശേഷം",
                 modal_salary: "ശമ്പളം / നിരക്ക്", modal_benefit: "ആനുകൂല്യങ്ങൾ", modal_apply: "അപേക്ഷിക്കുക",
                 modal_critical: "പ്രധാന നിർദ്ദേശം", modal_gulf_exp: "ഗൾഫ് പരിചയം നിർബന്ധം",
@@ -799,7 +805,10 @@
                 pricing_title: "वीज़ा सफलता मॉडल",
                 plan_later_title: "वीज़ा के बाद",
                 badge_later: "बाद में भुगतान करें",
-                inc_vat: "कुल (वैट सहित)", full_payment: "पूर्ण भुगतान", fastest_proc: "सबसे तेज प्रक्रिया",
+
+                fee_free: "मुफ़्त समीक्षा", fee_init: "प्रारंभिक", fee_varies: "लागू अनुसार", fee_included: "शामिल",
+                price_main: "सफलता आधारित", price_sub: "पारदर्शी मूल्य", price_init: "न्यूनतम शुल्क", price_final: "अनुमोदन पर",
+
                 at_signup: "साइन-अप पर", work_permit: "वर्क परमिट", submission: "जमा करना", after_visa: "वीज़ा के बाद",
                 modal_salary: "वेतन / दर", modal_benefit: "लाभ", modal_apply: "आवेदन करें",
                 modal_critical: "आवश्यकता", modal_gulf_exp: "गल्फ अनुभव आवश्यक",
@@ -841,7 +850,10 @@
                 pricing_title: "விசா வெற்றி மாதிரி",
                 plan_later_title: "விசாவிற்குப் பிறகு",
                 badge_later: "பிறகு செலுத்துங்கள்",
-                inc_vat: "மொத்தம் (வரியுடன்)", full_payment: "முழு கட்டணம்", fastest_proc: "வேகமான செயலாக்கம்",
+                
+                fee_free: "இலவச ஆய்வு", fee_init: "தொடக்கம்", fee_varies: "பொருந்தும் படி", fee_included: "உள்ளடக்கம்",
+                price_main: "வெற்றி அடிப்படை", price_sub: "வெளிப்படையான விலை", price_init: "குறைந்தபட்ச கட்டணம்", price_final: "ஒப்புதலுக்குப் பிறகு",
+
                 at_signup: "பதிவின் போது", work_permit: "வேலை அனுமதி", submission: "சமர்ப்பித்தல்", after_visa: "விசாவுக்குப் பிறகு",
                 modal_salary: "சம்பளம்", modal_benefit: "சலுகைகள்", modal_apply: "விண்ணப்பிக்கவும்",
                 modal_critical: "தேவை", modal_gulf_exp: "வளைகுடா அனுபவம் தேவை",
@@ -883,7 +895,10 @@
                 pricing_title: "Modelo ng Tagumpay",
                 plan_later_title: "Pagkatapos ng Visa",
                 badge_later: "Magbayad Mamaya",
-                inc_vat: "Kabuuan (may VAT)", full_payment: "Buong Bayad", fastest_proc: "Mabilis na proseso",
+
+                fee_free: "Libreng Pagsusuri", fee_init: "Pagsisimula", fee_varies: "Naaangkop", fee_included: "Kasama",
+                price_main: "Nakabatay sa Tagumpay", price_sub: "Malinaw na Presyo", price_init: "Maliit na Bayad", price_final: "Sa Pag-apruba",
+
                 at_signup: "Sa Pag-sign up", work_permit: "Work Permit", submission: "Pagsusumite", after_visa: "Pagkatapos ng Visa",
                 modal_salary: "Sahod", modal_benefit: "Benepisyo", modal_apply: "Mag-apply",
                 modal_critical: "Kailangan", modal_gulf_exp: "Dapat may Gulf Experience",
@@ -925,7 +940,10 @@
                 pricing_title: "වීසා සාර්ථකත්ව ආකෘතිය",
                 plan_later_title: "වීසා බලපත්‍රයෙන් පසු",
                 badge_later: "පසුව ගෙවන්න",
-                inc_vat: "මුළු (VAT ඇතුළත්ව)", full_payment: "සම්පූර්ණ ගෙවීම", fastest_proc: "වේගවත්ම",
+
+                fee_free: "නොමිලේ සමාලෝචනය", fee_init: "ආරම්භක", fee_varies: "අදාළ පරිදි", fee_included: "ඇතුළත්",
+                price_main: "සාර්ථකත්වය මත", price_sub: "විනිවිද පෙනෙන මිල", price_init: "අවම ගාස්තුව", price_final: "අනුමැතිය මත",
+
                 at_signup: "ලියාපදිංචියේදී", work_permit: "වැඩ බලපත්‍රය", submission: "ඉදිරිපත් කිරීම", after_visa: "වීසා බලපත්‍රයෙන් පසු",
                 modal_salary: "වැටුප", modal_benefit: "ප්‍රතිලාභ", modal_apply: "අයදුම් කරන්න",
                 modal_critical: "අවශ්‍යතාවය", modal_gulf_exp: "ගල්ෆ් පළපුරුද්ද අවශ්‍යයි",
@@ -967,7 +985,10 @@
                 pricing_title: "Mfano wa Mafanikio",
                 plan_later_title: "Baada ya Visa",
                 badge_later: "Lipa Baadaye",
-                inc_vat: "Jumla (pamoja na VAT)", full_payment: "Malipo Kamili", fastest_proc: "Usindikaji wa haraka",
+                
+                fee_free: "Uhakiki wa Bure", fee_init: "Kuanzisha", fee_varies: "Kama Inavyotumika", fee_included: "Imejumuishwa",
+                price_main: "Kulingana na Mafanikio", price_sub: "Bei Wazi", price_init: "Ada Ndogo", price_final: "Baada ya Idhini",
+
                 at_signup: "Kujiandikisha", work_permit: "Kibali cha Kazi", submission: "Uwasilishaji", after_visa: "Baada ya Visa",
                 modal_salary: "Mshahara", modal_benefit: "Faida", modal_apply: "Tuma Ombi",
                 modal_critical: "Hitaji", modal_gulf_exp: "Uzoefu wa Ghuba Unahitajika",
@@ -1544,7 +1565,7 @@
                             <p class="text-[10px] md:text-sm text-slate-600 leading-relaxed mb-3">${t(item.descKey)}</p>
                             <div class="flex items-center justify-between border-t border-slate-100 pt-3">
                                 <span class="text-[8px] font-bold text-slate-400 uppercase">Processing Fee</span>
-                                <span class="text-xs md:text-sm font-black">${item.fee}</span>
+                                <span class="text-xs md:text-sm font-black">${t(item.feeKey)}</span>
                             </div>
                         </div>
                     </div>

@@ -470,9 +470,15 @@
                                 </div>
 
                                 <div class="p-6 md:p-12 lg:w-2/5 flex flex-col justify-center items-center text-center relative bg-slate-50/50 md:bg-transparent">
-                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Total Investment</div>
-                                    <div class="text-5xl md:text-6xl font-black text-kz-primary mb-2 tracking-tight">€3,500</div>
-                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent pricing with milestone-based payments.</div>
+                                    <div class="mb-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-kz-primary/10 text-kz-primary text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                                        <i class="fa-solid fa-bolt"></i> 14 Days Fast Process
+                                    </div>
+                                    <div class="text-3xl md:text-4xl font-black text-brand-black mb-3 tracking-tight leading-tight">
+                                        Europe <span class="text-kz-primary">Pathway Route</span>
+                                    </div>
+                                    <div class="text-xs md:text-sm text-slate-500 mb-6 md:mb-8 font-medium">
+                                        Connect with our immigration advisors today!
+                                    </div>
                                     
                                     <a href="https://wa.me/971588670129" target="_blank" class="w-full relative group overflow-hidden rounded-xl bg-kz-secondary px-6 py-3 md:px-8 md:py-5 transition-all duration-300 text-white font-bold text-sm md:text-lg shadow-lg hover:-translate-y-1">
                                         <span class="relative z-10 flex items-center justify-center gap-2">
@@ -616,7 +622,11 @@
             <span class="text-xs font-black text-slate-800 uppercase tracking-widest pl-2 drop-shadow-sm">Start Journey</span>
             <button onclick="toggleMobileApply()" class="w-8 h-8 rounded-full bg-white/40 flex items-center justify-center text-slate-700 hover:bg-white/60"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="grid grid-cols-1 gap-3">
+        <div class="grid grid-cols-2 gap-3">
+            <a href="assessment.html" class="flex flex-col items-center justify-center p-4 rounded-2xl glass-pad-btn text-center aspect-square">
+                <div class="w-12 h-12 rounded-full bg-white/80 shadow-sm flex items-center justify-center text-kz-primary mb-2 text-xl"><i class="fa-solid fa-clipboard-list"></i></div>
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Assessment</span>
+            </a>
             <a href="book.html" class="flex flex-col items-center justify-center p-4 rounded-2xl glass-pad-btn text-center aspect-square">
                 <div class="w-12 h-12 rounded-full bg-white/80 shadow-sm flex items-center justify-center text-kz-secondary mb-2 text-xl"><i class="fa-solid fa-calendar-check"></i></div>
                 <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Book Now</span>
@@ -751,6 +761,7 @@
                             <a href="corporate_b2b.html" data-i18n="serv_corp" class="px-4 py-3 rounded-2xl text-sm font-bold text-brand-purple hover:bg-brand-purple/10 transition-all flex items-center justify-between">Corporate B2B Solution <i class="fa-solid fa-briefcase text-brand-purple/50"></i></a>
                         </div>
                     </div>
+                    <a href="assessment.html" data-i18n="nav_assessment" class="px-4 py-2 text-base text-brand-black hover:text-brand-blue font-medium transition rounded-full hover:bg-white/70">Free Assessment</a>
                     <a href="about.html" data-i18n="nav_about" class="px-4 py-2 text-base text-brand-black hover:text-brand-blue font-medium transition rounded-full hover:bg-white/70">About Us</a>
                 </div>
                 <div class="flex items-center gap-4 sm:gap-3 px-2">
@@ -765,11 +776,16 @@
             </div>
             
             <div id="mobileMenu" class="pointer-events-auto fixed top-16 left-3 right-3 max-h-[75vh] bg-white/70 backdrop-blur-3xl rounded-[2rem] border border-white/40 shadow-2xl z-[120] transform origin-top transition-all duration-300 ease-out opacity-0 invisible scale-95 flex flex-col md:hidden overflow-hidden">
-                <div class="p-3 grid grid-cols-1 gap-2 border-b border-white/20">
+                <div class="p-3 grid grid-cols-2 gap-2 border-b border-white/20">
                     <a href="index.html" class="flex flex-col items-center justify-center p-3 rounded-2xl glass-pad-btn group relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <i class="fa-solid fa-house text-xl mb-1 text-brand-blue group-hover:scale-110 transition-transform relative z-10"></i>
                         <span class="text-[9px] font-bold uppercase tracking-wider text-slate-800 relative z-10" data-i18n="nav_home">Home</span>
+                    </a>
+                    <a href="assessment.html" class="flex flex-col items-center justify-center p-3 rounded-2xl glass-pad-btn group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i class="fa-solid fa-clipboard-check text-xl mb-1 text-theme-secondary group-hover:scale-110 transition-transform relative z-10"></i>
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-slate-800 relative z-10" data-i18n="nav_assessment">Assess</span>
                     </a>
                 </div>
 
@@ -942,12 +958,12 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1", title: "Assessment", desc: "Submit passport and photo (No PCC/Medical).", fee: "€500", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Job Offer", desc: "Job confirmation within 2-3 days.", fee: "€1,000", icon: "fa-handshake" },
-            { step: "03", key: "step_3", title: "Entry Visa", desc: "Entry Visa granted within 7-10 days.", fee: "€2,000", icon: "fa-passport" },
-            { step: "04", key: "step_4", title: "Travel", desc: "Travel to Kazakhstan within 14 days of application.", fee: "N/A", icon: "fa-plane-departure" },
-            { step: "05", key: "step_5", title: "Work Visa", desc: "Convert Entry Visa to Work Visa upon arrival.", fee: "N/A", icon: "fa-building-flag" },
-            { step: "06", key: "step_6", title: "Europe Pathway", desc: "Optional: Migrate to Europe after 6 months work.", fee: "€500+", icon: "fa-map-location-dot" }
+            { step: "01", key: "step_1", title: "Assessment", desc: "Submit passport and photo (No PCC/Medical).", feature: "Fast Initiation", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "Job Offer", desc: "Job confirmation within 2-3 days.", feature: "Quick Confirmation", icon: "fa-handshake" },
+            { step: "03", key: "step_3", title: "Entry Visa", desc: "Entry Visa granted within 7-10 days.", feature: "Rapid Processing", icon: "fa-passport" },
+            { step: "04", key: "step_4", title: "Travel", desc: "Travel to Kazakhstan within 14 days of application.", feature: "Travel Ready", icon: "fa-plane-departure" },
+            { step: "05", key: "step_5", title: "Work Visa", desc: "Convert Entry Visa to Work Visa upon arrival.", feature: "Seamless Transition", icon: "fa-building-flag" },
+            { step: "06", key: "step_6", title: "Europe Pathway", desc: "Optional: Migrate to Europe after 6 months work.", feature: "Future Growth", icon: "fa-map-location-dot" }
         ];
 
         let currentCategory = 'All';
@@ -1219,8 +1235,8 @@
                             </div>
                             <p class="text-[10px] md:text-sm text-slate-600 leading-relaxed mb-3">${item.desc}</p>
                             <div class="flex items-center justify-between border-t border-slate-100 pt-3">
-                                <span class="text-[8px] font-bold text-slate-400 uppercase">Processing Fee</span>
-                                <span class="text-xs md:text-sm font-black">${item.fee}</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase">Process Highlight</span>
+                                <span class="text-xs md:text-sm font-black text-kz-primary">${item.feature}</span>
                             </div>
                         </div>
                     </div>
@@ -1270,7 +1286,7 @@
                 package_title: "Fast-Track Permit Package", package_subtitle: "Rapid Deployment & Euro Pathway",
                 total_inv: "Total Investment", price_note: "Milestone-based payments.", start_process: "Start Process Now",
                 modal_salary: "Monthly Salary Range", modal_process: "Process Time", modal_apply: "Apply Now",
-                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
+                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_assessment: "Free Assessment", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Departments", cat_mfg: "FMCG / Manufacturing", cat_const: "Construction / Infrastructure", cat_log: "Transport / Logistics", cat_hk: "Housekeeping / Maintenance", cat_hosp: "Hospitality / Food Service", cat_sec: "Security Services",
                 step_1: "Assessment", step_2: "Job Offer", step_3: "Entry Visa", step_4: "Travel", step_5: "Work Visa", step_6: "Europe Pathway",
                 footer_destinations: "Destinations", footer_services: "Services", footer_company: "Company", footer_office: "Office", footer_story: "Our Story", footer_privacy: "Privacy Policy", footer_terms: "Terms of Service", footer_rights: "All rights reserved.",
@@ -1288,7 +1304,7 @@
                 package_title: "ഫാസ്റ്റ് ട്രാക്ക് വർക്ക് പെർമിറ്റ്", package_subtitle: "വേഗത്തിലുള്ള വിസ & യൂറോപ്പ് പാത",
                 total_inv: "ആകെ ചെലവ്", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "പ്രോസസ്സ് ആരംഭിക്കുക",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_process: "പ്രോസസ്സിംഗ് സമയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
-                nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
+                nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_assessment: "സൗജന്യ മൂല്യനിർണ്ണയം", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
                 cat_all: "എല്ലാ വിഭാഗങ്ങളും", cat_mfg: "മാനുഫാക്ചറിംഗ്", cat_const: "നിർമ്മാണം", cat_log: "ട്രാൻസ്പോർട്ട് & ലോജിസ്റ്റിക്സ്", cat_hk: "ഹൗസ്കീപ്പിംഗ്", cat_hosp: "ഹോസ്പിറ്റാലിറ്റി", cat_sec: "സെക്യൂരിറ്റി",
                 step_1: "മൂല്യനിർണ്ണയം", step_2: "ജോബ് ഓഫർ", step_3: "എൻട്രി വിസ", step_4: "യാത്ര", step_5: "വർക്ക് വിസ", step_6: "യൂറോപ്പ് പാത",
                 footer_destinations: "ലക്ഷ്യസ്ഥാനങ്ങൾ", footer_services: "സേവനങ്ങൾ", footer_company: "കമ്പനി", footer_office: "ഓഫീസ്", footer_story: "ഞങ്ങളുടെ കഥ", footer_privacy: "സ്വകാര്യത നയം", footer_terms: "സേവന നിബന്ധനകൾ", footer_rights: "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
@@ -1306,7 +1322,7 @@
                 package_title: "फास्ट-ट्रैक परमिट पैकेज", package_subtitle: "त्वरित वीज़ा और यूरोप मार्ग",
                 total_inv: "कुल निवेश", price_note: "माइलस्टोन-आधारित भुगतान।", start_process: "प्रक्रिया शुरू करें",
                 modal_salary: "मासिक वेतन सीमा", modal_process: "प्रक्रिया समय", modal_apply: "अभी आवेदन करें",
-                nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "बुक करें",
+                nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_assessment: "निःशुल्क मूल्यांकन", nav_about: "हमारे बारे में", nav_book: "बुक करें",
                 cat_all: "सभी विभाग", cat_mfg: "विनिर्माण", cat_const: "निर्माण", cat_log: "लॉजिस्टिक्स", cat_hk: "हाउसकीपिंग", cat_hosp: "हॉस्पिटैलिटी", cat_sec: "सुरक्षा सेवाएं",
                 step_1: "मूल्यांकन", step_2: "नौकरी का प्रस्ताव", step_3: "एंट्री वीज़ा", step_4: "यात्रा", step_5: "वर्क वीज़ा", step_6: "यूरोप मार्ग",
                 footer_destinations: "गंतव्य", footer_services: "सेवाएं", footer_company: "कंपनी", footer_office: "कार्यालय", footer_story: "हमारी कहानी", footer_privacy: "गोपनीयता नीति", footer_terms: "सेवा की शर्तें", footer_rights: "सर्वाधिकार सुरक्षित।",
@@ -1324,7 +1340,7 @@
                 package_title: "விரைவான பணி அனுமதி", package_subtitle: "வேகமான விசா & ஐரோப்பா பாதை",
                 total_inv: "மொத்த முதலீடு", price_note: "கட்டண முறை.", start_process: "இப்போதே தொடங்குங்கள்",
                 modal_salary: "மாத சம்பளம்", modal_process: "செயல்முறை நேரம்", modal_apply: "விண்ணப்பிக்கவும்",
-                nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
+                nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_assessment: "இலவச மதிப்பீடு", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 cat_all: "அனைத்து துறைகளும்", cat_mfg: "உற்பத்தி", cat_const: "கட்டுமானம்", cat_log: "லாஜிஸ்டிக்ஸ்", cat_hk: "வீட்டு பராமரிப்பு", cat_hosp: "விருந்தோம்பல்", cat_sec: "பாதுகாப்பு",
                 step_1: "மதிப்பீடு", step_2: "வேலை வாய்ப்பு", step_3: "நுழைவு விசா", step_4: "பயணம்", step_5: "பணி விசா", step_6: "ஐரோப்பா பாதை",
                 footer_destinations: "இலக்குகள்", footer_services: "சேவைகள்", footer_company: "நிறுவனம்", footer_office: "அலுவலகம்", footer_story: "எங்கள் கதை", footer_privacy: "தனியுரிமைக் கொள்கை", footer_terms: "சேவை விதிமுறைகள்", footer_rights: "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
@@ -1342,7 +1358,7 @@
                 package_title: "Fast-Track Permit Package", package_subtitle: "Mabilis na Deployment & Euro Pathway",
                 total_inv: "Kabuuang Investment", price_note: "Milestone-based na bayad.", start_process: "Simulan ang Proseso",
                 modal_salary: "Buwanang Sahod", modal_process: "Oras ng Proseso", modal_apply: "Mag-apply Ngayon",
-                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
+                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_assessment: "Libreng Assessment", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 cat_all: "Lahat ng Departamento", cat_mfg: "Paggawa", cat_const: "Konstruksyon", cat_log: "Logistics", cat_hk: "Housekeeping", cat_hosp: "Hospitality", cat_sec: "Security",
                 step_1: "Pagsusuri", step_2: "Job Offer", step_3: "Entry Visa", step_4: "Paglalakbay", step_5: "Work Visa", step_6: "Europe Pathway",
                 footer_destinations: "Mga Destinasyon", footer_services: "Mga Serbisyo", footer_company: "Kumpanya", footer_office: "Opisina", footer_story: "Aming Kwento", footer_privacy: "Patakaran sa Privacy", footer_terms: "Mga Tuntunin ng Serbisyo", footer_rights: "Nakalaan ang lahat ng karapatan.",
@@ -1360,7 +1376,7 @@
                 package_title: "වේගවත් වැඩ බලපත්‍රය", package_subtitle: "ඉක්මන් වීසා සහ යුරෝපා මාර්ගය",
                 total_inv: "මුළු ආයෝජනය", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "ක්‍රියාවලිය අරඹන්න",
                 modal_salary: "මාසික වැටුප", modal_process: "කාලසීමාව", modal_apply: "දැන් අයදුම් කරන්න",
-                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
+                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_assessment: "නොමිලේ ඇගයීම", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
                 cat_all: "සියලුම දෙපාර්තමේන්තු", cat_mfg: "නිෂ්පාදන", cat_const: "ඉදිකිරීම්", cat_log: "ප්‍රවාහන", cat_hk: "ගෘහ පාලනය", cat_hosp: "සත්කාරක", cat_sec: "ආරක්ෂක",
                 step_1: "ඇගයීම", step_2: "රැකියා දීමනාව", step_3: "ඇතුල්වීමේ වීසා", step_4: "ගමන්", step_5: "වැඩ වීසා", step_6: "යුරෝපා මාර්ගය",
                 footer_destinations: "ගමනාන්ත", footer_services: "සේවාවන්", footer_company: "සමාගම", footer_office: "කාර්යාලය", footer_story: "අපේ කතාව", footer_privacy: "රහස්‍යතා ප්‍රතිපත්තිය", footer_terms: "සේවා කොන්දේසි", footer_rights: "සියලුම හිමිකම් ඇවිරිණි.",
@@ -1378,7 +1394,7 @@
                 package_title: "Kifurushi cha Haraka", package_subtitle: "Visa ya Haraka na Njia ya Ulaya",
                 total_inv: "Jumla ya Uwekezaji", price_note: "Malipo ya hatua kwa hatua.", start_process: "Anza Mchakato Sasa",
                 modal_salary: "Kiwango cha Mshahara", modal_process: "Muda wa Mchakato", modal_apply: "Tuma Ombi Sasa",
-                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
+                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini ya Bure", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 cat_all: "Idara Zote", cat_mfg: "Utengenezaji", cat_const: "Ujenzi", cat_log: "Usafirishaji", cat_hk: "Usafi", cat_hosp: "Ukarimu", cat_sec: "Usalama",
                 step_1: "Tathmini", step_2: "Ofa ya Kazi", step_3: "Visa ya Kuingia", step_4: "Kusafiri", step_5: "Visa ya Kazi", step_6: "Njia ya Ulaya",
                 footer_destinations: "Vituo", footer_services: "Huduma", footer_company: "Kampuni", footer_office: "Ofisi", footer_story: "Hadithi Yetu", footer_privacy: "Sera ya Faragha", footer_terms: "Masharti ya Huduma", footer_rights: "Haki zote zimehifadhiwa.",
