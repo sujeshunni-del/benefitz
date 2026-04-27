@@ -463,7 +463,7 @@
                                             <div class="mt-0.5 text-ge-secondary animate-pulse text-sm"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                                             <div>
                                                 <span class="block text-brand-black font-bold text-sm md:text-base" data-i18n="inc_flight">Zero After-Joining Fees</span>
-                                                <span class="text-[10px] md:text-xs text-slate-600">Total cost is €4,500 with no deductions after reaching Georgia.</span>
+                                                <span class="text-[10px] md:text-xs text-slate-600">Transparent milestone pricing with zero deductions after reaching Georgia.</span>
                                             </div>
                                         </div>
                                     </div>
@@ -471,8 +471,8 @@
 
                                 <div class="p-6 md:p-12 lg:w-2/5 flex flex-col justify-center items-center text-center relative bg-slate-50/50 md:bg-transparent">
                                     <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Total Investment</div>
-                                    <div class="text-5xl md:text-6xl font-black text-ge-primary mb-2 tracking-tight">€4,500</div>
-                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent pricing with milestone-based payments.</div>
+                                    <div class="text-4xl md:text-5xl font-black text-ge-primary mb-2 tracking-tight">Tailored Plan</div>
+                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Transparent, milestone-based journey.</div>
                                     
                                     <a href="https://wa.me/971588670129" target="_blank" class="w-full relative group overflow-hidden rounded-xl bg-ge-secondary px-6 py-3 md:px-8 md:py-5 transition-all duration-300 text-white font-bold text-sm md:text-lg shadow-lg hover:-translate-y-1">
                                         <span class="relative z-10 flex items-center justify-center gap-2">
@@ -947,12 +947,12 @@
         ];
 
         const timelineData = [
-            { step: "01", key: "step_1", title: "Registration", desc: "Submit documents & secure slot.", fee: "€250", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Job Offer", desc: "Job offer from employer within 3-5 days.", fee: "N/A", icon: "fa-handshake" },
-            { step: "03", key: "step_3", title: "E-Visa App", desc: "Online submission to Georgian Embassy.", fee: "€1,500", icon: "fa-laptop-file" },
-            { step: "04", key: "step_4", title: "Visa Approval", desc: "E-Visa approved within 5-7 days.", fee: "€2,000", icon: "fa-passport" },
-            { step: "05", key: "step_5", title: "Travel", desc: "Flight ticket arranged and travel to Georgia.", fee: "€750", icon: "fa-plane-departure" },
-            { step: "06", key: "step_6", title: "Join Company", desc: "Zero payment required after joining the company.", fee: "€0", icon: "fa-building-circle-check" }
+            { step: "01", key: "step_1", title: "Registration", desc: "Submit documents & secure slot.", fee: "Initial Step", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "Job Offer", desc: "Job offer from employer within 3-5 days.", fee: "Included", icon: "fa-handshake" },
+            { step: "03", key: "step_3", title: "E-Visa App", desc: "Online submission to Georgian Embassy.", fee: "Processing Phase", icon: "fa-laptop-file" },
+            { step: "04", key: "step_4", title: "Visa Approval", desc: "E-Visa approved within 5-7 days.", fee: "Success Milestone", icon: "fa-passport" },
+            { step: "05", key: "step_5", title: "Travel", desc: "Flight ticket arranged and travel to Georgia.", fee: "Travel Prep", icon: "fa-plane-departure" },
+            { step: "06", key: "step_6", title: "Join Company", desc: "Zero payment required after joining the company.", fee: "Fully Covered", icon: "fa-building-circle-check" }
         ];
 
         let currentCategory = 'All';
@@ -1224,7 +1224,7 @@
                             </div>
                             <p class="text-[10px] md:text-sm text-slate-600 leading-relaxed mb-3">${item.desc}</p>
                             <div class="flex items-center justify-between border-t border-slate-100 pt-3">
-                                <span class="text-[8px] font-bold text-slate-400 uppercase">Processing Fee</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase">Investment Phase</span>
                                 <span class="text-xs md:text-sm font-black">${item.fee}</span>
                             </div>
                         </div>
@@ -1273,7 +1273,7 @@
                 select_department: "Select Job Department", process_kicker: "15-Day Fast Track",
                 process_title: "Application Process", process_subtitle: `The quickest route to employment in Georgia with an entirely online E-Visa process.`,
                 package_title: "Georgia E-Visa Package", package_subtitle: "15-Day Fast Track Deployment",
-                total_inv: "Total Investment", price_note: "Milestone-based payments.", start_process: "Start Process Now",
+                total_inv: "Total Investment", price_note: "Transparent, milestone-based journey.", start_process: "Start Process Now",
                 modal_salary: "Monthly Salary Range", modal_process: "Process Time", modal_apply: "Apply Now",
                 nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Departments", cat_log: "Logistics", cat_const: "Construction / General Work", cat_trans: "Transport", cat_hosp: "Hospitality", cat_sec: "Security",
@@ -1315,7 +1315,7 @@
                 cat_all: "सभी विभाग", cat_log: "लॉजिस्टिक्स", cat_const: "निर्माण", cat_trans: "परिवहन", cat_hosp: "हॉस्पिटैलिटी", cat_sec: "सुरक्षा",
                 step_1: "पंजीकरण", step_2: "नौकरी का प्रस्ताव", step_3: "ई-वीज़ा आवेदन", step_4: "वीज़ा स्वीकृति", step_5: "यात्रा", step_6: "कंपनी ज्वाइन करें",
                 footer_destinations: "गंतव्य", footer_services: "सेवाएं", footer_company: "कंपनी", footer_office: "कार्यालय", footer_story: "हमारी कहानी", footer_privacy: "गोपनीयता नीति", footer_terms: "सेवा की शर्तें", footer_rights: "सर्वाधिकार सुरक्षित।",
-                country_georgia: "जॉर्जिया", country_kazakhstan: "कजाकिस्तान", country_canada: "कनाडा", country_newzealand: "न्यूज़ीलैंड", country_denmark: "डेनमार्क", country_austria: "ऑस्ट्रिया", country_germany: "जर्मनी", country_sweden: "स्वीडन", country_finland: "फिनलैंड", country_france: "फ्रांस", country_poland: "पोलैंड", country_southkorea: "दक्षिण कोरिया", country_singapore: "सिंगापुर", country_slovakia: "स्लोवाकिया", country_czech: "चेक गणराज्य", country_latvia: "लातविया", country_croatia: "क्रोएशिया", country_montenegro: "मोंटेनेग्रो", country_serbia: "सर्बिया", country_macedonia: "मैसिडोनिया", country_albania: "अल्बानिया", country_belarus: "बेलारूस", country_russia: "रूस",
+                country_georgia: "जॉर्जिया", country_kazakhstan: "कजाकिस्तान", country_canada: "कनाडा", country_newzealand: "न्यूज़ीलैंड", country_denmark: "डेनमार्क", country_austria: "ऑस्ट्रिया", country_germany: "जर्मनी", country_sweden: "स्वीडन", country_finland: "फिनलैंड", country_france: "फ्रांस", country_poland: "पोलैंड", country_southkorea: "दक्षिण कोरिया", country_सिंगापुर: "सिंगापुर", country_slovakia: "स्लोवाकिया", country_czech: "चेक गणराज्य", country_latvia: "लातविया", country_croatia: "क्रोएशिया", country_montenegro: "मोंटेनेग्रो", country_serbia: "सर्बिया", country_macedonia: "मैसिडोनिया", country_albania: "अल्बानिया", country_belarus: "बेलारूस", country_russia: "रूस",
                 serv_visa_appt: "वीज़ा नियुक्ति", serv_visa_doc: "वीज़ा दस्तावेज़ीकरण", serv_travel: "यात्रा सहायता", serv_insurance: "बीमा", serv_medical: "चिकित्सा सहायता", serv_corp: "कॉर्पोरेट समाधान",
                 sec_standard_desc: "वैश्विक प्रवासन में व्यावसायिकता, पूर्ण पारदर्शिता और निरंतर ग्राहक सफलता के लिए उद्योग बेंचमार्क को परिभाषित करना।"
             },

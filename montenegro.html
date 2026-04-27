@@ -473,9 +473,9 @@
                                 </div>
 
                                 <div class="p-6 md:p-12 lg:w-2/5 flex flex-col justify-center items-center text-center relative bg-slate-50/50 md:bg-transparent">
-                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Total Package</div>
-                                    <div class="text-5xl md:text-6xl font-black text-theme-primary mb-2 tracking-tight">€4,500</div>
-                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Paid in two easy installments.</div>
+                                    <div class="mb-1 text-[11px] md:text-sm text-slate-500 uppercase tracking-widest" data-i18n="total_inv">Investment Structure</div>
+                                    <div class="text-3xl md:text-4xl lg:text-5xl font-black text-theme-primary mb-2 tracking-tight px-2" data-i18n="package_value">Tailored & Transparent</div>
+                                    <div class="text-[10px] md:text-xs text-slate-400 mb-6 md:mb-8" data-i18n="price_note">Flexible milestone-based commitment.</div>
                                     
                                     <a href="https://benefitz.international/appointment" target="_blank" class="w-full relative group overflow-hidden rounded-xl bg-theme-primary px-6 py-3 md:px-8 md:py-5 transition-all duration-300 text-white font-bold text-sm md:text-lg shadow-lg hover:-translate-y-1">
                                         <span class="relative z-10 flex items-center justify-center gap-2">
@@ -957,13 +957,13 @@
         ];
 
         var timelineData = [
-            { step: "01", key: "step_1", title: "Profile Assessment", desc: "Eligibility check & Document review.", fee: "Free", icon: "fa-file-shield" },
-            { step: "02", key: "step_2", title: "Registration", desc: "Sign Agreement & Pay Advance.", fee: "€500", icon: "fa-user-check" },
-            { step: "03", key: "step_3", title: "Job Offer", desc: "Receive Offer Letter from Employer.", fee: "Processing", icon: "fa-envelope-open-text" },
-            { step: "04", key: "step_4", title: "Work Permit", desc: "Ministry of Interior Approval.", fee: "Processing", icon: "fa-briefcase" },
-            { step: "05", key: "step_5", title: "Visa Filing", desc: "Submission at Embassy/VFS.", fee: "Processing", icon: "fa-passport" },
-            { step: "06", key: "step_6", title: "Visa Success", desc: "Visa Stamping & Final Payment.", fee: "€4,000", icon: "fa-stamp" },
-            { step: "07", key: "step_7", title: "Deployment", desc: "Flight Ticket & Travel to Montenegro.", fee: "Included", icon: "fa-plane-departure" }
+            { step: "01", key: "step_1", title: "Profile Assessment", desc: "Eligibility check & Document review.", fee: "Complimentary", icon: "fa-file-shield" },
+            { step: "02", key: "step_2", title: "Registration", desc: "Sign Agreement & Pay Advance.", fee: "Initial Step", icon: "fa-user-check" },
+            { step: "03", key: "step_3", title: "Job Offer", desc: "Receive Offer Letter from Employer.", fee: "In Progress", icon: "fa-envelope-open-text" },
+            { step: "04", key: "step_4", title: "Work Permit", desc: "Ministry of Interior Approval.", fee: "In Progress", icon: "fa-briefcase" },
+            { step: "05", key: "step_5", title: "Visa Filing", desc: "Submission at Embassy/VFS.", fee: "In Progress", icon: "fa-passport" },
+            { step: "06", key: "step_6", title: "Visa Success", desc: "Visa Stamping & Final Payment.", fee: "Final Milestone", icon: "fa-stamp" },
+            { step: "07", key: "step_7", title: "Deployment", desc: "Flight Ticket & Travel to Montenegro.", fee: "Fully Covered", icon: "fa-plane-departure" }
         ];
 
         var currentCategory = 'All';
@@ -1345,10 +1345,10 @@
                 select_department: "Select Department", process_kicker: "Your Roadmap",
                 process_title: "Application Process", process_subtitle: `Simple and transparent steps to ${PAGE_CONFIG.countryName}.`,
                 package_title: "Montenegro Package", package_subtitle: "Full Employment Service",
-                total_inv: "Total Package", price_note: "Paid in two easy installments.", start_process: "Start Application",
+                total_inv: "Investment Structure", package_value: "Tailored & Transparent", price_note: "Flexible milestone-based commitment.", start_process: "Start Application",
                 modal_salary: "Monthly Salary", modal_experience: "Age Limit", modal_process: "Process Time", modal_apply: "Apply Now",
                 inc_consult: "Job Offer & Contract", inc_doc: "Visa Processing", inc_flight: "Flight Ticket Included",
-                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "About Us", nav_book: "Book Now",
+                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_assessment: "Free Assessment", nav_about: "About Us", nav_book: "Book Now",
                 cat_all: "All Departments", cat_general: "General Department", cat_factory: "Factory Department", cat_packing: "Packing Department",
                 step_1: "Profile Assessment", step_2: "Registration", step_3: "Job Offer", step_4: "Work Permit", step_5: "Visa Filing", step_6: "Visa Success", step_7: "Deployment",
                 country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_france: "France", country_poland: "Poland", country_southkorea: "South Korea", country_singapore: "Singapore", country_canada: "Canada", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_russia: "Russia", country_slovakia: "Slovakia", country_czech: "Czech Republic", country_latvia: "Latvia", country_croatia: "Croatia", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania", country_belarus: "Belarus"
@@ -1361,10 +1361,10 @@
                 select_department: "വകുപ്പ് തിരഞ്ഞെടുക്കുക", process_kicker: "റോഡ്മാപ്പ്",
                 process_title: "അപേക്ഷാ പ്രക്രിയ", process_subtitle: `${PAGE_CONFIG.countryName} ലേക്ക് ലളിതമായ ഘട്ടങ്ങൾ.`,
                 package_title: "മോണ്ടിനെഗ്രോ പാക്കേജ്", package_subtitle: "പൂർണ്ണ തൊഴിൽ സേവനം",
-                total_inv: "ആകെ പാക്കേജ്", price_note: "രണ്ട് തവണകളായി അടയ്ക്കാം.", start_process: "അപേക്ഷ ആരംഭിക്കുക",
+                total_inv: "നിക്ഷേപ ഘടന", package_value: "സുതാര്യമായ പാക്കേജ്", price_note: "ഘട്ടം ഘട്ടമായുള്ള പേയ്മെന്റ്.", start_process: "അപേക്ഷ ആരംഭിക്കുക",
                 modal_salary: "പ്രതിമാസ ശമ്പളം", modal_experience: "പ്രായപരിധി", modal_process: "പ്രോസസ്സിംഗ് സമയം", modal_apply: "ഇപ്പോൾ അപേക്ഷിക്കുക",
                 inc_consult: "ജോലി ഓഫർ & കരാർ", inc_doc: "വിസ പ്രോസസ്സിംഗ്", inc_flight: "വിമാന ടിക്കറ്റ് ഉൾപ്പെടുന്നു",
-                nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
+                nav_home: "ഹോം", nav_programs: "പ്രോഗ്രാമുകൾ", nav_services: "സേവനങ്ങൾ", nav_assessment: "സൗജന്യ മൂല്യനിർണ്ണയം", nav_about: "ഞങ്ങളെ കുറിച്ച്", nav_book: "ബുക്ക് ചെയ്യുക",
                 cat_all: "എല്ലാ വകുപ്പുകളും", cat_general: "ജനറൽ ഡിപ്പാർട്ട്മെന്റ്", cat_factory: "ഫാക്ടറി ഡിപ്പാർട്ട്മെന്റ്", cat_packing: "പാക്കിംഗ് ഡിപ്പാർട്ട്മെന്റ്",
                 step_1: "പ്രൊഫൈൽ വിലയിരുത്തൽ", step_2: "രജിസ്ട്രേഷൻ", step_3: "ജോലി വാഗ്ദാനം", step_4: "വർക്ക് പെർമിറ്റ്", step_5: "വിസ ഫയലിംഗ്", step_6: "വിസ വിജയം", step_7: "യാത്ര",
                 country_newzealand: "ന്യൂസിലൻഡ്", country_denmark: "ഡെൻമാർക്ക്", country_austria: "ഓസ്ട്രിയ", country_germany: "ജർമ്മനി", country_sweden: "സ്വീഡൻ", country_finland: "ഫിൻലാൻഡ്", country_france: "ഫ്രാൻസ്", country_poland: "പോളണ്ട്", country_southkorea: "ദക്ഷിണ കൊറിയ", country_singapore: "സിംഗപ്പൂർ", country_canada: "കാനഡ", country_georgia: "ജോർജ്ജിയ", country_kazakhstan: "കസാക്കിസ്ഥാൻ", country_russia: "റഷ്യ", country_slovakia: "സ്ലോവാക്യ", country_czech: "ചെക്ക് റിപ്പബ്ലിക്", country_latvia: "ലാത്വിയ", country_croatia: "ക്രൊയേഷ്യ", country_montenegro: "മോണ്ടിനെഗ്രോ", country_serbia: "സെർബിയ", country_macedonia: "മാസിഡോണിയ", country_albania: "അൽബാനിയ", country_belarus: "ബെലാറസ്"
@@ -1377,10 +1377,10 @@
                 select_department: "विभाग चुनें", process_kicker: "रोडमैप",
                 process_title: "आवेदन प्रक्रिया", process_subtitle: `${PAGE_CONFIG.countryName} के लिए सरल और पारदर्शी कदम।`,
                 package_title: "मोंटेनेग्रो पैकेज", package_subtitle: "पूर्ण रोजगार सेवा",
-                total_inv: "कुल पैकेज", price_note: "दो आसान किस्तों में भुगतान।", start_process: "आवेदन शुरू करें",
+                total_inv: "निवेश संरचना", package_value: "पारदर्शी और अनुकूलित", price_note: "लचीली माइलस्टोन-आधारित प्रतिबद्धता।", start_process: "आवेदन शुरू करें",
                 modal_salary: "मासिक वेतन", modal_experience: "आयु सीमा", modal_process: "प्रक्रिया समय", modal_apply: "अभी आवेदन करें",
                 inc_consult: "जॉब ऑफर और अनुबंध", inc_doc: "वीज़ा प्रसंस्करण", inc_flight: "फ्लाइट टिकट शामिल",
-                nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_about: "हमारे बारे में", nav_book: "बुक करें",
+                nav_home: "होम", nav_programs: "कार्यक्रम", nav_services: "सेवाएं", nav_assessment: "निःशुल्क मूल्यांकन", nav_about: "हमारे बारे में", nav_book: "बुक करें",
                 cat_all: "सभी विभाग", cat_general: "जनरल विभाग", cat_factory: "फैक्ट्री विभाग", cat_packing: "पैकिंग विभाग",
                 step_1: "प्रोफाइल मूल्यांकन", step_2: "पंजीकरण", step_3: "नौकरी प्रस्ताव", step_4: "वर्क परमिट", step_5: "वीज़ा फाइलिंग", step_6: "वीज़ा सफलता", step_7: "तैनाती",
                 country_newzealand: "न्यूज़ीलैंड", country_denmark: "डेनमार्क", country_austria: "ऑस्ट्रिया", country_germany: "जर्मनी", country_sweden: "स्वीडन", country_finland: "फिनलैंड", country_france: "फ्रांस", country_poland: "पोलैंड", country_southkorea: "दक्षिण कोरिया", country_singapore: "सिंगापुर", country_canada: "कनाडा", country_georgia: "जॉर्जिया", country_kazakhstan: "कजाकिस्तान", country_russia: "रूस", country_slovakia: "स्लोवाकिया", country_czech: "चेक गणराज्य", country_latvia: "लातविया", country_croatia: "क्रोएशिया", country_montenegro: "मोंटेनेग्रो", country_serbia: "सर्बिया", country_macedonia: "मैसिडोनिया", country_albania: "अल्बानिया", country_belarus: "बेलारूस"
@@ -1393,10 +1393,10 @@
                 select_department: "துறையைத் தேர்ந்தெடுக்கவும்", process_kicker: "சாலைவரைபடம்",
                 process_title: "விண்ணப்ப செயல்முறை", process_subtitle: `${PAGE_CONFIG.countryName} க்கான எளிய மற்றும் வெளிப்படையான படிகள்.`,
                 package_title: "மாண்டினீக்ரோ தொகுப்பு", package_subtitle: "முழு வேலைவாய்ப்பு சேவை",
-                total_inv: "மொத்த தொகுப்பு", price_note: "இரண்டு எளிய தவணைகளில் செலுத்தலாம்.", start_process: "விண்ணப்பம் தொடங்க",
+                total_inv: "முதலீட்டு அமைப்பு", package_value: "வெளிப்படையான தொகுப்பு", price_note: "நெகிழ்வான மைல்கல் அடிப்படையிலான கட்டணம்.", start_process: "விண்ணப்பம் தொடங்க",
                 modal_salary: "மாத சம்பளம்", modal_experience: "வயது வரம்பு", modal_process: "செயல்முறை நேரம்", modal_apply: "விண்ணப்பிக்கவும்",
                 inc_consult: "வேலை வாய்ப்பு & ஒப்பந்தம்", inc_doc: "விசா செயலாக்கம்", inc_flight: "விமான டிக்கெட் சேர்க்கப்பட்டுள்ளது",
-                nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
+                nav_home: "முகப்பு", nav_programs: "திட்டங்கள்", nav_services: "சேவைகள்", nav_assessment: "இலவச மதிப்பீடு", nav_about: "எங்களை பற்றி", nav_book: "பதிவு செய்க",
                 cat_all: "அனைத்து துறைகள்", cat_general: "பொதுத் துறை", cat_factory: "தொழிற்சாலை துறை", cat_packing: "பேக்கிங் துறை",
                 step_1: "சுயவிவர மதிப்பீடு", step_2: "பதிவு", step_3: "வேலை வாய்ப்பு", step_4: "வேலை அனுமதி", step_5: "விசா தாக்கல்", step_6: "விசா வெற்றி", step_7: "பயணம்",
                 country_newzealand: "நியூசிலாந்து", country_denmark: "டென்மார்க்", country_austria: "ஆஸ்திரியா", country_germany: "ஜெர்மனி", country_sweden: "ஸ்வீடன்", country_finland: "பின்லாந்து", country_france: "பிரான்ஸ்", country_poland: "போலந்து", country_southkorea: "தென் கொரியா", country_singapore: "சிங்கப்பூர்", country_canada: "கனடா", country_georgia: "ஜார்ஜியா", country_kazakhstan: "கஜகஸ்தான்", country_russia: "ரஷ்யா", country_slovakia: "ஸ்லோவாக்கியா", country_czech: "செக் குடியரசு", country_latvia: "லாட்வியா", country_croatia: "குரோஷியா", country_montenegro: "மான்டிநீக்ரோ", country_serbia: "செர்பியா", country_macedonia: "மாசிடோனியா", country_albania: "அல்பேனியா", country_belarus: "பெலாரஸ்"
@@ -1409,10 +1409,10 @@
                 select_department: "Piliin ang Departamento", process_kicker: "Proseso",
                 process_title: "Proseso ng Aplikasyon", process_subtitle: `Simple at transparent na hakbang patungong ${PAGE_CONFIG.countryName}.`,
                 package_title: "Montenegro Package", package_subtitle: "Buong Serbisyo sa Trabaho",
-                total_inv: "Kabuuang Package", price_note: "Binabayaran sa dalawang madaling hulog.", start_process: "Simulan ang Aplikasyon",
+                total_inv: "Istruktura ng Investment", package_value: "Tailored at Transparent", price_note: "Flexible at milestone-based na komitment.", start_process: "Simulan ang Aplikasyon",
                 modal_salary: "Buwanang Sahod", modal_experience: "Edad", modal_process: "Oras ng Proseso", modal_apply: "Mag-apply Ngayon",
                 inc_consult: "Alok na Trabaho at Kontrata", inc_doc: "Pagproseso ng Visa", inc_flight: "Kasama ang Flight Ticket",
-                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
+                nav_home: "Home", nav_programs: "Programs", nav_services: "Services", nav_assessment: "Libreng Assessment", nav_about: "Tungkol sa Amin", nav_book: "Mag-book Ngayon",
                 cat_all: "Lahat ng Departamento", cat_general: "General Department", cat_factory: "Factory Department", cat_packing: "Packing Department",
                 step_1: "Pagsusuri ng Profile", step_2: "Rehistrasyon", step_3: "Alok na Trabaho", step_4: "Permit sa Trabaho", step_5: "Pag-file ng Visa", step_6: "Tagumpay ng Visa", step_7: "Pag-alis",
                 country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Germany", country_sweden: "Sweden", country_finland: "Finland", country_france: "France", country_poland: "Poland", country_southkorea: "South Korea", country_singapore: "Singapore", country_canada: "Canada", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_russia: "Russia", country_slovakia: "Slovakia", country_czech: "Czechia", country_latvia: "Latvia", country_croatia: "Croatia", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Macedonia", country_albania: "Albania", country_belarus: "Belarus"
@@ -1425,10 +1425,10 @@
                 select_department: "අංශය තෝරන්න", process_kicker: "සැලැස්ම",
                 process_title: "අයදුම් කිරීමේ ක්‍රියාවලිය", process_subtitle: `${PAGE_CONFIG.countryName} වෙත සරල පියවර.`,
                 package_title: "මොන්ටිනිග්‍රෝ පැකේජය", package_subtitle: "පූර්ණ රැකියා සේවාව",
-                total_inv: "මුළු පැකේජය", price_note: "පහසු වාරික දෙකකින් ගෙවිය හැක.", start_process: "අයදුම් කරන්න",
+                total_inv: "ආයෝජන ව්‍යුහය", package_value: "විනිවිද පෙනෙන පැකේජය", price_note: "අදියර වශයෙන් ගෙවීම්.", start_process: "අයදුම් කරන්න",
                 modal_salary: "මාසික වැටුප", modal_experience: "වයස සීමාව", modal_process: "කාලසීමාව", modal_apply: "දැන් අයදුම් කරන්න",
                 inc_consult: "රැකියා දීමනාව සහ ගිවිසුම", inc_doc: "වීසා සැකසුම්", inc_flight: "ගුවන් ටිකට්පත් ඇතුළත්",
-                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
+                nav_home: "මුල් පිටුව", nav_programs: "වැඩසටහන්", nav_services: "සේවා", nav_assessment: "නොමිලේ ඇගයීම", nav_about: "අපි ගැන", nav_book: "වෙන්කරවා ගන්න",
                 cat_all: "සියලුම අංශ", cat_general: "සාමාන්‍ය අංශය", cat_factory: "කර්මාන්තශාලා අංශය", cat_packing: "ඇසුරුම් අංශය",
                 step_1: "පැතිකඩ ඇගයීම", step_2: "ලියාපදිංචිය", step_3: "රැකියා දීමනාව", step_4: "වැඩ බලපත්‍රය", step_5: "වීසා ගොනු කිරීම", step_6: "වීසා සාර්ථකත්වය", step_7: "පිටත්වීම",
                 country_newzealand: "නවසීලන්තය", country_denmark: "ඩෙන්මාර්කය", country_austria: "ඔස්ට්‍රියාව", country_germany: "ජර්මනිය", country_sweden: "ස්වීඩනය", country_finland: "ෆින්ලන්තය", country_france: "ප්‍රංශය", country_poland: "පෝලන්තය", country_southkorea: "දකුණු කොරියාව", country_singapore: "සිංගප්පූරුව", country_canada: "කැනඩාව", country_georgia: "ජෝර්ජියාව", country_kazakhstan: "කසකස්තානය", country_russia: "රුසියාව", country_slovakia: "ස්ලොවැකියාව", country_czech: "චෙක් ජනරජය", country_latvia: "ලැට්වියාව", country_croatia: "ක්‍රොඒෂියාව", country_montenegro: "මොන්ටිනිග්‍රෝ", country_serbia: "සර්බියාව", country_macedonia: "මැසිඩෝනියාව", country_albania: "ඇල්බේනියාව", country_belarus: "බෙලරුස්"
@@ -1441,10 +1441,10 @@
                 select_department: "Chagua Idara", process_kicker: "Ramani",
                 process_title: "Mchakato wa Maombi", process_subtitle: `Hatua rahisi na za wazi kuelekea ${PAGE_CONFIG.countryName}.`,
                 package_title: "Kifurushi cha Montenegro", package_subtitle: "Huduma Kamili ya Ajira",
-                total_inv: "Jumla ya Kifurushi", price_note: "Imelipwa kwa awamu mbili rahisi.", start_process: "Anza Maombi",
+                total_inv: "Muundo wa Uwekezaji", package_value: "Imepangwa & Wazi", price_note: "Malipo yanayotegemea hatua.", start_process: "Anza Maombi",
                 modal_salary: "Mshahara wa Mwezi", modal_experience: "Kikomo cha Umri", modal_process: "Muda wa Mchakato", modal_apply: "Tuma Ombi Sasa",
                 inc_consult: "Ofa ya Kazi na Mkataba", inc_doc: "Uchakataji wa Visa", inc_flight: "Tiketi ya Ndege Imejumuishwa",
-                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
+                nav_home: "Nyumbani", nav_programs: "Programu", nav_services: "Huduma", nav_assessment: "Tathmini ya Bure", nav_about: "Kutuhusu", nav_book: "Weka Nafasi",
                 cat_all: "Idara Zote", cat_general: "Idara ya Jumla", cat_factory: "Idara ya Kiwanda", cat_packing: "Idara ya Kupakia",
                 step_1: "Tathmini ya Wasifu", step_2: "Usajili", step_3: "Ofa ya Kazi", step_4: "Kibali cha Kazi", step_5: "Uwasilishaji wa Visa", step_6: "Mafanikio ya Visa", step_7: "Safari",
                 country_newzealand: "New Zealand", country_denmark: "Denmark", country_austria: "Austria", country_germany: "Ujerumani", country_sweden: "Uswidi", country_finland: "Ufini", country_france: "Ufaransa", country_poland: "Poland", country_southkorea: "Korea Kusini", country_singapore: "Singapore", country_canada: "Canada", country_georgia: "Georgia", country_kazakhstan: "Kazakhstan", country_russia: "Urusi", country_slovakia: "Slovakia", country_czech: "Czechia", country_latvia: "Latvia", country_croatia: "Kroatia", country_montenegro: "Montenegro", country_serbia: "Serbia", country_macedonia: "Masedonia", country_albania: "Albania", country_belarus: "Belarusi"
